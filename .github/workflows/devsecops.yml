@@ -1,0 +1,88 @@
+name: TCC DevSecOps Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  security-scans:
+    name: OWASP API Security Scans
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 1. Checkout do Código
+        uses: actions/checkout@v4
+
+      - name: 2. Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: 3. Instalar Dependências e Ferramentas
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r broken-api/requirements.txt
+          pip install bandit safety
+
+      # ==========================================
+      # ETAPAS DE SEGURANÇA (DEVSECOPS)
+      # ==========================================
+
+      - name: 4. Secret Scanning (Gitleaks)
+        # Procura por chaves da AWS e senhas de banco deixadas no código
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+      - name: 5. SCA - Análise de Dependências (Safety)
+        # Verifica se as bibliotecas no requirements.txt têm CVEs conhecidas
+        run: safety check -r broken-api/requirements.txt --output json > sca_report.json
+        continue-on-error: true
+
+      - name: 6. SAST - Análise Estática (Bandit)
+        # Lê o código Python procurando falhas lógicas e de sintaxe insegura
+        run: bandit -r broken-api/ -f json -o sast_report.json
+        continue-on-error: true
+
+      - name: 7. Build da Imagem Docker
+        run: docker build -t vulnerable-api:latest ./broken-api
+
+      - name: 8. Container Scan (Trivy)
+        # Escaneia a imagem Docker gerada em busca de falhas no SO base
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'vulnerable-api:latest'
+          format: 'json'
+          output: 'trivy_report.json'
+        continue-on-error: true
+
+      - name: 9. Subir a API para o teste DAST
+        # Roda o container em background no GitHub Actions
+        run: docker run -d -p 8000:8000 vulnerable-api:latest
+
+      - name: 10. Aguardar API ficar online
+        run: sleep 10
+
+      - name: 11. DAST - OWASP ZAP API Scan
+        # Simula ataques reais contra os endpoints rodando
+        uses: zaproxy/action-api-scan@v0.3.0
+        with:
+          target: 'http://localhost:8000/openapi.json'
+          format: openapi
+        continue-on-error: true
+
+      # ==========================================
+      # EXTRAÇÃO DE DADOS PARA O SEU FRONTEND
+      # ==========================================
+
+      - name: 12. Salvar Relatórios (Artifacts)
+        uses: actions/upload-artifact@v4
+        with:
+          name: relatorios-seguranca
+          path: |
+            sca_report.json
+            sast_report.json
+            trivy_report.json
