@@ -68,7 +68,7 @@ jobs:
 
       - name: 11. DAST - OWASP ZAP API Scan
         # Simula ataques reais contra os endpoints rodando
-        uses: zaproxy/action-api-scan@v0.14.0
+        uses: zaproxy/action-api-scan@v0.10.0
         with:
           target: 'http://localhost:8000/openapi.json'
           format: openapi
