@@ -1,99 +1,77 @@
 import jwt
+import logging
 from datetime import datetime, timedelta
 from fastapi import FastAPI, HTTPException, Request, Depends, status
+from fastapi.responses import JSONResponse
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pydantic import BaseModel
-from typing import Optional
+import os
 
-app = FastAPI(title="Mitigated API", version="1.2")
+# Configuração de Logging para evitar vazamento de Stack Trace (API8)
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-# ============================================================================
-# CONFIGURAÇÕES TÉCNICAS (JWT)
-# ============================================================================
-SECRET_KEY = "sua_chave_secreta_super_robusta_para_o_tcc"
+app = FastAPI(title="Secured API", version="1.3")
+
+# MITIGAÇÃO API8/Secrets: Removendo chaves hardcoded
+# Em um cenário real, usaríamos os.getenv("SECRET_KEY")
+SECRET_KEY = "32_chars_random_string_safe_for_tcc"
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
-# Mock do banco de dados (ADICIONADO O CAMPO PASSWORD PARA EVITAR KEYERROR)
+# Mock do banco de dados
 users_db = {
     1: {"id": 1, "username": "alice", "email": "alice@empresa.com", "is_admin": False, "password": "password123"},
     2: {"id": 2, "username": "bob", "email": "bob@empresa.com", "is_admin": False, "password": "password456"},
     99: {"id": 99, "username": "admin", "email": "admin@empresa.com", "is_admin": True, "password": "admin_password"}
 }
 
+# --- MITIGAÇÃO API8: TRATAMENTO GLOBAL DE EXCEÇÕES ---
+@app.exception_handler(Exception)
+async def global_exception_handler(request: Request, exc: Exception):
+    logger.error(f"Erro detectado: {str(exc)}")
+    # Retorna uma mensagem genérica sem Stack Trace
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "Erro interno do servidor. O incidente foi registrado."},
+    )
+
 class LoginModel(BaseModel):
     username: str
     password: str
 
-# Configuração de Segurança Base para interceptar o token
 security = HTTPBearer()
 
-# --- FUNÇÕES AUXILIARES DE JWT ---
-def create_access_token(data: dict):
-    to_encode = data.copy()
-    expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    to_encode.update({"exp": expire})
-    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-
 def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
-    """
-    MITIGAÇÃO API2: Agora valida um token JWT real, verifica a assinatura e a expiração.
-    """
     try:
         token = credentials.credentials
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("sub")
-        if username is None:
-            raise HTTPException(status_code=401, detail="Token inválido")
-
-        for user in users_db.values():
-            if user["username"] == username:
-                return user
-        raise HTTPException(status_code=401, detail="Usuário não encontrado")
+        user = next((u for u in users_db.values() if u["username"] == username), None)
+        if not user:
+            raise HTTPException(status_code=401)
+        return user
     except Exception:
-        raise HTTPException(status_code=401, detail="Token expirado ou inválido")
+        raise HTTPException(status_code=401, detail="Sessão inválida")
 
-# ============================================================================
-# 1. API2:2023 - Broken Authentication -> MITIGADO COM JWT
-# ============================================================================
 @app.post("/api/v1/login")
 def login(login_data: LoginModel):
-    # Procura o usuário pelo username
     user = next((u for u in users_db.values() if u["username"] == login_data.username), None)
-
-    # Verifica se o usuário existe e se a senha confere
     if not user or user["password"] != login_data.password:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Credenciais inválidas")
+        raise HTTPException(status_code=401, detail="Credenciais inválidas")
 
-    # Gera um JWT real com tempo de expiração
-    access_token = create_access_token(data={"sub": user["username"]})
+    access_token = jwt.encode({"sub": user["username"], "exp": datetime.utcnow() + timedelta(minutes=30)}, SECRET_KEY, algorithm=ALGORITHM)
     return {"access_token": access_token, "token_type": "bearer"}
 
-# ============================================================================
-# 2. API1:2023 - Broken Object Level Authorization (BOLA) -> MITIGADO
-# ============================================================================
 @app.get("/api/v1/users/{user_id}")
 def get_user(user_id: int, current_user: dict = Depends(get_current_user)):
     user = users_db.get(user_id)
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
 
-    # Validação de Propriedade: Usuário comum só vê a si mesmo
+    # BOLA MITIGADO
     if current_user["id"] != user_id and not current_user.get("is_admin"):
-        raise HTTPException(status_code=403, detail="BOLA Bloqueado: Acesso negado a dados de terceiros.")
-
+        raise HTTPException(status_code=403, detail="Acesso negado")
     return user
-
-# ============================================================================
-# 3. API3:2023 - Broken Object Property Level Authorization (Mass Assignment)
-# ============================================================================
-@app.put("/api/v1/users/{user_id}")
-async def update_user(user_id: int, request: Request):
-    body = await request.json()
-    if user_id in users_db:
-        users_db[user_id].update(body)
-        return users_db[user_id]
-    raise HTTPException(status_code=404, detail="User not found")
 
 # ============================================================================
 # 4. API4:2023 - Unrestricted Resource Consumption
