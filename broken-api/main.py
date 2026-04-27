@@ -1,9 +1,10 @@
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, Depends
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from pydantic import BaseModel
 import base64
 import sqlite3
 
-app = FastAPI(title="Vunerable API", version="1.0")
+app = FastAPI(title="Mitigated API", version="1.1")
 
 # ============================================================================
 # VULNERABILIDADE EXTRA: Secret Hardcoded (Será pego no Secret Scanning)
@@ -22,28 +23,55 @@ class LoginModel(BaseModel):
     username: str
     password: str
 
+# Configuração de Segurança Base para interceptar o token
+security = HTTPBearer()
+
+def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
+    """
+    Função para extrair o usuário da requisição atual.
+    Nota: A decodificação Base64 ainda é vulnerável (API2), mas é necessária
+    agora para podermos identificar o usuário e mitigar o BOLA (API1).
+    """
+    try:
+        username = base64.b64decode(credentials.credentials).decode()
+        for user in users_db.values():
+            if user["username"] == username:
+                return user
+        raise HTTPException(status_code=401, detail="Usuário não encontrado no sistema.")
+    except Exception:
+        raise HTTPException(status_code=401, detail="Token inválido ou ausente.")
+
+
 # ============================================================================
-# 1. API1:2023 - Broken Access Control
+# 1. API2:2023 - Broken Authentication (Será mitigado no próximo passo)
 # ============================================================================
 @app.post("/api/v1/login")
 def login(login_data: LoginModel):
-    # FALHA: Não há rate limiting (permite brute force).
-    # FALHA: O "token" é apenas o username em Base64, super fácil de forjar.
+    # FALHA AINDA ATIVA: O "token" é apenas o username em Base64.
     fake_token = base64.b64encode(login_data.username.encode()).decode()
     return {"access_token": fake_token, "type": "bearer"}
 
+
 # ============================================================================
-# 2. API2:2023 - Broken Object Level Authorization (BOLA)
-# ===========================================================================
+# 2. API1:2023 - Broken Object Level Authorization (BOLA) -> MITIGADO
+# ============================================================================
 @app.get("/api/v1/users/{user_id}")
-def get_user(user_id: int):
-    # FALHA: A API não verifica de quem é o token de acesso.
-    # Qualquer usuário autenticado (ou até sem autenticação, nesse caso)
-    # Pode alterar o ID na URL e ver os dados de outros usuários (ex: admin 99).
+def get_user(user_id: int, current_user: dict = Depends(get_current_user)):
     user = users_db.get(user_id)
-    if user:
-        return user
-    raise HTTPException(status_code=404, detail="User not found")
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    # MITIGAÇÃO BOLA: Validação Rigorosa de Propriedade (Ownership)
+    # Bloqueia a requisição se o usuário tentar ver um ID que não é dele
+    # (a menos que seja um administrador).
+    if current_user["id"] != user_id and not current_user.get("is_admin"):
+        raise HTTPException(
+            status_code=403,
+            detail="BOLA Bloqueado: Você não tem autorização para aceder aos dados deste utilizador."
+        )
+
+    return user
+
 
 # ============================================================================
 # 3. API3:2023 - Broken Object Property Level Authorization (Mass Assignment)
@@ -57,6 +85,7 @@ async def update_user(user_id: int, request: Request):
         users_db[user_id].update(body)
         return users_db[user_id]
     raise HTTPException(status_code=404, detail="User not found")
+
 
 # ============================================================================
 # 4. API4:2023 - Unrestricted Resource Consumption
