@@ -1,129 +1,174 @@
+import { useState } from 'react';
 import {
   GitCommit, Search, ShieldAlert, Box, FileCode2, PlaySquare, ShieldCheck,
-  CheckCircle2, AlertTriangle, XCircle
+  ChevronDown, ChevronUp, Bug, ExternalLink
 } from 'lucide-react';
+import sastReport from '../data/sast_report.json';
+import scaReport from '../data/sca_report.json';
+import trivyReport from '../data/trivy_report.json';
+import zapReport from '../data/report_json.json';
 
 interface PipelineProps {
-  // Vamos receber os dados do gráfico para saber quantas falhas cada etapa teve
   chartData: { categoria: string; antes: number; depois: number }[];
   totalAlta: number;
 }
 
 export function PipelineTab({ chartData, totalAlta }: PipelineProps) {
-  // Função auxiliar para procurar a quantidade de falhas por etapa
+  const [expandedStage, setExpandedStage] = useState<number | null>(null);
+
+  const allBlockers = [
+    ...(sastReport.results?.filter((f: any) => f.issue_severity === 'HIGH') || []),
+    ...(scaReport.vulnerabilities?.filter((f: any) => (f.severity || '').toUpperCase() === 'HIGH') || []),
+    ...(trivyReport.Results?.flatMap((r: any) => r.Vulnerabilities || []).filter((f: any) => f.Severity === 'HIGH' || f.Severity === 'CRITICAL') || []),
+    ...(zapReport.site?.[0]?.alerts?.filter((f: any) => f.riskcode === '3') || [])
+  ];
+
   const getIssuesCount = (categoryName: string) => {
     const stage = chartData.find(c => c.categoria === categoryName);
     return stage ? stage.antes : 0;
   };
 
-  const sastCount = getIssuesCount('SAST');
-  const scaCount = getIssuesCount('SCA');
-  const dastCount = getIssuesCount('DAST');
-  const trivyCount = getIssuesCount('Trivy');
-
-  // Definição das 8 etapas do seu pipeline DevSecOps
   const pipelineStages = [
-    {
-      id: 1, name: 'Commit & Secrets', tool: 'GitLeaks', icon: GitCommit,
-      issues: 0, status: 'pass', desc: 'Verificação de credenciais hardcoded no código.'
-    },
-    {
-      id: 2, name: 'SAST', tool: 'Bandit', icon: Search,
-      issues: sastCount, status: sastCount > 0 ? 'fail' : 'pass', desc: 'Análise Estática de falhas lógicas no Python.'
-    },
-    {
-      id: 3, name: 'SCA', tool: 'Safety', icon: ShieldAlert,
-      issues: scaCount, status: scaCount > 0 ? 'fail' : 'pass', desc: 'Análise de dependências e bibliotecas vulneráveis.'
-    },
-    {
-      id: 4, name: 'IaC & Container Scan', tool: 'Trivy', icon: Box,
-      issues: trivyCount, status: trivyCount > 0 ? 'fail' : 'pass', desc: 'Verificação de vulnerabilidades na imagem Docker.'
-    },
-    {
-      id: 5, name: 'Build', tool: 'Docker Engine', icon: FileCode2,
-      issues: 0, status: 'pass', desc: 'Compilação e empacotamento da aplicação.'
-    },
-    {
-      id: 6, name: 'DAST', tool: 'OWASP ZAP', icon: PlaySquare,
-      issues: dastCount, status: dastCount > 0 ? 'fail' : 'pass', desc: 'Ataques dinâmicos automatizados contra a API.'
-    },
-    {
-      id: 7, name: 'Contract / OpenAPI', tool: 'Swagger Validator', icon: ShieldCheck,
-      issues: 0, status: 'pass', desc: 'Validação do contrato da API RESTful.'
-    },
-    {
-      id: 8, name: 'Security Gate', tool: 'GitHub Actions', icon: CheckCircle2,
-      issues: totalAlta, status: totalAlta > 0 ? 'blocked' : 'pass', desc: 'Decisão automatizada de bloqueio do deploy.'
-    },
+    { id: 1, name: 'Commit & Secrets', tool: 'GitLeaks', icon: GitCommit, issues: 0, status: 'pass', desc: 'Análise de segredos expostos.', findings: [] },
+    { id: 2, name: 'SAST (Static Analysis)', tool: 'Bandit', icon: Search, issues: getIssuesCount('SAST'), status: getIssuesCount('SAST') > 0 ? 'fail' : 'pass', desc: 'Análise estática do código Python.', findings: sastReport.results || [] },
+    { id: 3, name: 'SCA (Composition)', tool: 'Safety', icon: ShieldAlert, issues: getIssuesCount('SCA'), status: getIssuesCount('SCA') > 0 ? 'fail' : 'pass', desc: 'Vulnerabilidades em bibliotecas externas.', findings: scaReport.vulnerabilities || [] },
+    { id: 4, name: 'Build & Container', tool: 'Docker', icon: Box, issues: 0, status: 'pass', desc: 'Geração da imagem do container.', findings: [] },
+    { id: 5, name: 'Image Scanning', tool: 'Trivy', icon: FileCode2, issues: getIssuesCount('Trivy'), status: getIssuesCount('Trivy') > 0 ? 'fail' : 'pass', desc: 'Escaneamento da imagem Docker.', findings: trivyReport.Results?.flatMap((r: any) => r.Vulnerabilities || []) || [] },
+    { id: 6, name: 'DAST (Dynamic Analysis)', tool: 'ZAP', icon: PlaySquare, issues: getIssuesCount('DAST'), status: getIssuesCount('DAST') > 0 ? 'fail' : 'pass', desc: 'Testes de intrusão ativos na API.', findings: zapReport.site?.[0]?.alerts || [] },
+    { id: 7, name: 'Security Gate', tool: 'Policy Check', icon: ShieldCheck, issues: totalAlta, status: totalAlta > 0 ? 'blocked' : 'pass', desc: 'Bloqueio de deploys inseguros.', findings: allBlockers }
   ];
 
-  const getStatusStyle = (status: string) => {
+  const getStatusStyles = (status: string) => {
     switch (status) {
-      case 'pass': return 'bg-green-50 border-green-200 text-green-700';
-      case 'fail': return 'bg-yellow-50 border-yellow-200 text-yellow-700';
-      case 'blocked': return 'bg-red-50 border-red-200 text-red-700';
-      default: return 'bg-slate-50 border-slate-200 text-slate-700';
-    }
-  };
-
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'pass': return <CheckCircle2 className="w-5 h-5 text-green-500" />;
-      case 'fail': return <AlertTriangle className="w-5 h-5 text-yellow-500" />;
-      case 'blocked': return <XCircle className="w-5 h-5 text-red-500" />;
-      default: return null;
+      case 'pass': return 'bg-green-600 text-white border-green-700';
+      case 'fail': return 'bg-amber-500 text-white border-amber-600';
+      case 'blocked': return 'bg-red-600 text-white border-red-700';
+      default: return 'bg-slate-400 text-white border-slate-500';
     }
   };
 
   return (
-    <div className="space-y-6 animate-in fade-in duration-500">
+    <div className="space-y-8 animate-in fade-in duration-500">
       <div className="flex justify-between items-end border-b pb-2">
-        <h2 className="text-xl font-semibold">Orquestração do Pipeline CI/CD</h2>
-        <span className="text-sm text-slate-500">Fluxo automatizado no GitHub Actions</span>
+        <h2 className="text-xl font-semibold">Orquestração da Esteira DevSecOps</h2>
+        <span className="text-sm text-slate-500">Fluxo de inspeção em tempo real</span>
       </div>
 
-      <div className="py-4">
-        <p className="text-slate-600 mb-8 text-center max-w-3xl mx-auto">
-          Representação visual do ciclo DevSecOps implementado. As etapas sinalizam alertas quando os testes de segurança detectam falhas, culminando no Security Gate que bloqueia implementações vulneráveis.
-        </p>
+      <div className="relative">
+        <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-slate-200 hidden md:block"></div>
+        <div className="space-y-6">
+          {pipelineStages.map((stage) => {
+            const Icon = stage.icon;
+            const isExpanded = expandedStage === stage.id;
+            const hasFindings = stage.findings.length > 0;
 
-        <div className="relative max-w-4xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
-            {pipelineStages.map((stage) => {
-              const Icon = stage.icon;
-              return (
-                <div key={stage.id} className={`flex flex-col p-5 rounded-lg border-2 transition-all hover:shadow-md ${getStatusStyle(stage.status)}`}>
-                  <div className="flex justify-between items-start mb-3">
-                    <div className="flex items-center space-x-3">
-                      <div className="p-2 bg-white rounded-md shadow-sm">
-                        <Icon className="w-6 h-6 opacity-80" />
+            return (
+              <div key={stage.id} className="relative md:pl-16">
+                <div className={`absolute left-6 top-6 w-4 h-4 rounded-full border-2 border-white shadow-sm z-10 hidden md:block ${stage.status === 'pass' ? 'bg-green-500' : stage.status === 'fail' ? 'bg-amber-500' : 'bg-red-500'
+                  }`}></div>
+
+                <div className={`border rounded-lg shadow-sm transition-all overflow-hidden ${isExpanded ? 'ring-2 ring-academico-primary ring-opacity-20' : 'bg-white'}`}>
+                  <button
+                    onClick={() => hasFindings && setExpandedStage(isExpanded ? null : stage.id)}
+                    className={`w-full flex items-center justify-between p-5 focus:outline-none ${hasFindings ? 'cursor-pointer hover:bg-slate-50' : 'cursor-default'}`}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className={`p-3 rounded-lg ${getStatusStyles(stage.status)} shadow-sm`}>
+                        <Icon className="w-6 h-6" />
                       </div>
-                      <div>
-                        <h3 className="font-bold text-lg">Etapa {stage.id}: {stage.name}</h3>
-                        <span className="text-xs font-semibold uppercase tracking-wider opacity-70">{stage.tool}</span>
+                      <div className="text-left">
+                        <div className="flex items-center">
+                          <h3 className="font-bold text-slate-800">Etapa {stage.id}: {stage.name}</h3>
+                          <span className="ml-3 text-[10px] font-bold uppercase px-2 py-0.5 bg-slate-100 text-slate-500 rounded border">{stage.tool}</span>
+                        </div>
+                        <p className="text-xs text-slate-500 mt-1">{stage.desc}</p>
                       </div>
                     </div>
-                    {getStatusIcon(stage.status)}
-                  </div>
+                    <div className="flex items-center space-x-2 w-36 justify-end">
+                      <div className="flex-1 flex justify-end">
+                        {stage.issues > 0 && <span className="px-2.5 py-1 text-xs font-bold bg-red-50 text-red-600 rounded-md border border-red-100 whitespace-nowrap shadow-sm">{stage.issues} Alertas</span>}
+                      </div>
+                      <div className="w-6 flex justify-center flex-shrink-0">
+                        {hasFindings ? (isExpanded ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />) : <span className="w-5 h-5"></span>}
+                      </div>
+                    </div>
+                  </button>
 
-                  <p className="text-sm opacity-90 mb-4 flex-grow">{stage.desc}</p>
+                  {isExpanded && hasFindings && (
+                    <div className="bg-slate-50 border-t p-5 space-y-3">
+                      <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 flex items-center">
+                        <Bug className="w-3 h-3 mr-1" /> Vulnerabilidades Identificadas
+                      </h4>
+                      <div className="grid gap-3">
+                        {stage.findings.map((f: any, idx: number) => {
+                          const titulo = f.Title || f.name || f.test_name || (f.vulnerability_id ? `ID: ${f.vulnerability_id}` : null) || f.VulnerabilityID || "Falha Detectada";
+                          const desc = f.advisory || f.issue_text || f.Description || f.desc || f.description || "Sem detalhes adicionais.";
+                          const severidadeTexto = f.issue_severity || f.severity || f.Severity || (f.riskdesc ? f.riskdesc.split(' ')[0] : 'MEDIUM');
+                          const severidadeCor = (severidadeTexto.toUpperCase().includes('HIGH') || severidadeTexto.toUpperCase().includes('CRITICAL'));
 
-                  <div className="pt-3 border-t border-black/10 flex justify-between items-center text-sm font-medium">
-                    <span>Estado:
-                      {stage.status === 'pass' && ' Aprovado'}
-                      {stage.status === 'fail' && ' Alertas Detectados'}
-                      {stage.status === 'blocked' && ' Deploy Bloqueado'}
-                    </span>
-                    {stage.issues > 0 && (
-                      <span className="px-2 py-1 bg-white rounded-md shadow-sm text-red-600">
-                        {stage.issues} achados
-                      </span>
-                    )}
-                  </div>
+                          // Lógica de Link Externo (Baseado em cada ferramenta)
+                          // 1. Tenta pegar a URL direta se existir
+                          let linkRef = f.more_info || f.PrimaryURL;
+
+                          // 2. Se for ZAP, extrai o primeiro link real de dentro do texto/HTML
+                          if (!linkRef && f.reference) {
+                            const urlMatch = String(f.reference).match(/https?:\/\/[^\s"'<]+/);
+                            if (urlMatch) linkRef = urlMatch[0];
+                          }
+
+                          // 3. Fallbacks inteligentes para ferramentas que só enviam o ID
+                          if (!linkRef) {
+                            if (f.VulnerabilityID) { // Trivy
+                              linkRef = `https://avd.aquasec.com/nvd/${f.VulnerabilityID.toLowerCase()}`;
+                            } else if (f.vulnerability_id) { // Safety (SCA)
+                              // A OSV.dev é a melhor base para pesquisar IDs de bibliotecas Python
+                              linkRef = `https://osv.dev/list?q=${f.vulnerability_id}`;
+                            } else if (f.test_id) { // Bandit (SAST)
+                              linkRef = `https://bandit.readthedocs.io/en/latest/search.html?q=${f.test_id}`;
+                            } else {
+                              // Último recurso: Gera uma busca direta para o erro no Google
+                              linkRef = `https://www.google.com/search?q=${encodeURIComponent('vulnerability ' + titulo)}`;
+                            }
+                          }
+
+                          return (
+                            <div key={idx} className="bg-white p-3 rounded border border-slate-200 shadow-sm flex flex-col space-y-2">
+                              <div className="flex justify-between items-start">
+                                <div className="text-xs space-y-1">
+                                  <p className="font-bold text-slate-700">{titulo}</p>
+                                  <p className="text-slate-500 italic leading-relaxed">{desc}</p>
+                                </div>
+                                <span className={`text-[10px] font-bold px-2 py-0.5 rounded text-white shadow-sm uppercase ${severidadeCor ? 'bg-red-500' : 'bg-amber-500'}`}>
+                                  {severidadeTexto}
+                                </span>
+                              </div>
+
+                              <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+                                <div className="text-[10px] text-slate-400 font-mono">
+                                  {f.file && `Local: ${f.file}:${f.line_number}`}
+                                  {f.PkgName && `Pacote: ${f.PkgName}`}
+                                </div>
+                                {linkRef && (
+                                  <a
+                                    href={linkRef}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-academico-primary hover:underline flex items-center text-[10px] font-bold"
+                                  >
+                                    <ExternalLink className="w-3 h-3 mr-1" /> MAIS INFORMAÇÕES
+                                  </a>
+                                )}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
                 </div>
-              );
-            })}
-          </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

@@ -72,51 +72,79 @@ export function OwaspTab({ categories, mapping }: OwaspProps) {
                     </p>
 
                     <div className="space-y-4">
-                      {data.evidences.map((ev, idx) => (
-                        <div key={idx} className="bg-white border rounded-lg shadow-sm overflow-hidden">
-                          <div className="bg-red-50 border-b border-red-100 px-4 py-3 flex justify-between items-center">
-                            <p className="font-bold text-red-800 text-sm">{ev.name || ev.test_name || 'Alerta de Segurança'}</p>
-                            <span className="text-xs font-bold px-2 py-1 bg-white text-red-600 rounded shadow-sm border border-red-100 uppercase">
-                              Severidade: {ev.riskdesc || ev.issue_severity || ev.severity || 'HIGH'}
-                            </span>
-                          </div>
+                      {data.evidences.map((ev, idx) => {
+                        // 1. Definição do título para fallback de pesquisa
+                        const titulo = ev.Title || ev.name || ev.test_name || "Alerta de Segurança";
 
-                          <div className="p-4 text-sm space-y-3">
-                            {/* Detalhe do Erro (Bandit ou ZAP) */}
-                            {ev.issue_text && (
-                              <p className="text-slate-700"><span className="font-semibold">Problema:</span> {ev.issue_text}</p>
-                            )}
-                            {ev.desc && (
-                              <p className="text-slate-700"><span className="font-semibold">Descrição:</span> {stripHtml(ev.desc)}</p>
-                            )}
+                        // 2. Geração Inteligente de Link (Mesma lógica do PipelineTab)
+                        let linkRef = ev.more_info || ev.PrimaryURL;
 
-                            /* Solução Sugerida (ZAP) */
-                            {ev.solution && (
-                              <div className="bg-blue-50 border border-blue-100 p-3 rounded-md mt-2 flex items-start">
-                                <Lightbulb className="w-5 h-5 text-blue-500 mr-2 flex-shrink-0 mt-0.5" />
-                                <p className="text-blue-800">
-                                  <span className="font-semibold">Recomendação:</span> {stripHtml(ev.solution)}
-                                </p>
-                              </div>
-                            )}
+                        if (!linkRef && ev.reference) {
+                          const urlMatch = String(ev.reference).match(/https?:\/\/[^\s"'<]+/);
+                          if (urlMatch) linkRef = urlMatch[0];
+                        }
 
-                            {/* Rastreabilidade (Onde está o erro) */}
-                            <div className="bg-slate-100 p-2 rounded text-xs font-mono text-slate-600 break-all mt-3">
-                              {ev.uri && <div><span className="font-semibold text-slate-500">Endpoint:</span> {ev.uri}</div>}
-                              {ev.file && <div><span className="font-semibold text-slate-500">Ficheiro:</span> {ev.file} (Linha {ev.line_number})</div>}
+                        if (!linkRef) {
+                          if (ev.VulnerabilityID) {
+                            linkRef = `https://avd.aquasec.com/nvd/${ev.VulnerabilityID.toLowerCase()}`;
+                          } else if (ev.vulnerability_id) {
+                            linkRef = `https://osv.dev/list?q=${ev.vulnerability_id}`;
+                          } else if (ev.test_id) {
+                            linkRef = `https://bandit.readthedocs.io/en/latest/search.html?q=${ev.test_id}`;
+                          } else {
+                            linkRef = `https://www.google.com/search?q=${encodeURIComponent('vulnerability ' + titulo)}`;
+                          }
+                        }
+
+                        return (
+                          <div key={idx} className="bg-white border rounded-lg shadow-sm overflow-hidden flex flex-col">
+                            <div className="bg-red-50 border-b border-red-100 px-4 py-3 flex justify-between items-center">
+                              <p className="font-bold text-red-800 text-sm">{titulo}</p>
+                              <span className="text-xs font-bold px-2 py-1 bg-white text-red-600 rounded shadow-sm border border-red-100 uppercase">
+                                Severidade: {ev.riskdesc || ev.issue_severity || ev.severity || 'HIGH'}
+                              </span>
                             </div>
 
-                            {/* Referências */}
-                            {ev.reference && (
-                              <div className="pt-2">
-                                <a href={ev.reference.split(' ')[0]} target="_blank" rel="noopener noreferrer" className="text-academico-primary hover:underline inline-flex items-center text-xs font-medium">
-                                  <ExternalLink className="w-3 h-3 mr-1" /> Documentação Técnica (Referência)
-                                </a>
+                            <div className="p-4 text-sm space-y-3 flex-grow">
+                              {/* Detalhe do Erro (Bandit ou ZAP) */}
+                              {ev.issue_text && (
+                                <p className="text-slate-700"><span className="font-semibold">Problema:</span> {ev.issue_text}</p>
+                              )}
+                              {ev.desc && (
+                                <p className="text-slate-700"><span className="font-semibold">Descrição:</span> {stripHtml(ev.desc)}</p>
+                              )}
+
+                              {/* Solução Sugerida (ZAP) */}
+                              {ev.solution && (
+                                <div className="bg-blue-50 border border-blue-100 p-3 rounded-md mt-2 flex items-start">
+                                  <Lightbulb className="w-5 h-5 text-blue-500 mr-2 flex-shrink-0 mt-0.5" />
+                                  <p className="text-blue-800">
+                                    <span className="font-semibold">Recomendação:</span> {stripHtml(ev.solution)}
+                                  </p>
+                                </div>
+                              )}
+
+                              {/* Rastreabilidade (Onde está o erro) */}
+                              <div className="bg-slate-100 p-2 rounded text-xs font-mono text-slate-600 break-all mt-3">
+                                {ev.uri && <div><span className="font-semibold text-slate-500">Endpoint:</span> {ev.uri}</div>}
+                                {ev.file && <div><span className="font-semibold text-slate-500">Ficheiro:</span> {ev.file} (Linha {ev.line_number})</div>}
                               </div>
-                            )}
+                            </div>
+
+                            {/* Rodapé com Link Externo */}
+                            <div className="bg-slate-50 px-4 py-3 border-t flex justify-end">
+                              <a
+                                href={linkRef}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-academico-primary hover:underline inline-flex items-center text-xs font-bold uppercase tracking-wider"
+                              >
+                                <ExternalLink className="w-3.5 h-3.5 mr-1.5" /> Documentação Técnica
+                              </a>
+                            </div>
                           </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
