@@ -1,5 +1,4 @@
-import  historyData  from '../data/history.json';
-
+import historyData from '../data/history.json';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
   LineChart, Line
@@ -11,28 +10,24 @@ interface ComparativoProps {
 }
 
 export function ComparativoTab({ chartData }: ComparativoProps) {
-  // Simulação da redução exigida nos requisitos para a API Mitigada
-  // Reduz em aproximadamente 70% as falhas encontradas no JSON original
-  const dadosComparativos = chartData.map(item => ({
-    ...item,
-    depois: item.antes > 0 ? Math.floor(item.antes * 0.3) : 0
-  }));
+  // Agora os dados comparativos usam 100% da verdade extraída do history.json
+  const dadosComparativos = chartData;
 
   const totalAntes = dadosComparativos.reduce((acc, curr) => acc + curr.antes, 0);
   const totalDepois = dadosComparativos.reduce((acc, curr) => acc + curr.depois, 0);
   const percentualReducao = totalAntes > 0 ? Math.round(((totalAntes - totalDepois) / totalAntes) * 100) : 0;
 
-  // Dados simulados para a linha do tempo de evolução (Sprints de correção)
-  const timelineData = historyData.map((run: any) => ({
-  sprint: new Date(run.date).toLocaleDateString('pt-BR'),
-  falhas: run.total
-}));
+  // Linha do tempo real usando cada execução do histórico
+  const timelineData = historyData.map((run: any, index: number) => ({
+    sprint: `Deploy ${index + 1} (${new Date(run.date).toLocaleDateString('pt-BR')})`,
+    falhas: run.total
+  }));
 
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
       <div className="flex justify-between items-end border-b pb-2">
         <h2 className="text-xl font-semibold">Análise Comparativa: Mitigação de Vulnerabilidades</h2>
-        <span className="text-sm text-slate-500">API Vulnerável vs API Mitigada</span>
+        <span className="text-sm text-slate-500">API Vulnerável vs API Mitigada (Dados Reais do Pipeline)</span>
       </div>
 
       {/* KPIs de Redução */}
@@ -40,7 +35,7 @@ export function ComparativoTab({ chartData }: ComparativoProps) {
         <div className="flex items-center p-6 bg-red-50 border border-red-100 rounded-lg">
           <AlertOctagon className="w-10 h-10 text-red-500 mr-4" />
           <div>
-            <p className="text-sm text-red-700 font-medium">Cenário Inicial</p>
+            <p className="text-sm text-red-700 font-medium">Cenário Inicial (Baseline)</p>
             <p className="text-3xl font-bold text-red-600">{totalAntes} Falhas</p>
           </div>
         </div>
@@ -48,7 +43,7 @@ export function ComparativoTab({ chartData }: ComparativoProps) {
         <div className="flex items-center p-6 bg-green-50 border border-green-100 rounded-lg">
           <ShieldCheck className="w-10 h-10 text-green-500 mr-4" />
           <div>
-            <p className="text-sm text-green-700 font-medium">Após Pipeline DevSecOps</p>
+            <p className="text-sm text-green-700 font-medium">Situação Atual (Último Deploy)</p>
             <p className="text-3xl font-bold text-green-600">{totalDepois} Falhas</p>
           </div>
         </div>
@@ -75,16 +70,16 @@ export function ComparativoTab({ chartData }: ComparativoProps) {
                 <YAxis axisLine={false} tickLine={false} fontSize={12} />
                 <Tooltip cursor={{ fill: '#f8fafc' }} />
                 <Legend iconType="circle" wrapperStyle={{ fontSize: '12px', paddingTop: '10px' }} />
-                <Bar dataKey="antes" name="Antes (API V1)" fill="#ef4444" radius={[4, 4, 0, 0]} maxBarSize={50} />
-                <Bar dataKey="depois" name="Depois (API V2)" fill="#10b981" radius={[4, 4, 0, 0]} maxBarSize={50} />
+                <Bar dataKey="antes" name="Baseline Inicial" fill="#ef4444" radius={[4, 4, 0, 0]} maxBarSize={50} />
+                <Bar dataKey="depois" name="Estado Atual" fill="#10b981" radius={[4, 4, 0, 0]} maxBarSize={50} />
               </BarChart>
             </ResponsiveContainer>
           </div>
         </div>
 
-        {/* Gráfico de Linha: Evolução das Sprints */}
+        {/* Gráfico de Linha: Evolução real dos Deploys */}
         <div className="bg-white p-4 border rounded-lg shadow-sm">
-          <h3 className="text-md font-semibold text-slate-700 mb-6 text-center">Linha do Tempo de Redução (Evolução Contínua)</h3>
+          <h3 className="text-md font-semibold text-slate-700 mb-6 text-center">Evolução Contínua de Vulnerabilidades</h3>
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={timelineData} margin={{ top: 10, right: 20, left: -20, bottom: 0 }}>
@@ -92,7 +87,7 @@ export function ComparativoTab({ chartData }: ComparativoProps) {
                 <XAxis dataKey="sprint" axisLine={false} tickLine={false} fontSize={12} />
                 <YAxis axisLine={false} tickLine={false} fontSize={12} />
                 <Tooltip />
-                <Line type="monotone" dataKey="falhas" name="Total de Vulnerabilidades" stroke="#1e293b" strokeWidth={3} dot={{ r: 6, fill: '#1e293b' }} activeDot={{ r: 8, fill: '#3b82f6' }} />
+                <Line type="monotone" dataKey="falhas" name="Total Detectado" stroke="#1e293b" strokeWidth={3} dot={{ r: 6, fill: '#1e293b' }} activeDot={{ r: 8, fill: '#3b82f6' }} />
               </LineChart>
             </ResponsiveContainer>
           </div>
@@ -101,14 +96,14 @@ export function ComparativoTab({ chartData }: ComparativoProps) {
 
       {/* Tabela de Dados Brutos */}
       <div className="mt-8">
-        <h3 className="text-md font-semibold text-slate-700 mb-4">Detalhamento Numérico</h3>
+        <h3 className="text-md font-semibold text-slate-700 mb-4">Detalhamento Numérico Real</h3>
         <div className="overflow-x-auto rounded-lg border">
           <table className="w-full text-sm text-left">
             <thead className="bg-slate-50 text-slate-600 font-medium border-b">
               <tr>
                 <th className="px-6 py-3">Vetor de Análise (Ferramenta)</th>
-                <th className="px-6 py-3 text-center">Vulnerabilidades Antes</th>
-                <th className="px-6 py-3 text-center">Vulnerabilidades Depois</th>
+                <th className="px-6 py-3 text-center">Vulnerabilidades Iniciais</th>
+                <th className="px-6 py-3 text-center">Vulnerabilidades Atuais</th>
                 <th className="px-6 py-3 text-right">Redução (%)</th>
               </tr>
             </thead>

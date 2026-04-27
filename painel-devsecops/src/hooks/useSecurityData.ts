@@ -3,8 +3,18 @@ import sastReport from '../data/sast_report.json';
 import scaReport from '../data/sca_report.json';
 import trivyReport from '../data/trivy_report.json';
 import zapReport from '../data/report_json.json';
-import historyData from '../data/history.json';
+import rawHistoryData from '../data/history.json';
 import { OWASP_API_2023 } from '../constants/owsap';
+
+// Dizemos ao TypeScript exatamente o que esperar, mesmo que o JSON esteja vazio agora.
+const historyData = rawHistoryData as Array<{
+  date: string;
+  sast: number;
+  sca: number;
+  dast: number;
+  trivy: number;
+  total: number;
+}>;
 
 export function useSecurityData() {
   const experimentData = useMemo(() => {
@@ -47,7 +57,16 @@ export function useSecurityData() {
       });
     }
 
-    return { total, alta, media, baixa, taxaMitigacao: 0 };
+    // CÁLCULO REAL DA TAXA DE MITIGAÇÃO BASEADO NO HISTÓRICO
+    const baseline = historyData.length > 0 ? historyData[0] : null;
+    const current = historyData.length > 0 ? historyData[historyData.length - 1] : null;
+
+    let taxaMitigacao = 0;
+    if (baseline && current && baseline.total > 0) {
+      taxaMitigacao = Math.round(((baseline.total - current.total) / baseline.total) * 100);
+    }
+
+    return { total, alta, media, baixa, taxaMitigacao: Math.max(0, taxaMitigacao) };
   }, []);
 
   const owaspMapping = useMemo(() => {
@@ -75,11 +94,31 @@ export function useSecurityData() {
     return mapping;
   }, []);
 
+  // CÁLCULO REAL DO GRÁFICO COMPARATIVO BASEADO NO HISTÓRICO
+  const baseline = historyData.length > 0 ? historyData[0] : null;
+  const current = historyData.length > 0 ? historyData[historyData.length - 1] : null;
+
   const chartData = [
-    { categoria: 'SAST', antes: sastReport.results?.length || 0, depois: 0 },
-    { categoria: 'SCA', antes: scaReport?.vulnerabilities?.length || 0, depois: 0 },
-    { categoria: 'DAST', antes: zapReport.site?.[0]?.alerts?.length || 0, depois: 0 },
-    { categoria: 'Trivy', antes: trivyReport.Results?.reduce((acc: number, curr: any) => acc + (curr.Vulnerabilities?.length || 0), 0) || 0, depois: 0 },
+    {
+      categoria: 'SAST',
+      antes: baseline ? baseline.sast : (sastReport.results?.length || 0),
+      depois: current ? current.sast : (sastReport.results?.length || 0)
+    },
+    {
+      categoria: 'SCA',
+      antes: baseline ? baseline.sca : (scaReport?.vulnerabilities?.length || 0),
+      depois: current ? current.sca : (scaReport?.vulnerabilities?.length || 0)
+    },
+    {
+      categoria: 'DAST',
+      antes: baseline ? baseline.dast : (zapReport.site?.[0]?.alerts?.length || 0),
+      depois: current ? current.dast : (zapReport.site?.[0]?.alerts?.length || 0)
+    },
+    {
+      categoria: 'Trivy',
+      antes: baseline ? baseline.trivy : (trivyReport.Results?.reduce((acc: number, curr: any) => acc + (curr.Vulnerabilities?.length || 0), 0) || 0),
+      depois: current ? current.trivy : (trivyReport.Results?.reduce((acc: number, curr: any) => acc + (curr.Vulnerabilities?.length || 0), 0) || 0)
+    },
   ];
 
   return { experimentData, owaspMapping, chartData, historyData };
