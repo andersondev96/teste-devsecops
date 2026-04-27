@@ -1,3 +1,5 @@
+import  historyData  from '../data/history.json';
+
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
   LineChart, Line
@@ -21,12 +23,10 @@ export function ComparativoTab({ chartData }: ComparativoProps) {
   const percentualReducao = totalAntes > 0 ? Math.round(((totalAntes - totalDepois) / totalAntes) * 100) : 0;
 
   // Dados simulados para a linha do tempo de evolução (Sprints de correção)
-  const timelineData = [
-    { sprint: 'Baseline (API V1)', falhas: totalAntes },
-    { sprint: 'Ciclo SAST/SCA', falhas: Math.floor(totalAntes * 0.6) },
-    { sprint: 'Ciclo DAST/IaC', falhas: Math.floor(totalAntes * 0.4) },
-    { sprint: 'Final (API V2)', falhas: totalDepois },
-  ];
+  const timelineData = historyData.map((run: any) => ({
+  sprint: new Date(run.date).toLocaleDateString('pt-BR'),
+  falhas: run.total
+}));
 
   return (
     <div className="space-y-8 animate-in fade-in duration-500">

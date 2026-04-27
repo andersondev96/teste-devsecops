@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -93,11 +93,36 @@ jobs:
             trivy_report.json
             report_json.json
 
+      - name: 13. Gerar Resumo para Histórico
+        run: |
+          # Extrai totais usando o comando 'jq' (já disponível no ambiente do GitHub)
+          SAST_TOTAL=$(jq '.results | length' sast_report.json || echo 0)
+          SCA_TOTAL=$(jq '.vulnerabilities | length' sca_report.json || echo 0)
+          DAST_TOTAL=$(jq '.site[0].alerts | length' report_json.json || echo 0)
+          TRIVY_TOTAL=$(jq '[.Results[].Vulnerabilities[]?] | length' trivy_report.json || echo 0)
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+          # Cria um objeto JSON com o resumo da execução atual
+          echo "{\"date\": \"$TIMESTAMP\", \"sast\": $SAST_TOTAL, \"sca\": $SCA_TOTAL, \"dast\": $DAST_TOTAL, \"trivy\": $TRIVY_TOTAL, \"total\": $((SAST_TOTAL + SCA_TOTAL + DAST_TOTAL + TRIVY_TOTAL))}" > current_summary.json
+
+      - name: 14. Persistir Histórico no Repositório
+        run: |
+          # Lê o histórico atual, adiciona o novo resumo e mantém apenas as últimas 10 execuções
+          jq -s '.[0] + [.[1]] | last(10)' painel-devsecops/src/data/history.json current_summary.json > painel-devsecops/src/data/history.new.json
+          mv painel-devsecops/src/data/history.new.json painel-devsecops/src/data/history.json
+
+          # Configura o Git para commitar o arquivo de histórico atualizado
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add painel-devsecops/src/data/history.json
+          git commit -m "docs: atualiza histórico de vulnerabilidades [skip ci]"
+          git push
+
       # ==========================================
       # ETAPAS DE DEPLOY AUTOMÁTICO (NOVO)
       # ==========================================
 
-      - name: 13. Copiar Logs Fresquinhos para o Dashboard
+      - name: 15. Copiar Logs Fresquinhos para o Dashboard
         run: |
           mkdir -p painel-devsecops/src/data
           cp sca_report.json painel-devsecops/src/data/ || true
@@ -105,18 +130,18 @@ jobs:
           cp trivy_report.json painel-devsecops/src/data/ || true
           cp report_json.json painel-devsecops/src/data/ || true
 
-      - name: 14. Configurar Node.js
+      - name: 16. Configurar Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: 15. Build do Dashboard React
+      - name: 17. Build do Dashboard React
         run: |
           cd painel-devsecops
           npm install
           npm run build
 
-      - name: 16. Preparar Artefatos para o GitHub Pages
+      - name: 18. Preparar Artefatos para o GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: './painel-devsecops/dist'

@@ -3,6 +3,7 @@ import sastReport from '../data/sast_report.json';
 import scaReport from '../data/sca_report.json';
 import trivyReport from '../data/trivy_report.json';
 import zapReport from '../data/report_json.json';
+import historyData from '../data/history.json';
 import { OWASP_API_2023 } from '../constants/owsap';
 
 export function useSecurityData() {
@@ -81,5 +82,5 @@ export function useSecurityData() {
     { categoria: 'Trivy', antes: trivyReport.Results?.reduce((acc: number, curr: any) => acc + (curr.Vulnerabilities?.length || 0), 0) || 0, depois: 0 },
   ];
 
-  return { experimentData, owaspMapping, chartData };
+  return { experimentData, owaspMapping, chartData, historyData };
 }
