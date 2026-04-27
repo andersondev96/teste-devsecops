@@ -108,7 +108,7 @@ jobs:
       - name: 14. Persistir Histórico no Repositório
         run: |
           # Lê o histórico atual, adiciona o novo resumo e mantém apenas as últimas 10 execuções
-          jq -s '.[0] + [.[1]] | last(10)' painel-devsecops/src/data/history.json current_summary.json > painel-devsecops/src/data/history.new.json
+          jq -s '.[0] + [.[1]] | .[-10:]' painel-devsecops/src/data/history.json current_summary.json > painel-devsecops/src/data/history.new.json
           mv painel-devsecops/src/data/history.new.json painel-devsecops/src/data/history.json
 
           # Configura o Git para commitar o arquivo de histórico atualizado
