@@ -1,4 +1,4 @@
 fastapi==0.104.1
 uvicorn==0.24.0.post1
-requests==2.18.0 # Versão propositalmente escolhida para testes SCA
+requests==2.28.1 # Versão propositalmente escolhida para testes SCA
 pyjwt==2.8.0
