@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ "main" ]
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   security-scans:
     name: OWASP API Security Scans
@@ -87,3 +92,43 @@ jobs:
             sast_report.json
             trivy_report.json
             report_json.json
+
+      # ==========================================
+      # ETAPAS DE DEPLOY AUTOMÁTICO (NOVO)
+      # ==========================================
+
+      - name: 13. Copiar Logs Fresquinhos para o Dashboard
+        run: |
+          mkdir -p painel-devsecops/src/data
+          cp sca_report.json painel-devsecops/src/data/ || true
+          cp sast_report.json painel-devsecops/src/data/ || true
+          cp trivy_report.json painel-devsecops/src/data/ || true
+          cp report_json.json painel-devsecops/src/data/ || true
+
+      - name: 14. Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 15. Build do Dashboard React
+        run: |
+          cd painel-devsecops
+          npm install
+          npm run build
+
+      - name: 16. Preparar Artefatos para o GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './painel-devsecops/dist'
+
+  deploy:
+    name: Publicar Dashboard
+    needs: security-scans
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Fazer o Deploy no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
