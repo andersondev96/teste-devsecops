@@ -1,4 +1,4 @@
-import { BookOpen, AlertTriangle, CheckCircle, Target, FileText, Code2, ShieldCheck, Microscope, Zap } from 'lucide-react';
+import { BookOpen, AlertTriangle, CheckCircle, Target, FileText, ShieldCheck, Microscope, Zap } from 'lucide-react';
 
 interface RelatorioProps {
   totalFalhas: number;
