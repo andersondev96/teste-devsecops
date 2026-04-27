@@ -77,6 +77,8 @@ jobs:
         with:
           target: 'http://localhost:8000/openapi.json'
           format: openapi
+          allow_issue_writing: false
+          fail_action: false
         continue-on-error: true
 
       # ==========================================

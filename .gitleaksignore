@@ -1,0 +1,5 @@
+# Ignora alertas de chaves encontrados dentro dos relatorios de dados do painel frontend
+[allowlist]
+paths = [
+    '''painel-devsecops/src/data/.*'''
+]
