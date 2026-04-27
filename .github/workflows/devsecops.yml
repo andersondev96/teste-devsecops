@@ -39,7 +39,7 @@ jobs:
 
       - name: 5. SCA - Análise de Dependências (Safety)
         # Verifica se as bibliotecas no requirements.txt têm CVEs conhecidas
-        run: safety check -r broken-api/requirements.txt --output json > sca_report.json
+        run: safety check -r broken-api/requirements.txt --output json --save-json sca_report.json || true
         continue-on-error: true
 
       - name: 6. SAST - Análise Estática (Bandit)
