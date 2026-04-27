@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { LayoutDashboard, ShieldAlert, GitMerge, BarChart3, FileText } from 'lucide-react';
+import { LayoutDashboard, ShieldAlert, GitMerge, BarChart3, FileText, History as HistoryIcon } from 'lucide-react';
 import { Header } from './components/Header';
 import { ComparativoTab } from './components/ComparativoTab';
 import { DashboardTab } from './components/DashboardTab';
+import { HistoricoTab } from './components/HistoricoTab';
 import { OwaspTab } from './components/OwaspTab';
 import { PipelineTab } from './components/PipelineTab';
 import { RelatorioTab } from './components/RelatorioTab';
@@ -18,6 +19,7 @@ export default function App() {
     { id: 'owasp', label: 'OWASP Top 10', icon: ShieldAlert },
     { id: 'pipeline', label: 'Pipeline CI/CD', icon: GitMerge },
     { id: 'comparativo', label: 'Análise Comparativa', icon: BarChart3 },
+    { id: 'historico', label: 'Logs de Execução', icon: HistoryIcon },
     { id: 'relatorio', label: 'Relatório Acadêmico', icon: FileText },
   ];
 
@@ -45,6 +47,7 @@ export default function App() {
           {activeTab === 'owasp' && <OwaspTab categories={OWASP_API_2023} mapping={owaspMapping} />}
           {activeTab === 'pipeline' && <PipelineTab chartData={chartData} totalAlta={experimentData.alta} />}
           {activeTab === 'comparativo' && <ComparativoTab chartData={chartData} />}
+          {activeTab === 'historico' && <HistoricoTab />}
           {activeTab === 'relatorio' && <RelatorioTab totalFalhas={experimentData.total} />}
         </div>
       </main>
