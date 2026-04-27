@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { LayoutDashboard, ShieldAlert, GitMerge, BarChart3, FileText, History as HistoryIcon } from 'lucide-react';
 import { Header } from './components/Header';
 import { ComparativoTab } from './components/ComparativoTab';
@@ -11,7 +11,16 @@ import { useSecurityData } from './hooks/useSecurityData';
 import { OWASP_API_2023 } from './constants/owsap';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('dashboard');
+  // 1. Inicializa o estado lendo do localStorage (ou usa 'dashboard' como padrão)
+  const [activeTab, setActiveTab] = useState(() => {
+    return localStorage.getItem('devsecops_active_tab') || 'dashboard';
+  });
+
+  // 2. Sempre que a aba mudar, salva a nova escolha no localStorage
+  useEffect(() => {
+    localStorage.setItem('devsecops_active_tab', activeTab);
+  }, [activeTab]);
+
   const { experimentData, owaspMapping, chartData } = useSecurityData();
 
   const tabs = [
@@ -32,9 +41,8 @@ export default function App() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
-              className={`flex items-center px-6 py-3 text-sm font-medium transition-colors border-b-2 whitespace-nowrap ${
-                activeTab === tab.id ? 'border-academico-primary text-academico-primary bg-slate-100' : 'border-transparent text-slate-500 hover:text-slate-700'
-              }`}
+              className={`flex items-center px-6 py-3 text-sm font-medium transition-colors border-b-2 whitespace-nowrap ${activeTab === tab.id ? 'border-academico-primary text-academico-primary bg-slate-100' : 'border-transparent text-slate-500 hover:text-slate-700'
+                }`}
             >
               <tab.icon className="w-4 h-4 mr-2" />
               {tab.label}
@@ -48,7 +56,12 @@ export default function App() {
           {activeTab === 'pipeline' && <PipelineTab chartData={chartData} totalAlta={experimentData.alta} />}
           {activeTab === 'comparativo' && <ComparativoTab chartData={chartData} />}
           {activeTab === 'historico' && <HistoricoTab />}
-          {activeTab === 'relatorio' && <RelatorioTab totalFalhas={experimentData.total} />}
+          {activeTab === 'relatorio' && (
+            <RelatorioTab
+              totalFalhas={experimentData.total}
+              mapping={owaspMapping}
+            />
+          )}
         </div>
       </main>
     </div>
