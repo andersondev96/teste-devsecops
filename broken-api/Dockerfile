@@ -1,6 +1,6 @@
 # Use uma versão do Python que possua vulnerabilidades conhecidas no SO
 # para que o 'Trivy' ou 'Snyk' encontre falhas na etapa de Container Scan
-FROM python:3.9-slim
+FROM python:3.12-alpine
 
 WORKDIR /app
 
