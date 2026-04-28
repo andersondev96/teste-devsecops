@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { LayoutDashboard, ShieldAlert, GitMerge, BarChart3, FileText, History as HistoryIcon } from 'lucide-react';
+import { LayoutDashboard, ShieldAlert, GitMerge, BarChart3, FileText, History as HistoryIcon, HelpCircle } from 'lucide-react';
 import { Header } from './components/Header';
+import { AjudaTab } from './components/AjudaTab';
 import { ComparativoTab } from './components/ComparativoTab';
 import { DashboardTab } from './components/DashboardTab';
 import { HistoricoTab } from './components/HistoricoTab';
@@ -62,8 +63,17 @@ export default function App() {
               mapping={owaspMapping}
             />
           )}
+          {activeTab === 'ajuda' && <AjudaTab />}
         </div>
       </main>
+      <button
+        onClick={() => setActiveTab('ajuda')}
+        className={`flex items-center px-4 py-2 rounded-md transition-colors ${activeTab === 'ajuda' ? 'bg-academico-primary text-white' : 'text-slate-600 hover:bg-slate-100'
+          }`}
+      >
+        <HelpCircle className="w-5 h-5 mr-2" />
+        Documentação
+      </button>
     </div>
   );
 }
