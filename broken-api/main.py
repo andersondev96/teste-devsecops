@@ -1,11 +1,10 @@
 import logging
-from datetime import datetime, timedelta
-from urllib.request import Request
-from fastapi import FastAPI, HTTPException, Depends
+from datetime import datetime, timedelta, timezone
+from fastapi import FastAPI, HTTPException, Depends, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 import jwt
 
 # Configuração de Logging Segura
@@ -55,6 +54,15 @@ async def http_exception_handler(request, exc):
     return JSONResponse(status_code=exc.status_code, content={"message": exc.detail})
 
 class LoginModel(BaseModel):
+    model_config = ConfigDict(
+        json_schema_extra={
+            "example": {
+                "username": "alice",
+                "password": "password123",
+            }
+        }
+    )
+
     username: str
     password: str
 
@@ -71,7 +79,7 @@ def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(securit
         return user
     except jwt.ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Token expirado")
-    except jwt.JWTError:
+    except jwt.InvalidTokenError:
         raise HTTPException(status_code=401, detail="Token inválido")
 
 @app.post("/api/v1/login")
@@ -80,7 +88,11 @@ def login(login_data: LoginModel):
     if not user or user["password"] != login_data.password:
         raise HTTPException(status_code=401, detail="Credenciais inválidas")
 
-    access_token = jwt.encode({"sub": user["username"], "exp": datetime.utcnow() + timedelta(minutes=30)}, SECRET_KEY, algorithm=ALGORITHM)
+    access_token = jwt.encode(
+        {"sub": user["username"], "exp": datetime.now(timezone.utc) + timedelta(minutes=30)},
+        SECRET_KEY,
+        algorithm=ALGORITHM,
+    )
     return {"access_token": access_token, "token_type": "bearer"}
 
 @app.get("/api/v1/users/{user_id}")
@@ -91,4 +103,4 @@ def get_user(user_id: int, current_user: dict = Depends(get_current_user)):
 
     if current_user["id"] != user_id and not current_user.get("is_admin"):
         raise HTTPException(status_code=403, detail="Acesso negado")
-    return user
+    return {key: value for key, value in user.items() if key != "password"}
