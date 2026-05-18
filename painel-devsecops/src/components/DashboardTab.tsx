@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import {
   BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
   PieChart, Pie, Cell, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis
@@ -6,9 +6,6 @@ import {
 import { Filter, FileCode, Package, Server, Activity, CheckCircle } from 'lucide-react';
 import rawHistoryData from '../data/history.json';
 
-// ==========================================
-// TIPAGENS
-// ==========================================
 type HistoryEntry = {
   date: string;
   sast: number;
@@ -20,13 +17,27 @@ type HistoryEntry = {
 
 type SecurityCategory = 'sast' | 'sca' | 'dast' | 'trivy';
 
+type ExperimentData = {
+  total: number;
+  alta: number;
+  media: number;
+  baixa: number;
+  taxaMitigacao: number;
+};
+
+type ChartDataItem = {
+  categoria: string;
+  antes: number;
+  depois: number;
+};
+
 interface GraficoComparativoDinamicoProps {
   historyData: HistoryEntry[];
 }
 
 interface DashboardTabProps {
-  experimentData?: unknown;
-  chartData?: any[];
+  experimentData?: ExperimentData;
+  chartData?: ChartDataItem[];
 }
 
 const historyData = rawHistoryData as HistoryEntry[];
@@ -36,21 +47,19 @@ const paletaCores = [
   '#ec4899', '#14b8a6', '#f97316', '#6366f1', '#84cc16'
 ];
 
-// Força a extração do número real para ordenação numérica (resolve o bug do Deploy #10)
+
 const getDeployNumber = (dataKey: any) => {
   const match = String(dataKey).match(/Deploy #(\d+)/);
   return match ? parseInt(match[1], 10) : 0;
 };
 
-// ==========================================
-// COMPONENTE PRINCIPAL (DASHBOARD)
-// ==========================================
-export function DashboardTab({ chartData }: DashboardTabProps) {
+
+export function DashboardTab(_props: DashboardTabProps) {
   // Pega os dados do primeiro e do último deploy
   const initialData = historyData[0] || { sast: 0, sca: 0, dast: 0, trivy: 0, total: 0 };
   const currentData = historyData[historyData.length - 1] || { sast: 0, sca: 0, dast: 0, trivy: 0, total: 0 };
 
-  // --- 1. DADOS PARA SUPERFÍCIE DE ATAQUE (RADAR) ---
+
   const radarData = [
     { subject: 'SAST', Antes: initialData.sast, Atual: currentData.sast },
     { subject: 'SCA', Antes: initialData.sca, Atual: currentData.sca },
@@ -58,7 +67,6 @@ export function DashboardTab({ chartData }: DashboardTabProps) {
     { subject: 'Trivy', Antes: initialData.trivy, Atual: currentData.trivy }
   ];
 
-  // --- 2. DADOS PARA SEVERIDADE (DONUT PIE) ---
   const total = currentData.total;
   // Calcula proporções fixas para garantir que o gráfico nunca quebra, ignorando props mal formatadas
   const severidadeData = total === 0 ? [] : [
@@ -68,7 +76,6 @@ export function DashboardTab({ chartData }: DashboardTabProps) {
     { name: 'Baixo', value: Math.round(total * 0.3) || (total > 0 ? total : 0), color: '#3b82f6' }
   ].filter(item => item.value > 0);
 
-  // --- 3. DADOS PARA BARRAS/LINHAS ESTÁTICAS ---
   const comparativoEstatico = [
     { name: 'SAST', Inicial: initialData.sast, Atual: currentData.sast },
     { name: 'SCA', Inicial: initialData.sca, Atual: currentData.sca },
@@ -84,7 +91,6 @@ export function DashboardTab({ chartData }: DashboardTabProps) {
   return (
     <div className="space-y-6 animate-in fade-in duration-500 pb-10">
 
-      {/* CARDS DE RESUMO */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 flex items-center justify-between">
           <div>
@@ -116,7 +122,6 @@ export function DashboardTab({ chartData }: DashboardTabProps) {
         </div>
       </div>
 
-      {/* GRÁFICOS DE BARRAS E LINHAS (ESTÁTICOS) */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
           <h3 className="text-lg font-bold text-slate-800 mb-1">Cenário Inicial vs Atual</h3>
@@ -153,13 +158,10 @@ export function DashboardTab({ chartData }: DashboardTabProps) {
         </div>
       </div>
 
-      {/* GRÁFICO DINÂMICO DE DEPLOYS */}
       <GraficoComparativoDinamico historyData={historyData} />
 
-      {/* GRÁFICOS PIE E RADAR */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-        {/* Proporção de Severidade (DONUT ORIGINAL) */}
         <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
           <h3 className="text-lg font-bold text-slate-800 mb-1 text-center">Proporção de Severidade</h3>
           <div className="h-64 flex items-center justify-center pt-4">
@@ -191,7 +193,6 @@ export function DashboardTab({ chartData }: DashboardTabProps) {
           </div>
         </div>
 
-        {/* Superfície de Ataque por Vetor (RADAR ORIGINAL) */}
         <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200">
           <h3 className="text-lg font-bold text-slate-800 mb-1 text-center">Superfície de Ataque por Vetor</h3>
           <div className="h-64 pt-4">
@@ -214,9 +215,6 @@ export function DashboardTab({ chartData }: DashboardTabProps) {
   );
 }
 
-// ==========================================
-// COMPONENTE SECUNDÁRIO (GRÁFICO DINÂMICO)
-// ==========================================
 export function GraficoComparativoDinamico({ historyData }: GraficoComparativoDinamicoProps) {
   const [selecionados, setSelecionados] = useState<number[]>([
     0,
