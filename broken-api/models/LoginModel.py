@@ -1,14 +1,5 @@
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel
 
 class LoginModel(BaseModel):
-    model_config = ConfigDict(
-        json_schema_extra={
-            "example": {
-                "username": "alice",
-                "password": "password123",
-            }
-        }
-    )
-
     username: str
     password: str
