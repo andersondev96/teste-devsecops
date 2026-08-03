@@ -29,6 +29,7 @@ from fastapi import FastAPI
 from controllers.ProductController import ProductController
 from routes.AuthRoutes import router as auth_router
 from routes.CheckoutRoutes import router as checkout_router
+from routes.IntegrationRoutes import router as integration_router
 from routes.ProductRoutes import router as product_router
 from routes.UserRoutes import router as user_router
 
@@ -52,5 +53,6 @@ def startup():
 
 app.include_router(auth_router)
 app.include_router(checkout_router)
+app.include_router(integration_router)
 app.include_router(product_router)
 app.include_router(user_router)
