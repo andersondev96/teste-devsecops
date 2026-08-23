@@ -167,6 +167,9 @@ jobs:
 
   deploy:
     name: Publicar Dashboard
+    # O GitHub Pages só deve ser publicado a partir da main. Pull Requests
+    # usam refs/pull/*/merge, que não são aceitas pelas regras do ambiente.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: security-scans
     runs-on: ubuntu-latest
     environment:
