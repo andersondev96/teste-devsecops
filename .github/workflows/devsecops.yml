@@ -129,7 +129,12 @@ jobs:
           # Configura o Git para commitar o arquivo de histórico atualizado
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add "$HISTORY_FILE" "$RESET_MARKER"
+          git add "$HISTORY_FILE"
+          # O marcador pode já ter sido removido em uma execução anterior.
+          # Só o inclua se ainda existir no índice do Git.
+          if git ls-files --error-unmatch "$RESET_MARKER" >/dev/null 2>&1; then
+            git add -u -- "$RESET_MARKER"
+          fi
           if ! git diff --cached --quiet; then
             git commit -m "docs: atualiza histórico de vulnerabilidades [skip ci]"
             # actions/checkout deixa o runner em detached HEAD; informe
