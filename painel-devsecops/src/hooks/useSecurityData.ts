@@ -4,7 +4,7 @@ import scaReport from '../data/sca_report.json';
 import trivyReport from '../data/trivy_report.json';
 import zapReport from '../data/report_json.json';
 import rawHistoryData from '../data/history.json';
-import { OWASP_API_2023 } from '../constants/owsap';
+import { OWASP_API_2023, OWASP_LAB_EVIDENCE } from '../constants/owsap';
 
 // Dizemos ao TypeScript exatamente o que esperar, mesmo que o JSON esteja vazio agora.
 const historyData = rawHistoryData as Array<{
@@ -89,6 +89,13 @@ export function useSecurityData() {
     sastReport.results?.forEach((issue: any) => {
       if (['B105', 'B106'].includes(issue.test_id)) markDetected('API2', 'Bandit', issue);
       else markDetected('API8', 'Bandit', issue);
+    });
+
+    // Os testes de laboratório são a evidência explícita das vulnerabilidades
+    // API1–API10 implementadas intencionalmente na API. Scanners genéricos
+    // como ZAP e Bandit não identificam todas essas categorias sozinhos.
+    Object.entries(OWASP_LAB_EVIDENCE).forEach(([id, evidence]) => {
+      markDetected(id, 'Testes OWASP da API', evidence);
     });
 
     return mapping;
