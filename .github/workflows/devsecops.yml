@@ -113,7 +113,20 @@ jobs:
         if: github.event_name == 'push'
         run: |
           HISTORY_FILE="painel-devsecops/src/data/history.json"
+          DATA_DIR="painel-devsecops/src/data"
           RESET_MARKER=".github/reset-dashboard-history"
+          REPORT_FILES=("sast_report.json" "sca_report.json" "report_json.json" "trivy_report.json")
+
+          # Usa exatamente os relatórios que deram origem ao resumo atual.
+          # Se algum relatório não existir, interrompe para não deixar dados antigos
+          # misturados com o histórico novo.
+          for REPORT_FILE in "${REPORT_FILES[@]}"; do
+            if [ ! -f "$REPORT_FILE" ]; then
+              echo "Relatório obrigatório não encontrado: $REPORT_FILE"
+              exit 1
+            fi
+            cp "$REPORT_FILE" "$DATA_DIR/$REPORT_FILE"
+          done
 
           # Permite reiniciar o contador uma única vez, sem apagar o histórico do Git.
           if [ -f "$RESET_MARKER" ]; then
@@ -129,7 +142,7 @@ jobs:
           # Configura o Git para commitar o arquivo de histórico atualizado
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add "$HISTORY_FILE"
+          git add "$HISTORY_FILE" "$DATA_DIR/sast_report.json" "$DATA_DIR/sca_report.json" "$DATA_DIR/report_json.json" "$DATA_DIR/trivy_report.json"
           # O marcador pode já ter sido removido em uma execução anterior.
           # Só o inclua se ainda existir no índice do Git.
           if git ls-files --error-unmatch "$RESET_MARKER" >/dev/null 2>&1; then
@@ -147,12 +160,14 @@ jobs:
       # ==========================================
 
       - name: 15. Copiar Logs Fresquinhos para o Dashboard
+        # Em push, os relatórios já foram copiados e versionados na etapa 14.
+        if: github.event_name != 'push'
         run: |
           mkdir -p painel-devsecops/src/data
-          cp sca_report.json painel-devsecops/src/data/ || true
-          cp sast_report.json painel-devsecops/src/data/ || true
-          cp trivy_report.json painel-devsecops/src/data/ || true
-          cp report_json.json painel-devsecops/src/data/ || true
+          cp sca_report.json painel-devsecops/src/data/
+          cp sast_report.json painel-devsecops/src/data/
+          cp trivy_report.json painel-devsecops/src/data/
+          cp report_json.json painel-devsecops/src/data/
 
       - name: 16. Configurar Node.js
         uses: actions/setup-node@v4
