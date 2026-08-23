@@ -108,6 +108,9 @@ jobs:
           echo "{\"date\": \"$TIMESTAMP\", \"sast\": $SAST_TOTAL, \"sca\": $SCA_TOTAL, \"dast\": $DAST_TOTAL, \"trivy\": $TRIVY_TOTAL, \"total\": $((SAST_TOTAL + SCA_TOTAL + DAST_TOTAL + TRIVY_TOTAL))}" > current_summary.json
 
       - name: 14. Persistir Histórico no Repositório
+        # Pull Requests também usam checkout em detached HEAD, mas não devem
+        # alterar o histórico da branch nem fazer push durante a validação.
+        if: github.event_name == 'push'
         run: |
           HISTORY_FILE="painel-devsecops/src/data/history.json"
           RESET_MARKER=".github/reset-dashboard-history"
@@ -129,7 +132,9 @@ jobs:
           git add "$HISTORY_FILE" "$RESET_MARKER"
           if ! git diff --cached --quiet; then
             git commit -m "docs: atualiza histórico de vulnerabilidades [skip ci]"
-            git push
+            # actions/checkout deixa o runner em detached HEAD; informe
+            # explicitamente a branch de origem do push.
+            git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
 
       # ==========================================
@@ -162,6 +167,9 @@ jobs:
 
   deploy:
     name: Publicar Dashboard
+    # O GitHub Pages só deve ser publicado a partir da main. Pull Requests
+    # usam refs/pull/*/merge, que não são aceitas pelas regras do ambiente.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     needs: security-scans
     runs-on: ubuntu-latest
     environment:
