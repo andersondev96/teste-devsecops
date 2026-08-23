@@ -40,20 +40,6 @@ class IntegrationController:
 
     @staticmethod
     def enrich_address(zipcode: str, provider_url: str):
-        """
-        API10:2023 - Unsafe Consumption of APIs
-        --------------------------------------------------
-        A API confia cegamente em um provedor externo informado pelo
-        proprio cliente. A resposta externa e processada como verdade
-        sem validacao de contrato, tamanho, tipos, certificados, dominio
-        ou conteudo. Se o provedor for comprometido, ou se o atacante
-        apontar para um servico malicioso, campos inesperados podem ser
-        aceitos e propagados para a resposta da aplicacao.
-
-        Mitigacao: provedores fixos/allowlist, TLS valido, timeouts,
-        schema estrito de entrada da resposta externa, limites de tamanho
-        e tratamento seguro para erros e campos inesperados.
-        """
         query = urllib.parse.urlencode({"zip": zipcode})
         separator = "&" if "?" in provider_url else "?"
         target = f"{provider_url}{separator}{query}"
@@ -63,9 +49,6 @@ class IntegrationController:
 
         external_payload = json.loads(raw_body)
 
-        # API10: resposta externa vira dado confiavel sem allowlist.
-        # Campos como "is_admin", "internal_risk_score" ou scripts HTML
-        # sao preservados e devolvidos ao cliente.
         return {
             "provider": provider_url,
             "zipcode": zipcode,

@@ -109,16 +109,28 @@ jobs:
 
       - name: 14. Persistir Histórico no Repositório
         run: |
+          HISTORY_FILE="painel-devsecops/src/data/history.json"
+          RESET_MARKER=".github/reset-dashboard-history"
+
+          # Permite reiniciar o contador uma única vez, sem apagar o histórico do Git.
+          if [ -f "$RESET_MARKER" ]; then
+            echo "Reiniciando o histórico do dashboard para o próximo deploy."
+            printf '[]\n' > "$HISTORY_FILE"
+            rm "$RESET_MARKER"
+          fi
+
           # Lê o histórico atual, adiciona o novo resumo e mantém apenas as últimas 10 execuções
-          jq -s '.[0] + [.[1]] | .[-10:]' painel-devsecops/src/data/history.json current_summary.json > painel-devsecops/src/data/history.new.json
+          jq -s '.[0] + [.[1]] | .[-10:]' "$HISTORY_FILE" current_summary.json > painel-devsecops/src/data/history.new.json
           mv painel-devsecops/src/data/history.new.json painel-devsecops/src/data/history.json
 
           # Configura o Git para commitar o arquivo de histórico atualizado
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add painel-devsecops/src/data/history.json
-          git commit -m "docs: atualiza histórico de vulnerabilidades [skip ci]"
-          git push
+          git add "$HISTORY_FILE" "$RESET_MARKER"
+          if ! git diff --cached --quiet; then
+            git commit -m "docs: atualiza histórico de vulnerabilidades [skip ci]"
+            git push
+          fi
 
       # ==========================================
       # ETAPAS DE DEPLOY AUTOMÁTICO (NOVO)

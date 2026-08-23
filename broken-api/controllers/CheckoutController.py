@@ -95,19 +95,6 @@ class CheckoutController:
         }
 
     async def debug_orders(self):
-        """
-        API9:2023 - Improper Inventory Management
-        --------------------------------------------------
-        Endpoint de depuração que expõe TODOS os pedidos de TODOS os
-        usuários, sem nenhuma autenticação, provavelmente esquecido
-        ao subir para produção. Rotas assim raramente aparecem na
-        documentação oficial da API e são achadas por varredura,
-        virando uma porta de entrada fácil.
-
-        Mitigação: remover endpoints de debug antes do deploy, ou
-        protegê-los com autenticação de admin + feature flag de
-        ambiente (nunca habilitado em produção).
-        """
         if DEBUG:
             return {"all_orders": self.checkout_db}
         return {"detail": "Not found"}

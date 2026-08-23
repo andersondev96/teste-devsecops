@@ -120,20 +120,6 @@ class AuthController:
         return user
 
     def debug_info(self, request: Request):
-        """
-        API9:2023 - Improper Inventory Management
-        API8:2023 - Security Misconfiguration
-        --------------------------------------------------
-        Endpoint de "debug" deixado acessível em qualquer ambiente,
-        sem autenticação, expondo variáveis internas, headers da
-        requisição e segredos do sistema. Endpoints assim costumam ser
-        esquecidos e viram uma porta de entrada fácil para atacantes
-        que fazem varredura de rotas não documentadas.
-
-        Mitigação: nunca subir endpoints de debug em produção; se
-        necessário, protegê-los com autenticação forte e feature flag
-        controlada por ambiente.
-        """
         if DEBUG_MODE:
             return {
                 "headers": dict(request.headers),
