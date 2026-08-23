@@ -7,7 +7,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY main.py run.py users_db.py database.db ./
+COPY main.py run.py users_db.py ./
 COPY controllers ./controllers
 COPY models ./models
 COPY routes ./routes
