@@ -3,31 +3,31 @@
   "Trivy": {
     "Version": "0.74.0"
   },
-  "ReportID": "01a02f45-f0d6-70df-a1e2-9d9ddf251360",
-  "CreatedAt": "2026-08-23T15:38:27.926058131Z",
-  "ArtifactID": "sha256:7a55cf3dfca643dce1ccb00531330f2fb3e18548f1dd405eee899a2f2b835b80",
+  "ReportID": "01a04fdd-0dd7-7790-9476-30be0ea43612",
+  "CreatedAt": "2026-08-29T23:31:22.199496823Z",
+  "ArtifactID": "sha256:c50243abb99650eba6629366ffa2afccb9c36d4001c4eb3d18d81192d77116e4",
   "ArtifactName": "vulnerable-api:latest",
   "ArtifactType": "container_image",
   "Metadata": {
-    "Size": 100025344,
+    "Size": 100104704,
     "OS": {
       "Family": "alpine",
       "Name": "3.24.1"
     },
-    "ImageID": "sha256:2d26af04218d5082d791fb8cc17befbea6240cc4665fe67c56ca1d206021d9f8",
+    "ImageID": "sha256:2cf6e82fd94be9d7ca9836996572e9f109c3ea1ab95e4b5ee4c377d28169e9df",
     "DiffIDs": [
       "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c",
       "sha256:e841883ead55c7764ef03835ed98a55882e84f57dd6f90ffbc7d31d5fc8974a6",
       "sha256:2a35f153520985da7afa7a4e0ad937ffc12ab85368a318897a7b5bbf238de41c",
       "sha256:1b3b53d060ded641f97028c035939c8f8ae188040ae683c2f5e019b948ed0356",
-      "sha256:12c848204fd3f6043f3c58d36c0ff75dd7599903797daea3f0891ee4c247e0b6",
-      "sha256:1eeb5a295814ef94c8ac4a260c05cee7399e07864d094c38694dca29c35df79a",
-      "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57",
-      "sha256:e2c4004a4643fdb60e20abbdbe812c6ba374b9cd5be1c667e8e9838e5c23adac",
-      "sha256:6c0c4d003ca4fcfeb99ab82f84a03d58435d4b40570c4d13347329143527aa7d",
-      "sha256:0cf0abbff265d4574a170f331e54429a28ff5f69291dff73af5d87a6956c726a",
-      "sha256:533f2cc21f87358040cdc360492759960c2ae022545029f70bc0a9016d74a3b3",
-      "sha256:404b59a1646a29cb91cb227f7f73c4a767126f2b95ade9ace103c2b3ce44d8ea"
+      "sha256:14084a0725c662a25e89ddb4d43a2095e97c7da53603ec440067997bc1322b15",
+      "sha256:5f9469f6d01edab79f0698e9fe239d753b1c386f205d0907e800062aa11a1250",
+      "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef",
+      "sha256:ca22d4bfef539d067c8edda237c9f71c863da6263933ca0c67c95987f72b058c",
+      "sha256:0ced2f6260dd84d2a76b4470eeca0a33332179d8ccc54345becad7d9ec56b8aa",
+      "sha256:429825c56d3008a49bc896c633e452faf691fbc41be98c0c0a529042d6f63b70",
+      "sha256:06f530a88fa7f7fb21ca02432df5454c0864cf161098a1d8c836f0a97ac65b76",
+      "sha256:23cfd0ba0d144a70311a4637cf5c44712d2b93fa000f1eb435ee87f79eef9ece"
     ],
     "RepoTags": [
       "vulnerable-api:latest"
@@ -35,7 +35,7 @@
     "Reference": "vulnerable-api:latest",
     "ImageConfig": {
       "architecture": "amd64",
-      "created": "2026-08-23T15:38:19.673839756Z",
+      "created": "2026-08-29T23:31:07.147164865Z",
       "history": [
         {
           "created": "2026-06-16T00:01:29Z",
@@ -100,53 +100,53 @@
           "empty_layer": true
         },
         {
-          "created": "2026-08-23T15:38:12Z",
+          "created": "2026-08-29T23:30:59Z",
           "created_by": "WORKDIR /app",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-23T15:38:12Z",
+          "created": "2026-08-29T23:30:59Z",
           "created_by": "COPY requirements.txt . # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-23T15:38:19Z",
+          "created": "2026-08-29T23:31:07Z",
           "created_by": "RUN /bin/sh -c pip install --no-cache-dir -r requirements.txt # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-23T15:38:19Z",
+          "created": "2026-08-29T23:31:07Z",
           "created_by": "COPY main.py run.py users_db.py ./ # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-23T15:38:19Z",
+          "created": "2026-08-29T23:31:07Z",
           "created_by": "COPY controllers ./controllers # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-23T15:38:19Z",
+          "created": "2026-08-29T23:31:07Z",
           "created_by": "COPY models ./models # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-23T15:38:19Z",
+          "created": "2026-08-29T23:31:07Z",
           "created_by": "COPY routes ./routes # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-23T15:38:19Z",
+          "created": "2026-08-29T23:31:07Z",
           "created_by": "COPY tests ./tests # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-23T15:38:19Z",
+          "created": "2026-08-29T23:31:07Z",
           "created_by": "EXPOSE map[8000/tcp:{}]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2026-08-23T15:38:19Z",
+          "created": "2026-08-29T23:31:07Z",
           "created_by": "CMD [\"uvicorn\" \"main:app\" \"--host\" \"0.0.0.0\" \"--port\" \"8000\"]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
@@ -160,14 +160,14 @@
           "sha256:e841883ead55c7764ef03835ed98a55882e84f57dd6f90ffbc7d31d5fc8974a6",
           "sha256:2a35f153520985da7afa7a4e0ad937ffc12ab85368a318897a7b5bbf238de41c",
           "sha256:1b3b53d060ded641f97028c035939c8f8ae188040ae683c2f5e019b948ed0356",
-          "sha256:12c848204fd3f6043f3c58d36c0ff75dd7599903797daea3f0891ee4c247e0b6",
-          "sha256:1eeb5a295814ef94c8ac4a260c05cee7399e07864d094c38694dca29c35df79a",
-          "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57",
-          "sha256:e2c4004a4643fdb60e20abbdbe812c6ba374b9cd5be1c667e8e9838e5c23adac",
-          "sha256:6c0c4d003ca4fcfeb99ab82f84a03d58435d4b40570c4d13347329143527aa7d",
-          "sha256:0cf0abbff265d4574a170f331e54429a28ff5f69291dff73af5d87a6956c726a",
-          "sha256:533f2cc21f87358040cdc360492759960c2ae022545029f70bc0a9016d74a3b3",
-          "sha256:404b59a1646a29cb91cb227f7f73c4a767126f2b95ade9ace103c2b3ce44d8ea"
+          "sha256:14084a0725c662a25e89ddb4d43a2095e97c7da53603ec440067997bc1322b15",
+          "sha256:5f9469f6d01edab79f0698e9fe239d753b1c386f205d0907e800062aa11a1250",
+          "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef",
+          "sha256:ca22d4bfef539d067c8edda237c9f71c863da6263933ca0c67c95987f72b058c",
+          "sha256:0ced2f6260dd84d2a76b4470eeca0a33332179d8ccc54345becad7d9ec56b8aa",
+          "sha256:429825c56d3008a49bc896c633e452faf691fbc41be98c0c0a529042d6f63b70",
+          "sha256:06f530a88fa7f7fb21ca02432df5454c0864cf161098a1d8c836f0a97ac65b76",
+          "sha256:23cfd0ba0d144a70311a4637cf5c44712d2b93fa000f1eb435ee87f79eef9ece"
         ]
       },
       "config": {
@@ -212,35 +212,35 @@
       },
       {
         "Size": 1536,
-        "DiffID": "sha256:12c848204fd3f6043f3c58d36c0ff75dd7599903797daea3f0891ee4c247e0b6"
+        "DiffID": "sha256:14084a0725c662a25e89ddb4d43a2095e97c7da53603ec440067997bc1322b15"
       },
       {
         "Size": 2560,
-        "DiffID": "sha256:1eeb5a295814ef94c8ac4a260c05cee7399e07864d094c38694dca29c35df79a"
+        "DiffID": "sha256:5f9469f6d01edab79f0698e9fe239d753b1c386f205d0907e800062aa11a1250"
       },
       {
-        "Size": 48807424,
-        "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+        "Size": 48886784,
+        "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
       },
       {
         "Size": 9728,
-        "DiffID": "sha256:e2c4004a4643fdb60e20abbdbe812c6ba374b9cd5be1c667e8e9838e5c23adac"
+        "DiffID": "sha256:ca22d4bfef539d067c8edda237c9f71c863da6263933ca0c67c95987f72b058c"
       },
       {
         "Size": 30720,
-        "DiffID": "sha256:6c0c4d003ca4fcfeb99ab82f84a03d58435d4b40570c4d13347329143527aa7d"
+        "DiffID": "sha256:0ced2f6260dd84d2a76b4470eeca0a33332179d8ccc54345becad7d9ec56b8aa"
       },
       {
         "Size": 5632,
-        "DiffID": "sha256:0cf0abbff265d4574a170f331e54429a28ff5f69291dff73af5d87a6956c726a"
+        "DiffID": "sha256:429825c56d3008a49bc896c633e452faf691fbc41be98c0c0a529042d6f63b70"
       },
       {
         "Size": 16384,
-        "DiffID": "sha256:533f2cc21f87358040cdc360492759960c2ae022545029f70bc0a9016d74a3b3"
+        "DiffID": "sha256:06f530a88fa7f7fb21ca02432df5454c0864cf161098a1d8c836f0a97ac65b76"
       },
       {
         "Size": 7680,
-        "DiffID": "sha256:404b59a1646a29cb91cb227f7f73c4a767126f2b95ade9ace103c2b3ce44d8ea"
+        "DiffID": "sha256:23cfd0ba0d144a70311a4637cf5c44712d2b93fa000f1eb435ee87f79eef9ece"
       }
     ]
   },
@@ -2195,6 +2195,1028 @@
           ],
           "AnalyzedBy": "apk"
         }
+      ],
+      "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2026-14456",
+          "PkgID": "libcrypto3@3.5.7-r0",
+          "PkgName": "libcrypto3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libcrypto3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "9ce2cdb3f0bf014b"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-14456",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:38805c3dc79362fa4f985fe4a0090b19b719babe2fc9d7b42194c8524a694e65",
+          "Title": "openssl: OpenSSL: Denial of Service via unbounded memory growth in QUIC server",
+          "Description": "Issue summary: When an OpenSSL QUIC server (Listener SSL object) processes\nvalid QUIC Initial packets for unknown destination connection IDs, it\ncan allocate and queue new incoming channels without enforcing any limit.\n\nImpact summary: A remote peer that can make many Initial packets reach the\nserver listener faster than the application accepts connections, can cause the\nmemory allocated to store the per-channel state to grow without any limits,\npotentially making the QUIC listener unavailable and causing Denial of Service.\n\nCWE: CWE-770: Allocation of Resources Without Limits or Throttling\n\nDescription: The function that handles inbound QUIC packets uses\nConnection-Id from the packet header to find an existing connection\n(QUIC channel). If no existing connection is found and the packet\ntype is INITIAL, the function treats the packet as a new connection. It\nallocates a new channel object and inserts it into a queue where it\nwaits to be accepted by the local application with SSL_accept(3ossl).\nThe memory occupied by these initial channel objects may grow\nwithout bounds if the application is not able to call SSL_accept()\nfrequently enough to serve these inbound connection requests.\n\nThe issue is present since OpenSSL 3.5 when the QUIC server implementation\nwas added.\n\nThe fix introduces a limit for pending connections. The default limit is set\nto 256 pending connections (waiting to be accepted by the local application).\nApplications may change the default by calling SSL_set_value_uint(3ossl).\n\nFIPS impact: no\nThe FIPS module is not affected as the QUIC implementation is outside of\nthe OpenSSL FIPS module boundary.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-770"
+          ],
+          "VendorSeverity": {
+            "photon": 3,
+            "redhat": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2026/08/13/4",
+            "https://access.redhat.com/security/cve/CVE-2026-14456",
+            "https://github.com/openssl/openssl/commit/08e7756c3900bcfd77a720e7b74e27d6e4ed01a9",
+            "https://github.com/openssl/openssl/commit/4084152e040329ca0194c4c1750b9b46d00a5b6b",
+            "https://github.com/openssl/openssl/commit/f2f1465f2d2e5c61dfeac4d20fd093797d821139",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-14456",
+            "https://openssl-library.org/news/secadv/20260813.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-14456"
+          ],
+          "PublishedDate": "2026-08-13T15:19:31.82Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-18798",
+          "PkgID": "libcrypto3@3.5.7-r0",
+          "PkgName": "libcrypto3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libcrypto3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "9ce2cdb3f0bf014b"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-18798",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:9e9e1c77e40dd1c20a42dc6f000f86f7eb3f3c413c54c7aca7706989cd5de70f",
+          "Title": "openssl: QUIC server may trigger double free when processing INITIAL packet",
+          "Description": "Issue summary: QUIC server may double free QRX (QUIC record layer RX) object\nwhen channel creation fails for initial packet.\n\nImpact summary: Double free leads to heap corruption, which typically results in \ntermination of QUIC server process, leading to Denial of Service. There is so\nfar no evidence that this double free is exploitable for remote code execution,\nthus it is considered highly improbable.\n\nCWE: CWE-415: Double Free\n\nDescription: In order to validate initial packet, OpenSSL QUIC stack default\npacket handler (port_default_packet_handler()) creates a so-called QRX object.\nIf the initial packet validates successfully with QRX object, the default packet\nhandler proceeds to channel (connection object) creation. The QRX object used\nfor packet validation is passed to port_bind_channel(), so it becomes part of\nthe newly created connection. If port_bind_channel() fails, then it also frees\nthe QRX object. Once port_bind_channel() returns, the port_default_packet_handler()\ndetects the failure and proceeds to the error branch, where the same QRX object is\nfreed for the second time.\n\nThe failure in port_bind_channel() function can be induced with a relatively\nlow effort by a malformed (non RFC 9000 compliant) INITIAL packet. If the packet\ncarries DCID (destination connection ID) which is shorter than 8 bytes, then\nport_bind_channel() jumps to the error path after ossl_quic_lcidm_enrol_odcid()\ndetects that the DCID has invalid length.\n\nFIPS impact: no\nThe FIPS module is not affected, as the QUIC implementation is outside of\nthe OpenSSL FIPS module boundary.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-415"
+          ],
+          "VendorSeverity": {
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-18798",
+            "https://github.com/openssl/openssl/commit/70cebd74d3592f5272945501b58a60374c4e13af",
+            "https://github.com/openssl/openssl/commit/967582d5037f01a26b6d19beae19af62a1b15c3c",
+            "https://github.com/openssl/openssl/commit/a14a1deac403522fbeafabcb198503cf6caa7dc4",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-18798",
+            "https://openssl-library.org/news/secadv/20260825.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-18798"
+          ],
+          "PublishedDate": "2026-08-25T13:17:49.813Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-63072",
+          "PkgID": "libcrypto3@3.5.7-r0",
+          "PkgName": "libcrypto3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libcrypto3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "9ce2cdb3f0bf014b"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-63072",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:954a977ea9d65ecab504e2cad130b2fcb531ebd8475605b043f3e929ab97a8e7",
+          "Title": "openssl: heap buffer overflow in CMS key unwrapping",
+          "Description": "Issue summary: OpenSSL CMS decryption sizes the key-unwrap output buffer based\non querying the unwrapped key size, but the AES-WRAP-PAD unwrap primitive\ncan write and cleanse more bytes than that query reports, causing an 8-byte\nout-of-bounds heap write.\n\nImpact summary: An attacker who supplies a crafted CMS message can trigger a\ndeterministic 8-byte out-of-bounds heap write when the victim decrypts it\nwith CMS_decrypt(), corrupting the heap and typically resulting in a Denial\nof Service.\n\nCWE: CWE-787: Out-of-bounds Write\n\nDescription: The key-wrap OID is potentially attacker-controlled on the wire.\nCMS unwrapping allows both id-aesNNN-wrap-pad and id-aesNNN-wrap ciphers.\nAn attacker can take a legitimate message and change a single OID byte to\nselect the padded variant while leaving the message otherwise valid. Since\nthe unwrap key is derived from the recipient's private operation (ECDH key\nagreement or ML-KEM decapsulation), the RFC 5649 integrity check cannot\npass, and the decryption fails with integrity failure.\n\nThe write is a fixed-size (8-byte), fixed-value (zero) heap overflow\nimmediately past the allocation, requires no special configuration, and is\nreachable from the public CMS_decrypt() function. The consequence is\na heap corruption leading to a Denial of Service. The fix in the CMS code\nsizes the unwrap output buffer for the worst case so a failed unwrap cannot\nwrite past the allocation.\n\nFIPS impact: no\n\nAs the CMS code lives outside the FIPS module boundary, no FIPS\nmodules are affected by this CVE.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "VendorSeverity": {
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-63072",
+            "https://github.com/openssl/openssl/commit/2a3dac874c8057c1f0186849bf1ede1ae7b6b756",
+            "https://github.com/openssl/openssl/commit/87784ad619af36b8807c2044b3940006fccc1e42",
+            "https://github.com/openssl/openssl/commit/9530a5fd1aacaeccdced4478ea2340a480613335",
+            "https://github.com/openssl/openssl/commit/9ec2f6d2ae2bcad907cf7ee38584855bafe4979a",
+            "https://github.com/openssl/openssl/commit/a0c8ec557d9cac078f032d76cdf684fe743eb382",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-63072",
+            "https://openssl-library.org/news/secadv/20260825.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://ubuntu.com/security/notices/USN-8678-2",
+            "https://www.cve.org/CVERecord?id=CVE-2026-63072"
+          ],
+          "PublishedDate": "2026-08-25T13:19:26.01Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-63076",
+          "PkgID": "libcrypto3@3.5.7-r0",
+          "PkgName": "libcrypto3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libcrypto3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "9ce2cdb3f0bf014b"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-63076",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:bb754250e2335a4de55819afdb2143db60ba1189fa760614cae80c1385816e79",
+          "Title": "openssl: invalid pointer dereference in CMP server via crafted protectionAlg",
+          "Description": "Issue summary: OpenSSL CMP password based protection verification only\nchecks whether the protectionAlg parameter was not NULL and not its\nASN.1 type, before treating it as a PBMParameter. A crafted message can\ncontain a parameter of a different type, which is then dereferenced as an\ninvalid pointer.\n\nImpact summary: A remote, unauthenticated attacker can crash an application\nacting as a CMP server that accepts PBM-protected messages, or a CMP client\ntalking to a malicious or intercepted CMP server, resulting in a Denial of\nService.\n\nCWE: CWE-476: NULL Pointer Dereference\n\nDescription: When verifying the password-based MAC protection of a CMP\nmessage, OpenSSL library reads the protectionAlg algorithm parameter with\nX509_ALGOR_get0(), which returns both the parameter type and its value\npointer. The value is then cast to an ASN1_STRING and treated as the\nexpected PBMParameter after only checking that pointer is not NULL. The\nparameter type returned by X509_ALGOR_get0() was never consulted.\n\nThis happens during protection verification, before any MAC is computed, so\nno knowledge of the PBM shared secret is required; the only precondition is\nthat PBM verification is reachable. On the server side this is reached from\nOSSL_CMP_SRV_process_request() for any application that stands up a CMP\nserver accepting PBM-protected messages, and on the client side from CMP\nresponse validation against a malicious or on-path (MITM) server. The\nreliable consequence is a denial of service; there is no memory disclosure,\nno controlled memory write, and no path to code execution. CMP is a\nspecialized feature that an application must explicitly enable.\n\nFIPS impact: no\nAs the CMP code lives outside the FIPS module boundary, no FIPS modules\nare affected by this CVE.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-476"
+          ],
+          "VendorSeverity": {
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-63076",
+            "https://github.com/openssl/openssl/commit/37882aa2e0256e1072442a8f62f7db45b995c45b",
+            "https://github.com/openssl/openssl/commit/a17cc8d612ecff6d94a9b7ca8b5283ddf5ff570e",
+            "https://github.com/openssl/openssl/commit/a1f348ccb328c3afbd4ba6883f9b7c813c043259",
+            "https://github.com/openssl/openssl/commit/a7af46a92d0ce19a90e669ef56d2576a07924226",
+            "https://github.com/openssl/openssl/commit/cdacfff557389abfa9e4615abded2ec984517d6c",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-63076",
+            "https://openssl-library.org/news/secadv/20260825.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://ubuntu.com/security/notices/USN-8678-2",
+            "https://www.cve.org/CVERecord?id=CVE-2026-63076"
+          ],
+          "PublishedDate": "2026-08-25T13:19:26.543Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-14457",
+          "PkgID": "libcrypto3@3.5.7-r0",
+          "PkgName": "libcrypto3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libcrypto3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "9ce2cdb3f0bf014b"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-14457",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:dff029e6914723f4d38af5f354e36b89bf57abc4388e392f1a1fc041dfe2c9aa",
+          "Title": "openssl: RPK server signature algorithm selection can dereference a missing certificate",
+          "Description": "Issue summary: In a server or client configuration with RFC7250 Raw Public Keys (RPKs)\nenabled, and only the private key (with no associated certificate) configured locally,\na NULL pointer dereference may occur when the remote peer solicits raw public keys and\nalso sends the typically omitted \"signature_algorithms_cert\" TLS extension.\n\nImpact summary: The impact is limited to a possible Denial of Service as a result of\nan application abort, no data disclosure or remote command execution are possible.\n\nCWE: CWE-476: NULL Pointer Dereference\n\nDescription: While a passing comment in sample code in the documentation suggests\nthat key-only RPK configurations are supported, the best-practice RPK configuration\nis to always configure a corresponding certificate (possibly self-signed or\nsigned by any convenient CA).\n\nWhen the private key is configured along with a matching certificate, the\n\"signature_algorithms_cert\" extension is handled reliably even without the\nfix, and peer clients or servers that don't support raw public keys may be\nable to complete a TLS connection by pinning or verifying the corresponding\ncertificate or its public key.\n\nDeployments that prefer to configure just a private key with no certificate\nneed to upgrade to an updated release as noted below.\n\nFIPS impact: no\n\nNo FIPS modules are affected by this issue, as the SSL protocol implementation\nis outside the OpenSSL FIPS module boundary.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-476"
+          ],
+          "VendorSeverity": {
+            "redhat": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-14457",
+            "https://github.com/openssl/openssl/commit/1e8c398db67404babd3e5af999bb6bd86f720c76",
+            "https://github.com/openssl/openssl/commit/581aaa0f0a35d214740f0fe1f5283ec41f1212e1",
+            "https://github.com/openssl/openssl/commit/d0af20478688a6aa2f59d61caa3f82136b181d7f",
+            "https://github.com/openssl/openssl/commit/dad836b071da6579510c968615848ba03cac593b",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-14457",
+            "https://openssl-library.org/news/secadv/20260825.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-14457"
+          ],
+          "PublishedDate": "2026-08-25T13:17:49.533Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-54874",
+          "PkgID": "libcrypto3@3.5.7-r0",
+          "PkgName": "libcrypto3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libcrypto3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "9ce2cdb3f0bf014b"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-54874",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:f39120fcdfacbd5cc6e4d7e45ae5b3ee5ad3bb6db4b02061963c0d069ce304bb",
+          "Title": "openssl: excessive memory use buffering DTLS records for a future epoch",
+          "Description": "Issue summary: Receiving a DTLS record for a future epoch while a handshake\nis in progress causes OpenSSL to buffer far more memory than the record\nitself requires.\n\nImpact summary: A peer can use a small amount of network traffic to make an\nOpenSSL DTLS endpoint retain a disproportionately large amount of memory,\nwhich may lead to a Denial of Service.\n\nCWE: CWE-405: Asymmetric Resource Consumption (Amplification)\n\nDescription: While a DTLS handshake is in progress, a peer may legitimately\nhave already moved on to the next epoch (for example, having sent its\nChangeCipherSpec and Finished messages) before the local endpoint has\nprocessed the same transition, typically because of reordering on the\nunderlying UDP transport. OpenSSL buffers such early records so that they\ncan be processed once the local endpoint catches up.\n\nBuffering a record currently retains the entire read buffer it arrived in,\nwhich is sized to hold the largest possible DTLS record (around 16\nkilobytes), rather than just the bytes that make up the record itself. Up\nto 100 such records may be buffered per connection. As a result, a peer\nthat sends a stream of small forged records claiming to belong to the next\nepoch can cause an OpenSSL DTLS endpoint to retain around 1.7 megabytes of\nmemory, despite sending only a small fraction of that amount of data over\nthe network.\n\nAn attacker therefore gains a memory amplification factor of around 1200,\nand can multiply the effect across as many associations as it is able to\nopen, making this a remote memory exhaustion Denial of Service risk for\nDTLS servers. Since the memory retained per connection remains bounded,\nand any limit an application already places on the number of concurrent\nassociations also bounds the total exposure, this issue has been assessed\nas Low severity.\n\nFIPS impact: no\n\nNo FIPS modules are affected by this issue as the affected code is outside\nthe OpenSSL FIPS module boundary.\n\nOpenSSL 4.0, 3.6, 3.5, 3.4, 3.0, 1.1.1 and 1.0.2 are vulnerable to this\nissue.\n\nOpenSSL 4.0 users should upgrade to OpenSSL 4.0.2.\nOpenSSL 3.6 users should upgrade to OpenSSL 3.6.4.\nOpenSSL 3.5 users should upgrade to OpenSSL 3.5.8.\nOpenSSL 3.4 users should upgrade to OpenSSL 3.4.7.\nOpenSSL 3.0 users should upgrade to OpenSSL 3.0.22.\n\nPremium support customers only:\nOpenSSL 1.1.1 users should upgrade to OpenSSL 1.1.1zi\nOpenSSL 1.0.2 users should upgrade to OpenSSL 1.0.2zr\n\nThis issue was reported on 18 May 2026 by Amazon Web Services.\nThe fix has been developed by Matt Caswell.\n\n-- cut (non-publishing metadata for internal use) --\nReported by: Amazon Web Services\nFixed by: Matt Caswell",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-405"
+          ],
+          "VendorSeverity": {
+            "redhat": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-54874",
+            "https://github.com/openssl/openssl/commit/4808b5d64176451f3d93d87d0ac9c81a9b13fb23",
+            "https://github.com/openssl/openssl/commit/7110cb2f75806d0bf809eb2f90790d477900be40",
+            "https://github.com/openssl/openssl/commit/a0c8ec557d9cac078f032d76cdf684fe743eb382",
+            "https://github.com/openssl/openssl/commit/cc0c6710917cd5eec001b297355d2ba723505107",
+            "https://github.com/openssl/openssl/commit/f52ffc11b90737ac89083909618dc2e1f42c561c",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-54874",
+            "https://openssl-library.org/news/secadv/20260825.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://ubuntu.com/security/notices/USN-8678-2",
+            "https://www.cve.org/CVERecord?id=CVE-2026-54874"
+          ],
+          "PublishedDate": "2026-08-25T13:19:24.033Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-63073",
+          "PkgID": "libcrypto3@3.5.7-r0",
+          "PkgName": "libcrypto3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libcrypto3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "9ce2cdb3f0bf014b"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-63073",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:4405d6fc231c04e93a8f0aa4e851b1a2de524d9a078181c22877a898dcf6e636",
+          "Title": "openssl: untrusted sender DN used as format string in CMP response validation",
+          "Description": "Issue summary: OpenSSL CMP response validation passed an unexpected response\nsender distinguished name directly as the format string to `ERR_raise_data()`.\n\nImpact summary: A malicious or intercepted CMP endpoint can crash a CMP client\nthat enforces an expected sender or uses a pinned server certificate whose\nsubject becomes the default expected sender.\n\nCWE: CWE-134 (Use of Externally-Controlled Format String)\n\nDescription: When validating a received CMP message, ossl_cmp_msg_check_update()\nconverts the peer-supplied sender distinguished name with X509_NAME_oneline()\nand passes it directly as the format argument to ERR_raise_data(). Percent\ncharacters survive the conversion, so a sender DN such as \"CN=%s%n\" reaches\nBIO_vsnprintf() as an attacker-controlled format string with no matching variadic\narguments. This path is only reached when the caller configures an expected\nsender or pins a server certificate, which is the normal configuration for a\nCMP client validating server responses.\n\nSince the attacker controls the format string but none of the variadic\narguments, such specifiers as %s and %n dereference or write through unrelated\nstack contents and crash the client. The reliable consequence is a denial of\nservice, when the response comes from a malicious or intercepted CMP endpoint.\nThere is no controlled memory write, arbitrary-address read, or reliable path\nto remote code execution.\n\nFIPS impact: no\n\nNo FIPS modules are affected by this issue, as the CMP protocol\nimplementation is outside the OpenSSL FIPS module boundary.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-134"
+          ],
+          "VendorSeverity": {
+            "redhat": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-63073",
+            "https://github.com/openssl/openssl/commit/0cc20b322639919aa423e90799d9a57c3b4b76ca",
+            "https://github.com/openssl/openssl/commit/6a0acc072b4d37a7cac1252a29c1ce1f00c5ec29",
+            "https://github.com/openssl/openssl/commit/7eb2e3ec9d1d4f35c8022fccd4b03398b3f33e21",
+            "https://github.com/openssl/openssl/commit/a7e5a6eea8fd3ccca6b6fbba031a5fbf8a3d93b4",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-63073",
+            "https://openssl-library.org/news/secadv/20260825.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-63073"
+          ],
+          "PublishedDate": "2026-08-25T13:19:26.147Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-63074",
+          "PkgID": "libcrypto3@3.5.7-r0",
+          "PkgName": "libcrypto3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libcrypto3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "9ce2cdb3f0bf014b"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-63074",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:321a2a636828cf984f9f4ff245ae2a892b6be030450433c804a6cbba6f64a5ea",
+          "Title": "openssl: CMP indefinite cache growth of ExtraCerts",
+          "Description": "Issue summary: The OpenSSL Certificate Management Protocol (CMP) caches\nadditional certificates (extraCerts) sent in a CMP message, but never expunges\nthem (for instance if they are invalid).  If a server reuses an OSSL_CMP_CTX\nfrequently, this cache of extraCerts may grow unboundedly, and a malicious\nclient may flood a CMP server with requests driving this growth.\n\nImpact summary: Users utilizing a CMP server that reuses a single OSSL_CMP_CTX\nfor the lifetime of a server process may observe unbounded memory growth in the\nevent a malicious client repeatedly sends requests containing unique extra\ncertificates, which may lead to OOM conditions.\n\nCWE: CWE-770: Allocation of Resources Without Limits or Throttling\n\nDescription: If a remote user sends CMP messages to a server with a list of\nextraCerts and the message is rejected, the extraCerts from the message remains\nin the server contexts untrusted certificate stack.  This exposes servers with\nlong lived ctx objects to Denial of Service attacks in which an attacker sends\nmessages intending to be rejected with a large list of additional certificates\nrepeatedly, forcing the server to store them indefinitely.\n   \nThe issue was fixed by removing the added extra certs if the message is\nrejected, using the same method as when the context is configured to not do\ncaching at all.\n\nFIPS impact: no\nAs the CMP code lives outside the FIPS module boundary, no FIPS\nmodules are affected by this CVE.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-770"
+          ],
+          "VendorSeverity": {
+            "redhat": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-63074",
+            "https://github.com/openssl/openssl/commit/01e567978a55fba18142a230380c31296049fae7",
+            "https://github.com/openssl/openssl/commit/21a5d9658b0c66daace60e10ea18ff32a448de9f",
+            "https://github.com/openssl/openssl/commit/74ae7f6df47a5767c1010b88c47507dfc5b32c46",
+            "https://github.com/openssl/openssl/commit/75360af9650d4e0c82ba0050c5c9912cd79e54af",
+            "https://github.com/openssl/openssl/commit/f636f9ca0fa1bae5b42f9e787f025c96fb09c43a",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-63074",
+            "https://openssl-library.org/news/secadv/20260825.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://ubuntu.com/security/notices/USN-8678-2",
+            "https://www.cve.org/CVERecord?id=CVE-2026-63074"
+          ],
+          "PublishedDate": "2026-08-25T13:19:26.283Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-63075",
+          "PkgID": "libcrypto3@3.5.7-r0",
+          "PkgName": "libcrypto3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libcrypto3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "9ce2cdb3f0bf014b"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-63075",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:d7088948b125e6d66b783b83a16ab70cd0e88bfa7de1a2fcbe421a111a2c4e69",
+          "Title": "openssl: QUIC ACK-only packet retention can cause memory exhaustion",
+          "Description": "Issue summary: When OpenSSL processes QUIC traffic from a peer that repeatedly\nsends ack-eliciting packets while not acknowledging ACK-only responses, the\nQUIC stack can retain ACK-only packet metadata for the lifetime of the\nconnection.\n\nImpact summary: A remote peer that can complete a QUIC handshake can\ncause connection-scoped memory growth which may lead to Denial of Service\nthrough memory exhaustion, especially with sustained traffic or many concurrent\nQUIC connections.\n\nCWE: CWE-770: Allocation of Resources Without Limits or Throttling\n\nDescription: When the OpenSSL QUIC stack sends an ACK-only packet,\nthere is no requirement by the QUIC protocol that the peer will acknowledge\nthat ACK-only packet (i.e. it is itself not ack-eliciting). However, the OpenSSL\nimplementation stores the metadata about the ACK frames regardless.\nIn and of itself that's ok, but if a malicious peer establishes a connection, and\nthen drives the connection such that ACK-only packets are forced from the \nOpenSSL implementation peer (i.e., by sending numerous PING frames),\nand then withholding any subsequent acks for ack-eliciting data, like\nlegitimate data, said malicious peer can force inappropriate memory growth\non the OpenSSL peer, potentially leading to a Denial of Service.\n\nThe fix is to ensure that we account for the transmission of the ACK-only\npacket in the packet histories high and low watermark without actually storing\nthe ACK-only packet metadata itself.\n\nFIPS impact: no\nThe OpenSSL FIPS module is not affected as the QUIC code is\noutside the FIPS module boundary.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-770"
+          ],
+          "VendorSeverity": {
+            "redhat": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-63075",
+            "https://github.com/openssl/openssl/commit/7308946576b12e64b8be53bcf0a120354b2b42bc",
+            "https://github.com/openssl/openssl/commit/7c98d79738549df92868e7dd9be4bbf061eed709",
+            "https://github.com/openssl/openssl/commit/bf84721c2548351176e367e6de505792f0118dc6",
+            "https://github.com/openssl/openssl/commit/c902e5f16d6a9e130e96d3ca6d8f64d71652e393",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-63075",
+            "https://openssl-library.org/news/secadv/20260825.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-63075"
+          ],
+          "PublishedDate": "2026-08-25T13:19:26.413Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-75803",
+          "PkgID": "libcrypto3@3.5.7-r0",
+          "PkgName": "libcrypto3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libcrypto3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "9ce2cdb3f0bf014b"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-75803",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:9d094b81c477bd939a9c5e3dccfd84c0938405079e4988a38ff2c642a92d31af",
+          "Title": "Issue summary: ChaCha20-Poly1305 and AES-OCB decryption with an empty  ...",
+          "Description": "Issue summary: ChaCha20-Poly1305 and AES-OCB decryption with an empty\nciphertext can report success without verifying the supplied authentication\ntag when the operation is finalized by calling the EVP_Cipher() function.\n\nImpact summary: Applications calling EVP_Cipher() on an empty ciphertext and\nexpecting the call to check the AEAD tag may accept forged messages.\n\nCWE: CWE-354 (Improper Validation of Integrity Check Value)\n\nDescription: The EVP_Cipher() API call for AEAD ciphers behaves like a one\nshot encryption and decryption call. It also verifies the AEAD tag after the\ndecryption operation. However for AES-OCB and ChaCha20-Poly1305 ciphers\nit skipped the AEAD tag verification when an empty ciphertext was passed to\nthe function. The callers of this function might believe that a successful\nreturn indicates a valid AEAD tag for these ciphers, even when that has not\ntruly been validated in this case.\n\nFIPS impact: no\nThe FIPS modules in 4.0, 3.6, 3.5, 3.4, and 3.0 are not affected by this CVE\nas the affected algorithms are not FIPS approved and thus not implemented\nin the FIPS module.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-354"
+          ],
+          "VendorSeverity": {
+            "ubuntu": 1
+          },
+          "References": [
+            "https://github.com/openssl/openssl/commit/119ab9555dc62275bbd71f6f49529b1a44feba42",
+            "https://github.com/openssl/openssl/commit/3621257986e27e540bf96a11570929a6e5a9e05b",
+            "https://github.com/openssl/openssl/commit/6c7aa6f8f6449b7fe0137ee8be65fcd239bd7d6a",
+            "https://github.com/openssl/openssl/commit/bdeb0cd994d915342787f117ee75044f0dc36f34",
+            "https://github.com/openssl/openssl/commit/bf95f5f772e9362f87b25cfa2f8cb15d984865b9",
+            "https://openssl-library.org/news/secadv/20260825.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-75803"
+          ],
+          "PublishedDate": "2026-08-25T13:19:29.57Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-14456",
+          "PkgID": "libssl3@3.5.7-r0",
+          "PkgName": "libssl3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libssl3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "a25152af95b643e0"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-14456",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:2efbecfafbc1c8a5f6f85eb0146906dd1146d4708be5529e444f8e0b8c320b93",
+          "Title": "openssl: OpenSSL: Denial of Service via unbounded memory growth in QUIC server",
+          "Description": "Issue summary: When an OpenSSL QUIC server (Listener SSL object) processes\nvalid QUIC Initial packets for unknown destination connection IDs, it\ncan allocate and queue new incoming channels without enforcing any limit.\n\nImpact summary: A remote peer that can make many Initial packets reach the\nserver listener faster than the application accepts connections, can cause the\nmemory allocated to store the per-channel state to grow without any limits,\npotentially making the QUIC listener unavailable and causing Denial of Service.\n\nCWE: CWE-770: Allocation of Resources Without Limits or Throttling\n\nDescription: The function that handles inbound QUIC packets uses\nConnection-Id from the packet header to find an existing connection\n(QUIC channel). If no existing connection is found and the packet\ntype is INITIAL, the function treats the packet as a new connection. It\nallocates a new channel object and inserts it into a queue where it\nwaits to be accepted by the local application with SSL_accept(3ossl).\nThe memory occupied by these initial channel objects may grow\nwithout bounds if the application is not able to call SSL_accept()\nfrequently enough to serve these inbound connection requests.\n\nThe issue is present since OpenSSL 3.5 when the QUIC server implementation\nwas added.\n\nThe fix introduces a limit for pending connections. The default limit is set\nto 256 pending connections (waiting to be accepted by the local application).\nApplications may change the default by calling SSL_set_value_uint(3ossl).\n\nFIPS impact: no\nThe FIPS module is not affected as the QUIC implementation is outside of\nthe OpenSSL FIPS module boundary.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-770"
+          ],
+          "VendorSeverity": {
+            "photon": 3,
+            "redhat": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "http://www.openwall.com/lists/oss-security/2026/08/13/4",
+            "https://access.redhat.com/security/cve/CVE-2026-14456",
+            "https://github.com/openssl/openssl/commit/08e7756c3900bcfd77a720e7b74e27d6e4ed01a9",
+            "https://github.com/openssl/openssl/commit/4084152e040329ca0194c4c1750b9b46d00a5b6b",
+            "https://github.com/openssl/openssl/commit/f2f1465f2d2e5c61dfeac4d20fd093797d821139",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-14456",
+            "https://openssl-library.org/news/secadv/20260813.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-14456"
+          ],
+          "PublishedDate": "2026-08-13T15:19:31.82Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-18798",
+          "PkgID": "libssl3@3.5.7-r0",
+          "PkgName": "libssl3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libssl3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "a25152af95b643e0"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-18798",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:d708da140f21174cf309ebbb29c3a3538f0dd1d39bd076f88182974076d6d311",
+          "Title": "openssl: QUIC server may trigger double free when processing INITIAL packet",
+          "Description": "Issue summary: QUIC server may double free QRX (QUIC record layer RX) object\nwhen channel creation fails for initial packet.\n\nImpact summary: Double free leads to heap corruption, which typically results in \ntermination of QUIC server process, leading to Denial of Service. There is so\nfar no evidence that this double free is exploitable for remote code execution,\nthus it is considered highly improbable.\n\nCWE: CWE-415: Double Free\n\nDescription: In order to validate initial packet, OpenSSL QUIC stack default\npacket handler (port_default_packet_handler()) creates a so-called QRX object.\nIf the initial packet validates successfully with QRX object, the default packet\nhandler proceeds to channel (connection object) creation. The QRX object used\nfor packet validation is passed to port_bind_channel(), so it becomes part of\nthe newly created connection. If port_bind_channel() fails, then it also frees\nthe QRX object. Once port_bind_channel() returns, the port_default_packet_handler()\ndetects the failure and proceeds to the error branch, where the same QRX object is\nfreed for the second time.\n\nThe failure in port_bind_channel() function can be induced with a relatively\nlow effort by a malformed (non RFC 9000 compliant) INITIAL packet. If the packet\ncarries DCID (destination connection ID) which is shorter than 8 bytes, then\nport_bind_channel() jumps to the error path after ossl_quic_lcidm_enrol_odcid()\ndetects that the DCID has invalid length.\n\nFIPS impact: no\nThe FIPS module is not affected, as the QUIC implementation is outside of\nthe OpenSSL FIPS module boundary.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-415"
+          ],
+          "VendorSeverity": {
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-18798",
+            "https://github.com/openssl/openssl/commit/70cebd74d3592f5272945501b58a60374c4e13af",
+            "https://github.com/openssl/openssl/commit/967582d5037f01a26b6d19beae19af62a1b15c3c",
+            "https://github.com/openssl/openssl/commit/a14a1deac403522fbeafabcb198503cf6caa7dc4",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-18798",
+            "https://openssl-library.org/news/secadv/20260825.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-18798"
+          ],
+          "PublishedDate": "2026-08-25T13:17:49.813Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-63072",
+          "PkgID": "libssl3@3.5.7-r0",
+          "PkgName": "libssl3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libssl3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "a25152af95b643e0"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-63072",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:c225f1e6c058a992fa7cf6fa1ba13f41a90c97f523ab4fab00aa8a47e3bf9a01",
+          "Title": "openssl: heap buffer overflow in CMS key unwrapping",
+          "Description": "Issue summary: OpenSSL CMS decryption sizes the key-unwrap output buffer based\non querying the unwrapped key size, but the AES-WRAP-PAD unwrap primitive\ncan write and cleanse more bytes than that query reports, causing an 8-byte\nout-of-bounds heap write.\n\nImpact summary: An attacker who supplies a crafted CMS message can trigger a\ndeterministic 8-byte out-of-bounds heap write when the victim decrypts it\nwith CMS_decrypt(), corrupting the heap and typically resulting in a Denial\nof Service.\n\nCWE: CWE-787: Out-of-bounds Write\n\nDescription: The key-wrap OID is potentially attacker-controlled on the wire.\nCMS unwrapping allows both id-aesNNN-wrap-pad and id-aesNNN-wrap ciphers.\nAn attacker can take a legitimate message and change a single OID byte to\nselect the padded variant while leaving the message otherwise valid. Since\nthe unwrap key is derived from the recipient's private operation (ECDH key\nagreement or ML-KEM decapsulation), the RFC 5649 integrity check cannot\npass, and the decryption fails with integrity failure.\n\nThe write is a fixed-size (8-byte), fixed-value (zero) heap overflow\nimmediately past the allocation, requires no special configuration, and is\nreachable from the public CMS_decrypt() function. The consequence is\na heap corruption leading to a Denial of Service. The fix in the CMS code\nsizes the unwrap output buffer for the worst case so a failed unwrap cannot\nwrite past the allocation.\n\nFIPS impact: no\n\nAs the CMS code lives outside the FIPS module boundary, no FIPS\nmodules are affected by this CVE.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-787"
+          ],
+          "VendorSeverity": {
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-63072",
+            "https://github.com/openssl/openssl/commit/2a3dac874c8057c1f0186849bf1ede1ae7b6b756",
+            "https://github.com/openssl/openssl/commit/87784ad619af36b8807c2044b3940006fccc1e42",
+            "https://github.com/openssl/openssl/commit/9530a5fd1aacaeccdced4478ea2340a480613335",
+            "https://github.com/openssl/openssl/commit/9ec2f6d2ae2bcad907cf7ee38584855bafe4979a",
+            "https://github.com/openssl/openssl/commit/a0c8ec557d9cac078f032d76cdf684fe743eb382",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-63072",
+            "https://openssl-library.org/news/secadv/20260825.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://ubuntu.com/security/notices/USN-8678-2",
+            "https://www.cve.org/CVERecord?id=CVE-2026-63072"
+          ],
+          "PublishedDate": "2026-08-25T13:19:26.01Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-63076",
+          "PkgID": "libssl3@3.5.7-r0",
+          "PkgName": "libssl3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libssl3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "a25152af95b643e0"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-63076",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:b1624940da2fd71c9199455f4e7de6429a22f5923ef5d4cabe265df9747e2266",
+          "Title": "openssl: invalid pointer dereference in CMP server via crafted protectionAlg",
+          "Description": "Issue summary: OpenSSL CMP password based protection verification only\nchecks whether the protectionAlg parameter was not NULL and not its\nASN.1 type, before treating it as a PBMParameter. A crafted message can\ncontain a parameter of a different type, which is then dereferenced as an\ninvalid pointer.\n\nImpact summary: A remote, unauthenticated attacker can crash an application\nacting as a CMP server that accepts PBM-protected messages, or a CMP client\ntalking to a malicious or intercepted CMP server, resulting in a Denial of\nService.\n\nCWE: CWE-476: NULL Pointer Dereference\n\nDescription: When verifying the password-based MAC protection of a CMP\nmessage, OpenSSL library reads the protectionAlg algorithm parameter with\nX509_ALGOR_get0(), which returns both the parameter type and its value\npointer. The value is then cast to an ASN1_STRING and treated as the\nexpected PBMParameter after only checking that pointer is not NULL. The\nparameter type returned by X509_ALGOR_get0() was never consulted.\n\nThis happens during protection verification, before any MAC is computed, so\nno knowledge of the PBM shared secret is required; the only precondition is\nthat PBM verification is reachable. On the server side this is reached from\nOSSL_CMP_SRV_process_request() for any application that stands up a CMP\nserver accepting PBM-protected messages, and on the client side from CMP\nresponse validation against a malicious or on-path (MITM) server. The\nreliable consequence is a denial of service; there is no memory disclosure,\nno controlled memory write, and no path to code execution. CMP is a\nspecialized feature that an application must explicitly enable.\n\nFIPS impact: no\nAs the CMP code lives outside the FIPS module boundary, no FIPS modules\nare affected by this CVE.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-476"
+          ],
+          "VendorSeverity": {
+            "redhat": 2,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-63076",
+            "https://github.com/openssl/openssl/commit/37882aa2e0256e1072442a8f62f7db45b995c45b",
+            "https://github.com/openssl/openssl/commit/a17cc8d612ecff6d94a9b7ca8b5283ddf5ff570e",
+            "https://github.com/openssl/openssl/commit/a1f348ccb328c3afbd4ba6883f9b7c813c043259",
+            "https://github.com/openssl/openssl/commit/a7af46a92d0ce19a90e669ef56d2576a07924226",
+            "https://github.com/openssl/openssl/commit/cdacfff557389abfa9e4615abded2ec984517d6c",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-63076",
+            "https://openssl-library.org/news/secadv/20260825.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://ubuntu.com/security/notices/USN-8678-2",
+            "https://www.cve.org/CVERecord?id=CVE-2026-63076"
+          ],
+          "PublishedDate": "2026-08-25T13:19:26.543Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-14457",
+          "PkgID": "libssl3@3.5.7-r0",
+          "PkgName": "libssl3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libssl3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "a25152af95b643e0"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-14457",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:9ff60d5d5a10adad402adf83ab1946fd69802a017fe7fabd6651bace4389e831",
+          "Title": "openssl: RPK server signature algorithm selection can dereference a missing certificate",
+          "Description": "Issue summary: In a server or client configuration with RFC7250 Raw Public Keys (RPKs)\nenabled, and only the private key (with no associated certificate) configured locally,\na NULL pointer dereference may occur when the remote peer solicits raw public keys and\nalso sends the typically omitted \"signature_algorithms_cert\" TLS extension.\n\nImpact summary: The impact is limited to a possible Denial of Service as a result of\nan application abort, no data disclosure or remote command execution are possible.\n\nCWE: CWE-476: NULL Pointer Dereference\n\nDescription: While a passing comment in sample code in the documentation suggests\nthat key-only RPK configurations are supported, the best-practice RPK configuration\nis to always configure a corresponding certificate (possibly self-signed or\nsigned by any convenient CA).\n\nWhen the private key is configured along with a matching certificate, the\n\"signature_algorithms_cert\" extension is handled reliably even without the\nfix, and peer clients or servers that don't support raw public keys may be\nable to complete a TLS connection by pinning or verifying the corresponding\ncertificate or its public key.\n\nDeployments that prefer to configure just a private key with no certificate\nneed to upgrade to an updated release as noted below.\n\nFIPS impact: no\n\nNo FIPS modules are affected by this issue, as the SSL protocol implementation\nis outside the OpenSSL FIPS module boundary.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-476"
+          ],
+          "VendorSeverity": {
+            "redhat": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-14457",
+            "https://github.com/openssl/openssl/commit/1e8c398db67404babd3e5af999bb6bd86f720c76",
+            "https://github.com/openssl/openssl/commit/581aaa0f0a35d214740f0fe1f5283ec41f1212e1",
+            "https://github.com/openssl/openssl/commit/d0af20478688a6aa2f59d61caa3f82136b181d7f",
+            "https://github.com/openssl/openssl/commit/dad836b071da6579510c968615848ba03cac593b",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-14457",
+            "https://openssl-library.org/news/secadv/20260825.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-14457"
+          ],
+          "PublishedDate": "2026-08-25T13:17:49.533Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-54874",
+          "PkgID": "libssl3@3.5.7-r0",
+          "PkgName": "libssl3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libssl3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "a25152af95b643e0"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-54874",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:b5ccd79b65a81b3f001f58f5f9680d169c243bf11a9c2dc15fe8d777b6829500",
+          "Title": "openssl: excessive memory use buffering DTLS records for a future epoch",
+          "Description": "Issue summary: Receiving a DTLS record for a future epoch while a handshake\nis in progress causes OpenSSL to buffer far more memory than the record\nitself requires.\n\nImpact summary: A peer can use a small amount of network traffic to make an\nOpenSSL DTLS endpoint retain a disproportionately large amount of memory,\nwhich may lead to a Denial of Service.\n\nCWE: CWE-405: Asymmetric Resource Consumption (Amplification)\n\nDescription: While a DTLS handshake is in progress, a peer may legitimately\nhave already moved on to the next epoch (for example, having sent its\nChangeCipherSpec and Finished messages) before the local endpoint has\nprocessed the same transition, typically because of reordering on the\nunderlying UDP transport. OpenSSL buffers such early records so that they\ncan be processed once the local endpoint catches up.\n\nBuffering a record currently retains the entire read buffer it arrived in,\nwhich is sized to hold the largest possible DTLS record (around 16\nkilobytes), rather than just the bytes that make up the record itself. Up\nto 100 such records may be buffered per connection. As a result, a peer\nthat sends a stream of small forged records claiming to belong to the next\nepoch can cause an OpenSSL DTLS endpoint to retain around 1.7 megabytes of\nmemory, despite sending only a small fraction of that amount of data over\nthe network.\n\nAn attacker therefore gains a memory amplification factor of around 1200,\nand can multiply the effect across as many associations as it is able to\nopen, making this a remote memory exhaustion Denial of Service risk for\nDTLS servers. Since the memory retained per connection remains bounded,\nand any limit an application already places on the number of concurrent\nassociations also bounds the total exposure, this issue has been assessed\nas Low severity.\n\nFIPS impact: no\n\nNo FIPS modules are affected by this issue as the affected code is outside\nthe OpenSSL FIPS module boundary.\n\nOpenSSL 4.0, 3.6, 3.5, 3.4, 3.0, 1.1.1 and 1.0.2 are vulnerable to this\nissue.\n\nOpenSSL 4.0 users should upgrade to OpenSSL 4.0.2.\nOpenSSL 3.6 users should upgrade to OpenSSL 3.6.4.\nOpenSSL 3.5 users should upgrade to OpenSSL 3.5.8.\nOpenSSL 3.4 users should upgrade to OpenSSL 3.4.7.\nOpenSSL 3.0 users should upgrade to OpenSSL 3.0.22.\n\nPremium support customers only:\nOpenSSL 1.1.1 users should upgrade to OpenSSL 1.1.1zi\nOpenSSL 1.0.2 users should upgrade to OpenSSL 1.0.2zr\n\nThis issue was reported on 18 May 2026 by Amazon Web Services.\nThe fix has been developed by Matt Caswell.\n\n-- cut (non-publishing metadata for internal use) --\nReported by: Amazon Web Services\nFixed by: Matt Caswell",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-405"
+          ],
+          "VendorSeverity": {
+            "redhat": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-54874",
+            "https://github.com/openssl/openssl/commit/4808b5d64176451f3d93d87d0ac9c81a9b13fb23",
+            "https://github.com/openssl/openssl/commit/7110cb2f75806d0bf809eb2f90790d477900be40",
+            "https://github.com/openssl/openssl/commit/a0c8ec557d9cac078f032d76cdf684fe743eb382",
+            "https://github.com/openssl/openssl/commit/cc0c6710917cd5eec001b297355d2ba723505107",
+            "https://github.com/openssl/openssl/commit/f52ffc11b90737ac89083909618dc2e1f42c561c",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-54874",
+            "https://openssl-library.org/news/secadv/20260825.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://ubuntu.com/security/notices/USN-8678-2",
+            "https://www.cve.org/CVERecord?id=CVE-2026-54874"
+          ],
+          "PublishedDate": "2026-08-25T13:19:24.033Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-63073",
+          "PkgID": "libssl3@3.5.7-r0",
+          "PkgName": "libssl3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libssl3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "a25152af95b643e0"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-63073",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:2a00e52469651e0a8637700ef21317d1cba3661fb4ec82e0c018abc32732c6d3",
+          "Title": "openssl: untrusted sender DN used as format string in CMP response validation",
+          "Description": "Issue summary: OpenSSL CMP response validation passed an unexpected response\nsender distinguished name directly as the format string to `ERR_raise_data()`.\n\nImpact summary: A malicious or intercepted CMP endpoint can crash a CMP client\nthat enforces an expected sender or uses a pinned server certificate whose\nsubject becomes the default expected sender.\n\nCWE: CWE-134 (Use of Externally-Controlled Format String)\n\nDescription: When validating a received CMP message, ossl_cmp_msg_check_update()\nconverts the peer-supplied sender distinguished name with X509_NAME_oneline()\nand passes it directly as the format argument to ERR_raise_data(). Percent\ncharacters survive the conversion, so a sender DN such as \"CN=%s%n\" reaches\nBIO_vsnprintf() as an attacker-controlled format string with no matching variadic\narguments. This path is only reached when the caller configures an expected\nsender or pins a server certificate, which is the normal configuration for a\nCMP client validating server responses.\n\nSince the attacker controls the format string but none of the variadic\narguments, such specifiers as %s and %n dereference or write through unrelated\nstack contents and crash the client. The reliable consequence is a denial of\nservice, when the response comes from a malicious or intercepted CMP endpoint.\nThere is no controlled memory write, arbitrary-address read, or reliable path\nto remote code execution.\n\nFIPS impact: no\n\nNo FIPS modules are affected by this issue, as the CMP protocol\nimplementation is outside the OpenSSL FIPS module boundary.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-134"
+          ],
+          "VendorSeverity": {
+            "redhat": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-63073",
+            "https://github.com/openssl/openssl/commit/0cc20b322639919aa423e90799d9a57c3b4b76ca",
+            "https://github.com/openssl/openssl/commit/6a0acc072b4d37a7cac1252a29c1ce1f00c5ec29",
+            "https://github.com/openssl/openssl/commit/7eb2e3ec9d1d4f35c8022fccd4b03398b3f33e21",
+            "https://github.com/openssl/openssl/commit/a7e5a6eea8fd3ccca6b6fbba031a5fbf8a3d93b4",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-63073",
+            "https://openssl-library.org/news/secadv/20260825.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-63073"
+          ],
+          "PublishedDate": "2026-08-25T13:19:26.147Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-63074",
+          "PkgID": "libssl3@3.5.7-r0",
+          "PkgName": "libssl3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libssl3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "a25152af95b643e0"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-63074",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:2f9c60045cb9915227f7f674a06f79517181b4da607806657e1edca26cf6c009",
+          "Title": "openssl: CMP indefinite cache growth of ExtraCerts",
+          "Description": "Issue summary: The OpenSSL Certificate Management Protocol (CMP) caches\nadditional certificates (extraCerts) sent in a CMP message, but never expunges\nthem (for instance if they are invalid).  If a server reuses an OSSL_CMP_CTX\nfrequently, this cache of extraCerts may grow unboundedly, and a malicious\nclient may flood a CMP server with requests driving this growth.\n\nImpact summary: Users utilizing a CMP server that reuses a single OSSL_CMP_CTX\nfor the lifetime of a server process may observe unbounded memory growth in the\nevent a malicious client repeatedly sends requests containing unique extra\ncertificates, which may lead to OOM conditions.\n\nCWE: CWE-770: Allocation of Resources Without Limits or Throttling\n\nDescription: If a remote user sends CMP messages to a server with a list of\nextraCerts and the message is rejected, the extraCerts from the message remains\nin the server contexts untrusted certificate stack.  This exposes servers with\nlong lived ctx objects to Denial of Service attacks in which an attacker sends\nmessages intending to be rejected with a large list of additional certificates\nrepeatedly, forcing the server to store them indefinitely.\n   \nThe issue was fixed by removing the added extra certs if the message is\nrejected, using the same method as when the context is configured to not do\ncaching at all.\n\nFIPS impact: no\nAs the CMP code lives outside the FIPS module boundary, no FIPS\nmodules are affected by this CVE.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-770"
+          ],
+          "VendorSeverity": {
+            "redhat": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-63074",
+            "https://github.com/openssl/openssl/commit/01e567978a55fba18142a230380c31296049fae7",
+            "https://github.com/openssl/openssl/commit/21a5d9658b0c66daace60e10ea18ff32a448de9f",
+            "https://github.com/openssl/openssl/commit/74ae7f6df47a5767c1010b88c47507dfc5b32c46",
+            "https://github.com/openssl/openssl/commit/75360af9650d4e0c82ba0050c5c9912cd79e54af",
+            "https://github.com/openssl/openssl/commit/f636f9ca0fa1bae5b42f9e787f025c96fb09c43a",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-63074",
+            "https://openssl-library.org/news/secadv/20260825.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://ubuntu.com/security/notices/USN-8678-2",
+            "https://www.cve.org/CVERecord?id=CVE-2026-63074"
+          ],
+          "PublishedDate": "2026-08-25T13:19:26.283Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-63075",
+          "PkgID": "libssl3@3.5.7-r0",
+          "PkgName": "libssl3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libssl3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "a25152af95b643e0"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-63075",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:6be05ac866f3758ad6a89a19d09c8d70a3e689f01f8caa98fbc42b041e4cbd65",
+          "Title": "openssl: QUIC ACK-only packet retention can cause memory exhaustion",
+          "Description": "Issue summary: When OpenSSL processes QUIC traffic from a peer that repeatedly\nsends ack-eliciting packets while not acknowledging ACK-only responses, the\nQUIC stack can retain ACK-only packet metadata for the lifetime of the\nconnection.\n\nImpact summary: A remote peer that can complete a QUIC handshake can\ncause connection-scoped memory growth which may lead to Denial of Service\nthrough memory exhaustion, especially with sustained traffic or many concurrent\nQUIC connections.\n\nCWE: CWE-770: Allocation of Resources Without Limits or Throttling\n\nDescription: When the OpenSSL QUIC stack sends an ACK-only packet,\nthere is no requirement by the QUIC protocol that the peer will acknowledge\nthat ACK-only packet (i.e. it is itself not ack-eliciting). However, the OpenSSL\nimplementation stores the metadata about the ACK frames regardless.\nIn and of itself that's ok, but if a malicious peer establishes a connection, and\nthen drives the connection such that ACK-only packets are forced from the \nOpenSSL implementation peer (i.e., by sending numerous PING frames),\nand then withholding any subsequent acks for ack-eliciting data, like\nlegitimate data, said malicious peer can force inappropriate memory growth\non the OpenSSL peer, potentially leading to a Denial of Service.\n\nThe fix is to ensure that we account for the transmission of the ACK-only\npacket in the packet histories high and low watermark without actually storing\nthe ACK-only packet metadata itself.\n\nFIPS impact: no\nThe OpenSSL FIPS module is not affected as the QUIC code is\noutside the FIPS module boundary.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-770"
+          ],
+          "VendorSeverity": {
+            "redhat": 1,
+            "ubuntu": 1
+          },
+          "CVSS": {
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-63075",
+            "https://github.com/openssl/openssl/commit/7308946576b12e64b8be53bcf0a120354b2b42bc",
+            "https://github.com/openssl/openssl/commit/7c98d79738549df92868e7dd9be4bbf061eed709",
+            "https://github.com/openssl/openssl/commit/bf84721c2548351176e367e6de505792f0118dc6",
+            "https://github.com/openssl/openssl/commit/c902e5f16d6a9e130e96d3ca6d8f64d71652e393",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-63075",
+            "https://openssl-library.org/news/secadv/20260825.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-63075"
+          ],
+          "PublishedDate": "2026-08-25T13:19:26.413Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-75803",
+          "PkgID": "libssl3@3.5.7-r0",
+          "PkgName": "libssl3",
+          "PkgIdentifier": {
+            "PURL": "pkg:apk/alpine/libssl3@3.5.7-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "a25152af95b643e0"
+          },
+          "InstalledVersion": "3.5.7-r0",
+          "FixedVersion": "3.5.8-r0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
+          },
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-75803",
+          "DataSource": {
+            "ID": "alpine",
+            "Name": "Alpine Secdb",
+            "URL": "https://secdb.alpinelinux.org/"
+          },
+          "Fingerprint": "sha256:23406f1959112ce9c0563ece27504ab6dc6d322e71e3f21347f13b0f5e45c11a",
+          "Title": "Issue summary: ChaCha20-Poly1305 and AES-OCB decryption with an empty  ...",
+          "Description": "Issue summary: ChaCha20-Poly1305 and AES-OCB decryption with an empty\nciphertext can report success without verifying the supplied authentication\ntag when the operation is finalized by calling the EVP_Cipher() function.\n\nImpact summary: Applications calling EVP_Cipher() on an empty ciphertext and\nexpecting the call to check the AEAD tag may accept forged messages.\n\nCWE: CWE-354 (Improper Validation of Integrity Check Value)\n\nDescription: The EVP_Cipher() API call for AEAD ciphers behaves like a one\nshot encryption and decryption call. It also verifies the AEAD tag after the\ndecryption operation. However for AES-OCB and ChaCha20-Poly1305 ciphers\nit skipped the AEAD tag verification when an empty ciphertext was passed to\nthe function. The callers of this function might believe that a successful\nreturn indicates a valid AEAD tag for these ciphers, even when that has not\ntruly been validated in this case.\n\nFIPS impact: no\nThe FIPS modules in 4.0, 3.6, 3.5, 3.4, and 3.0 are not affected by this CVE\nas the affected algorithms are not FIPS approved and thus not implemented\nin the FIPS module.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-354"
+          ],
+          "VendorSeverity": {
+            "ubuntu": 1
+          },
+          "References": [
+            "https://github.com/openssl/openssl/commit/119ab9555dc62275bbd71f6f49529b1a44feba42",
+            "https://github.com/openssl/openssl/commit/3621257986e27e540bf96a11570929a6e5a9e05b",
+            "https://github.com/openssl/openssl/commit/6c7aa6f8f6449b7fe0137ee8be65fcd239bd7d6a",
+            "https://github.com/openssl/openssl/commit/bdeb0cd994d915342787f117ee75044f0dc36f34",
+            "https://github.com/openssl/openssl/commit/bf95f5f772e9362f87b25cfa2f8cb15d984865b9",
+            "https://openssl-library.org/news/secadv/20260825.txt",
+            "https://ubuntu.com/security/notices/USN-8678-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-75803"
+          ],
+          "PublishedDate": "2026-08-25T13:19:29.57Z",
+          "LastModifiedDate": "2026-08-28T19:46:29.323Z"
+        }
       ]
     },
     {
@@ -2213,7 +3235,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pyyaml-6.0.3.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2229,7 +3251,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/annotated_types-0.8.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2245,7 +3267,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/anyio-4.14.2.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2261,7 +3283,7 @@
             "MPL-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/certifi-2026.7.22.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2269,17 +3291,17 @@
         {
           "Name": "click",
           "Identifier": {
-            "PURL": "pkg:pypi/click@8.4.2",
-            "UID": "eb822e8eda31c068"
+            "PURL": "pkg:pypi/click@8.5.0",
+            "UID": "1726c35a3b1d5d0d"
           },
-          "Version": "8.4.2",
+          "Version": "8.5.0",
           "Licenses": [
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
-          "FilePath": "usr/local/lib/python3.12/site-packages/click-8.4.2.dist-info/METADATA",
+          "FilePath": "usr/local/lib/python3.12/site-packages/click-8.5.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
         },
         {
@@ -2293,7 +3315,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/fastapi-0.115.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2309,7 +3331,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/h11-0.16.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2325,7 +3347,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/httpcore-1.0.9.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2341,7 +3363,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/httptools-0.8.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2357,7 +3379,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/httpx-0.27.2.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2373,7 +3395,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/idna-3.19.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2389,7 +3411,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/iniconfig-2.3.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2405,7 +3427,7 @@
             "Apache-2.0 OR BSD-2-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/packaging-26.3.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2437,7 +3459,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pluggy-1.6.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2453,7 +3475,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pydantic-2.9.2.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2469,7 +3491,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pydantic_core-2.23.4.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2485,7 +3507,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pytest-8.3.3.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2501,7 +3523,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/python_dotenv-1.2.3.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2518,7 +3540,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/sniffio-1.3.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2534,7 +3556,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/starlette-0.38.6.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2550,7 +3572,7 @@
             "PSF-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/typing_extensions-4.16.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2566,7 +3588,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/uvicorn-0.30.6.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2583,7 +3605,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/uvloop-0.22.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2599,7 +3621,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/watchfiles-1.2.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2607,17 +3629,17 @@
         {
           "Name": "websockets",
           "Identifier": {
-            "PURL": "pkg:pypi/websockets@17.0.1",
-            "UID": "2a6849f6725660d"
+            "PURL": "pkg:pypi/websockets@17.1",
+            "UID": "d7e6e3e53eb4ce44"
           },
-          "Version": "17.0.1",
+          "Version": "17.1",
           "Licenses": [
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
-          "FilePath": "usr/local/lib/python3.12/site-packages/websockets-17.0.1.dist-info/METADATA",
+          "FilePath": "usr/local/lib/python3.12/site-packages/websockets-17.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
         }
       ],
@@ -2646,7 +3668,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:a42664bbf70d472c3fba8577710c8ee8950fccb16ab80f12c66d901b255109c8",
+          "Fingerprint": "sha256:1494ba1c62f5bd8524678eb5fc484337ae8de6457c93a3863f3174bac9c3abb4",
           "Title": "pip: pip missing checks on symbolic link extraction",
           "Description": "When extracting a tar archive pip may not check symbolic links point into the extraction directory if the tarfile module doesn't implement PEP 706.\nNote that upgrading pip to a \"fixed\" version for this vulnerability doesn't fix all known vulnerabilities that are remediated by using a Python version that implements PEP 706.\n\nNote that this is a vulnerability in pip's fallback implementation of tar extraction for Python versions that don't implement PEP 706\nand therefore are not secure to all vulnerabilities in the Python 'tarfile' module. If you're using a Python version that implements PEP 706\nthen pip doesn't use the \"vulnerable\" fallback code.\n\nMitigations include upgrading to a version of pip that includes the fix, upgrading to a Python version that implements PEP 706 (Python \u003e=3.9.17, \u003e=3.10.12, \u003e=3.11.4, or \u003e=3.12),\napplying the linked patch, or inspecting source distributions (sdists) before installation as is already a best-practice.",
           "Severity": "MEDIUM",
@@ -2706,7 +3728,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:3c37178a3f3db44dd7a84c578db2589548f436270a9a67b0902d8c288893c99e",
+          "Fingerprint": "sha256:014488b3fd638055ffb10b2dffd603463654c5362b985ba0b3b6b3691e90a674",
           "Title": "pip: pip: Incorrect file installation due to improper archive handling",
           "Description": "pip handles concatenated tar and ZIP files as ZIP files regardless of filename or whether a file is both a tar and ZIP file. This behavior could result in confusing installation behavior, such as installing \"incorrect\" files according to the filename of the archive. New behavior only proceeds with installation if the file identifies uniquely as a ZIP or tar archive, not as both.",
           "Severity": "MEDIUM",
@@ -2768,7 +3790,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:eb7aa9f6ba9c79089fdd6912a6108d72419ac0cef19ec67a48aa66c33dd8cae7",
+          "Fingerprint": "sha256:db034ecf6aba2b951b7d3bb918921a88ff69bcd504bc572955a095aec55ebbe4",
           "Title": "pip: pip: Arbitrary code execution or information disclosure via malicious wheel package installation",
           "Description": "pip prior to version 26.1 would run self-update check functionality after installing wheel files which required importing well-known Python modules names. These module imports were intentionally deferred to increase startup time of the pip CLI. The patch changes self-update functionality to run before wheels are installed to prevent newly-installed modules from being imported shortly after the installation of a wheel package. Users should still review package contents prior to installation.",
           "Severity": "MEDIUM",
@@ -2829,7 +3851,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:1dba480f84ace78962622b0452ac6582a1395bfcaeba1b582f6bbd64c263d7d7",
+          "Fingerprint": "sha256:30ddf53e8934101d8f78c5b7eb6ac1908dc77f21ede0b265bcd18cc2bbf17078",
           "Title": "python-pip: Path traversal via malicious entry point name in pip wheel installation allows arbitrary file overwrite",
           "Description": "pip would treat console_scripts and gui_scripts as paths instead of file names without sanitizing the resolved absolute path to the installation directory, leading to entry points being installed outside the installation directory.",
           "Severity": "MEDIUM",
@@ -2899,13 +3921,14 @@
             "https://access.redhat.com/errata/RHSA-2026:50479",
             "https://access.redhat.com/errata/RHSA-2026:54760",
             "https://access.redhat.com/errata/RHSA-2026:56347",
+            "https://access.redhat.com/errata/RHSA-2026:60520",
             "https://access.redhat.com/security/cve/CVE-2026-8643",
             "https://bugzilla.redhat.com/2460927",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2460927",
             "https://creativecommons.org/licenses/by/4.0/",
             "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-8643",
-            "https://errata.almalinux.org/9/ALSA-2026-36315.html",
-            "https://errata.rockylinux.org/RLSA-2026:36193",
+            "https://errata.almalinux.org/10/ALSA-2026-36193.html",
+            "https://errata.rockylinux.org/RLSA-2026:36315",
             "https://github.com/pypa/advisory-database/tree/main/vulns/pip/PYSEC-2026-196.yaml",
             "https://github.com/pypa/pip",
             "https://github.com/pypa/pip/commit/8eb178480bd1a2b223f509fc430796b265158dfb",
@@ -2919,7 +3942,7 @@
             "https://www.cve.org/CVERecord?id=CVE-2026-8643"
           ],
           "PublishedDate": "2026-06-01T17:17:35.77Z",
-          "LastModifiedDate": "2026-08-19T12:18:40.16Z"
+          "LastModifiedDate": "2026-08-28T16:18:34.497Z"
         },
         {
           "VulnerabilityID": "CVE-2026-1703",
@@ -2945,7 +3968,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:51e0e095d721af6f88e60e0b9fbc4d5b30772eaee2ffdf85052790d149a588d8",
+          "Fingerprint": "sha256:8a42ec858b72a89a1e851e15f18cb066a34e87bf5d74ba045a1a700e64bcb2c3",
           "Title": "pip: pip: Information disclosure via path traversal when installing crafted wheel archives",
           "Description": "When pip is installing and extracting a maliciously crafted wheel archive, files may be extracted outside the installation directory. The path traversal is limited to prefixes of the installation directory, thus isn't able to inject or overwrite executable files in typical situations.",
           "Severity": "LOW",
@@ -2998,7 +4021,7 @@
           "FixedVersion": "9.0.3",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-71176",
@@ -3007,7 +4030,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:d117ae763a071ccfe9f2bd096785e1d4ef15533011a6a5b323fb8da4fd73b620",
+          "Fingerprint": "sha256:c0f2fc6d9ff9c86adddd4dfb185c5a585d68b575037002f8e6b9249218ead03f",
           "Title": "pytest: pytest: Denial of Service or Privilege Escalation via insecure temporary directory handling",
           "Description": "pytest through 9.0.2 on UNIX relies on directories with the /tmp/pytest-of-{user} name pattern, which allows local users to cause a denial of service or possibly gain privileges.",
           "Severity": "MEDIUM",
@@ -3058,7 +4081,7 @@
           "FixedVersion": "0.40.0",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-47874",
@@ -3067,7 +4090,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:b980cb32cf752a8bdd22fb124e7c91c58a544660e90e7be0284483a8e75f2fdb",
+          "Fingerprint": "sha256:c01f316753ae769ba5eacde66376dd12cf98554880989c522ee53dc897281046",
           "Title": "starlette: Starlette Denial of service (DoS) via multipart/form-data",
           "Description": "Starlette is an Asynchronous Server Gateway Interface (ASGI) framework/toolkit. Prior to version 0.40.0, Starlette treats `multipart/form-data` parts without a `filename` as text form fields and buffers those in byte strings with no size limit. This allows an attacker to upload arbitrary large form fields and cause Starlette to both slow down significantly due to excessive memory allocations and copy operations, and also consume more and more memory until the server starts swapping and grinds to a halt, or the OS terminates the server process with an OOM error. Uploading multiple such requests in parallel may be enough to render a service practically unusable, even if reasonable request size limits are enforced by a reverse proxy in front of Starlette. This Denial of service (DoS) vulnerability affects all applications built with Starlette (or FastAPI) accepting form requests. Verison 0.40.0 fixes this issue.",
           "Severity": "HIGH",
@@ -3115,7 +4138,7 @@
           "FixedVersion": "1.1.0",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-48818",
@@ -3124,7 +4147,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:7e694334a3a5b022c25790868e51d9751746343ec6c2e2c4c75f2c1a5f1114b8",
+          "Fingerprint": "sha256:4813042f16314e3072963913c5687004f0d919934ead245e4d6ec5e112238c12",
           "Title": "starlette: Starlette: SSRF and NTLM credential theft via UNC paths in StaticFiles on Windows",
           "Description": "Starlette is a lightweight ASGI framework/toolkit. In versions 1.0.1 and earlier, StaticFiles on Windows is vulnerable to SSRF. An UNC path such as \\\\attacker.com\\share can cause os.path.realpath to initiate an outbound SMB connection before the path is rejected, exposing the service account’s NTLMv2 credentials for offline cracking or relay even though the HTTP response is only a 404. The issue affects default follow_symlink=False deployments, including frameworks built on Starlette such as FastAPI; POSIX systems and follow_symlink=True are unaffected. The issue is fixed in 1.1.0.",
           "Severity": "HIGH",
@@ -3179,7 +4202,7 @@
           "FixedVersion": "1.3.1",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-54283",
@@ -3188,7 +4211,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:fa52183cd387749467d4fd5427b4cd8317f155ddfec55eb4e556538f586e2a9a",
+          "Fingerprint": "sha256:9882c3106ee876843c76058b9332c1e0e229c997a8f1e97a0af26edda6d966fd",
           "Title": "starlette: Starlette: request.form() limits silently ignored for application/x-www-form-urlencoded enable DoS",
           "Description": "Starlette is a lightweight ASGI framework/toolkit. From 0.4.1 until 1.3.1, request.form() accepts max_fields and max_part_size to bound resource consumption while parsing form data. These limits are enforced for multipart/form-data, but silently ignored for application/x-www-form-urlencoded. An unauthenticated attacker can therefore send a urlencoded body with an arbitrarily large number of fields or an arbitrarily large field, even when the application configured limits it believed would apply. This vulnerability is fixed in 1.3.1.",
           "Severity": "HIGH",
@@ -3234,7 +4257,7 @@
           "FixedVersion": "0.47.2",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-54121",
@@ -3243,7 +4266,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:5f605cbf9e93ef5c87aebfa84019922df27bed6b16510e0bf7df6ec65e6bc0ba",
+          "Fingerprint": "sha256:f697dc20969209388e0c002e54f4e69d9a5a54c8fafa768dd9e25981e730257c",
           "Title": "starlette: Starlette denial-of-service",
           "Description": "Starlette is a lightweight ASGI (Asynchronous Server Gateway Interface) framework/toolkit, designed for building async web services in Python. In versions 0.47.1 and below, when parsing a multi-part form with large files (greater than the default max spool size) starlette will block the main thread to roll the file over to disk. This blocks the event thread which means the application can't accept new connections. The UploadFile code has a minor bug where instead of just checking for self._in_memory, the logic should also check if the additional bytes will cause a rollover. The vulnerability is fixed in version 0.47.2.",
           "Severity": "MEDIUM",
@@ -3292,7 +4315,7 @@
           "FixedVersion": "1.0.1",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-48710",
@@ -3301,7 +4324,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:de364f89f68dabe3187f0e5eaa2703001a70e9d36f5b7f95faca4881f2786cb3",
+          "Fingerprint": "sha256:b056df1a8a59b0a8dfd74f58af508d22a0788412b2c31207482fe4d6e9e0ea28",
           "Title": "starlette: Starlette: Security restriction bypass via malformed HTTP Host header",
           "Description": "Starlette is a lightweight ASGI framework/toolkit. Prior to version 1.0.1, the HTTP `Host` request header was not validated before being used to reconstruct `request.url`. Because the routing algorithm relies on the raw HTTP path while `request.url` is rebuilt from the `Host` header, a malformed header could make `request.url.path` differ from the path that was actually requested. Middleware and endpoints that apply security restrictions based on `request.url` (rather than the raw `scope` path) could therefore be bypassed. Users should upgrade to a version greater than or equal to version 1.0.1, which validates the `Host` header against the grammar of RFC 9112 §3.2 / RFC 3986 §3.2.2 when constructing `request.url` and falls back to `scope[\"server\"]` for malformed values.",
           "Severity": "MEDIUM",
@@ -3343,6 +4366,7 @@
             "https://access.redhat.com/errata/RHSA-2026:43038",
             "https://access.redhat.com/errata/RHSA-2026:44696",
             "https://access.redhat.com/errata/RHSA-2026:51357",
+            "https://access.redhat.com/errata/RHSA-2026:60520",
             "https://access.redhat.com/security/cve/CVE-2026-48710",
             "https://badhost.org",
             "https://bugzilla.redhat.com/show_bug.cgi?id=2481742",
@@ -3358,7 +4382,7 @@
             "https://www.x41-dsec.de/lab/advisories/x41-2026-002-starlette"
           ],
           "PublishedDate": "2026-05-26T22:16:44.02Z",
-          "LastModifiedDate": "2026-08-10T13:19:45.483Z"
+          "LastModifiedDate": "2026-08-28T16:18:11.66Z"
         },
         {
           "VulnerabilityID": "CVE-2026-48817",
@@ -3375,7 +4399,7 @@
           "FixedVersion": "1.1.0",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-48817",
@@ -3384,7 +4408,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:fb23b3207d94a8e0415acc8014e55ad879638a8221d9c729b522bf0c07e936a4",
+          "Fingerprint": "sha256:a50fda5ee14425877c7f0df51723a248d499bf506ad2dc217be3e7772c075168",
           "Title": "starlette: Starlette: Information disclosure and unintended method execution via non-standard HTTP methods",
           "Description": "Starlette is a lightweight ASGI framework/toolkit. In versions 1.0.1 and below, when dispatching a request, HTTPEndpoint selects the handler by lowercasing the HTTP method and looking it up as an attribute with getattr, without restricting the lookup to a known set of HTTP verbs. When an HTTPEndpoint subclass is registered through Route(...) without an explicit methods= argument, the route does not constrain the method and every method reaches the endpoint. If a non-standard HTTP method whose lowercased name matches an attribute on the endpoint subclass reaches the endpoint, that attribute is invoked as if it were a request handler. An attacker can use this to reach methods that were never meant to be HTTP handlers, such as internal helpers, without the authorization checks applied by the intended public handler. An application (including Starlette-based frameworks like FastAPI) is affected if it registers an HTTPEndpoint subclass via Route(...) without explicitly setting methods=, and that subclass includes extra methods named like non-standard HTTP verbs that take one request argument and return a response. This issue has been fixed in version 1.1.0.",
           "Severity": "MEDIUM",
@@ -3431,7 +4455,7 @@
           "FixedVersion": "1.3.0",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:348975ed3bd869f7cb13b556f908131eaaafada6531dc4c6fe17f5607f726d57"
+            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-54282",
@@ -3440,7 +4464,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:59f1bd9c34ceaf1b7b4f6508ad4b327d27c9afca66b9ffb9bfa5435c83c04e6e",
+          "Fingerprint": "sha256:3190bf0ac90d6bb32e77e1b2230fa36c640df8c4600428f4b97054486920ccc3",
           "Title": "starlette: Starlette: Information disclosure due to improper HTTP request path validation",
           "Description": "Starlette is a lightweight ASGI framework/toolkit. Prior to 1.3.0, the HTTP request path is not validated before being used to reconstruct request.url. Because request.url is rebuilt by concatenating {scheme}://{host}{path} and re-parsing the result, a path that does not begin with / (for example @google.com) moves the authority boundary during re-parsing, so request.url.hostname and request.url.netloc become attacker-controlled. Code that reads request.url.hostname (rather than the Host header or scope) can therefore be misled into trusting an attacker-supplied host. This vulnerability is fixed in 1.3.0.",
           "Severity": "LOW",

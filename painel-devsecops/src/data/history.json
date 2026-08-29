@@ -28,5 +28,15 @@
     "dast": 12,
     "trivy": 13,
     "total": 57
+  },
+  {
+    "date": "2026-08-29T23:32:29Z",
+    "description": "feat: add commit description and SHA to history records and update summary JSON structure",
+    "commit": "2021825",
+    "sast": 31,
+    "sca": 1,
+    "dast": 12,
+    "trivy": 33,
+    "total": 77
   }
 ]
