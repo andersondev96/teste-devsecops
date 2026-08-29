@@ -103,9 +103,20 @@ jobs:
           DAST_TOTAL=$(jq '.site[0].alerts | length' report_json.json || echo 0)
           TRIVY_TOTAL=$(jq '[.Results[].Vulnerabilities[]?] | length' trivy_report.json || echo 0)
           TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          COMMIT_SHA=$(git rev-parse --short HEAD)
+          COMMIT_DESCRIPTION=$(git log -1 --pretty=%s)
 
           # Cria um objeto JSON com o resumo da execução atual
-          echo "{\"date\": \"$TIMESTAMP\", \"sast\": $SAST_TOTAL, \"sca\": $SCA_TOTAL, \"dast\": $DAST_TOTAL, \"trivy\": $TRIVY_TOTAL, \"total\": $((SAST_TOTAL + SCA_TOTAL + DAST_TOTAL + TRIVY_TOTAL))}" > current_summary.json
+          jq -n \
+            --arg date "$TIMESTAMP" \
+            --arg description "$COMMIT_DESCRIPTION" \
+            --arg commit "$COMMIT_SHA" \
+            --argjson sast "$SAST_TOTAL" \
+            --argjson sca "$SCA_TOTAL" \
+            --argjson dast "$DAST_TOTAL" \
+            --argjson trivy "$TRIVY_TOTAL" \
+            '{date: $date, description: $description, commit: $commit, sast: $sast, sca: $sca, dast: $dast, trivy: $trivy, total: ($sast + $sca + $dast + $trivy)}' \
+            > current_summary.json
 
       - name: 14. Persistir Histórico no Repositório
         # Pull Requests também usam checkout em detached HEAD, mas não devem

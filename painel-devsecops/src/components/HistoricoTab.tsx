@@ -36,6 +36,7 @@ export function HistoricoTab() {
                   <th className="px-6 py-4 flex items-center">
                     <Clock className="w-4 h-4 mr-2" /> Data e Hora (UTC)
                   </th>
+                  <th className="px-6 py-4 min-w-[320px]">Descrição do deploy</th>
                   <th className="px-6 py-4 text-center" title="Static Application Security Testing">SAST (Código)</th>
                   <th className="px-6 py-4 text-center" title="Software Composition Analysis">SCA (Dependências)</th>
                   <th className="px-6 py-4 text-center" title="Container Scan">IaC (Infra/Docker)</th>
@@ -57,6 +58,15 @@ export function HistoricoTab() {
                     <tr key={idx} className="hover:bg-slate-50 transition-colors">
                       <td className="px-6 py-4 font-mono text-slate-700 whitespace-nowrap">
                         {dataFormatada}
+                      </td>
+
+                      <td className="px-6 py-4 min-w-[320px] text-slate-600">
+                        <p className="max-w-xl leading-5">
+                          {log.description || 'Execução registrada pelo pipeline de segurança.'}
+                        </p>
+                        {log.commit && (
+                          <p className="mt-1 text-xs font-mono text-slate-400">Commit {log.commit}</p>
+                        )}
                       </td>
 
                       <td className="px-6 py-4 text-center font-medium">
