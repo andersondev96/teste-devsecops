@@ -3,31 +3,31 @@
   "Trivy": {
     "Version": "0.74.0"
   },
-  "ReportID": "01a04fdd-0dd7-7790-9476-30be0ea43612",
-  "CreatedAt": "2026-08-29T23:31:22.199496823Z",
-  "ArtifactID": "sha256:c50243abb99650eba6629366ffa2afccb9c36d4001c4eb3d18d81192d77116e4",
+  "ReportID": "01a05042-eef1-7aad-bba3-cb431a5b9333",
+  "CreatedAt": "2026-08-30T01:22:38.961701257Z",
+  "ArtifactID": "sha256:4fd6a0449dca18acdfdbb61f79163632cf93aea19e8c6c97222dc03a154d0d76",
   "ArtifactName": "vulnerable-api:latest",
   "ArtifactType": "container_image",
   "Metadata": {
-    "Size": 100104704,
+    "Size": 100302336,
     "OS": {
       "Family": "alpine",
       "Name": "3.24.1"
     },
-    "ImageID": "sha256:2cf6e82fd94be9d7ca9836996572e9f109c3ea1ab95e4b5ee4c377d28169e9df",
+    "ImageID": "sha256:6fc6caca93d2de47b2794deb71723286ff2b27fcf353e7defffa218571a2f7a4",
     "DiffIDs": [
       "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c",
       "sha256:e841883ead55c7764ef03835ed98a55882e84f57dd6f90ffbc7d31d5fc8974a6",
       "sha256:2a35f153520985da7afa7a4e0ad937ffc12ab85368a318897a7b5bbf238de41c",
       "sha256:1b3b53d060ded641f97028c035939c8f8ae188040ae683c2f5e019b948ed0356",
-      "sha256:14084a0725c662a25e89ddb4d43a2095e97c7da53603ec440067997bc1322b15",
-      "sha256:5f9469f6d01edab79f0698e9fe239d753b1c386f205d0907e800062aa11a1250",
-      "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef",
-      "sha256:ca22d4bfef539d067c8edda237c9f71c863da6263933ca0c67c95987f72b058c",
-      "sha256:0ced2f6260dd84d2a76b4470eeca0a33332179d8ccc54345becad7d9ec56b8aa",
-      "sha256:429825c56d3008a49bc896c633e452faf691fbc41be98c0c0a529042d6f63b70",
-      "sha256:06f530a88fa7f7fb21ca02432df5454c0864cf161098a1d8c836f0a97ac65b76",
-      "sha256:23cfd0ba0d144a70311a4637cf5c44712d2b93fa000f1eb435ee87f79eef9ece"
+      "sha256:1366783412fbfbaccfa2d05c900c26b6b885d35ed10bbaebc6ba0296c39073d2",
+      "sha256:d97d6b93ad8d306c32e332061a631210f030578575d4bb2c358125e3d12d6ed1",
+      "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39",
+      "sha256:618467eabb077c1dd3a60680f0d1eb269ee4474340d7ab564fda343a4b039fdd",
+      "sha256:2cd427335f2b684666e4ff457e91628209cad5b306ea72a10fa7f8c405cc2906",
+      "sha256:6539babb0a30ba36f15b27bb736b2389a6cf34a11e3da9de5022ce8ca0cb014a",
+      "sha256:b452194c0d6d93ba423dd136e5dc3df075013fc4b7b693892640532f366f5d55",
+      "sha256:1ba3cd3544c8e2368287691102dd7011776160b8cbf7bcbfb2b5bc6c71c952ac"
     ],
     "RepoTags": [
       "vulnerable-api:latest"
@@ -35,7 +35,7 @@
     "Reference": "vulnerable-api:latest",
     "ImageConfig": {
       "architecture": "amd64",
-      "created": "2026-08-29T23:31:07.147164865Z",
+      "created": "2026-08-30T01:22:30.767852396Z",
       "history": [
         {
           "created": "2026-06-16T00:01:29Z",
@@ -100,53 +100,53 @@
           "empty_layer": true
         },
         {
-          "created": "2026-08-29T23:30:59Z",
+          "created": "2026-08-30T01:22:23Z",
           "created_by": "WORKDIR /app",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-29T23:30:59Z",
+          "created": "2026-08-30T01:22:23Z",
           "created_by": "COPY requirements.txt . # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-29T23:31:07Z",
+          "created": "2026-08-30T01:22:30Z",
           "created_by": "RUN /bin/sh -c pip install --no-cache-dir -r requirements.txt # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-29T23:31:07Z",
-          "created_by": "COPY main.py run.py users_db.py ./ # buildkit",
+          "created": "2026-08-30T01:22:30Z",
+          "created_by": "COPY main.py run.py security.py users_db.py ./ # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-29T23:31:07Z",
+          "created": "2026-08-30T01:22:30Z",
           "created_by": "COPY controllers ./controllers # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-29T23:31:07Z",
+          "created": "2026-08-30T01:22:30Z",
           "created_by": "COPY models ./models # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-29T23:31:07Z",
+          "created": "2026-08-30T01:22:30Z",
           "created_by": "COPY routes ./routes # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-29T23:31:07Z",
+          "created": "2026-08-30T01:22:30Z",
           "created_by": "COPY tests ./tests # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-29T23:31:07Z",
+          "created": "2026-08-30T01:22:30Z",
           "created_by": "EXPOSE map[8000/tcp:{}]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2026-08-29T23:31:07Z",
+          "created": "2026-08-30T01:22:30Z",
           "created_by": "CMD [\"uvicorn\" \"main:app\" \"--host\" \"0.0.0.0\" \"--port\" \"8000\"]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
@@ -160,14 +160,14 @@
           "sha256:e841883ead55c7764ef03835ed98a55882e84f57dd6f90ffbc7d31d5fc8974a6",
           "sha256:2a35f153520985da7afa7a4e0ad937ffc12ab85368a318897a7b5bbf238de41c",
           "sha256:1b3b53d060ded641f97028c035939c8f8ae188040ae683c2f5e019b948ed0356",
-          "sha256:14084a0725c662a25e89ddb4d43a2095e97c7da53603ec440067997bc1322b15",
-          "sha256:5f9469f6d01edab79f0698e9fe239d753b1c386f205d0907e800062aa11a1250",
-          "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef",
-          "sha256:ca22d4bfef539d067c8edda237c9f71c863da6263933ca0c67c95987f72b058c",
-          "sha256:0ced2f6260dd84d2a76b4470eeca0a33332179d8ccc54345becad7d9ec56b8aa",
-          "sha256:429825c56d3008a49bc896c633e452faf691fbc41be98c0c0a529042d6f63b70",
-          "sha256:06f530a88fa7f7fb21ca02432df5454c0864cf161098a1d8c836f0a97ac65b76",
-          "sha256:23cfd0ba0d144a70311a4637cf5c44712d2b93fa000f1eb435ee87f79eef9ece"
+          "sha256:1366783412fbfbaccfa2d05c900c26b6b885d35ed10bbaebc6ba0296c39073d2",
+          "sha256:d97d6b93ad8d306c32e332061a631210f030578575d4bb2c358125e3d12d6ed1",
+          "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39",
+          "sha256:618467eabb077c1dd3a60680f0d1eb269ee4474340d7ab564fda343a4b039fdd",
+          "sha256:2cd427335f2b684666e4ff457e91628209cad5b306ea72a10fa7f8c405cc2906",
+          "sha256:6539babb0a30ba36f15b27bb736b2389a6cf34a11e3da9de5022ce8ca0cb014a",
+          "sha256:b452194c0d6d93ba423dd136e5dc3df075013fc4b7b693892640532f366f5d55",
+          "sha256:1ba3cd3544c8e2368287691102dd7011776160b8cbf7bcbfb2b5bc6c71c952ac"
         ]
       },
       "config": {
@@ -212,35 +212,35 @@
       },
       {
         "Size": 1536,
-        "DiffID": "sha256:14084a0725c662a25e89ddb4d43a2095e97c7da53603ec440067997bc1322b15"
+        "DiffID": "sha256:1366783412fbfbaccfa2d05c900c26b6b885d35ed10bbaebc6ba0296c39073d2"
       },
       {
         "Size": 2560,
-        "DiffID": "sha256:5f9469f6d01edab79f0698e9fe239d753b1c386f205d0907e800062aa11a1250"
+        "DiffID": "sha256:d97d6b93ad8d306c32e332061a631210f030578575d4bb2c358125e3d12d6ed1"
       },
       {
-        "Size": 48886784,
-        "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+        "Size": 49080320,
+        "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
       },
       {
-        "Size": 9728,
-        "DiffID": "sha256:ca22d4bfef539d067c8edda237c9f71c863da6263933ca0c67c95987f72b058c"
+        "Size": 15872,
+        "DiffID": "sha256:618467eabb077c1dd3a60680f0d1eb269ee4474340d7ab564fda343a4b039fdd"
       },
       {
-        "Size": 30720,
-        "DiffID": "sha256:0ced2f6260dd84d2a76b4470eeca0a33332179d8ccc54345becad7d9ec56b8aa"
+        "Size": 27648,
+        "DiffID": "sha256:2cd427335f2b684666e4ff457e91628209cad5b306ea72a10fa7f8c405cc2906"
       },
       {
         "Size": 5632,
-        "DiffID": "sha256:429825c56d3008a49bc896c633e452faf691fbc41be98c0c0a529042d6f63b70"
+        "DiffID": "sha256:6539babb0a30ba36f15b27bb736b2389a6cf34a11e3da9de5022ce8ca0cb014a"
       },
       {
         "Size": 16384,
-        "DiffID": "sha256:06f530a88fa7f7fb21ca02432df5454c0864cf161098a1d8c836f0a97ac65b76"
+        "DiffID": "sha256:b452194c0d6d93ba423dd136e5dc3df075013fc4b7b693892640532f366f5d55"
       },
       {
-        "Size": 7680,
-        "DiffID": "sha256:23cfd0ba0d144a70311a4637cf5c44712d2b93fa000f1eb435ee87f79eef9ece"
+        "Size": 8704,
+        "DiffID": "sha256:1ba3cd3544c8e2368287691102dd7011776160b8cbf7bcbfb2b5bc6c71c952ac"
       }
     ]
   },
@@ -2217,7 +2217,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:38805c3dc79362fa4f985fe4a0090b19b719babe2fc9d7b42194c8524a694e65",
+          "Fingerprint": "sha256:4d30c5cd589be4656140e5faac37c888f0bd2ca95f8110603766d645ec241bff",
           "Title": "openssl: OpenSSL: Denial of Service via unbounded memory growth in QUIC server",
           "Description": "Issue summary: When an OpenSSL QUIC server (Listener SSL object) processes\nvalid QUIC Initial packets for unknown destination connection IDs, it\ncan allocate and queue new incoming channels without enforcing any limit.\n\nImpact summary: A remote peer that can make many Initial packets reach the\nserver listener faster than the application accepts connections, can cause the\nmemory allocated to store the per-channel state to grow without any limits,\npotentially making the QUIC listener unavailable and causing Denial of Service.\n\nCWE: CWE-770: Allocation of Resources Without Limits or Throttling\n\nDescription: The function that handles inbound QUIC packets uses\nConnection-Id from the packet header to find an existing connection\n(QUIC channel). If no existing connection is found and the packet\ntype is INITIAL, the function treats the packet as a new connection. It\nallocates a new channel object and inserts it into a queue where it\nwaits to be accepted by the local application with SSL_accept(3ossl).\nThe memory occupied by these initial channel objects may grow\nwithout bounds if the application is not able to call SSL_accept()\nfrequently enough to serve these inbound connection requests.\n\nThe issue is present since OpenSSL 3.5 when the QUIC server implementation\nwas added.\n\nThe fix introduces a limit for pending connections. The default limit is set\nto 256 pending connections (waiting to be accepted by the local application).\nApplications may change the default by calling SSL_set_value_uint(3ossl).\n\nFIPS impact: no\nThe FIPS module is not affected as the QUIC implementation is outside of\nthe OpenSSL FIPS module boundary.",
           "Severity": "HIGH",
@@ -2269,7 +2269,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:9e9e1c77e40dd1c20a42dc6f000f86f7eb3f3c413c54c7aca7706989cd5de70f",
+          "Fingerprint": "sha256:fe3023ab1fd2808349500c31b335cd61af460f169f105b664fbfa4e7ccf57c22",
           "Title": "openssl: QUIC server may trigger double free when processing INITIAL packet",
           "Description": "Issue summary: QUIC server may double free QRX (QUIC record layer RX) object\nwhen channel creation fails for initial packet.\n\nImpact summary: Double free leads to heap corruption, which typically results in \ntermination of QUIC server process, leading to Denial of Service. There is so\nfar no evidence that this double free is exploitable for remote code execution,\nthus it is considered highly improbable.\n\nCWE: CWE-415: Double Free\n\nDescription: In order to validate initial packet, OpenSSL QUIC stack default\npacket handler (port_default_packet_handler()) creates a so-called QRX object.\nIf the initial packet validates successfully with QRX object, the default packet\nhandler proceeds to channel (connection object) creation. The QRX object used\nfor packet validation is passed to port_bind_channel(), so it becomes part of\nthe newly created connection. If port_bind_channel() fails, then it also frees\nthe QRX object. Once port_bind_channel() returns, the port_default_packet_handler()\ndetects the failure and proceeds to the error branch, where the same QRX object is\nfreed for the second time.\n\nThe failure in port_bind_channel() function can be induced with a relatively\nlow effort by a malformed (non RFC 9000 compliant) INITIAL packet. If the packet\ncarries DCID (destination connection ID) which is shorter than 8 bytes, then\nport_bind_channel() jumps to the error path after ossl_quic_lcidm_enrol_odcid()\ndetects that the DCID has invalid length.\n\nFIPS impact: no\nThe FIPS module is not affected, as the QUIC implementation is outside of\nthe OpenSSL FIPS module boundary.",
           "Severity": "MEDIUM",
@@ -2319,7 +2319,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:954a977ea9d65ecab504e2cad130b2fcb531ebd8475605b043f3e929ab97a8e7",
+          "Fingerprint": "sha256:dd3150503e2715b9a11fee773f4917a6ba368b85811177fec40369bd45337089",
           "Title": "openssl: heap buffer overflow in CMS key unwrapping",
           "Description": "Issue summary: OpenSSL CMS decryption sizes the key-unwrap output buffer based\non querying the unwrapped key size, but the AES-WRAP-PAD unwrap primitive\ncan write and cleanse more bytes than that query reports, causing an 8-byte\nout-of-bounds heap write.\n\nImpact summary: An attacker who supplies a crafted CMS message can trigger a\ndeterministic 8-byte out-of-bounds heap write when the victim decrypts it\nwith CMS_decrypt(), corrupting the heap and typically resulting in a Denial\nof Service.\n\nCWE: CWE-787: Out-of-bounds Write\n\nDescription: The key-wrap OID is potentially attacker-controlled on the wire.\nCMS unwrapping allows both id-aesNNN-wrap-pad and id-aesNNN-wrap ciphers.\nAn attacker can take a legitimate message and change a single OID byte to\nselect the padded variant while leaving the message otherwise valid. Since\nthe unwrap key is derived from the recipient's private operation (ECDH key\nagreement or ML-KEM decapsulation), the RFC 5649 integrity check cannot\npass, and the decryption fails with integrity failure.\n\nThe write is a fixed-size (8-byte), fixed-value (zero) heap overflow\nimmediately past the allocation, requires no special configuration, and is\nreachable from the public CMS_decrypt() function. The consequence is\na heap corruption leading to a Denial of Service. The fix in the CMS code\nsizes the unwrap output buffer for the worst case so a failed unwrap cannot\nwrite past the allocation.\n\nFIPS impact: no\n\nAs the CMS code lives outside the FIPS module boundary, no FIPS\nmodules are affected by this CVE.",
           "Severity": "MEDIUM",
@@ -2372,7 +2372,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:bb754250e2335a4de55819afdb2143db60ba1189fa760614cae80c1385816e79",
+          "Fingerprint": "sha256:17229ed21ff40ffcd95a6e0df92814e92e91f713a4184bef063c8d108fec6228",
           "Title": "openssl: invalid pointer dereference in CMP server via crafted protectionAlg",
           "Description": "Issue summary: OpenSSL CMP password based protection verification only\nchecks whether the protectionAlg parameter was not NULL and not its\nASN.1 type, before treating it as a PBMParameter. A crafted message can\ncontain a parameter of a different type, which is then dereferenced as an\ninvalid pointer.\n\nImpact summary: A remote, unauthenticated attacker can crash an application\nacting as a CMP server that accepts PBM-protected messages, or a CMP client\ntalking to a malicious or intercepted CMP server, resulting in a Denial of\nService.\n\nCWE: CWE-476: NULL Pointer Dereference\n\nDescription: When verifying the password-based MAC protection of a CMP\nmessage, OpenSSL library reads the protectionAlg algorithm parameter with\nX509_ALGOR_get0(), which returns both the parameter type and its value\npointer. The value is then cast to an ASN1_STRING and treated as the\nexpected PBMParameter after only checking that pointer is not NULL. The\nparameter type returned by X509_ALGOR_get0() was never consulted.\n\nThis happens during protection verification, before any MAC is computed, so\nno knowledge of the PBM shared secret is required; the only precondition is\nthat PBM verification is reachable. On the server side this is reached from\nOSSL_CMP_SRV_process_request() for any application that stands up a CMP\nserver accepting PBM-protected messages, and on the client side from CMP\nresponse validation against a malicious or on-path (MITM) server. The\nreliable consequence is a denial of service; there is no memory disclosure,\nno controlled memory write, and no path to code execution. CMP is a\nspecialized feature that an application must explicitly enable.\n\nFIPS impact: no\nAs the CMP code lives outside the FIPS module boundary, no FIPS modules\nare affected by this CVE.",
           "Severity": "MEDIUM",
@@ -2425,7 +2425,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:dff029e6914723f4d38af5f354e36b89bf57abc4388e392f1a1fc041dfe2c9aa",
+          "Fingerprint": "sha256:fda35feb46898a065d500fec27ee35d0efa57867c4b8ae625b6488a097a8d37b",
           "Title": "openssl: RPK server signature algorithm selection can dereference a missing certificate",
           "Description": "Issue summary: In a server or client configuration with RFC7250 Raw Public Keys (RPKs)\nenabled, and only the private key (with no associated certificate) configured locally,\na NULL pointer dereference may occur when the remote peer solicits raw public keys and\nalso sends the typically omitted \"signature_algorithms_cert\" TLS extension.\n\nImpact summary: The impact is limited to a possible Denial of Service as a result of\nan application abort, no data disclosure or remote command execution are possible.\n\nCWE: CWE-476: NULL Pointer Dereference\n\nDescription: While a passing comment in sample code in the documentation suggests\nthat key-only RPK configurations are supported, the best-practice RPK configuration\nis to always configure a corresponding certificate (possibly self-signed or\nsigned by any convenient CA).\n\nWhen the private key is configured along with a matching certificate, the\n\"signature_algorithms_cert\" extension is handled reliably even without the\nfix, and peer clients or servers that don't support raw public keys may be\nable to complete a TLS connection by pinning or verifying the corresponding\ncertificate or its public key.\n\nDeployments that prefer to configure just a private key with no certificate\nneed to upgrade to an updated release as noted below.\n\nFIPS impact: no\n\nNo FIPS modules are affected by this issue, as the SSL protocol implementation\nis outside the OpenSSL FIPS module boundary.",
           "Severity": "LOW",
@@ -2476,7 +2476,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:f39120fcdfacbd5cc6e4d7e45ae5b3ee5ad3bb6db4b02061963c0d069ce304bb",
+          "Fingerprint": "sha256:001a13263c8a7115ce67b565ed47bb9badeba04deb1716c56a0fdfeb9a76f5c0",
           "Title": "openssl: excessive memory use buffering DTLS records for a future epoch",
           "Description": "Issue summary: Receiving a DTLS record for a future epoch while a handshake\nis in progress causes OpenSSL to buffer far more memory than the record\nitself requires.\n\nImpact summary: A peer can use a small amount of network traffic to make an\nOpenSSL DTLS endpoint retain a disproportionately large amount of memory,\nwhich may lead to a Denial of Service.\n\nCWE: CWE-405: Asymmetric Resource Consumption (Amplification)\n\nDescription: While a DTLS handshake is in progress, a peer may legitimately\nhave already moved on to the next epoch (for example, having sent its\nChangeCipherSpec and Finished messages) before the local endpoint has\nprocessed the same transition, typically because of reordering on the\nunderlying UDP transport. OpenSSL buffers such early records so that they\ncan be processed once the local endpoint catches up.\n\nBuffering a record currently retains the entire read buffer it arrived in,\nwhich is sized to hold the largest possible DTLS record (around 16\nkilobytes), rather than just the bytes that make up the record itself. Up\nto 100 such records may be buffered per connection. As a result, a peer\nthat sends a stream of small forged records claiming to belong to the next\nepoch can cause an OpenSSL DTLS endpoint to retain around 1.7 megabytes of\nmemory, despite sending only a small fraction of that amount of data over\nthe network.\n\nAn attacker therefore gains a memory amplification factor of around 1200,\nand can multiply the effect across as many associations as it is able to\nopen, making this a remote memory exhaustion Denial of Service risk for\nDTLS servers. Since the memory retained per connection remains bounded,\nand any limit an application already places on the number of concurrent\nassociations also bounds the total exposure, this issue has been assessed\nas Low severity.\n\nFIPS impact: no\n\nNo FIPS modules are affected by this issue as the affected code is outside\nthe OpenSSL FIPS module boundary.\n\nOpenSSL 4.0, 3.6, 3.5, 3.4, 3.0, 1.1.1 and 1.0.2 are vulnerable to this\nissue.\n\nOpenSSL 4.0 users should upgrade to OpenSSL 4.0.2.\nOpenSSL 3.6 users should upgrade to OpenSSL 3.6.4.\nOpenSSL 3.5 users should upgrade to OpenSSL 3.5.8.\nOpenSSL 3.4 users should upgrade to OpenSSL 3.4.7.\nOpenSSL 3.0 users should upgrade to OpenSSL 3.0.22.\n\nPremium support customers only:\nOpenSSL 1.1.1 users should upgrade to OpenSSL 1.1.1zi\nOpenSSL 1.0.2 users should upgrade to OpenSSL 1.0.2zr\n\nThis issue was reported on 18 May 2026 by Amazon Web Services.\nThe fix has been developed by Matt Caswell.\n\n-- cut (non-publishing metadata for internal use) --\nReported by: Amazon Web Services\nFixed by: Matt Caswell",
           "Severity": "LOW",
@@ -2529,7 +2529,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:4405d6fc231c04e93a8f0aa4e851b1a2de524d9a078181c22877a898dcf6e636",
+          "Fingerprint": "sha256:8d196d8b66b175e1d5963eb0554db7b616d69f548b5ea65e46bbdf19c0af233a",
           "Title": "openssl: untrusted sender DN used as format string in CMP response validation",
           "Description": "Issue summary: OpenSSL CMP response validation passed an unexpected response\nsender distinguished name directly as the format string to `ERR_raise_data()`.\n\nImpact summary: A malicious or intercepted CMP endpoint can crash a CMP client\nthat enforces an expected sender or uses a pinned server certificate whose\nsubject becomes the default expected sender.\n\nCWE: CWE-134 (Use of Externally-Controlled Format String)\n\nDescription: When validating a received CMP message, ossl_cmp_msg_check_update()\nconverts the peer-supplied sender distinguished name with X509_NAME_oneline()\nand passes it directly as the format argument to ERR_raise_data(). Percent\ncharacters survive the conversion, so a sender DN such as \"CN=%s%n\" reaches\nBIO_vsnprintf() as an attacker-controlled format string with no matching variadic\narguments. This path is only reached when the caller configures an expected\nsender or pins a server certificate, which is the normal configuration for a\nCMP client validating server responses.\n\nSince the attacker controls the format string but none of the variadic\narguments, such specifiers as %s and %n dereference or write through unrelated\nstack contents and crash the client. The reliable consequence is a denial of\nservice, when the response comes from a malicious or intercepted CMP endpoint.\nThere is no controlled memory write, arbitrary-address read, or reliable path\nto remote code execution.\n\nFIPS impact: no\n\nNo FIPS modules are affected by this issue, as the CMP protocol\nimplementation is outside the OpenSSL FIPS module boundary.",
           "Severity": "LOW",
@@ -2580,7 +2580,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:321a2a636828cf984f9f4ff245ae2a892b6be030450433c804a6cbba6f64a5ea",
+          "Fingerprint": "sha256:73410d606600e2739d9b799a5ed0fda6d905af031f4bce1716f61065be2edef2",
           "Title": "openssl: CMP indefinite cache growth of ExtraCerts",
           "Description": "Issue summary: The OpenSSL Certificate Management Protocol (CMP) caches\nadditional certificates (extraCerts) sent in a CMP message, but never expunges\nthem (for instance if they are invalid).  If a server reuses an OSSL_CMP_CTX\nfrequently, this cache of extraCerts may grow unboundedly, and a malicious\nclient may flood a CMP server with requests driving this growth.\n\nImpact summary: Users utilizing a CMP server that reuses a single OSSL_CMP_CTX\nfor the lifetime of a server process may observe unbounded memory growth in the\nevent a malicious client repeatedly sends requests containing unique extra\ncertificates, which may lead to OOM conditions.\n\nCWE: CWE-770: Allocation of Resources Without Limits or Throttling\n\nDescription: If a remote user sends CMP messages to a server with a list of\nextraCerts and the message is rejected, the extraCerts from the message remains\nin the server contexts untrusted certificate stack.  This exposes servers with\nlong lived ctx objects to Denial of Service attacks in which an attacker sends\nmessages intending to be rejected with a large list of additional certificates\nrepeatedly, forcing the server to store them indefinitely.\n   \nThe issue was fixed by removing the added extra certs if the message is\nrejected, using the same method as when the context is configured to not do\ncaching at all.\n\nFIPS impact: no\nAs the CMP code lives outside the FIPS module boundary, no FIPS\nmodules are affected by this CVE.",
           "Severity": "LOW",
@@ -2633,7 +2633,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:d7088948b125e6d66b783b83a16ab70cd0e88bfa7de1a2fcbe421a111a2c4e69",
+          "Fingerprint": "sha256:03e28a65dca604df2045e2edfcbb1df24bcf087cc365e1cb36b1836c9106f534",
           "Title": "openssl: QUIC ACK-only packet retention can cause memory exhaustion",
           "Description": "Issue summary: When OpenSSL processes QUIC traffic from a peer that repeatedly\nsends ack-eliciting packets while not acknowledging ACK-only responses, the\nQUIC stack can retain ACK-only packet metadata for the lifetime of the\nconnection.\n\nImpact summary: A remote peer that can complete a QUIC handshake can\ncause connection-scoped memory growth which may lead to Denial of Service\nthrough memory exhaustion, especially with sustained traffic or many concurrent\nQUIC connections.\n\nCWE: CWE-770: Allocation of Resources Without Limits or Throttling\n\nDescription: When the OpenSSL QUIC stack sends an ACK-only packet,\nthere is no requirement by the QUIC protocol that the peer will acknowledge\nthat ACK-only packet (i.e. it is itself not ack-eliciting). However, the OpenSSL\nimplementation stores the metadata about the ACK frames regardless.\nIn and of itself that's ok, but if a malicious peer establishes a connection, and\nthen drives the connection such that ACK-only packets are forced from the \nOpenSSL implementation peer (i.e., by sending numerous PING frames),\nand then withholding any subsequent acks for ack-eliciting data, like\nlegitimate data, said malicious peer can force inappropriate memory growth\non the OpenSSL peer, potentially leading to a Denial of Service.\n\nThe fix is to ensure that we account for the transmission of the ACK-only\npacket in the packet histories high and low watermark without actually storing\nthe ACK-only packet metadata itself.\n\nFIPS impact: no\nThe OpenSSL FIPS module is not affected as the QUIC code is\noutside the FIPS module boundary.",
           "Severity": "LOW",
@@ -2684,7 +2684,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:9d094b81c477bd939a9c5e3dccfd84c0938405079e4988a38ff2c642a92d31af",
+          "Fingerprint": "sha256:b4c61408a6b9b8481433d0fe45e6323f14b36d366109380c21e8d04be9dab943",
           "Title": "Issue summary: ChaCha20-Poly1305 and AES-OCB decryption with an empty  ...",
           "Description": "Issue summary: ChaCha20-Poly1305 and AES-OCB decryption with an empty\nciphertext can report success without verifying the supplied authentication\ntag when the operation is finalized by calling the EVP_Cipher() function.\n\nImpact summary: Applications calling EVP_Cipher() on an empty ciphertext and\nexpecting the call to check the AEAD tag may accept forged messages.\n\nCWE: CWE-354 (Improper Validation of Integrity Check Value)\n\nDescription: The EVP_Cipher() API call for AEAD ciphers behaves like a one\nshot encryption and decryption call. It also verifies the AEAD tag after the\ndecryption operation. However for AES-OCB and ChaCha20-Poly1305 ciphers\nit skipped the AEAD tag verification when an empty ciphertext was passed to\nthe function. The callers of this function might believe that a successful\nreturn indicates a valid AEAD tag for these ciphers, even when that has not\ntruly been validated in this case.\n\nFIPS impact: no\nThe FIPS modules in 4.0, 3.6, 3.5, 3.4, and 3.0 are not affected by this CVE\nas the affected algorithms are not FIPS approved and thus not implemented\nin the FIPS module.",
           "Severity": "LOW",
@@ -2727,7 +2727,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:2efbecfafbc1c8a5f6f85eb0146906dd1146d4708be5529e444f8e0b8c320b93",
+          "Fingerprint": "sha256:880bd65367679a89aacc9a1add9402b2d154bb52b1bb8e79b1f6d6be1e391303",
           "Title": "openssl: OpenSSL: Denial of Service via unbounded memory growth in QUIC server",
           "Description": "Issue summary: When an OpenSSL QUIC server (Listener SSL object) processes\nvalid QUIC Initial packets for unknown destination connection IDs, it\ncan allocate and queue new incoming channels without enforcing any limit.\n\nImpact summary: A remote peer that can make many Initial packets reach the\nserver listener faster than the application accepts connections, can cause the\nmemory allocated to store the per-channel state to grow without any limits,\npotentially making the QUIC listener unavailable and causing Denial of Service.\n\nCWE: CWE-770: Allocation of Resources Without Limits or Throttling\n\nDescription: The function that handles inbound QUIC packets uses\nConnection-Id from the packet header to find an existing connection\n(QUIC channel). If no existing connection is found and the packet\ntype is INITIAL, the function treats the packet as a new connection. It\nallocates a new channel object and inserts it into a queue where it\nwaits to be accepted by the local application with SSL_accept(3ossl).\nThe memory occupied by these initial channel objects may grow\nwithout bounds if the application is not able to call SSL_accept()\nfrequently enough to serve these inbound connection requests.\n\nThe issue is present since OpenSSL 3.5 when the QUIC server implementation\nwas added.\n\nThe fix introduces a limit for pending connections. The default limit is set\nto 256 pending connections (waiting to be accepted by the local application).\nApplications may change the default by calling SSL_set_value_uint(3ossl).\n\nFIPS impact: no\nThe FIPS module is not affected as the QUIC implementation is outside of\nthe OpenSSL FIPS module boundary.",
           "Severity": "HIGH",
@@ -2779,7 +2779,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:d708da140f21174cf309ebbb29c3a3538f0dd1d39bd076f88182974076d6d311",
+          "Fingerprint": "sha256:b8d1dd3564d5bc5b6a68b411470301278c0ac55e8ed94f8e4a7c6014669681d5",
           "Title": "openssl: QUIC server may trigger double free when processing INITIAL packet",
           "Description": "Issue summary: QUIC server may double free QRX (QUIC record layer RX) object\nwhen channel creation fails for initial packet.\n\nImpact summary: Double free leads to heap corruption, which typically results in \ntermination of QUIC server process, leading to Denial of Service. There is so\nfar no evidence that this double free is exploitable for remote code execution,\nthus it is considered highly improbable.\n\nCWE: CWE-415: Double Free\n\nDescription: In order to validate initial packet, OpenSSL QUIC stack default\npacket handler (port_default_packet_handler()) creates a so-called QRX object.\nIf the initial packet validates successfully with QRX object, the default packet\nhandler proceeds to channel (connection object) creation. The QRX object used\nfor packet validation is passed to port_bind_channel(), so it becomes part of\nthe newly created connection. If port_bind_channel() fails, then it also frees\nthe QRX object. Once port_bind_channel() returns, the port_default_packet_handler()\ndetects the failure and proceeds to the error branch, where the same QRX object is\nfreed for the second time.\n\nThe failure in port_bind_channel() function can be induced with a relatively\nlow effort by a malformed (non RFC 9000 compliant) INITIAL packet. If the packet\ncarries DCID (destination connection ID) which is shorter than 8 bytes, then\nport_bind_channel() jumps to the error path after ossl_quic_lcidm_enrol_odcid()\ndetects that the DCID has invalid length.\n\nFIPS impact: no\nThe FIPS module is not affected, as the QUIC implementation is outside of\nthe OpenSSL FIPS module boundary.",
           "Severity": "MEDIUM",
@@ -2829,7 +2829,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:c225f1e6c058a992fa7cf6fa1ba13f41a90c97f523ab4fab00aa8a47e3bf9a01",
+          "Fingerprint": "sha256:b3c7d036872deb269b0e3b84992dbfc8a02b3c5b872b16f4fa7916d3f1db0eaf",
           "Title": "openssl: heap buffer overflow in CMS key unwrapping",
           "Description": "Issue summary: OpenSSL CMS decryption sizes the key-unwrap output buffer based\non querying the unwrapped key size, but the AES-WRAP-PAD unwrap primitive\ncan write and cleanse more bytes than that query reports, causing an 8-byte\nout-of-bounds heap write.\n\nImpact summary: An attacker who supplies a crafted CMS message can trigger a\ndeterministic 8-byte out-of-bounds heap write when the victim decrypts it\nwith CMS_decrypt(), corrupting the heap and typically resulting in a Denial\nof Service.\n\nCWE: CWE-787: Out-of-bounds Write\n\nDescription: The key-wrap OID is potentially attacker-controlled on the wire.\nCMS unwrapping allows both id-aesNNN-wrap-pad and id-aesNNN-wrap ciphers.\nAn attacker can take a legitimate message and change a single OID byte to\nselect the padded variant while leaving the message otherwise valid. Since\nthe unwrap key is derived from the recipient's private operation (ECDH key\nagreement or ML-KEM decapsulation), the RFC 5649 integrity check cannot\npass, and the decryption fails with integrity failure.\n\nThe write is a fixed-size (8-byte), fixed-value (zero) heap overflow\nimmediately past the allocation, requires no special configuration, and is\nreachable from the public CMS_decrypt() function. The consequence is\na heap corruption leading to a Denial of Service. The fix in the CMS code\nsizes the unwrap output buffer for the worst case so a failed unwrap cannot\nwrite past the allocation.\n\nFIPS impact: no\n\nAs the CMS code lives outside the FIPS module boundary, no FIPS\nmodules are affected by this CVE.",
           "Severity": "MEDIUM",
@@ -2882,7 +2882,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:b1624940da2fd71c9199455f4e7de6429a22f5923ef5d4cabe265df9747e2266",
+          "Fingerprint": "sha256:343e083ec1479b3d7df203773e83c6d1045ab42f9704294790b8868e058219e1",
           "Title": "openssl: invalid pointer dereference in CMP server via crafted protectionAlg",
           "Description": "Issue summary: OpenSSL CMP password based protection verification only\nchecks whether the protectionAlg parameter was not NULL and not its\nASN.1 type, before treating it as a PBMParameter. A crafted message can\ncontain a parameter of a different type, which is then dereferenced as an\ninvalid pointer.\n\nImpact summary: A remote, unauthenticated attacker can crash an application\nacting as a CMP server that accepts PBM-protected messages, or a CMP client\ntalking to a malicious or intercepted CMP server, resulting in a Denial of\nService.\n\nCWE: CWE-476: NULL Pointer Dereference\n\nDescription: When verifying the password-based MAC protection of a CMP\nmessage, OpenSSL library reads the protectionAlg algorithm parameter with\nX509_ALGOR_get0(), which returns both the parameter type and its value\npointer. The value is then cast to an ASN1_STRING and treated as the\nexpected PBMParameter after only checking that pointer is not NULL. The\nparameter type returned by X509_ALGOR_get0() was never consulted.\n\nThis happens during protection verification, before any MAC is computed, so\nno knowledge of the PBM shared secret is required; the only precondition is\nthat PBM verification is reachable. On the server side this is reached from\nOSSL_CMP_SRV_process_request() for any application that stands up a CMP\nserver accepting PBM-protected messages, and on the client side from CMP\nresponse validation against a malicious or on-path (MITM) server. The\nreliable consequence is a denial of service; there is no memory disclosure,\nno controlled memory write, and no path to code execution. CMP is a\nspecialized feature that an application must explicitly enable.\n\nFIPS impact: no\nAs the CMP code lives outside the FIPS module boundary, no FIPS modules\nare affected by this CVE.",
           "Severity": "MEDIUM",
@@ -2935,7 +2935,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:9ff60d5d5a10adad402adf83ab1946fd69802a017fe7fabd6651bace4389e831",
+          "Fingerprint": "sha256:cb8597475befb17d2cd5de5febb831ca06acaefcc667112290b9c2e9bd237616",
           "Title": "openssl: RPK server signature algorithm selection can dereference a missing certificate",
           "Description": "Issue summary: In a server or client configuration with RFC7250 Raw Public Keys (RPKs)\nenabled, and only the private key (with no associated certificate) configured locally,\na NULL pointer dereference may occur when the remote peer solicits raw public keys and\nalso sends the typically omitted \"signature_algorithms_cert\" TLS extension.\n\nImpact summary: The impact is limited to a possible Denial of Service as a result of\nan application abort, no data disclosure or remote command execution are possible.\n\nCWE: CWE-476: NULL Pointer Dereference\n\nDescription: While a passing comment in sample code in the documentation suggests\nthat key-only RPK configurations are supported, the best-practice RPK configuration\nis to always configure a corresponding certificate (possibly self-signed or\nsigned by any convenient CA).\n\nWhen the private key is configured along with a matching certificate, the\n\"signature_algorithms_cert\" extension is handled reliably even without the\nfix, and peer clients or servers that don't support raw public keys may be\nable to complete a TLS connection by pinning or verifying the corresponding\ncertificate or its public key.\n\nDeployments that prefer to configure just a private key with no certificate\nneed to upgrade to an updated release as noted below.\n\nFIPS impact: no\n\nNo FIPS modules are affected by this issue, as the SSL protocol implementation\nis outside the OpenSSL FIPS module boundary.",
           "Severity": "LOW",
@@ -2986,7 +2986,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:b5ccd79b65a81b3f001f58f5f9680d169c243bf11a9c2dc15fe8d777b6829500",
+          "Fingerprint": "sha256:d07a04c04dd430bfed108d519be23a27ab0edf4b939b53308b7aedb04e6a9d46",
           "Title": "openssl: excessive memory use buffering DTLS records for a future epoch",
           "Description": "Issue summary: Receiving a DTLS record for a future epoch while a handshake\nis in progress causes OpenSSL to buffer far more memory than the record\nitself requires.\n\nImpact summary: A peer can use a small amount of network traffic to make an\nOpenSSL DTLS endpoint retain a disproportionately large amount of memory,\nwhich may lead to a Denial of Service.\n\nCWE: CWE-405: Asymmetric Resource Consumption (Amplification)\n\nDescription: While a DTLS handshake is in progress, a peer may legitimately\nhave already moved on to the next epoch (for example, having sent its\nChangeCipherSpec and Finished messages) before the local endpoint has\nprocessed the same transition, typically because of reordering on the\nunderlying UDP transport. OpenSSL buffers such early records so that they\ncan be processed once the local endpoint catches up.\n\nBuffering a record currently retains the entire read buffer it arrived in,\nwhich is sized to hold the largest possible DTLS record (around 16\nkilobytes), rather than just the bytes that make up the record itself. Up\nto 100 such records may be buffered per connection. As a result, a peer\nthat sends a stream of small forged records claiming to belong to the next\nepoch can cause an OpenSSL DTLS endpoint to retain around 1.7 megabytes of\nmemory, despite sending only a small fraction of that amount of data over\nthe network.\n\nAn attacker therefore gains a memory amplification factor of around 1200,\nand can multiply the effect across as many associations as it is able to\nopen, making this a remote memory exhaustion Denial of Service risk for\nDTLS servers. Since the memory retained per connection remains bounded,\nand any limit an application already places on the number of concurrent\nassociations also bounds the total exposure, this issue has been assessed\nas Low severity.\n\nFIPS impact: no\n\nNo FIPS modules are affected by this issue as the affected code is outside\nthe OpenSSL FIPS module boundary.\n\nOpenSSL 4.0, 3.6, 3.5, 3.4, 3.0, 1.1.1 and 1.0.2 are vulnerable to this\nissue.\n\nOpenSSL 4.0 users should upgrade to OpenSSL 4.0.2.\nOpenSSL 3.6 users should upgrade to OpenSSL 3.6.4.\nOpenSSL 3.5 users should upgrade to OpenSSL 3.5.8.\nOpenSSL 3.4 users should upgrade to OpenSSL 3.4.7.\nOpenSSL 3.0 users should upgrade to OpenSSL 3.0.22.\n\nPremium support customers only:\nOpenSSL 1.1.1 users should upgrade to OpenSSL 1.1.1zi\nOpenSSL 1.0.2 users should upgrade to OpenSSL 1.0.2zr\n\nThis issue was reported on 18 May 2026 by Amazon Web Services.\nThe fix has been developed by Matt Caswell.\n\n-- cut (non-publishing metadata for internal use) --\nReported by: Amazon Web Services\nFixed by: Matt Caswell",
           "Severity": "LOW",
@@ -3039,7 +3039,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:2a00e52469651e0a8637700ef21317d1cba3661fb4ec82e0c018abc32732c6d3",
+          "Fingerprint": "sha256:69c1b555dfc40d6f392f1719f98077507f5c3bdf4b6e51b095bdaeed4cf91c67",
           "Title": "openssl: untrusted sender DN used as format string in CMP response validation",
           "Description": "Issue summary: OpenSSL CMP response validation passed an unexpected response\nsender distinguished name directly as the format string to `ERR_raise_data()`.\n\nImpact summary: A malicious or intercepted CMP endpoint can crash a CMP client\nthat enforces an expected sender or uses a pinned server certificate whose\nsubject becomes the default expected sender.\n\nCWE: CWE-134 (Use of Externally-Controlled Format String)\n\nDescription: When validating a received CMP message, ossl_cmp_msg_check_update()\nconverts the peer-supplied sender distinguished name with X509_NAME_oneline()\nand passes it directly as the format argument to ERR_raise_data(). Percent\ncharacters survive the conversion, so a sender DN such as \"CN=%s%n\" reaches\nBIO_vsnprintf() as an attacker-controlled format string with no matching variadic\narguments. This path is only reached when the caller configures an expected\nsender or pins a server certificate, which is the normal configuration for a\nCMP client validating server responses.\n\nSince the attacker controls the format string but none of the variadic\narguments, such specifiers as %s and %n dereference or write through unrelated\nstack contents and crash the client. The reliable consequence is a denial of\nservice, when the response comes from a malicious or intercepted CMP endpoint.\nThere is no controlled memory write, arbitrary-address read, or reliable path\nto remote code execution.\n\nFIPS impact: no\n\nNo FIPS modules are affected by this issue, as the CMP protocol\nimplementation is outside the OpenSSL FIPS module boundary.",
           "Severity": "LOW",
@@ -3090,7 +3090,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:2f9c60045cb9915227f7f674a06f79517181b4da607806657e1edca26cf6c009",
+          "Fingerprint": "sha256:73af90e84cb1399235c0cdfb53132ddd171a3ecf98b9f302ed07b16e800ed469",
           "Title": "openssl: CMP indefinite cache growth of ExtraCerts",
           "Description": "Issue summary: The OpenSSL Certificate Management Protocol (CMP) caches\nadditional certificates (extraCerts) sent in a CMP message, but never expunges\nthem (for instance if they are invalid).  If a server reuses an OSSL_CMP_CTX\nfrequently, this cache of extraCerts may grow unboundedly, and a malicious\nclient may flood a CMP server with requests driving this growth.\n\nImpact summary: Users utilizing a CMP server that reuses a single OSSL_CMP_CTX\nfor the lifetime of a server process may observe unbounded memory growth in the\nevent a malicious client repeatedly sends requests containing unique extra\ncertificates, which may lead to OOM conditions.\n\nCWE: CWE-770: Allocation of Resources Without Limits or Throttling\n\nDescription: If a remote user sends CMP messages to a server with a list of\nextraCerts and the message is rejected, the extraCerts from the message remains\nin the server contexts untrusted certificate stack.  This exposes servers with\nlong lived ctx objects to Denial of Service attacks in which an attacker sends\nmessages intending to be rejected with a large list of additional certificates\nrepeatedly, forcing the server to store them indefinitely.\n   \nThe issue was fixed by removing the added extra certs if the message is\nrejected, using the same method as when the context is configured to not do\ncaching at all.\n\nFIPS impact: no\nAs the CMP code lives outside the FIPS module boundary, no FIPS\nmodules are affected by this CVE.",
           "Severity": "LOW",
@@ -3143,7 +3143,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:6be05ac866f3758ad6a89a19d09c8d70a3e689f01f8caa98fbc42b041e4cbd65",
+          "Fingerprint": "sha256:5c4d51e14893ca26317fd1cc8fb65254ba8f36ae4f41e6b5950210c9bfff2cd5",
           "Title": "openssl: QUIC ACK-only packet retention can cause memory exhaustion",
           "Description": "Issue summary: When OpenSSL processes QUIC traffic from a peer that repeatedly\nsends ack-eliciting packets while not acknowledging ACK-only responses, the\nQUIC stack can retain ACK-only packet metadata for the lifetime of the\nconnection.\n\nImpact summary: A remote peer that can complete a QUIC handshake can\ncause connection-scoped memory growth which may lead to Denial of Service\nthrough memory exhaustion, especially with sustained traffic or many concurrent\nQUIC connections.\n\nCWE: CWE-770: Allocation of Resources Without Limits or Throttling\n\nDescription: When the OpenSSL QUIC stack sends an ACK-only packet,\nthere is no requirement by the QUIC protocol that the peer will acknowledge\nthat ACK-only packet (i.e. it is itself not ack-eliciting). However, the OpenSSL\nimplementation stores the metadata about the ACK frames regardless.\nIn and of itself that's ok, but if a malicious peer establishes a connection, and\nthen drives the connection such that ACK-only packets are forced from the \nOpenSSL implementation peer (i.e., by sending numerous PING frames),\nand then withholding any subsequent acks for ack-eliciting data, like\nlegitimate data, said malicious peer can force inappropriate memory growth\non the OpenSSL peer, potentially leading to a Denial of Service.\n\nThe fix is to ensure that we account for the transmission of the ACK-only\npacket in the packet histories high and low watermark without actually storing\nthe ACK-only packet metadata itself.\n\nFIPS impact: no\nThe OpenSSL FIPS module is not affected as the QUIC code is\noutside the FIPS module boundary.",
           "Severity": "LOW",
@@ -3194,7 +3194,7 @@
             "Name": "Alpine Secdb",
             "URL": "https://secdb.alpinelinux.org/"
           },
-          "Fingerprint": "sha256:23406f1959112ce9c0563ece27504ab6dc6d322e71e3f21347f13b0f5e45c11a",
+          "Fingerprint": "sha256:59e011561f5e78a71f6e1d1a22955c7a212e5f4fd37963fffe6ea41c4e54e218",
           "Title": "Issue summary: ChaCha20-Poly1305 and AES-OCB decryption with an empty  ...",
           "Description": "Issue summary: ChaCha20-Poly1305 and AES-OCB decryption with an empty\nciphertext can report success without verifying the supplied authentication\ntag when the operation is finalized by calling the EVP_Cipher() function.\n\nImpact summary: Applications calling EVP_Cipher() on an empty ciphertext and\nexpecting the call to check the AEAD tag may accept forged messages.\n\nCWE: CWE-354 (Improper Validation of Integrity Check Value)\n\nDescription: The EVP_Cipher() API call for AEAD ciphers behaves like a one\nshot encryption and decryption call. It also verifies the AEAD tag after the\ndecryption operation. However for AES-OCB and ChaCha20-Poly1305 ciphers\nit skipped the AEAD tag verification when an empty ciphertext was passed to\nthe function. The callers of this function might believe that a successful\nreturn indicates a valid AEAD tag for these ciphers, even when that has not\ntruly been validated in this case.\n\nFIPS impact: no\nThe FIPS modules in 4.0, 3.6, 3.5, 3.4, and 3.0 are not affected by this CVE\nas the affected algorithms are not FIPS approved and thus not implemented\nin the FIPS module.",
           "Severity": "LOW",
@@ -3225,6 +3225,22 @@
       "Type": "python-pkg",
       "Packages": [
         {
+          "Name": "PyJWT",
+          "Identifier": {
+            "PURL": "pkg:pypi/pyjwt@2.9.0",
+            "UID": "d4c8f7cbcc39e702"
+          },
+          "Version": "2.9.0",
+          "Licenses": [
+            "MIT"
+          ],
+          "Layer": {
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
+          },
+          "FilePath": "usr/local/lib/python3.12/site-packages/PyJWT-2.9.0.dist-info/METADATA",
+          "AnalyzedBy": "python-pkg"
+        },
+        {
           "Name": "PyYAML",
           "Identifier": {
             "PURL": "pkg:pypi/pyyaml@6.0.3",
@@ -3235,7 +3251,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pyyaml-6.0.3.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3251,7 +3267,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/annotated_types-0.8.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3267,7 +3283,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/anyio-4.14.2.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3283,7 +3299,7 @@
             "MPL-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/certifi-2026.7.22.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3299,7 +3315,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/click-8.5.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3315,7 +3331,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/fastapi-0.115.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3331,7 +3347,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/h11-0.16.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3347,7 +3363,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/httpcore-1.0.9.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3363,7 +3379,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/httptools-0.8.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3379,7 +3395,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/httpx-0.27.2.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3395,7 +3411,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/idna-3.19.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3411,7 +3427,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/iniconfig-2.3.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3427,7 +3443,7 @@
             "Apache-2.0 OR BSD-2-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/packaging-26.3.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3459,7 +3475,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pluggy-1.6.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3475,7 +3491,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pydantic-2.9.2.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3491,7 +3507,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pydantic_core-2.23.4.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3507,7 +3523,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pytest-8.3.3.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3523,7 +3539,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/python_dotenv-1.2.3.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3540,7 +3556,7 @@
             "Apache-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/sniffio-1.3.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3556,7 +3572,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/starlette-0.38.6.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3572,7 +3588,7 @@
             "PSF-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/typing_extensions-4.16.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3588,7 +3604,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/uvicorn-0.30.6.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3605,7 +3621,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/uvloop-0.22.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3621,7 +3637,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/watchfiles-1.2.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -3637,13 +3653,462 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/websockets-17.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
         }
       ],
       "Vulnerabilities": [
+        {
+          "VulnerabilityID": "CVE-2026-32597",
+          "VendorIDs": [
+            "GHSA-752w-5fwx-jx9f"
+          ],
+          "PkgName": "PyJWT",
+          "PkgPath": "usr/local/lib/python3.12/site-packages/PyJWT-2.9.0.dist-info/METADATA",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/pyjwt@2.9.0",
+            "UID": "d4c8f7cbcc39e702"
+          },
+          "InstalledVersion": "2.9.0",
+          "FixedVersion": "2.12.0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-32597",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:c8a9b589a834a6747cbc8ae116beb725ae8709221e8e27d1ae84acf97d617fd9",
+          "Title": "pyjwt: PyJWT accepts unknown `crit` header extensions (RFC 7515 §4.1.11 MUST violation)",
+          "Description": "PyJWT is a JSON Web Token implementation in Python. Prior to 2.12.0, PyJWT does not validate the crit (Critical) Header Parameter defined in RFC 7515 §4.1.11. When a JWS token contains a crit array listing extensions that PyJWT does not understand, the library accepts the token instead of rejecting it. This violates the MUST requirement in the RFC. This vulnerability is fixed in 2.12.0.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-345",
+            "CWE-863",
+            "CWE-347"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "amazon": 2,
+            "azure": 3,
+            "ghsa": 3,
+            "oracle-oval": 3,
+            "photon": 3,
+            "redhat": 3,
+            "rocky": 3,
+            "ubuntu": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V3Score": 7.5
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+              "V3Score": 7.5
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:10140",
+            "https://access.redhat.com/errata/RHSA-2026:10141",
+            "https://access.redhat.com/errata/RHSA-2026:10184",
+            "https://access.redhat.com/errata/RHSA-2026:12176",
+            "https://access.redhat.com/errata/RHSA-2026:13508",
+            "https://access.redhat.com/errata/RHSA-2026:13512",
+            "https://access.redhat.com/errata/RHSA-2026:13545",
+            "https://access.redhat.com/errata/RHSA-2026:13553",
+            "https://access.redhat.com/errata/RHSA-2026:13672",
+            "https://access.redhat.com/errata/RHSA-2026:13916",
+            "https://access.redhat.com/errata/RHSA-2026:17083",
+            "https://access.redhat.com/errata/RHSA-2026:19138",
+            "https://access.redhat.com/errata/RHSA-2026:19355",
+            "https://access.redhat.com/errata/RHSA-2026:19375",
+            "https://access.redhat.com/errata/RHSA-2026:19712",
+            "https://access.redhat.com/errata/RHSA-2026:21431",
+            "https://access.redhat.com/errata/RHSA-2026:21517",
+            "https://access.redhat.com/errata/RHSA-2026:22330",
+            "https://access.redhat.com/errata/RHSA-2026:24977",
+            "https://access.redhat.com/errata/RHSA-2026:26226",
+            "https://access.redhat.com/errata/RHSA-2026:37275",
+            "https://access.redhat.com/errata/RHSA-2026:42644",
+            "https://access.redhat.com/errata/RHSA-2026:6568",
+            "https://access.redhat.com/errata/RHSA-2026:6720",
+            "https://access.redhat.com/errata/RHSA-2026:6912",
+            "https://access.redhat.com/errata/RHSA-2026:6926",
+            "https://access.redhat.com/errata/RHSA-2026:8437",
+            "https://access.redhat.com/errata/RHSA-2026:8746",
+            "https://access.redhat.com/errata/RHSA-2026:8747",
+            "https://access.redhat.com/errata/RHSA-2026:8748",
+            "https://access.redhat.com/security/cve/CVE-2026-32597",
+            "https://bugzilla.redhat.com/2447194",
+            "https://bugzilla.redhat.com/2448553",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2438762",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2447194",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2448553",
+            "https://creativecommons.org/licenses/by/4.0/",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-26007",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-30922",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-32597",
+            "https://errata.almalinux.org/10/ALSA-2026-13916.html",
+            "https://errata.rockylinux.org/RLSA-2026:19355",
+            "https://github.com/jpadilla/pyjwt",
+            "https://github.com/jpadilla/pyjwt/security/advisories/GHSA-752w-5fwx-jx9f",
+            "https://github.com/pypa/advisory-database/tree/main/vulns/pyjwt/PYSEC-2026-120.yaml",
+            "https://linux.oracle.com/cve/CVE-2026-32597.html",
+            "https://linux.oracle.com/errata/ELSA-2026-19355.html",
+            "https://lists.debian.org/debian-lts-announce/2026/05/msg00008.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-32597",
+            "https://security.access.redhat.com/data/csaf/v2/vex/2026/cve-2026-32597.json",
+            "https://ubuntu.com/security/notices/USN-8133-1",
+            "https://www.cve.org/CVERecord?id=CVE-2026-32597"
+          ],
+          "PublishedDate": "2026-03-13T19:55:09.5Z",
+          "LastModifiedDate": "2026-08-17T12:17:54.263Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-48526",
+          "VendorIDs": [
+            "GHSA-xgmm-8j9v-c9wx"
+          ],
+          "PkgName": "PyJWT",
+          "PkgPath": "usr/local/lib/python3.12/site-packages/PyJWT-2.9.0.dist-info/METADATA",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/pyjwt@2.9.0",
+            "UID": "d4c8f7cbcc39e702"
+          },
+          "InstalledVersion": "2.9.0",
+          "FixedVersion": "2.13.0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-48526",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:338427bf05d90978eb6b1ef123e7fda11d2d958baab70a0167fa3387f8b082fa",
+          "Title": "python-pyjwt: PyJWT: Authentication bypass due to forged JSON Web Tokens",
+          "Description": "PyJWT is a JSON Web Token implementation in Python. Prior to 2.13.0, when the verifier is decoding JSON Web Tokens, while supporting both asymmetric and HMAC algorithms, the library does not validate use of JSON Web Keys in HMAC algorithm, allowing attacker to use the issuer public key as the secret key for HMAC algorithm. This vulnerability is fixed in 2.13.0.",
+          "Severity": "HIGH",
+          "CweIDs": [
+            "CWE-287",
+            "CWE-347"
+          ],
+          "VendorSeverity": {
+            "alma": 3,
+            "amazon": 3,
+            "azure": 3,
+            "ghsa": 3,
+            "oracle-oval": 3,
+            "redhat": 3,
+            "rocky": 3
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 7.4
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+              "V3Score": 7.4
+            }
+          },
+          "References": [
+            "https://access.redhat.com/errata/RHSA-2026:25902",
+            "https://access.redhat.com/errata/RHSA-2026:25928",
+            "https://access.redhat.com/errata/RHSA-2026:26206",
+            "https://access.redhat.com/errata/RHSA-2026:28571",
+            "https://access.redhat.com/errata/RHSA-2026:30076",
+            "https://access.redhat.com/errata/RHSA-2026:30088",
+            "https://access.redhat.com/errata/RHSA-2026:30089",
+            "https://access.redhat.com/errata/RHSA-2026:33683",
+            "https://access.redhat.com/errata/RHSA-2026:34160",
+            "https://access.redhat.com/errata/RHSA-2026:34365",
+            "https://access.redhat.com/errata/RHSA-2026:34374",
+            "https://access.redhat.com/errata/RHSA-2026:35835",
+            "https://access.redhat.com/errata/RHSA-2026:35836",
+            "https://access.redhat.com/errata/RHSA-2026:35837",
+            "https://access.redhat.com/errata/RHSA-2026:35845",
+            "https://access.redhat.com/errata/RHSA-2026:36350",
+            "https://access.redhat.com/errata/RHSA-2026:37275",
+            "https://access.redhat.com/errata/RHSA-2026:40967",
+            "https://access.redhat.com/errata/RHSA-2026:41066",
+            "https://access.redhat.com/errata/RHSA-2026:42132",
+            "https://access.redhat.com/errata/RHSA-2026:42142",
+            "https://access.redhat.com/errata/RHSA-2026:42144",
+            "https://access.redhat.com/errata/RHSA-2026:42644",
+            "https://access.redhat.com/errata/RHSA-2026:42796",
+            "https://access.redhat.com/errata/RHSA-2026:43038",
+            "https://access.redhat.com/errata/RHSA-2026:48085",
+            "https://access.redhat.com/errata/RHSA-2026:50222",
+            "https://access.redhat.com/errata/RHSA-2026:50223",
+            "https://access.redhat.com/errata/RHSA-2026:50263",
+            "https://access.redhat.com/errata/RHSA-2026:50319",
+            "https://access.redhat.com/errata/RHSA-2026:50336",
+            "https://access.redhat.com/errata/RHSA-2026:50340",
+            "https://access.redhat.com/errata/RHSA-2026:50904",
+            "https://access.redhat.com/errata/RHSA-2026:60520",
+            "https://access.redhat.com/security/cve/CVE-2026-48526",
+            "https://bugzilla.redhat.com/2482734",
+            "https://bugzilla.redhat.com/show_bug.cgi?id=2482734",
+            "https://creativecommons.org/licenses/by/4.0/",
+            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2026-48526",
+            "https://errata.almalinux.org/10/ALSA-2026-25902.html",
+            "https://errata.rockylinux.org/RLSA-2026:26206",
+            "https://github.com/jpadilla/pyjwt",
+            "https://github.com/jpadilla/pyjwt/security/advisories/GHSA-xgmm-8j9v-c9wx",
+            "https://github.com/pypa/advisory-database/tree/main/vulns/pyjwt/PYSEC-2026-179.yaml",
+            "https://linux.oracle.com/cve/CVE-2026-48526.html",
+            "https://linux.oracle.com/errata/ELSA-2026-26206.html",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-48526",
+            "https://security.access.redhat.com/data/csaf/v2/vex/2026/cve-2026-48526.json",
+            "https://www.cve.org/CVERecord?id=CVE-2026-48526"
+          ],
+          "PublishedDate": "2026-05-28T16:16:29.657Z",
+          "LastModifiedDate": "2026-08-28T16:18:10.997Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-48522",
+          "VendorIDs": [
+            "GHSA-993g-76c3-p5m4"
+          ],
+          "PkgName": "PyJWT",
+          "PkgPath": "usr/local/lib/python3.12/site-packages/PyJWT-2.9.0.dist-info/METADATA",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/pyjwt@2.9.0",
+            "UID": "d4c8f7cbcc39e702"
+          },
+          "InstalledVersion": "2.9.0",
+          "FixedVersion": "2.13.0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-48522",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:865169bacc3196801f2edc1f83e18cf86d33d80dba72198999183490a12c8a3b",
+          "Title": "python-pyjwt: PyJWT: Server-Side Request Forgery (SSRF) via uncontrolled URL fetching in PyJWKClient",
+          "Description": "PyJWT is a JSON Web Token implementation in Python. Prior to 2.13.0, PyJWKClient passes its uri argument directly to urllib.request.urlopen() which uses Python stdlib's default OpenerDirector registering HTTPHandler, HTTPSHandler, FTPHandler, FileHandler, and DataHandler. There is currently no documented option to restrict which schemes PyJWKClient will fetch. If an application's jku URL ingestion path accepts attacker-influenced URLs (e.g., from JWT header, configuration file, OAuth flow parameter), the attacker can cause PyJWKClient to read arbitrary local files via file:// (SSRF on local filesystem), cause PyJWKClient to attempt FTP / data-URI fetches (broader SSRF surface), or forge tokens that PyJWT verifies as valid. The library does not directly return non-HTTP(S) URI contents to the attacker; the chained \"plant a JWKS to forge tokens\" scenario described in the original report requires additional application-layer flaws (attacker write access to a filesystem path, untrusted jku derivation) that this fix does not address. This vulnerability is fixed in 2.13.0.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-441",
+            "CWE-918"
+          ],
+          "VendorSeverity": {
+            "amazon": 2,
+            "azure": 2,
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N",
+              "V3Score": 4.2
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:U/C:L/I:L/A:N",
+              "V3Score": 4.2
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-48522",
+            "https://github.com/github/advisory-database/pull/8521",
+            "https://github.com/jpadilla/pyjwt",
+            "https://github.com/jpadilla/pyjwt/security/advisories/GHSA-993g-76c3-p5m4",
+            "https://github.com/pypa/advisory-database/tree/main/vulns/pyjwt/PYSEC-2026-175.yaml",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-48522",
+            "https://www.cve.org/CVERecord?id=CVE-2026-48522"
+          ],
+          "PublishedDate": "2026-05-28T16:16:29.15Z",
+          "LastModifiedDate": "2026-06-17T10:55:03.53Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-48523",
+          "VendorIDs": [
+            "GHSA-jq35-7prp-9v3f"
+          ],
+          "PkgName": "PyJWT",
+          "PkgPath": "usr/local/lib/python3.12/site-packages/PyJWT-2.9.0.dist-info/METADATA",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/pyjwt@2.9.0",
+            "UID": "d4c8f7cbcc39e702"
+          },
+          "InstalledVersion": "2.9.0",
+          "FixedVersion": "2.13.0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-48523",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:32f0541e84efaa1626bc882fba72077ec72393538ca34731c1a39f4637e6f2e4",
+          "Title": "python-pyjwt: PyJWT: Verifier-side algorithm bypass leads to unauthorized information access",
+          "Description": "PyJWT is a JSON Web Token implementation in Python. From 2.9.0 to 2.12.1, there is a verifier-side algorithm allow-list bypass when jwt.decode() or jwt.decode_complete() are called with a PyJWK key. The token header alg is checked against the caller-supplied algorithms allow-list, but signature verification is performed with the algorithm bound to the PyJWK object instead of the header algorithm. An attacker who controls a registered JWK/JWKS private key can sign with a disallowed algorithm, advertise an allowed algorithm in the JWT header, and still be accepted. The issue affects the documented PyJWKClient.get_signing_key_from_jwt(...) flow. This vulnerability is fixed in 2.13.0.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-347"
+          ],
+          "VendorSeverity": {
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:N",
+              "V3Score": 5.4
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:N",
+              "V3Score": 5.4
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-48523",
+            "https://github.com/jpadilla/pyjwt",
+            "https://github.com/jpadilla/pyjwt/security/advisories/GHSA-jq35-7prp-9v3f",
+            "https://github.com/pypa/advisory-database/tree/main/vulns/pyjwt/PYSEC-2026-176.yaml",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-48523",
+            "https://www.cve.org/CVERecord?id=CVE-2026-48523"
+          ],
+          "PublishedDate": "2026-05-28T16:16:29.28Z",
+          "LastModifiedDate": "2026-06-17T10:55:03.693Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-48525",
+          "VendorIDs": [
+            "GHSA-w7vc-732c-9m39"
+          ],
+          "PkgName": "PyJWT",
+          "PkgPath": "usr/local/lib/python3.12/site-packages/PyJWT-2.9.0.dist-info/METADATA",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/pyjwt@2.9.0",
+            "UID": "d4c8f7cbcc39e702"
+          },
+          "InstalledVersion": "2.9.0",
+          "FixedVersion": "2.13.0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-48525",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:ab908e0bb8cd25cb23e5065548ae44024c98fc06c9e3c9a7ce24668f5dd6fc26",
+          "Title": "python-pyjwt: PyJWT: Denial of Service via processing of crafted detached JWS tokens",
+          "Description": "PyJWT is a JSON Web Token implementation in Python. From 2.8.0 to 2.12.1, when verifying detached JWS tokens using the unencoded-payload option (\"b64\": false, RFC 7797), PyJWT performs Base64URL decoding of the compact-serialization payload segment before enforcing the detached-payload rules. For b64=false, PyJWT later discards that decoded payload and replaces it with the caller-provided detached_payload. In practice, this turns the middle segment into an attacker-controlled “work amplifier”: a remote client can supply an arbitrarily large Base64URL payload segment that forces CPU work + memory allocations even if the signature is invalid. This creates an unauthenticated DoS vector against any endpoint that verifies detached JWS using PyJWT. This vulnerability is fixed in 2.13.0.",
+          "Severity": "MEDIUM",
+          "CweIDs": [
+            "CWE-400"
+          ],
+          "VendorSeverity": {
+            "amazon": 2,
+            "azure": 2,
+            "ghsa": 2,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 5.3
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-48525",
+            "https://github.com/jpadilla/pyjwt",
+            "https://github.com/jpadilla/pyjwt/security/advisories/GHSA-w7vc-732c-9m39",
+            "https://github.com/pypa/advisory-database/tree/main/vulns/pyjwt/PYSEC-2026-178.yaml",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-48525",
+            "https://www.cve.org/CVERecord?id=CVE-2026-48525"
+          ],
+          "PublishedDate": "2026-05-28T16:16:29.533Z",
+          "LastModifiedDate": "2026-06-17T10:55:04.01Z"
+        },
+        {
+          "VulnerabilityID": "CVE-2026-48524",
+          "VendorIDs": [
+            "GHSA-fhv5-28vv-h8m8"
+          ],
+          "PkgName": "PyJWT",
+          "PkgPath": "usr/local/lib/python3.12/site-packages/PyJWT-2.9.0.dist-info/METADATA",
+          "PkgIdentifier": {
+            "PURL": "pkg:pypi/pyjwt@2.9.0",
+            "UID": "d4c8f7cbcc39e702"
+          },
+          "InstalledVersion": "2.9.0",
+          "FixedVersion": "2.13.0",
+          "Status": "fixed",
+          "Layer": {
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
+          },
+          "SeveritySource": "ghsa",
+          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-48524",
+          "DataSource": {
+            "ID": "ghsa",
+            "Name": "GitHub Security Advisory pip",
+            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
+          },
+          "Fingerprint": "sha256:f5e26faefdd33c05b5d5c190afb98f9a36d2cdf8f1eab2ac6e087a85ce26faed",
+          "Title": "python-pyjwt: PyJWT: Denial of Service via unverified JSON Web Token key IDs",
+          "Description": "PyJWT is a JSON Web Token implementation in Python. Prior to 2.13.0, PyJWKClient.get_signing_key() forces a fresh HTTP request to the JWKS endpoint for every JWT with an unknown kid value, with no rate limiting. Since kid comes from the unverified token header, an attacker can trigger unlimited outbound requests. The vulnerability surfaces only when a JWKS fetch fails; an attacker can attempt to provoke that with sustained unknown-kid traffic, but the outcome depends on upstream JWKS-endpoint behavior (rate limiting, transient errors) which is beyond the attacker's control. This vulnerability is fixed in 2.13.0.",
+          "Severity": "LOW",
+          "CweIDs": [
+            "CWE-460",
+            "CWE-755"
+          ],
+          "VendorSeverity": {
+            "azure": 1,
+            "ghsa": 1,
+            "redhat": 2
+          },
+          "CVSS": {
+            "ghsa": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:L",
+              "V3Score": 3.7
+            },
+            "redhat": {
+              "V3Vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+              "V3Score": 5.9
+            }
+          },
+          "References": [
+            "https://access.redhat.com/security/cve/CVE-2026-48524",
+            "https://github.com/github/advisory-database/pull/8522",
+            "https://github.com/jpadilla/pyjwt",
+            "https://github.com/jpadilla/pyjwt/security/advisories/GHSA-fhv5-28vv-h8m8",
+            "https://github.com/pypa/advisory-database/tree/main/vulns/pyjwt/PYSEC-2026-177.yaml",
+            "https://nvd.nist.gov/vuln/detail/CVE-2026-48524",
+            "https://www.cve.org/CVERecord?id=CVE-2026-48524"
+          ],
+          "PublishedDate": "2026-05-28T16:16:29.403Z",
+          "LastModifiedDate": "2026-06-17T10:55:03.867Z"
+        },
         {
           "VulnerabilityID": "CVE-2025-8869",
           "VendorIDs": [
@@ -3668,7 +4133,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:1494ba1c62f5bd8524678eb5fc484337ae8de6457c93a3863f3174bac9c3abb4",
+          "Fingerprint": "sha256:f1135ba679f9185cb93fdf1c82691497556387e5210642b72b9578a3d526d77d",
           "Title": "pip: pip missing checks on symbolic link extraction",
           "Description": "When extracting a tar archive pip may not check symbolic links point into the extraction directory if the tarfile module doesn't implement PEP 706.\nNote that upgrading pip to a \"fixed\" version for this vulnerability doesn't fix all known vulnerabilities that are remediated by using a Python version that implements PEP 706.\n\nNote that this is a vulnerability in pip's fallback implementation of tar extraction for Python versions that don't implement PEP 706\nand therefore are not secure to all vulnerabilities in the Python 'tarfile' module. If you're using a Python version that implements PEP 706\nthen pip doesn't use the \"vulnerable\" fallback code.\n\nMitigations include upgrading to a version of pip that includes the fix, upgrading to a Python version that implements PEP 706 (Python \u003e=3.9.17, \u003e=3.10.12, \u003e=3.11.4, or \u003e=3.12),\napplying the linked patch, or inspecting source distributions (sdists) before installation as is already a best-practice.",
           "Severity": "MEDIUM",
@@ -3728,7 +4193,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:014488b3fd638055ffb10b2dffd603463654c5362b985ba0b3b6b3691e90a674",
+          "Fingerprint": "sha256:da0cf0c1e3ece927e349364aa6135122e20d705eadf64d57d02a02346be050c2",
           "Title": "pip: pip: Incorrect file installation due to improper archive handling",
           "Description": "pip handles concatenated tar and ZIP files as ZIP files regardless of filename or whether a file is both a tar and ZIP file. This behavior could result in confusing installation behavior, such as installing \"incorrect\" files according to the filename of the archive. New behavior only proceeds with installation if the file identifies uniquely as a ZIP or tar archive, not as both.",
           "Severity": "MEDIUM",
@@ -3790,7 +4255,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:db034ecf6aba2b951b7d3bb918921a88ff69bcd504bc572955a095aec55ebbe4",
+          "Fingerprint": "sha256:55e9a6f7cf66cc9c45343aed9aef58540c541082bfa669985ec137d59a1ca7a0",
           "Title": "pip: pip: Arbitrary code execution or information disclosure via malicious wheel package installation",
           "Description": "pip prior to version 26.1 would run self-update check functionality after installing wheel files which required importing well-known Python modules names. These module imports were intentionally deferred to increase startup time of the pip CLI. The patch changes self-update functionality to run before wheels are installed to prevent newly-installed modules from being imported shortly after the installation of a wheel package. Users should still review package contents prior to installation.",
           "Severity": "MEDIUM",
@@ -3851,7 +4316,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:30ddf53e8934101d8f78c5b7eb6ac1908dc77f21ede0b265bcd18cc2bbf17078",
+          "Fingerprint": "sha256:40a9d0aaaac2204709d8da08f2d6fb839dc00fedcf4d06fd4d3af76043cc0af3",
           "Title": "python-pip: Path traversal via malicious entry point name in pip wheel installation allows arbitrary file overwrite",
           "Description": "pip would treat console_scripts and gui_scripts as paths instead of file names without sanitizing the resolved absolute path to the installation directory, leading to entry points being installed outside the installation directory.",
           "Severity": "MEDIUM",
@@ -3968,7 +4433,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:8a42ec858b72a89a1e851e15f18cb066a34e87bf5d74ba045a1a700e64bcb2c3",
+          "Fingerprint": "sha256:02b0c0bdcc7065f908e29a7e1634071282f1290c5c8c2761aacec2ef210c798e",
           "Title": "pip: pip: Information disclosure via path traversal when installing crafted wheel archives",
           "Description": "When pip is installing and extracting a maliciously crafted wheel archive, files may be extracted outside the installation directory. The path traversal is limited to prefixes of the installation directory, thus isn't able to inject or overwrite executable files in typical situations.",
           "Severity": "LOW",
@@ -4021,7 +4486,7 @@
           "FixedVersion": "9.0.3",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-71176",
@@ -4030,7 +4495,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:c0f2fc6d9ff9c86adddd4dfb185c5a585d68b575037002f8e6b9249218ead03f",
+          "Fingerprint": "sha256:fbd475834e6e7d0e10780add9cab0e46be632272b1bc44f78c1f285ecc02f244",
           "Title": "pytest: pytest: Denial of Service or Privilege Escalation via insecure temporary directory handling",
           "Description": "pytest through 9.0.2 on UNIX relies on directories with the /tmp/pytest-of-{user} name pattern, which allows local users to cause a denial of service or possibly gain privileges.",
           "Severity": "MEDIUM",
@@ -4081,7 +4546,7 @@
           "FixedVersion": "0.40.0",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2024-47874",
@@ -4090,7 +4555,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:c01f316753ae769ba5eacde66376dd12cf98554880989c522ee53dc897281046",
+          "Fingerprint": "sha256:fa9fde415d95c9560a2e074c66d2f26375ab5fbfa6966d47dc051a154a18440f",
           "Title": "starlette: Starlette Denial of service (DoS) via multipart/form-data",
           "Description": "Starlette is an Asynchronous Server Gateway Interface (ASGI) framework/toolkit. Prior to version 0.40.0, Starlette treats `multipart/form-data` parts without a `filename` as text form fields and buffers those in byte strings with no size limit. This allows an attacker to upload arbitrary large form fields and cause Starlette to both slow down significantly due to excessive memory allocations and copy operations, and also consume more and more memory until the server starts swapping and grinds to a halt, or the OS terminates the server process with an OOM error. Uploading multiple such requests in parallel may be enough to render a service practically unusable, even if reasonable request size limits are enforced by a reverse proxy in front of Starlette. This Denial of service (DoS) vulnerability affects all applications built with Starlette (or FastAPI) accepting form requests. Verison 0.40.0 fixes this issue.",
           "Severity": "HIGH",
@@ -4138,7 +4603,7 @@
           "FixedVersion": "1.1.0",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-48818",
@@ -4147,7 +4612,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:4813042f16314e3072963913c5687004f0d919934ead245e4d6ec5e112238c12",
+          "Fingerprint": "sha256:4439f4dde0ed610c4af389e86d03525770a32d85a8bd42a918b526b6b89b20dd",
           "Title": "starlette: Starlette: SSRF and NTLM credential theft via UNC paths in StaticFiles on Windows",
           "Description": "Starlette is a lightweight ASGI framework/toolkit. In versions 1.0.1 and earlier, StaticFiles on Windows is vulnerable to SSRF. An UNC path such as \\\\attacker.com\\share can cause os.path.realpath to initiate an outbound SMB connection before the path is rejected, exposing the service account’s NTLMv2 credentials for offline cracking or relay even though the HTTP response is only a 404. The issue affects default follow_symlink=False deployments, including frameworks built on Starlette such as FastAPI; POSIX systems and follow_symlink=True are unaffected. The issue is fixed in 1.1.0.",
           "Severity": "HIGH",
@@ -4202,7 +4667,7 @@
           "FixedVersion": "1.3.1",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-54283",
@@ -4211,7 +4676,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:9882c3106ee876843c76058b9332c1e0e229c997a8f1e97a0af26edda6d966fd",
+          "Fingerprint": "sha256:d227bb7c1ebe248c2673fd07881910c1ef25f0b254ef51ac9938c65ff352473d",
           "Title": "starlette: Starlette: request.form() limits silently ignored for application/x-www-form-urlencoded enable DoS",
           "Description": "Starlette is a lightweight ASGI framework/toolkit. From 0.4.1 until 1.3.1, request.form() accepts max_fields and max_part_size to bound resource consumption while parsing form data. These limits are enforced for multipart/form-data, but silently ignored for application/x-www-form-urlencoded. An unauthenticated attacker can therefore send a urlencoded body with an arbitrarily large number of fields or an arbitrarily large field, even when the application configured limits it believed would apply. This vulnerability is fixed in 1.3.1.",
           "Severity": "HIGH",
@@ -4257,7 +4722,7 @@
           "FixedVersion": "0.47.2",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-54121",
@@ -4266,7 +4731,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:f697dc20969209388e0c002e54f4e69d9a5a54c8fafa768dd9e25981e730257c",
+          "Fingerprint": "sha256:c8ddead4fad8572bd34f491317146f564de2c41b2f637029d30236e47970f913",
           "Title": "starlette: Starlette denial-of-service",
           "Description": "Starlette is a lightweight ASGI (Asynchronous Server Gateway Interface) framework/toolkit, designed for building async web services in Python. In versions 0.47.1 and below, when parsing a multi-part form with large files (greater than the default max spool size) starlette will block the main thread to roll the file over to disk. This blocks the event thread which means the application can't accept new connections. The UploadFile code has a minor bug where instead of just checking for self._in_memory, the logic should also check if the additional bytes will cause a rollover. The vulnerability is fixed in version 0.47.2.",
           "Severity": "MEDIUM",
@@ -4315,7 +4780,7 @@
           "FixedVersion": "1.0.1",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-48710",
@@ -4324,7 +4789,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:b056df1a8a59b0a8dfd74f58af508d22a0788412b2c31207482fe4d6e9e0ea28",
+          "Fingerprint": "sha256:8fd236e8569902d80cbb58da305ee5f92f447944a6bb6f81e841e297b14b7705",
           "Title": "starlette: Starlette: Security restriction bypass via malformed HTTP Host header",
           "Description": "Starlette is a lightweight ASGI framework/toolkit. Prior to version 1.0.1, the HTTP `Host` request header was not validated before being used to reconstruct `request.url`. Because the routing algorithm relies on the raw HTTP path while `request.url` is rebuilt from the `Host` header, a malformed header could make `request.url.path` differ from the path that was actually requested. Middleware and endpoints that apply security restrictions based on `request.url` (rather than the raw `scope` path) could therefore be bypassed. Users should upgrade to a version greater than or equal to version 1.0.1, which validates the `Host` header against the grammar of RFC 9112 §3.2 / RFC 3986 §3.2.2 when constructing `request.url` and falls back to `scope[\"server\"]` for malformed values.",
           "Severity": "MEDIUM",
@@ -4399,7 +4864,7 @@
           "FixedVersion": "1.1.0",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-48817",
@@ -4408,7 +4873,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:a50fda5ee14425877c7f0df51723a248d499bf506ad2dc217be3e7772c075168",
+          "Fingerprint": "sha256:4d1c01dd95ebde71a6a4b79b2bb900cee9b0669fbe70c03aae213df2791a72c0",
           "Title": "starlette: Starlette: Information disclosure and unintended method execution via non-standard HTTP methods",
           "Description": "Starlette is a lightweight ASGI framework/toolkit. In versions 1.0.1 and below, when dispatching a request, HTTPEndpoint selects the handler by lowercasing the HTTP method and looking it up as an attribute with getattr, without restricting the lookup to a known set of HTTP verbs. When an HTTPEndpoint subclass is registered through Route(...) without an explicit methods= argument, the route does not constrain the method and every method reaches the endpoint. If a non-standard HTTP method whose lowercased name matches an attribute on the endpoint subclass reaches the endpoint, that attribute is invoked as if it were a request handler. An attacker can use this to reach methods that were never meant to be HTTP handlers, such as internal helpers, without the authorization checks applied by the intended public handler. An application (including Starlette-based frameworks like FastAPI) is affected if it registers an HTTPEndpoint subclass via Route(...) without explicitly setting methods=, and that subclass includes extra methods named like non-standard HTTP verbs that take one request argument and return a response. This issue has been fixed in version 1.1.0.",
           "Severity": "MEDIUM",
@@ -4455,7 +4920,7 @@
           "FixedVersion": "1.3.0",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:ff101fd0113d0f0a844d806a7ef469c9b714e7d76adc39b24b2c2763b4cd89ef"
+            "DiffID": "sha256:8a06c53c8debd8117404af8953a4db154717ecd8bd189d668d27a96620863e39"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-54282",
@@ -4464,7 +4929,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:3190bf0ac90d6bb32e77e1b2230fa36c640df8c4600428f4b97054486920ccc3",
+          "Fingerprint": "sha256:11487f29caf10a7404accb460b7b03fbcb175115e2d2c97f7bd70943caa628fc",
           "Title": "starlette: Starlette: Information disclosure due to improper HTTP request path validation",
           "Description": "Starlette is a lightweight ASGI framework/toolkit. Prior to 1.3.0, the HTTP request path is not validated before being used to reconstruct request.url. Because request.url is rebuilt by concatenating {scheme}://{host}{path} and re-parsing the result, a path that does not begin with / (for example @google.com) moves the authority boundary during re-parsing, so request.url.hostname and request.url.netloc become attacker-controlled. Code that reads request.url.hostname (rather than the Host header or scope) can therefore be misled into trusting an attacker-supplied host. This vulnerability is fixed in 1.3.0.",
           "Severity": "LOW",

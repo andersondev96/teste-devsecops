@@ -1,30 +1,30 @@
 {
   "errors": [],
-  "generated_at": "2026-08-29T23:30:57Z",
+  "generated_at": "2026-08-30T01:22:20Z",
   "metrics": {
     "_totals": {
-      "CONFIDENCE.HIGH": 27,
+      "CONFIDENCE.HIGH": 35,
       "CONFIDENCE.LOW": 1,
-      "CONFIDENCE.MEDIUM": 3,
+      "CONFIDENCE.MEDIUM": 2,
       "CONFIDENCE.UNDEFINED": 0,
       "SEVERITY.HIGH": 0,
-      "SEVERITY.LOW": 29,
+      "SEVERITY.LOW": 36,
       "SEVERITY.MEDIUM": 2,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 852,
+      "loc": 1007,
       "nosec": 2,
       "skipped_tests": 0
     },
     "broken-api/controllers/AuthController.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
-      "CONFIDENCE.MEDIUM": 2,
+      "CONFIDENCE.MEDIUM": 0,
       "CONFIDENCE.UNDEFINED": 0,
       "SEVERITY.HIGH": 0,
-      "SEVERITY.LOW": 2,
+      "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 88,
+      "loc": 56,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -102,7 +102,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 43,
+      "loc": 41,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -128,7 +128,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 4,
+      "loc": 5,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -167,7 +167,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 43,
+      "loc": 37,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -249,16 +249,29 @@
       "nosec": 0,
       "skipped_tests": 0
     },
+    "broken-api/security.py": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 1,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 1,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 161,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
     "broken-api/tests/test_owasp_api_top_10_lab.py": {
-      "CONFIDENCE.HIGH": 27,
+      "CONFIDENCE.HIGH": 35,
       "CONFIDENCE.LOW": 0,
       "CONFIDENCE.MEDIUM": 0,
       "CONFIDENCE.UNDEFINED": 0,
       "SEVERITY.HIGH": 0,
-      "SEVERITY.LOW": 27,
+      "SEVERITY.LOW": 35,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 111,
+      "loc": 150,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -271,52 +284,12 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 31,
+      "loc": 25,
       "nosec": 0,
       "skipped_tests": 0
     }
   },
   "results": [
-    {
-      "code": "27 # --------------------------------------------------------------------\n28 SECRET_KEY = \"b3_ch4r_r4nd0m_s7r1ng_s4f3_f0r_7cc\"\n29 DB_PASSWORD = \"secret_admin_password\"\n",
-      "col_offset": 13,
-      "end_col_offset": 49,
-      "filename": "broken-api/controllers/AuthController.py",
-      "issue_confidence": "MEDIUM",
-      "issue_cwe": {
-        "id": 259,
-        "link": "https://cwe.mitre.org/data/definitions/259.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Possible hardcoded password: 'b3_ch4r_r4nd0m_s7r1ng_s4f3_f0r_7cc'",
-      "line_number": 28,
-      "line_range": [
-        28
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b105_hardcoded_password_string.html",
-      "test_id": "B105",
-      "test_name": "hardcoded_password_string"
-    },
-    {
-      "code": "28 SECRET_KEY = \"b3_ch4r_r4nd0m_s7r1ng_s4f3_f0r_7cc\"\n29 DB_PASSWORD = \"secret_admin_password\"\n30 \n",
-      "col_offset": 14,
-      "end_col_offset": 37,
-      "filename": "broken-api/controllers/AuthController.py",
-      "issue_confidence": "MEDIUM",
-      "issue_cwe": {
-        "id": 259,
-        "link": "https://cwe.mitre.org/data/definitions/259.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Possible hardcoded password: 'secret_admin_password'",
-      "line_number": 29,
-      "line_range": [
-        29
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b105_hardcoded_password_string.html",
-      "test_id": "B105",
-      "test_name": "hardcoded_password_string"
-    },
     {
       "code": "92         cursor = conn.cursor()\n93         query = f\"SELECT * FROM products WHERE name LIKE '%{name}%'\"  # VULNER\u00c1VEL: SQL Injection\n94         try:\n",
       "col_offset": 16,
@@ -358,47 +331,27 @@
       "test_name": "hardcoded_bind_all_interfaces"
     },
     {
-      "code": "40 \n41     assert response.status_code == 200\n42     assert response.json()[\"username\"] == \"bob\"\n",
-      "col_offset": 4,
-      "end_col_offset": 38,
-      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
-      "issue_confidence": "HIGH",
+      "code": "28 JWT_ISSUER = os.getenv(\"JWT_ISSUER\", \"broken-api\")\n29 JWT_SECRET_ENV = \"JWT_SECRET_KEY\"\n30 \n",
+      "col_offset": 17,
+      "end_col_offset": 33,
+      "filename": "broken-api/security.py",
+      "issue_confidence": "MEDIUM",
       "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
+        "id": 259,
+        "link": "https://cwe.mitre.org/data/definitions/259.html"
       },
       "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 41,
+      "issue_text": "Possible hardcoded password: 'JWT_SECRET_KEY'",
+      "line_number": 29,
       "line_range": [
-        41
+        29
       ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b105_hardcoded_password_string.html",
+      "test_id": "B105",
+      "test_name": "hardcoded_password_string"
     },
     {
-      "code": "41     assert response.status_code == 200\n42     assert response.json()[\"username\"] == \"bob\"\n43 \n",
-      "col_offset": 4,
-      "end_col_offset": 47,
-      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 42,
-      "line_range": [
-        42
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "50 \n51     assert response.status_code == 200\n52     assert response.json()[\"access_token\"]\n",
+      "code": "50 \n51     assert response.status_code == 200\n52     assert response.json()[\"username\"] == \"bob\"\n",
       "col_offset": 4,
       "end_col_offset": 38,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
@@ -418,9 +371,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "51     assert response.status_code == 200\n52     assert response.json()[\"access_token\"]\n53     assert response.json()[\"user_debug\"][\"password\"] == \"admin_password\"\n",
+      "code": "51     assert response.status_code == 200\n52     assert response.json()[\"username\"] == \"bob\"\n53 \n",
       "col_offset": 4,
-      "end_col_offset": 42,
+      "end_col_offset": 47,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -438,27 +391,7 @@
       "test_name": "assert_used"
     },
     {
-      "code": "52     assert response.json()[\"access_token\"]\n53     assert response.json()[\"user_debug\"][\"password\"] == \"admin_password\"\n54 \n",
-      "col_offset": 4,
-      "end_col_offset": 72,
-      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 53,
-      "line_range": [
-        53
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "62 \n63     assert response.status_code == 200\n64     assert response.json()[\"is_admin\"] is True\n",
+      "code": "60 \n61     assert response.status_code == 401\n62     assert response.json()[\"detail\"] == \"Invalid username or password\"\n",
       "col_offset": 4,
       "end_col_offset": 38,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
@@ -469,18 +402,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 63,
+      "line_number": 61,
       "line_range": [
-        63
+        61
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "63     assert response.status_code == 200\n64     assert response.json()[\"is_admin\"] is True\n65     assert response.json()[\"password\"] == \"changed-by-client\"\n",
+      "code": "61     assert response.status_code == 401\n62     assert response.json()[\"detail\"] == \"Invalid username or password\"\n63 \n",
       "col_offset": 4,
-      "end_col_offset": 46,
+      "end_col_offset": 70,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -489,36 +422,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 64,
+      "line_number": 62,
       "line_range": [
-        64
+        62
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "64     assert response.json()[\"is_admin\"] is True\n65     assert response.json()[\"password\"] == \"changed-by-client\"\n66 \n",
-      "col_offset": 4,
-      "end_col_offset": 61,
-      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 65,
-      "line_range": [
-        65
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "70 \n71     assert response.status_code == 200\n72     assert len(response.json()) >= 3\n",
+      "code": "70 \n71     assert response.status_code == 200\n72     body = response.json()\n",
       "col_offset": 4,
       "end_col_offset": 38,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
@@ -538,9 +451,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "71     assert response.status_code == 200\n72     assert len(response.json()) >= 3\n73 \n",
+      "code": "72     body = response.json()\n73     assert body[\"token_type\"] == \"bearer\"\n74     assert len(body[\"access_token\"].split(\".\")) == 3\n",
       "col_offset": 4,
-      "end_col_offset": 36,
+      "end_col_offset": 41,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -549,76 +462,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 72,
+      "line_number": 73,
       "line_range": [
-        72
+        73
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "77 \n78     assert response.status_code == 200\n79     assert response.json()[\"new_price\"] == -10\n",
-      "col_offset": 4,
-      "end_col_offset": 38,
-      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 78,
-      "line_range": [
-        78
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "78     assert response.status_code == 200\n79     assert response.json()[\"new_price\"] == -10\n80 \n",
-      "col_offset": 4,
-      "end_col_offset": 46,
-      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 79,
-      "line_range": [
-        79
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "93 \n94     assert response.status_code == 200\n95     assert response.json()[\"order\"][\"price\"] == 0.01\n",
-      "col_offset": 4,
-      "end_col_offset": 38,
-      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 94,
-      "line_range": [
-        94
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "94     assert response.status_code == 200\n95     assert response.json()[\"order\"][\"price\"] == 0.01\n96     assert response.json()[\"order\"][\"is_paid\"] is True\n",
+      "code": "73     assert body[\"token_type\"] == \"bearer\"\n74     assert len(body[\"access_token\"].split(\".\")) == 3\n75     assert \"user_debug\" not in body\n",
       "col_offset": 4,
       "end_col_offset": 52,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
@@ -629,18 +482,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 95,
+      "line_number": 74,
       "line_range": [
-        95
+        74
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "95     assert response.json()[\"order\"][\"price\"] == 0.01\n96     assert response.json()[\"order\"][\"is_paid\"] is True\n97 \n",
+      "code": "74     assert len(body[\"access_token\"].split(\".\")) == 3\n75     assert \"user_debug\" not in body\n76     assert \"server_secret\" not in body\n",
       "col_offset": 4,
-      "end_col_offset": 54,
+      "end_col_offset": 35,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -649,16 +502,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 96,
+      "line_number": 75,
       "line_range": [
-        96
+        75
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "111 \n112     assert response.status_code == 200\n113     assert captured[\"url\"] == metadata_url\n",
+      "code": "75     assert \"user_debug\" not in body\n76     assert \"server_secret\" not in body\n77     assert \"password\" not in body\n",
       "col_offset": 4,
       "end_col_offset": 38,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
@@ -669,18 +522,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 112,
+      "line_number": 76,
       "line_range": [
-        112
+        76
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "112     assert response.status_code == 200\n113     assert captured[\"url\"] == metadata_url\n114     assert \"cloud credentials\" in response.json()[\"body_preview\"]\n",
+      "code": "76     assert \"server_secret\" not in body\n77     assert \"password\" not in body\n78 \n",
       "col_offset": 4,
-      "end_col_offset": 42,
+      "end_col_offset": 33,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -689,18 +542,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 113,
+      "line_number": 77,
       "line_range": [
-        113
+        77
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "113     assert captured[\"url\"] == metadata_url\n114     assert \"cloud credentials\" in response.json()[\"body_preview\"]\n115 \n",
+      "code": "84     )\n85     assert payload[\"sub\"] == \"99\"\n86     assert \"iat\" in payload\n",
       "col_offset": 4,
-      "end_col_offset": 65,
+      "end_col_offset": 33,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -709,16 +562,96 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 114,
+      "line_number": 85,
       "line_range": [
-        114
+        85
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "119 \n120     assert response.status_code == 200\n121     assert response.json()[\"db_password\"] == \"secret_admin_password\"\n",
+      "code": "85     assert payload[\"sub\"] == \"99\"\n86     assert \"iat\" in payload\n87     assert \"exp\" in payload\n",
+      "col_offset": 4,
+      "end_col_offset": 27,
+      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 86,
+      "line_range": [
+        86
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "86     assert \"iat\" in payload\n87     assert \"exp\" in payload\n88     assert \"jti\" in payload\n",
+      "col_offset": 4,
+      "end_col_offset": 27,
+      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 87,
+      "line_range": [
+        87
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "87     assert \"exp\" in payload\n88     assert \"jti\" in payload\n89 \n",
+      "col_offset": 4,
+      "end_col_offset": 27,
+      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 88,
+      "line_range": [
+        88
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "104         decode_access_token(forged_token)\n105     assert error.value.status_code == 401\n106 \n",
+      "col_offset": 4,
+      "end_col_offset": 41,
+      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 105,
+      "line_range": [
+        105
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "114 \n115     assert response.status_code == 200\n116     assert response.json()[\"is_admin\"] is True\n",
       "col_offset": 4,
       "end_col_offset": 38,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
@@ -729,18 +662,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 120,
+      "line_number": 115,
       "line_range": [
-        120
+        115
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "120     assert response.status_code == 200\n121     assert response.json()[\"db_password\"] == \"secret_admin_password\"\n122     assert response.json()[\"headers\"][\"x-lab-token\"] == \"visible\"\n",
+      "code": "115     assert response.status_code == 200\n116     assert response.json()[\"is_admin\"] is True\n117     assert response.json()[\"password\"] == \"changed-by-client\"\n",
       "col_offset": 4,
-      "end_col_offset": 68,
+      "end_col_offset": 46,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -749,18 +682,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 121,
+      "line_number": 116,
       "line_range": [
-        121
+        116
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "121     assert response.json()[\"db_password\"] == \"secret_admin_password\"\n122     assert response.json()[\"headers\"][\"x-lab-token\"] == \"visible\"\n123 \n",
+      "code": "116     assert response.json()[\"is_admin\"] is True\n117     assert response.json()[\"password\"] == \"changed-by-client\"\n118 \n",
       "col_offset": 4,
-      "end_col_offset": 65,
+      "end_col_offset": 61,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -769,16 +702,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 122,
+      "line_number": 117,
       "line_range": [
-        122
+        117
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "128 \n129     assert response.status_code == 200\n130     assert \"inventory-leak\" in response.json()[\"all_orders\"]\n",
+      "code": "122 \n123     assert response.status_code == 200\n124     assert len(response.json()) >= 3\n",
       "col_offset": 4,
       "end_col_offset": 38,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
@@ -789,18 +722,38 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 129,
+      "line_number": 123,
       "line_range": [
-        129
+        123
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "129     assert response.status_code == 200\n130     assert \"inventory-leak\" in response.json()[\"all_orders\"]\n131 \n",
+      "code": "123     assert response.status_code == 200\n124     assert len(response.json()) >= 3\n125 \n",
       "col_offset": 4,
-      "end_col_offset": 60,
+      "end_col_offset": 36,
+      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 124,
+      "line_range": [
+        124
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "129 \n130     assert response.status_code == 200\n131     assert response.json()[\"new_price\"] == -10\n",
+      "col_offset": 4,
+      "end_col_offset": 38,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -818,7 +771,27 @@
       "test_name": "assert_used"
     },
     {
-      "code": "154 \n155     assert response.status_code == 200\n156     assert \"zip=01001000\" in captured[\"url\"]\n",
+      "code": "130     assert response.status_code == 200\n131     assert response.json()[\"new_price\"] == -10\n132 \n",
+      "col_offset": 4,
+      "end_col_offset": 46,
+      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 131,
+      "line_range": [
+        131
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "145 \n146     assert response.status_code == 200\n147     assert response.json()[\"order\"][\"price\"] == 0.01\n",
       "col_offset": 4,
       "end_col_offset": 38,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
@@ -829,16 +802,196 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 155,
+      "line_number": 146,
       "line_range": [
-        155
+        146
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "155     assert response.status_code == 200\n156     assert \"zip=01001000\" in captured[\"url\"]\n157     assert response.json()[\"trusted_external_payload\"][\"is_admin\"] is True\n",
+      "code": "146     assert response.status_code == 200\n147     assert response.json()[\"order\"][\"price\"] == 0.01\n148     assert response.json()[\"order\"][\"is_paid\"] is True\n",
+      "col_offset": 4,
+      "end_col_offset": 52,
+      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 147,
+      "line_range": [
+        147
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "147     assert response.json()[\"order\"][\"price\"] == 0.01\n148     assert response.json()[\"order\"][\"is_paid\"] is True\n149 \n",
+      "col_offset": 4,
+      "end_col_offset": 54,
+      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 148,
+      "line_range": [
+        148
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "163 \n164     assert response.status_code == 200\n165     assert captured[\"url\"] == metadata_url\n",
+      "col_offset": 4,
+      "end_col_offset": 38,
+      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 164,
+      "line_range": [
+        164
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "164     assert response.status_code == 200\n165     assert captured[\"url\"] == metadata_url\n166     assert \"cloud credentials\" in response.json()[\"body_preview\"]\n",
+      "col_offset": 4,
+      "end_col_offset": 42,
+      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 165,
+      "line_range": [
+        165
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "165     assert captured[\"url\"] == metadata_url\n166     assert \"cloud credentials\" in response.json()[\"body_preview\"]\n167 \n",
+      "col_offset": 4,
+      "end_col_offset": 65,
+      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 166,
+      "line_range": [
+        166
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "171 \n172     assert response.status_code == 404\n173 \n",
+      "col_offset": 4,
+      "end_col_offset": 38,
+      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 172,
+      "line_range": [
+        172
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "178 \n179     assert response.status_code == 200\n180     assert \"inventory-leak\" in response.json()[\"all_orders\"]\n",
+      "col_offset": 4,
+      "end_col_offset": 38,
+      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 179,
+      "line_range": [
+        179
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "179     assert response.status_code == 200\n180     assert \"inventory-leak\" in response.json()[\"all_orders\"]\n181 \n",
+      "col_offset": 4,
+      "end_col_offset": 60,
+      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 180,
+      "line_range": [
+        180
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "204 \n205     assert response.status_code == 200\n206     assert \"zip=01001000\" in captured[\"url\"]\n",
+      "col_offset": 4,
+      "end_col_offset": 38,
+      "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 205,
+      "line_range": [
+        205
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "205     assert response.status_code == 200\n206     assert \"zip=01001000\" in captured[\"url\"]\n207     assert response.json()[\"trusted_external_payload\"][\"is_admin\"] is True\n",
       "col_offset": 4,
       "end_col_offset": 44,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
@@ -849,16 +1002,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 156,
+      "line_number": 206,
       "line_range": [
-        156
+        206
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "156     assert \"zip=01001000\" in captured[\"url\"]\n157     assert response.json()[\"trusted_external_payload\"][\"is_admin\"] is True\n158     assert response.json()[\"shipping_decision\"][\"street\"].startswith(\"<script>\")\n",
+      "code": "206     assert \"zip=01001000\" in captured[\"url\"]\n207     assert response.json()[\"trusted_external_payload\"][\"is_admin\"] is True\n208     assert response.json()[\"shipping_decision\"][\"street\"].startswith(\"<script>\")\n",
       "col_offset": 4,
       "end_col_offset": 74,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
@@ -869,16 +1022,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 157,
+      "line_number": 207,
       "line_range": [
-        157
+        207
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "157     assert response.json()[\"trusted_external_payload\"][\"is_admin\"] is True\n158     assert response.json()[\"shipping_decision\"][\"street\"].startswith(\"<script>\")\n",
+      "code": "207     assert response.json()[\"trusted_external_payload\"][\"is_admin\"] is True\n208     assert response.json()[\"shipping_decision\"][\"street\"].startswith(\"<script>\")\n",
       "col_offset": 4,
       "end_col_offset": 80,
       "filename": "broken-api/tests/test_owasp_api_top_10_lab.py",
@@ -889,9 +1042,9 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 158,
+      "line_number": 208,
       "line_range": [
-        158
+        208
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
