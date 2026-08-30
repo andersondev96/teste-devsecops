@@ -66,10 +66,26 @@ jobs:
 
       - name: 9. Subir a API para o teste DAST
         # Roda o container em background no GitHub Actions
-        run: docker run -d -p 8000:8000 vulnerable-api:latest
+        run: |
+          JWT_SECRET_KEY="$(openssl rand -hex 32)"
+          docker run -d -p 8000:8000 \
+            -e "JWT_SECRET_KEY=${JWT_SECRET_KEY}" \
+            -e "ACCESS_TOKEN_EXPIRE_MINUTES=15" \
+            vulnerable-api:latest
 
       - name: 10. Aguardar API ficar online
-        run: sleep 10
+        run: |
+          for attempt in {1..30}; do
+            if curl --fail --silent http://localhost:8000/openapi.json > /dev/null; then
+              echo "API disponível após ${attempt} tentativa(s)."
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "A API não ficou disponível a tempo. Logs do container:"
+          docker ps -a
+          docker logs $(docker ps -aq --filter ancestor=vulnerable-api:latest | head -n 1)
+          exit 1
 
       - name: 11. DAST - OWASP ZAP API Scan
         # Simula ataques reais contra os endpoints rodando
@@ -77,6 +93,9 @@ jobs:
         with:
           target: 'http://localhost:8000/openapi.json'
           format: openapi
+          # Gera o relatório no workspace para as etapas de artifacts e dashboard.
+          # A ação não cria report_json.json localmente sem esta opção.
+          cmd_options: '-J report_json.json'
           allow_issue_writing: false
           fail_action: false
         continue-on-error: true
