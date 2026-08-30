@@ -127,7 +127,25 @@ jobs:
           TRIVY_TOTAL=$(jq '[.Results[].Vulnerabilities[]?] | length' trivy_report.json || echo 0)
           TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           COMMIT_SHA=$(git rev-parse --short HEAD)
-          COMMIT_DESCRIPTION=$(git log -1 --pretty=%s)
+          COMMIT_SUBJECT=$(git log -1 --pretty=%s "$GITHUB_SHA")
+          COMMIT_DESCRIPTION="$COMMIT_SUBJECT"
+
+          # Em commits de merge, o subject é genérico ("Merge pull request...").
+          # Prioriza a primeira linha útil do corpo, que contém a descrição do
+          # commit/PR. Se o corpo estiver vazio, usa o commit associado ao merge.
+          if printf '%s' "$COMMIT_SUBJECT" | grep -Eiq '^Merge (pull request|branch)'; then
+            MERGE_DESCRIPTION=$(git log -1 --pretty=%b "$GITHUB_SHA" | awk 'NF && $0 !~ /^Merge (pull request|branch)/ { print; exit }')
+            if [ -n "$MERGE_DESCRIPTION" ]; then
+              COMMIT_DESCRIPTION="$MERGE_DESCRIPTION"
+            elif git rev-parse "$GITHUB_SHA^2" >/dev/null 2>&1; then
+              COMMIT_DESCRIPTION=$(git log -1 --no-merges --pretty=%s "$GITHUB_SHA^2")
+            fi
+          fi
+
+          # Nunca persiste o subject genérico de um merge no histórico.
+          if printf '%s' "$COMMIT_DESCRIPTION" | grep -Eiq '^Merge (pull request|branch)'; then
+            COMMIT_DESCRIPTION="Descrição do commit associado ao merge não disponível."
+          fi
 
           # Cria um objeto JSON com o resumo da execução atual
           jq -n \

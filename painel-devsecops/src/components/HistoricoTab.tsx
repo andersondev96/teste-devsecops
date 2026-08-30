@@ -36,7 +36,7 @@ export function HistoricoTab() {
                   <th className="px-6 py-4 flex items-center">
                     <Clock className="w-4 h-4 mr-2" /> Data e Hora (UTC)
                   </th>
-                  <th className="px-6 py-4 min-w-[320px]">Descrição do deploy</th>
+                  <th className="px-6 py-4 min-w-[320px]">Descrição do commit/deploy</th>
                   <th className="px-6 py-4 text-center" title="Static Application Security Testing">SAST (Código)</th>
                   <th className="px-6 py-4 text-center" title="Software Composition Analysis">SCA (Dependências)</th>
                   <th className="px-6 py-4 text-center" title="Container Scan">IaC (Infra/Docker)</th>
