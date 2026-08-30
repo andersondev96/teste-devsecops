@@ -68,5 +68,15 @@
     "dast": 12,
     "trivy": 9,
     "total": 22
+  },
+  {
+    "date": "2026-08-30T23:37:17Z",
+    "description": "Descrição do commit associado ao merge não disponível.",
+    "commit": "d00df7d",
+    "sast": 1,
+    "sca": 0,
+    "dast": 12,
+    "trivy": 9,
+    "total": 22
   }
 ]
