@@ -1,14 +1,18 @@
 import { BookOpen, AlertTriangle, CheckCircle, Target, FileText, ShieldCheck, Microscope, Zap } from 'lucide-react';
+import type { OwaspMapping } from '../constants/owsap';
 
 interface RelatorioProps {
   totalFalhas: number;
-  mapping: Record<string, { detected: boolean; tools: string[]; evidences: any[] }>;
+  mapping: Record<string, OwaspMapping>;
 }
 
 export function RelatorioTab({ totalFalhas, mapping }: RelatorioProps) {
-  const vulnerabilidadesAtivas = Object.keys(mapping).filter(id => mapping[id].detected);
+  const vulnerabilidadesAtivas = Object.keys(mapping).filter(id => mapping[id].status === 'vulnerable');
+  const mitigacoesParciais = Object.keys(mapping).filter(id => mapping[id].status === 'partially_mitigated');
+  const categoriasNaoAvaliadas = Object.keys(mapping).filter(id => mapping[id].status === 'not_assessed');
+  const categoriasPendentes = Object.keys(mapping).filter(id => mapping[id].status !== 'mitigated');
   const totalCategorias = Object.keys(mapping).length;
-  const totalMitigadas = Object.keys(mapping).filter(id => !mapping[id].detected).length;
+  const totalMitigadas = Object.keys(mapping).filter(id => mapping[id].status === 'mitigated').length;
 
   return (
     <div className="space-y-8 animate-in fade-in duration-500 text-slate-800 pb-12">
@@ -65,14 +69,14 @@ export function RelatorioTab({ totalFalhas, mapping }: RelatorioProps) {
             3. Proposição de Ações Corretivas (Mitigação)
           </h3>
 
-          {vulnerabilidadesAtivas.length > 0 ? (
+          {categoriasPendentes.length > 0 ? (
             <div className="space-y-10">
               <p className="text-sm text-slate-600 bg-amber-50 p-3 border-l-4 border-amber-400">
-                Abaixo estão detalhadas as estratégias de remediação para as categorias que possuem <strong>achados ativos</strong> nos relatórios da última inspeção.
+                O estado atual contém <strong>{vulnerabilidadesAtivas.length} categoria(s) vulnerável(is)</strong> e <strong>{mitigacoesParciais.length} categoria(s) com mitigação parcial</strong>{categoriasNaoAvaliadas.length > 0 ? <> e <strong>{categoriasNaoAvaliadas.length} categoria(s) não avaliada(s)</strong></> : null}. A ausência de um achado automático não é considerada mitigação completa.
               </p>
 
               {/* API1: BOLA */}
-              {mapping['API1']?.detected && (
+              {mapping['API1'] && mapping['API1'].status !== 'mitigated' && mapping['API1'].status !== 'not_assessed' && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <h4 className="font-bold text-lg text-slate-800">API1:2023 — Broken Object Level Authorization</h4>
@@ -96,29 +100,34 @@ export function RelatorioTab({ totalFalhas, mapping }: RelatorioProps) {
               )}
 
               {/* API2: AUTH */}
-              {mapping['API2']?.detected && (
+              {mapping['API2'] && mapping['API2'].status !== 'mitigated' && mapping['API2'].status !== 'not_assessed' && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between border-t pt-8">
                     <h4 className="font-bold text-lg text-slate-800">API2:2023 — Broken Authentication</h4>
-                    <span className="px-2 py-1 bg-red-100 text-red-700 text-xs font-bold rounded">STATUS: VULNERÁVEL</span>
+                    <span className={`px-2 py-1 text-xs font-bold rounded ${mapping['API2'].status === 'partially_mitigated' ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700'}`}>
+                      {mapping['API2'].status === 'partially_mitigated' ? 'STATUS: MITIGAÇÃO PARCIAL' : 'STATUS: VULNERÁVEL'}
+                    </span>
                   </div>
                   <p className="text-sm text-slate-600 text-justify">
-                    <strong>Análise de Risco:</strong> Identificou-se o uso de mecanismos de autenticação fracos ou ausentes. O uso de Base64 não provê confidencialidade, facilitando o roubo de credenciais em trânsito.
+                    <strong>Análise de Risco:</strong> Os controles básicos do login foram reforçados, mas a categoria ainda possui controles complementares pendentes, como rate limiting, revogação de tokens e auditoria de autenticação.
                   </p>
-                  <p className="text-sm font-semibold text-academico-primary">Estratégia de Mitigação:</p>
-                  <div className="bg-slate-900 rounded-lg p-5 font-mono text-xs shadow-inner overflow-hidden border border-slate-700">
-                    <div className="text-emerald-400">
-                      <p className="text-slate-500 mb-2">// Substituir Base64 por JWT com Signature HS256</p>
-                      <p><span className="text-blue-400">from</span> jose <span className="text-blue-400">import</span> jwt</p>
-                      <p>payload = {"{"}"sub": user.email, "exp": datetime.utcnow() + timedelta(hours=1){"}"}</p>
-                      <p>encoded_jwt = jwt.encode(payload, SECRET_KEY, algorithm=<span className="text-orange-400">"HS256"</span>)</p>
+                    <p className="text-sm font-semibold text-academico-primary">Estratégia de Mitigação:</p>
+                    <div className="bg-slate-900 rounded-lg p-5 font-mono text-xs shadow-inner overflow-hidden border border-slate-700">
+                      <div className="text-emerald-400">
+                      <p className="text-slate-500 mb-2">// Exemplo dos controles complementares pendentes</p>
+                      <p>@limiter.limit(<span className="text-orange-400">"5/minute"</span>)</p>
+                      <p><span className="text-blue-400">async def</span> login(credentials):</p>
+                      <p className="pl-4">user = authenticate_with_hashed_password(credentials)</p>
+                      <p className="pl-4">token = create_signed_access_token(user)</p>
+                      <p className="pl-4">audit_authentication_event(user, success=<span className="text-orange-400">True</span>)</p>
+                      <p className="pl-4"><span className="text-blue-400">return</span> token</p>
                     </div>
                   </div>
                 </div>
               )}
 
               {/* API8: MISCONFIG */}
-              {mapping['API8']?.detected && (
+              {mapping['API8'] && mapping['API8'].status !== 'mitigated' && mapping['API8'].status !== 'not_assessed' && (
                 <div className="space-y-4">
                   <div className="flex items-center justify-between border-t pt-8">
                     <h4 className="font-bold text-lg text-slate-800">API8:2023 — Security Misconfiguration</h4>
@@ -143,8 +152,8 @@ export function RelatorioTab({ totalFalhas, mapping }: RelatorioProps) {
           ) : (
             <div className="p-10 bg-green-50 border border-green-200 rounded-lg text-center shadow-inner">
               <ShieldCheck className="w-16 h-16 text-green-500 mx-auto mb-4" />
-              <p className="text-green-800 text-xl font-bold">Nenhum achado automático ativo</p>
-              <p className="text-green-600 mt-2">Nenhum achado ativo do mapeamento OWASP foi encontrado nos relatórios atuais.</p>
+              <p className="text-green-800 text-xl font-bold">Todas as categorias estão mitigadas</p>
+              <p className="text-green-600 mt-2">Todas as categorias possuem evidência de mitigação completa registrada.</p>
             </div>
           )}
         </section>
@@ -156,7 +165,7 @@ export function RelatorioTab({ totalFalhas, mapping }: RelatorioProps) {
             4. Conclusão do Experimento
           </h3>
           <p className="text-slate-600 leading-relaxed text-justify">
-            A implementação da arquitetura DevSecOps provou-se um diferencial crítico na resiliência da aplicação. Através da estratégia de <strong>Shift-Left</strong>, foi possível antecipar vulnerabilidades que tradicionalmente só seriam descobertas em fases de auditoria externa ou incidentes reais. No ciclo atual, {totalMitigadas}/{totalCategorias} categorias não apresentam achados ativos nos relatórios automatizados.
+            A implementação da arquitetura DevSecOps provou-se um diferencial crítico na resiliência da aplicação. Através da estratégia de <strong>Shift-Left</strong>, foi possível antecipar vulnerabilidades que tradicionalmente só seriam descobertas em fases de auditoria externa ou incidentes reais. No ciclo atual, {totalMitigadas}/{totalCategorias} categorias possuem mitigação completa registrada; {vulnerabilidadesAtivas.length} permanecem vulneráveis e {mitigacoesParciais.length} estão parcialmente mitigadas{categoriasNaoAvaliadas.length > 0 ? `, enquanto ${categoriasNaoAvaliadas.length} não foram avaliadas` : ''}.
           </p>
         </section>
 

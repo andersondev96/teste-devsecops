@@ -11,6 +11,31 @@ export const OWASP_API_2023 = [
   { id: 'API10', title: 'API10:2023 - Unsafe Consumption of APIs', desc: 'Falta de validação em APIs de terceiros.' },
 ];
 
+export type OwaspStatus = 'vulnerable' | 'partially_mitigated' | 'mitigated' | 'not_assessed';
+
+export type OwaspMapping = {
+  status: OwaspStatus;
+  tools: string[];
+  evidences: any[];
+};
+
+// Estado de referência do laboratório. A ausência de um achado automático
+// não é suficiente para alterar uma categoria para "mitigated".
+// A API2 tem controles de login corrigidos, mas ainda possui controles
+// complementares pendentes (rate limiting, revogação e auditoria).
+export const OWASP_LAB_STATUS: Record<string, OwaspStatus> = {
+  API1: 'vulnerable',
+  API2: 'partially_mitigated',
+  API3: 'vulnerable',
+  API4: 'vulnerable',
+  API5: 'vulnerable',
+  API6: 'vulnerable',
+  API7: 'vulnerable',
+  API8: 'vulnerable',
+  API9: 'vulnerable',
+  API10: 'vulnerable',
+};
+
 // Evidências do laboratório: os testes abaixo exercitam intencionalmente
 // cada categoria implementada na API vulnerável. Elas complementam os
 // achados automáticos do ZAP/Bandit, que não conseguem identificar todas as

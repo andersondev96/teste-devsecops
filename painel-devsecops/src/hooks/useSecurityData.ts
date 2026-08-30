@@ -4,7 +4,12 @@ import scaReport from '../data/sca_report.json';
 import trivyReport from '../data/trivy_report.json';
 import zapReport from '../data/report_json.json';
 import rawHistoryData from '../data/history.json';
-import { OWASP_API_2023 } from '../constants/owsap';
+import {
+  OWASP_API_2023,
+  OWASP_LAB_EVIDENCE,
+  OWASP_LAB_STATUS,
+  type OwaspMapping,
+} from '../constants/owsap';
 
 // Dizemos ao TypeScript exatamente o que esperar, mesmo que o JSON esteja vazio agora.
 const historyData = rawHistoryData as Array<{
@@ -88,11 +93,20 @@ export function useSecurityData() {
   }, []);
 
   const owaspMapping = useMemo(() => {
-    const mapping: Record<string, { detected: boolean; tools: string[]; evidences: any[] }> = {};
-    OWASP_API_2023.forEach(cat => mapping[cat.id] = { detected: false, tools: [], evidences: [] });
+    const mapping: Record<string, OwaspMapping> = {};
+    OWASP_API_2023.forEach((cat) => {
+      const status = OWASP_LAB_STATUS[cat.id] || 'not_assessed';
+      const labEvidence = OWASP_LAB_EVIDENCE[cat.id];
+
+      mapping[cat.id] = {
+        status,
+        tools: labEvidence ? ['Testes OWASP da API'] : [],
+        evidences: labEvidence ? [labEvidence] : [],
+      };
+    });
 
     const markDetected = (id: string, tool: string, evidence: any) => {
-      mapping[id].detected = true;
+      mapping[id].status = 'vulnerable';
       if (!mapping[id].tools.includes(tool)) mapping[id].tools.push(tool);
       mapping[id].evidences.push(evidence);
     };

@@ -1,10 +1,18 @@
 import { useState } from 'react';
-import { ChevronDown, ChevronUp, CheckCircle, XCircle, ExternalLink, Lightbulb } from 'lucide-react';
+import { ChevronDown, ChevronUp, CheckCircle, XCircle, AlertTriangle, CircleHelp, ExternalLink, Lightbulb } from 'lucide-react';
+import type { OwaspMapping, OwaspStatus } from '../constants/owsap';
 
 interface OwaspProps {
   categories: { id: string; title: string; desc: string }[];
-  mapping: Record<string, { detected: boolean; tools: string[]; evidences: any[] }>;
+  mapping: Record<string, OwaspMapping>;
 }
+
+const statusLabel: Record<OwaspStatus, string> = {
+  vulnerable: 'VULNERÁVEL',
+  partially_mitigated: 'MITIGAÇÃO PARCIAL',
+  mitigated: 'MITIGADA',
+  not_assessed: 'NÃO AVALIADA',
+};
 
 export function OwaspTab({ categories, mapping }: OwaspProps) {
   const [expandedRow, setExpandedRow] = useState<string | null>(null);
@@ -23,7 +31,7 @@ export function OwaspTab({ categories, mapping }: OwaspProps) {
     <div className="space-y-6 animate-in fade-in duration-500">
       <div className="flex justify-between items-end border-b pb-2">
         <h2 className="text-xl font-semibold">Mapeamento OWASP API Security Top 10 (2023)</h2>
-        <span className="text-sm text-slate-500">Achados ativos dos relatórios do pipeline</span>
+        <span className="text-sm text-slate-500">Evidências do laboratório e achados ativos do pipeline</span>
       </div>
 
       <div className="flex flex-col border rounded-md overflow-hidden shadow-sm">
@@ -38,22 +46,24 @@ export function OwaspTab({ categories, mapping }: OwaspProps) {
                 className="w-full flex items-center justify-between p-4 hover:bg-slate-50 transition-colors focus:outline-none"
               >
                 <div className="flex items-center space-x-4">
-                  {data.detected ? (
-                    <XCircle className="w-6 h-6 text-red-500 flex-shrink-0" />
-                  ) : (
-                    <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />
-                  )}
+                  {data.status === 'vulnerable' && <XCircle className="w-6 h-6 text-red-500 flex-shrink-0" />}
+                  {data.status === 'partially_mitigated' && <AlertTriangle className="w-6 h-6 text-amber-500 flex-shrink-0" />}
+                  {data.status === 'mitigated' && <CheckCircle className="w-6 h-6 text-green-500 flex-shrink-0" />}
+                  {data.status === 'not_assessed' && <CircleHelp className="w-6 h-6 text-slate-400 flex-shrink-0" />}
                   <div className="text-left">
-                    <h3 className={`font-semibold ${data.detected ? 'text-red-700' : 'text-slate-700'}`}>
+                    <h3 className={`font-semibold ${data.status === 'vulnerable' ? 'text-red-700' : data.status === 'partially_mitigated' ? 'text-amber-700' : 'text-slate-700'}`}>
                       {cat.title}
                     </h3>
                     <p className="text-sm text-slate-500 mt-0.5">{cat.desc}</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
-                  {data.detected && (
-                    <span className="px-2.5 py-1 text-xs font-bold bg-red-100 text-red-700 rounded-full">
-                      {data.evidences.length} Achados
+                  <span className={`px-2.5 py-1 text-xs font-bold rounded-full ${data.status === 'vulnerable' ? 'bg-red-100 text-red-700' : data.status === 'partially_mitigated' ? 'bg-amber-100 text-amber-700' : data.status === 'mitigated' ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-600'}`}>
+                    {statusLabel[data.status]}
+                  </span>
+                  {data.evidences.length > 0 && (
+                    <span className="px-2.5 py-1 text-xs font-bold bg-slate-100 text-slate-600 rounded-full">
+                      {data.evidences.length} Evidências
                     </span>
                   )}
                   {isExpanded ? (
@@ -64,9 +74,15 @@ export function OwaspTab({ categories, mapping }: OwaspProps) {
                 </div>
               </button>
 
-              {isExpanded && data.detected && (
+              {isExpanded && data.evidences.length > 0 && (
                 <div className="p-6 bg-slate-50 border-t">
                   <div className="space-y-6">
+                    <p className={`text-sm px-3 py-2 rounded-md border ${data.status === 'vulnerable' ? 'text-red-700 bg-red-50 border-red-200' : data.status === 'partially_mitigated' ? 'text-amber-700 bg-amber-50 border-amber-200' : data.status === 'mitigated' ? 'text-green-700 bg-green-50 border-green-200' : 'text-slate-600 bg-white border-slate-200'}`}>
+                      {data.status === 'vulnerable' && 'A vulnerabilidade foi confirmada por evidência de laboratório ou achado ativo de scanner.'}
+                      {data.status === 'partially_mitigated' && 'Há controles implementados, mas a categoria ainda não foi totalmente mitigada.'}
+                      {data.status === 'mitigated' && 'A categoria foi marcada como mitigada conforme os controles e testes registrados.'}
+                      {data.status === 'not_assessed' && 'Não há evidência suficiente para concluir o estado desta categoria.'}
+                    </p>
                     <p className="text-sm text-slate-700 bg-white inline-block px-3 py-1.5 rounded-md border shadow-sm">
                       <span className="font-semibold text-slate-800">Detetado por:</span> {data.tools.join(' / ')}
                     </p>
@@ -150,9 +166,9 @@ export function OwaspTab({ categories, mapping }: OwaspProps) {
                 </div>
               )}
 
-              {isExpanded && !data.detected && (
-                <div className="p-6 bg-green-50 border-t text-center text-green-700 text-sm">
-                  Nenhum achado ativo correspondente a esta categoria foi detetado nos relatórios atuais.
+              {isExpanded && data.evidences.length === 0 && (
+                <div className="p-6 bg-slate-50 border-t text-center text-slate-600 text-sm">
+                  Esta categoria não possui evidência registrada para o ciclo atual e não deve ser considerada mitigada.
                 </div>
               )}
             </div>
