@@ -2,10 +2,10 @@
     "report_meta": {
         "scan_target": "files",
         "scanned": [
-            "broken-api/requirements.txt"
+            "broken-api/requirements-dev.txt"
         ],
         "scanned_full_path": [
-            "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements.txt"
+            "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements-dev.txt"
         ],
         "target_languages": [
             "python"
@@ -17,9 +17,9 @@
         "account": "",
         "local_database_path": null,
         "safety_version": "3.8.1",
-        "timestamp": "2026-08-30 01:22:19",
+        "timestamp": "2026-08-30 01:57:59",
         "packages_found": 6,
-        "vulnerabilities_found": 7,
+        "vulnerabilities_found": 0,
         "vulnerabilities_ignored": 0,
         "remediations_recommended": 0,
         "telemetry": {
@@ -39,13 +39,13 @@
             "os_type": "Linux",
             "os_release": "6.17.0-1022-azure",
             "os_description": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
-            "python_version": "3.9.25",
+            "python_version": "3.12.14",
             "safety_command": "check"
         },
         "git": {
             "branch": "main",
             "tag": "",
-            "commit": "a204833b6021cc16f84fc87c7e7ccec04f7ef6b0",
+            "commit": "c1633fd3f51a916f552f25dad0f5c224edec685d",
             "dirty": "False",
             "origin": "https://github.com/andersondev96/teste-devsecops"
         },
@@ -56,18 +56,48 @@
         "remediation_mode": "NON_INTERACTIVE"
     },
     "scanned_packages": {
-        "fastapi": {
-            "name": "fastapi",
-            "version": "0.115.0",
+        "httpx": {
+            "name": "httpx",
+            "version": "0.27.2",
             "requirements": [
                 {
-                    "raw": "fastapi==0.115.0",
+                    "raw": "httpx==0.27.2",
+                    "extras": [],
+                    "marker": null,
+                    "name": "httpx",
+                    "specifier": "==0.27.2",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements-dev.txt"
+                }
+            ]
+        },
+        "pytest": {
+            "name": "pytest",
+            "version": "9.0.3",
+            "requirements": [
+                {
+                    "raw": "pytest==9.0.3",
+                    "extras": [],
+                    "marker": null,
+                    "name": "pytest",
+                    "specifier": "==9.0.3",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements-dev.txt"
+                }
+            ]
+        },
+        "fastapi": {
+            "name": "fastapi",
+            "version": "0.116.1",
+            "requirements": [
+                {
+                    "raw": "fastapi==0.116.1",
                     "extras": [],
                     "marker": null,
                     "name": "fastapi",
-                    "specifier": "==0.115.0",
+                    "specifier": "==0.116.1",
                     "url": null,
-                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements.txt"
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements-dev.txt"
                 }
             ]
         },
@@ -84,7 +114,7 @@
                     "name": "uvicorn",
                     "specifier": "==0.30.6",
                     "url": null,
-                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements.txt"
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements-dev.txt"
                 }
             ]
         },
@@ -99,634 +129,31 @@
                     "name": "pydantic",
                     "specifier": "==2.9.2",
                     "url": null,
-                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements.txt"
-                }
-            ]
-        },
-        "httpx": {
-            "name": "httpx",
-            "version": "0.27.2",
-            "requirements": [
-                {
-                    "raw": "httpx==0.27.2",
-                    "extras": [],
-                    "marker": null,
-                    "name": "httpx",
-                    "specifier": "==0.27.2",
-                    "url": null,
-                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements.txt"
-                }
-            ]
-        },
-        "pytest": {
-            "name": "pytest",
-            "version": "8.3.3",
-            "requirements": [
-                {
-                    "raw": "pytest==8.3.3",
-                    "extras": [],
-                    "marker": null,
-                    "name": "pytest",
-                    "specifier": "==8.3.3",
-                    "url": null,
-                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements.txt"
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements-dev.txt"
                 }
             ]
         },
         "pyjwt": {
             "name": "pyjwt",
-            "version": "2.9.0",
+            "version": "2.13.0",
             "requirements": [
                 {
-                    "raw": "PyJWT==2.9.0",
+                    "raw": "PyJWT==2.13.0",
                     "extras": [],
                     "marker": null,
                     "name": "PyJWT",
-                    "specifier": "==2.9.0",
+                    "specifier": "==2.13.0",
                     "url": null,
-                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements.txt"
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements-dev.txt"
                 }
             ]
         }
     },
-    "affected_packages": {
-        "pyjwt": {
-            "name": "pyjwt",
-            "version": "2.9.0",
-            "requirements": [
-                {
-                    "raw": "PyJWT==2.9.0",
-                    "extras": [],
-                    "marker": null,
-                    "name": "PyJWT",
-                    "specifier": "==2.9.0",
-                    "url": null,
-                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements.txt"
-                }
-            ],
-            "found": null,
-            "insecure_versions": [
-                "0.1.1",
-                "0.1.2",
-                "0.1.3",
-                "0.1.4",
-                "0.1.5",
-                "0.1.6",
-                "0.1.7",
-                "0.1.8",
-                "0.1.9",
-                "0.2.0",
-                "0.2.1",
-                "0.2.3",
-                "0.3.0",
-                "0.3.1",
-                "0.3.2",
-                "0.4.0",
-                "0.4.1",
-                "0.4.2",
-                "0.4.3",
-                "1.0.0",
-                "1.0.1",
-                "1.1.0",
-                "1.3.0",
-                "1.4.0",
-                "1.4.1",
-                "1.4.2",
-                "1.5.0",
-                "1.5.1",
-                "1.5.2",
-                "1.5.3",
-                "1.6.0",
-                "1.6.1",
-                "1.6.3",
-                "1.6.4",
-                "1.7.0",
-                "1.7.1",
-                "2.0.0a1",
-                "2.0.0a2",
-                "2.0.0",
-                "2.0.1",
-                "2.1.0",
-                "2.2.0",
-                "2.3.0",
-                "2.4.0",
-                "2.5.0",
-                "2.6.0",
-                "2.7.0",
-                "2.8.0",
-                "2.9.0",
-                "2.10.0",
-                "2.10.1",
-                "2.11.0",
-                "2.12.0",
-                "2.12.1"
-            ],
-            "secure_versions": [
-                "2.13.0"
-            ],
-            "latest_version_without_known_vulnerabilities": "2.13.0",
-            "latest_version": "2.13.0",
-            "more_info_url": "https://getsafety.com/p/pypi/pyjwt/97c/"
-        },
-        "pytest": {
-            "name": "pytest",
-            "version": "8.3.3",
-            "requirements": [
-                {
-                    "raw": "pytest==8.3.3",
-                    "extras": [],
-                    "marker": null,
-                    "name": "pytest",
-                    "specifier": "==8.3.3",
-                    "url": null,
-                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements.txt"
-                }
-            ],
-            "found": null,
-            "insecure_versions": [
-                "2.0.0",
-                "2.0.1",
-                "2.0.2",
-                "2.0.3",
-                "2.1.0",
-                "2.1.1",
-                "2.1.2",
-                "2.1.3",
-                "2.2.0",
-                "2.2.1",
-                "2.2.2",
-                "2.2.3",
-                "2.2.4",
-                "2.3.0",
-                "2.3.1",
-                "2.3.2",
-                "2.3.3",
-                "2.3.4",
-                "2.3.5",
-                "2.4.0",
-                "2.4.1",
-                "2.4.2",
-                "2.5.0",
-                "2.5.1",
-                "2.5.2",
-                "2.6.0",
-                "2.6.1",
-                "2.6.2",
-                "2.6.3",
-                "2.6.4",
-                "2.7.0",
-                "2.7.1",
-                "2.7.2",
-                "2.7.3",
-                "2.8.0",
-                "2.8.1",
-                "2.8.2",
-                "2.8.3",
-                "2.8.4",
-                "2.8.5",
-                "2.8.6",
-                "2.8.7",
-                "2.9.0",
-                "2.9.1",
-                "2.9.2",
-                "3.0.0",
-                "3.0.1",
-                "3.0.2",
-                "3.0.3",
-                "3.0.4",
-                "3.0.5",
-                "3.0.6",
-                "3.0.7",
-                "3.1.0",
-                "3.1.1",
-                "3.1.2",
-                "3.1.3",
-                "3.2.0",
-                "3.2.1",
-                "3.2.2",
-                "3.2.3",
-                "3.2.4",
-                "3.2.5",
-                "3.3.0",
-                "3.3.1",
-                "3.3.2",
-                "3.4.0",
-                "3.4.1",
-                "3.4.2",
-                "3.5.0",
-                "3.5.1",
-                "3.6.0",
-                "3.6.1",
-                "3.6.2",
-                "3.6.3",
-                "3.6.4",
-                "3.7.0",
-                "3.7.1",
-                "3.7.2",
-                "3.7.3",
-                "3.7.4",
-                "3.8.0",
-                "3.8.1",
-                "3.8.2",
-                "3.9.1",
-                "3.9.2",
-                "3.9.3",
-                "3.10.0",
-                "3.10.1",
-                "4.0.0",
-                "4.0.1",
-                "4.0.2",
-                "4.1.0",
-                "4.1.1",
-                "4.2.0",
-                "4.2.1",
-                "4.3.0",
-                "4.3.1",
-                "4.4.0",
-                "4.4.1",
-                "4.4.2",
-                "4.5.0",
-                "4.6.0",
-                "4.6.1",
-                "4.6.2",
-                "4.6.3",
-                "4.6.4",
-                "4.6.5",
-                "4.6.6",
-                "4.6.7",
-                "4.6.8",
-                "4.6.9",
-                "4.6.10",
-                "4.6.11",
-                "5.0.0",
-                "5.0.1",
-                "5.1.0",
-                "5.1.1",
-                "5.1.2",
-                "5.1.3",
-                "5.2.0",
-                "5.2.1",
-                "5.2.2",
-                "5.2.3",
-                "5.2.4",
-                "5.3.0",
-                "5.3.1",
-                "5.3.2",
-                "5.3.3",
-                "5.3.4",
-                "5.3.5",
-                "5.4.0",
-                "5.4.1",
-                "5.4.2",
-                "5.4.3",
-                "6.0.0rc1",
-                "6.0.0",
-                "6.0.1",
-                "6.0.2",
-                "6.1.0",
-                "6.1.1",
-                "6.1.2",
-                "6.2.0",
-                "6.2.1",
-                "6.2.2",
-                "6.2.3",
-                "6.2.4",
-                "6.2.5",
-                "7.0.0rc1",
-                "7.0.0",
-                "7.0.1",
-                "7.1.0",
-                "7.1.1",
-                "7.1.2",
-                "7.1.3",
-                "7.2.0",
-                "7.2.1",
-                "7.2.2",
-                "7.3.0",
-                "7.3.1",
-                "7.3.2",
-                "7.4.0",
-                "7.4.1",
-                "7.4.2",
-                "7.4.3",
-                "7.4.4",
-                "8.0.0rc1",
-                "8.0.0rc2",
-                "8.0.0",
-                "8.0.1",
-                "8.0.2",
-                "8.1.0",
-                "8.1.1",
-                "8.1.2",
-                "8.2.0",
-                "8.2.1",
-                "8.2.2",
-                "8.3.0",
-                "8.3.1",
-                "8.3.2",
-                "8.3.3",
-                "8.3.4",
-                "8.3.5",
-                "8.4.0",
-                "8.4.1",
-                "8.4.2",
-                "9.0.0",
-                "9.0.1",
-                "9.0.2"
-            ],
-            "secure_versions": [
-                "9.1.1",
-                "9.1.0",
-                "9.0.3"
-            ],
-            "latest_version_without_known_vulnerabilities": "9.1.1",
-            "latest_version": "9.1.1",
-            "more_info_url": "https://getsafety.com/p/pypi/pytest/97c/"
-        }
-    },
+    "affected_packages": {},
     "announcements": [],
-    "vulnerabilities": [
-        {
-            "vulnerability_id": "SFTY-20260615-88836",
-            "package_name": "pyjwt",
-            "ignored": {},
-            "ignored_reason": null,
-            "ignored_expires": null,
-            "vulnerable_spec": [
-                ">=2.9.0,<2.13.0"
-            ],
-            "all_vulnerable_specs": [
-                ">=2.9.0,<2.13.0"
-            ],
-            "analyzed_version": "2.9.0",
-            "analyzed_requirement": {
-                "raw": "PyJWT==2.9.0",
-                "extras": [],
-                "marker": null,
-                "name": "PyJWT",
-                "specifier": "==2.9.0",
-                "url": null,
-                "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements.txt"
-            },
-            "advisory": "Affected versions of the PyJWT package are vulnerable to an Algorithm Allow-list Bypass due to improper handling of algorithm verification with `PyJWK` keys. The `jwt.decode()` and `jwt.decode_complete()` functions verify the `alg` field in the JWT header against a caller-supplied allow-list, but the actual signature verification is performed using the algorithm bound to the `PyJWK` object, not the one specified in the header. An attacker with control over a registered JWK/JWKS private key can exploit this vulnerability by signing a token with a disallowed algorithm, setting an allowed algorithm in the JWT header, and having the token accepted, thus bypassing verifier-side algorithm policies.",
-            "is_transitive": false,
-            "published_date": null,
-            "fixed_versions": [],
-            "closest_versions_without_known_vulnerabilities": [],
-            "resources": [],
-            "CVE": "CVE-2026-48523",
-            "severity": null,
-            "affected_versions": [],
-            "more_info_url": "https://getsafety.com/v/SFTY-20260615-88836/97c"
-        },
-        {
-            "vulnerability_id": "SFTY-20260615-71642",
-            "package_name": "pyjwt",
-            "ignored": {},
-            "ignored_reason": null,
-            "ignored_expires": null,
-            "vulnerable_spec": [
-                "<2.13.0"
-            ],
-            "all_vulnerable_specs": [
-                "<2.13.0"
-            ],
-            "analyzed_version": "2.9.0",
-            "analyzed_requirement": {
-                "raw": "PyJWT==2.9.0",
-                "extras": [],
-                "marker": null,
-                "name": "PyJWT",
-                "specifier": "==2.9.0",
-                "url": null,
-                "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements.txt"
-            },
-            "advisory": "Affected versions of the PyJWT package are vulnerable to an Algorithm Confusion attack due to improper validation of JSON Web Keys (JWKs) when used with HMAC algorithms. The `decode` method in PyJWT fails to distinguish between public keys and secret keys when both symmetric (HMAC) and asymmetric algorithms are allowed, leading to the acceptance of a public key as an HMAC secret. An attacker can exploit this by crafting a token with an HMAC algorithm header and using a public JWK as the secret, allowing them to forge tokens and impersonate users, potentially bypassing authorization controls.",
-            "is_transitive": false,
-            "published_date": null,
-            "fixed_versions": [],
-            "closest_versions_without_known_vulnerabilities": [],
-            "resources": [],
-            "CVE": "CVE-2026-48526",
-            "severity": null,
-            "affected_versions": [],
-            "more_info_url": "https://getsafety.com/v/SFTY-20260615-71642/97c"
-        },
-        {
-            "vulnerability_id": "SFTY-20260615-85895",
-            "package_name": "pyjwt",
-            "ignored": {},
-            "ignored_reason": null,
-            "ignored_expires": null,
-            "vulnerable_spec": [
-                "<=2.12.1"
-            ],
-            "all_vulnerable_specs": [
-                "<=2.12.1"
-            ],
-            "analyzed_version": "2.9.0",
-            "analyzed_requirement": {
-                "raw": "PyJWT==2.9.0",
-                "extras": [],
-                "marker": null,
-                "name": "PyJWT",
-                "specifier": "==2.9.0",
-                "url": null,
-                "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements.txt"
-            },
-            "advisory": "Affected versions of the PyJWKClient package are vulnerable to Server-Side Request Forgery (SSRF) due to a missing scheme allowlist. The `uri` argument is passed directly to `urllib.request.urlopen()`, which by default supports multiple URI schemes including `file://`, `ftp://`, and `data:`, without restriction. An attacker can exploit this vulnerability by providing a crafted `jku` URL, potentially leading to unauthorized file reads or token forgery if they have write access to a filesystem path and can control the URL.",
-            "is_transitive": false,
-            "published_date": null,
-            "fixed_versions": [],
-            "closest_versions_without_known_vulnerabilities": [],
-            "resources": [],
-            "CVE": "CVE-2026-48522",
-            "severity": null,
-            "affected_versions": [],
-            "more_info_url": "https://getsafety.com/v/SFTY-20260615-85895/97c"
-        },
-        {
-            "vulnerability_id": "SFTY-20260615-82927",
-            "package_name": "pyjwt",
-            "ignored": {},
-            "ignored_reason": null,
-            "ignored_expires": null,
-            "vulnerable_spec": [
-                "<=2.12.1"
-            ],
-            "all_vulnerable_specs": [
-                "<=2.12.1"
-            ],
-            "analyzed_version": "2.9.0",
-            "analyzed_requirement": {
-                "raw": "PyJWT==2.9.0",
-                "extras": [],
-                "marker": null,
-                "name": "PyJWT",
-                "specifier": "==2.9.0",
-                "url": null,
-                "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements.txt"
-            },
-            "advisory": "Affected versions of the PyJWKClient package are vulnerable to Denial of Service (DoS) due to unbounded JWKS endpoint requests. The `get_signing_key` method forces a new HTTP request to the JWKS endpoint for each JWT with an unknown `kid` value, bypassing the TTL cache and lacking rate limiting. An attacker can exploit this by sending numerous JWTs with arbitrary `kid` values, causing excessive outbound requests and potentially leading to reduced authentication availability.\nNote: The vulnerability surfaces only when a JWKS fetch fails; an attacker can attempt to provoke that with sustained unknown-kid traffic, but the outcome depends on upstream JWKS-endpoint behaviour (rate limiting, transient errors), which is beyond the attacker's control.",
-            "is_transitive": false,
-            "published_date": null,
-            "fixed_versions": [],
-            "closest_versions_without_known_vulnerabilities": [],
-            "resources": [],
-            "CVE": "CVE-2026-48524",
-            "severity": null,
-            "affected_versions": [],
-            "more_info_url": "https://getsafety.com/v/SFTY-20260615-82927/97c"
-        },
-        {
-            "vulnerability_id": "SFTY-20260615-02573",
-            "package_name": "pyjwt",
-            "ignored": {},
-            "ignored_reason": null,
-            "ignored_expires": null,
-            "vulnerable_spec": [
-                ">=2.8.0,<=2.12.1"
-            ],
-            "all_vulnerable_specs": [
-                ">=2.8.0,<=2.12.1"
-            ],
-            "analyzed_version": "2.9.0",
-            "analyzed_requirement": {
-                "raw": "PyJWT==2.9.0",
-                "extras": [],
-                "marker": null,
-                "name": "PyJWT",
-                "specifier": "==2.9.0",
-                "url": null,
-                "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements.txt"
-            },
-            "advisory": "Affected versions of the PyJWT package are vulnerable to Denial of Service (DoS) due to unbounded Base64URL decoding of an unused payload segment in b64=false detached JWS tokens. The `PyJWS.decode()` and `PyJWS.decode_complete()` methods in `jwt/api_jws.py` perform Base64URL decoding of the payload segment before checking if the `\"b64\": false\"` option is set, leading to unnecessary resource consumption. An attacker can exploit this by sending a JWS token with an inflated payload segment, causing excessive CPU and memory usage even if the signature is invalid, potentially leading to service disruption.",
-            "is_transitive": false,
-            "published_date": null,
-            "fixed_versions": [],
-            "closest_versions_without_known_vulnerabilities": [],
-            "resources": [],
-            "CVE": "CVE-2026-48525",
-            "severity": null,
-            "affected_versions": [],
-            "more_info_url": "https://getsafety.com/v/SFTY-20260615-02573/97c"
-        },
-        {
-            "vulnerability_id": "89028",
-            "package_name": "pyjwt",
-            "ignored": {},
-            "ignored_reason": null,
-            "ignored_expires": null,
-            "vulnerable_spec": [
-                "<2.12.0"
-            ],
-            "all_vulnerable_specs": [
-                "<2.12.0"
-            ],
-            "analyzed_version": "2.9.0",
-            "analyzed_requirement": {
-                "raw": "PyJWT==2.9.0",
-                "extras": [],
-                "marker": null,
-                "name": "PyJWT",
-                "specifier": "==2.9.0",
-                "url": null,
-                "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements.txt"
-            },
-            "advisory": "Affected versions of this package are vulnerable to Insufficient Verification of Data Authenticity. The library does not validate the `crit` (Critical) Header Parameter as required by RFC 7515 \u00a74.1.11 \u2014 when a JWT contains a `crit` array listing extensions that the library does not understand, the token is accepted instead of rejected. An attacker can exploit this vulnerability by crafting JWTs with unknown critical extensions (e.g., MFA requirements, token binding, scope restrictions) that are silently ignored, potentially bypassing security policies or causing split-brain verification in mixed-library deployments where other RFC-compliant libraries would reject the same token.",
-            "is_transitive": false,
-            "published_date": null,
-            "fixed_versions": [],
-            "closest_versions_without_known_vulnerabilities": [],
-            "resources": [],
-            "CVE": "CVE-2026-32597",
-            "severity": null,
-            "affected_versions": [],
-            "more_info_url": "https://getsafety.com/v/89028/97c"
-        },
-        {
-            "vulnerability_id": "SFTY-20260122-20373",
-            "package_name": "pytest",
-            "ignored": {},
-            "ignored_reason": null,
-            "ignored_expires": null,
-            "vulnerable_spec": [
-                "<9.0.3"
-            ],
-            "all_vulnerable_specs": [
-                "<9.0.3"
-            ],
-            "analyzed_version": "8.3.3",
-            "analyzed_requirement": {
-                "raw": "pytest==8.3.3",
-                "extras": [],
-                "marker": null,
-                "name": "pytest",
-                "specifier": "==8.3.3",
-                "url": null,
-                "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements.txt"
-            },
-            "advisory": "Affected versions of the `pytest` package are vulnerable to Denial of Service (DoS) due to insecure temporary directory handling. The `tmpdir` fixture relies on directories with the `/tmp/pytest-of-{user}` name pattern, which can be predictably created and manipulated by local users. An attacker can exploit this by pre-creating these directories with restrictive permissions or malicious content, potentially causing test failures or privilege escalation when the tests are executed.",
-            "is_transitive": false,
-            "published_date": null,
-            "fixed_versions": [],
-            "closest_versions_without_known_vulnerabilities": [],
-            "resources": [],
-            "CVE": "CVE-2025-71176",
-            "severity": null,
-            "affected_versions": [],
-            "more_info_url": "https://getsafety.com/v/SFTY-20260122-20373/97c"
-        }
-    ],
+    "vulnerabilities": [],
     "ignored_vulnerabilities": [],
-    "remediations": {
-        "pyjwt": {
-            "requirements": {
-                "==2.9.0": {
-                    "vulnerabilities_found": 6,
-                    "version": "2.9.0",
-                    "requirement": {
-                        "raw": "PyJWT==2.9.0",
-                        "extras": [],
-                        "marker": null,
-                        "name": "PyJWT",
-                        "specifier": "==2.9.0",
-                        "url": null,
-                        "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements.txt"
-                    },
-                    "more_info_url": "https://getsafety.com/p/pypi/pyjwt/97c/"
-                }
-            },
-            "current_version": null,
-            "vulnerabilities_found": null,
-            "recommended_version": null,
-            "other_recommended_versions": [],
-            "more_info_url": null
-        },
-        "pytest": {
-            "requirements": {
-                "==8.3.3": {
-                    "vulnerabilities_found": 1,
-                    "version": "8.3.3",
-                    "requirement": {
-                        "raw": "pytest==8.3.3",
-                        "extras": [],
-                        "marker": null,
-                        "name": "pytest",
-                        "specifier": "==8.3.3",
-                        "url": null,
-                        "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements.txt"
-                    },
-                    "more_info_url": "https://getsafety.com/p/pypi/pytest/97c/"
-                }
-            },
-            "current_version": null,
-            "vulnerabilities_found": null,
-            "recommended_version": null,
-            "other_recommended_versions": [],
-            "more_info_url": null
-        }
-    },
+    "remediations": {},
     "remediations_results": {
         "vulnerabilities_fixed": [],
         "remediations_applied": {},

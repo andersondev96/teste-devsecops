@@ -48,5 +48,15 @@
     "dast": 12,
     "trivy": 39,
     "total": 96
+  },
+  {
+    "date": "2026-08-30T01:59:32Z",
+    "description": "fix(security): sincroniza painel com achados ativos",
+    "commit": "c1633fd",
+    "sast": 1,
+    "sca": 0,
+    "dast": 12,
+    "trivy": 9,
+    "total": 22
   }
 ]
