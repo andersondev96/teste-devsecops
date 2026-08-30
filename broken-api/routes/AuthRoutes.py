@@ -1,9 +1,4 @@
-"""
-ATENÇÃO — ROTAS INTENCIONALMENTE VULNERÁVEIS
-==============================================
-Rotas de Autenticação. Uso didático (trabalho sobre OWASP API
-Security Top 10). NÃO utilize em produção.
-"""
+"""Rotas de autenticação da API."""
 
 from fastapi import APIRouter, Request
 
@@ -20,8 +15,8 @@ async def login(login_data: LoginModel):
     """
     API2:2023 - Broken Authentication
     --------------------------------------------------
-    Token gerado sem validar senha, sem assinatura, sem expiração
-    (apenas Base64 do username). Ver AuthController.login().
+    A senha é validada contra hash scrypt e o token é um JWT assinado,
+    com expiração e claims mínimas. O endpoint não devolve dados internos.
     """
     return auth_controller.login(login_data)
 
@@ -45,10 +40,9 @@ async def get_user(user_id: int):
 @router.get("/auth/debug")
 async def auth_debug(request: Request):
     """
-    API9:2023 - Improper Inventory Management
-    API8:2023 - Security Misconfiguration
+    Endpoint legado de debug, desabilitado por padrão.
     --------------------------------------------------
-    Endpoint de debug esquecido, sem autenticação, que vaza headers,
-    segredos do sistema e a base de usuários inteira.
+    Quando habilitado explicitamente, não devolve headers, segredos ou
+    registros de usuários.
     """
     return auth_controller.debug_info(request)
