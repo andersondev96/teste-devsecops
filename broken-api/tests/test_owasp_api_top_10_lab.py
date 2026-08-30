@@ -1,10 +1,20 @@
 import json
+import os
 import sys
 from io import BytesIO
 from pathlib import Path
 
 import urllib.request
+import jwt
+import pytest
 from fastapi.testclient import TestClient
+
+# Segredo exclusivo para os testes; em produção deve ser fornecido pelo
+# ambiente/secret manager e nunca ficar no código da aplicação.
+os.environ.setdefault(
+    "JWT_SECRET_KEY",
+    "test-only-secret-key-with-at-least-32-bytes",
+)
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
@@ -42,15 +52,57 @@ def test_api1_bola_reads_another_user_profile():
     assert response.json()["username"] == "bob"
 
 
-def test_api2_broken_authentication_accepts_wrong_password():
+def test_api2_rejects_wrong_password():
     response = client.post(
         "/login",
         json={"username": "admin", "password": "totally-wrong"},
     )
 
+    assert response.status_code == 401
+    assert response.json()["detail"] == "Invalid username or password"
+
+
+def test_api2_returns_signed_expiring_token_without_sensitive_data():
+    response = client.post(
+        "/login",
+        json={"username": "admin", "password": "admin_password"},
+    )
+
     assert response.status_code == 200
-    assert response.json()["access_token"]
-    assert response.json()["user_debug"]["password"] == "admin_password"
+    body = response.json()
+    assert body["token_type"] == "bearer"
+    assert len(body["access_token"].split(".")) == 3
+    assert "user_debug" not in body
+    assert "server_secret" not in body
+    assert "password" not in body
+
+    payload = jwt.decode(
+        body["access_token"],
+        os.environ["JWT_SECRET_KEY"],
+        algorithms=["HS256"],
+        issuer="broken-api",
+    )
+    assert payload["sub"] == "99"
+    assert "iat" in payload
+    assert "exp" in payload
+    assert "jti" in payload
+
+
+def test_api2_rejects_tampered_token():
+    response = client.post(
+        "/login",
+        json={"username": "alice", "password": "password123"},
+    )
+    token = response.json()["access_token"]
+    header, payload, _signature = token.split(".")
+    forged_token = f"{header}.{payload}.invalid-signature"
+
+    from fastapi import HTTPException
+    from security import decode_access_token
+
+    with pytest.raises(HTTPException) as error:
+        decode_access_token(forged_token)
+    assert error.value.status_code == 401
 
 
 def test_api3_mass_assignment_changes_privileged_property():
@@ -114,12 +166,10 @@ def test_api7_ssrf_fetches_user_supplied_internal_url(monkeypatch):
     assert "cloud credentials" in response.json()["body_preview"]
 
 
-def test_api8_debug_endpoint_exposes_secrets_and_headers():
+def test_api8_debug_endpoint_is_disabled_by_default():
     response = client.get("/auth/debug", headers={"x-lab-token": "visible"})
 
-    assert response.status_code == 200
-    assert response.json()["db_password"] == "secret_admin_password"
-    assert response.json()["headers"]["x-lab-token"] == "visible"
+    assert response.status_code == 404
 
 
 def test_api9_forgotten_inventory_endpoint_exposes_all_orders():

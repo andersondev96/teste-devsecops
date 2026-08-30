@@ -1,92 +1,42 @@
-"""
-ATENÇÃO — CÓDIGO INTENCIONALMENTE VULNERÁVEL
-==============================================
-Este arquivo foi modificado APENAS para fins didáticos, como base para um
-trabalho sobre identificação e mitigação de vulnerabilidades do
-OWASP API Security Top 10 (2023). NÃO utilize este código em produção
-ou em qualquer ambiente exposto à internet.
+"""Operações de autenticação da API."""
 
-Cada bloco abaixo contém um comentário indicando:
-  - O item do OWASP API Top 10 explorado
-  - Por que aquele trecho é vulnerável
-  - (sugestão) o que precisaria ser feito para mitigar
-"""
+import os
 
 from fastapi import HTTPException, Request
-from typing import Any, Dict
-import base64
-import hashlib
+
 from models.LoginModel import LoginModel
+from security import DUMMY_PASSWORD_HASH, create_access_token, verify_password
 from users_db import users_db
 
-# --------------------------------------------------------------------
-# API8:2023 - Security Misconfiguration
-# Segredos hardcoded diretamente no código-fonte (deveriam vir de
-# variáveis de ambiente / secret manager). Se este repositório vazar
-# (ex: git público), as credenciais reais vazam junto.
-# --------------------------------------------------------------------
-SECRET_KEY = "b3_ch4r_r4nd0m_s7r1ng_s4f3_f0r_7cc"
-DB_PASSWORD = "secret_admin_password"
-
-# --------------------------------------------------------------------
-# API9:2023 - Improper Inventory Management (simulação)
-# Endpoint de debug esquecido, que expõe informações internas sensíveis.
-# Nenhuma autenticação, nenhuma restrição de ambiente (dev vs prod).
-# --------------------------------------------------------------------
-DEBUG_MODE = True
+DEBUG_MODE = os.getenv("DEBUG_MODE", "false").lower() == "true"
 
 
 class AuthController:
 
     def login(self, login_data: LoginModel):
-        """
-        API2:2023 - Broken Authentication
-        --------------------------------------------------
-        O "token" é apenas o username codificado em Base64 — não há
-        verificação de senha, não há assinatura criptográfica (ex: JWT
-        com HMAC/RSA), não há expiração. Qualquer pessoa pode forjar um
-        token válido para QUALQUER usuário só codificando o nome em
-        Base64 (base64 não é criptografia, é apenas codificação
-        reversível). Isso permite personificação total de qualquer conta.
+        user = next(
+            (candidate for candidate in users_db.values()
+             if candidate.get("username") == login_data.username),
+            None,
+        )
 
-        API3:2023 - Broken Object Property Level Authorization /
-        Excessive Data Exposure
-        --------------------------------------------------
-        A resposta devolve dados internos que o cliente não deveria ver
-        (senha em texto legível, chave secreta), facilitando ataques
-        subsequentes.
+        password_hash = user.get("password_hash") if user else None
+        password_is_valid = verify_password(
+            login_data.password,
+            password_hash or DUMMY_PASSWORD_HASH,
+        )
 
-        Mitigação (para o trabalho): usar hashing de senha (bcrypt/argon2),
-        gerar JWT assinado com expiração e claims mínimas, nunca devolver
-        segredos internos na resposta.
-        """
-        user = None
-        for u in users_db.values():
-            if u.get("username") == login_data.username:
-                user = u
-                break
+        if not user or not password_is_valid:
+            raise HTTPException(
+                status_code=401,
+                detail="Invalid username or password",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
 
-        # Nenhuma validação real de senha: mesmo se `password` existir
-        # no modelo, ela é ignorada — qualquer senha é aceita.
-        # (API2:2023 - Broken Authentication)
-        fake_token = base64.b64encode(login_data.username.encode()).decode()
-
-        # Tipagem explícita como Dict[str, Any] — sem isso, o Pyright/Pylance
-        # infere o dicionário como dict[str, str] (baseado nos dois valores
-        # iniciais) e reclama quando tentamos guardar um dict (user) ou
-        # outros tipos nas chaves seguintes.
-        response: Dict[str, Any] = {
-            "access_token": fake_token,
+        return {
+            "access_token": create_access_token(user["id"]),
             "token_type": "bearer",
         }
-
-        # API3:2023 - Excessive Data Exposure: devolvendo dados sensíveis
-        # que não deveriam sair da API (senha, chave secreta do sistema).
-        if user:
-            response["user_debug"] = user  # pode conter senha em texto puro
-            response["server_secret"] = SECRET_KEY
-
-        return response
 
     def get_user(self, user_id: int):
         """
@@ -120,11 +70,9 @@ class AuthController:
         return user
 
     def debug_info(self, request: Request):
+        # O endpoint é mantido apenas para demonstrar a configuração de
+        # ambiente. Segredos, headers e registros de usuários nunca devem
+        # ser expostos, mesmo quando o modo de debug estiver habilitado.
         if DEBUG_MODE:
-            return {
-                "headers": dict(request.headers),
-                "db_password": DB_PASSWORD,
-                "secret_key": SECRET_KEY,
-                "all_users": users_db,  # vaza a base inteira de usuários
-            }
+            return {"debug": True}
         raise HTTPException(status_code=404)

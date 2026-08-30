@@ -13,15 +13,11 @@ NÃO utilize esta configuração em produção.
 
 Nota importante sobre a causa-raiz comum a várias rotas:
 --------------------------------------------------------------
-Esta API NÃO possui nenhum middleware/dependência real de autenticação
-(nada equivalente a `Depends(get_current_user)` validando um JWT).
-Isso é, por si só, uma instância de **API2:2023 - Broken Authentication**
-que se propaga por quase todas as rotas: qualquer "identidade" usada
-(como `current_user_id`) vem diretamente de um parâmetro que o PRÓPRIO
-CLIENTE informa na requisição — ou seja, o cliente pode se
-autodeclarar como qualquer usuário, inclusive admin, sem nenhuma prova
-de identidade. Isso é o que transforma quase todo BOLA (API1)
-documentado nos controllers em uma falha explorável de fato.
+A dependência `get_current_user`, em `security.py`, agora valida um JWT
+assinado e resolve a identidade no servidor. Ela será aplicada às rotas
+de negócio durante a mitigação da API1. As rotas que ainda recebem
+`current_user_id` ou não usam essa dependência continuam vulneráveis de
+forma intencional até essa próxima etapa.
 """
 
 from fastapi import FastAPI
@@ -32,6 +28,7 @@ from routes.CheckoutRoutes import router as checkout_router
 from routes.IntegrationRoutes import router as integration_router
 from routes.ProductRoutes import router as product_router
 from routes.UserRoutes import router as user_router
+from security import validate_security_config
 
 app = FastAPI(
     title="API Vulnerável (uso didático)",
@@ -48,6 +45,7 @@ app = FastAPI(
 
 @app.on_event("startup")
 def startup():
+    validate_security_config()
     ProductController.initialize_database()
 
 
