@@ -58,5 +58,15 @@
     "dast": 12,
     "trivy": 9,
     "total": 22
+  },
+  {
+    "date": "2026-08-30T02:22:03Z",
+    "description": "fix(painel): evita falso positivo de mitigacao OWASP",
+    "commit": "287b2a1",
+    "sast": 1,
+    "sca": 0,
+    "dast": 12,
+    "trivy": 9,
+    "total": 22
   }
 ]
