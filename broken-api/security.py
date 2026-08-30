@@ -26,7 +26,8 @@ from users_db import users_db
 
 JWT_ALGORITHM = "HS256"
 JWT_ISSUER = os.getenv("JWT_ISSUER", "broken-api")
-JWT_SECRET_ENV = "JWT_SECRET_KEY"
+# Nome da variável de ambiente; não é um segredo embutido no código.
+JWT_SECRET_ENV = "JWT_SECRET_KEY"  # nosec B105
 
 # Os limites evitam que um hash armazenado de forma inválida provoque um
 # consumo arbitrário de recursos durante a autenticação.

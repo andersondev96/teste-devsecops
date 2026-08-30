@@ -23,12 +23,12 @@ jobs:
       - name: 2. Configurar Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.12'
 
       - name: 3. Instalar Dependências e Ferramentas
         run: |
           python -m pip install --upgrade pip
-          pip install -r broken-api/requirements.txt
+          pip install -r broken-api/requirements-dev.txt
           pip install bandit safety
 
       # ==========================================
@@ -43,14 +43,18 @@ jobs:
         continue-on-error: true
 
       - name: 5. SCA - Análise de Dependências (Safety)
-        # Verifica se as bibliotecas no requirements.txt têm CVEs conhecidas
-        run: safety check -r broken-api/requirements.txt --output json --save-json sca_report.json || true
+        # Verifica se as bibliotecas de execução e desenvolvimento têm CVEs conhecidas
+        run: safety check -r broken-api/requirements-dev.txt --output json --save-json sca_report.json || true
         continue-on-error: true
 
       - name: 6. SAST - Análise Estática (Bandit)
-        # Lê o código Python procurando falhas lógicas e de sintaxe insegura
-        run: bandit -r broken-api/ -f json -o sast_report.json
+        # Lê somente o código da aplicação; testes não são código de produção.
+        run: bandit -r broken-api/ --exclude broken-api/tests -f json -o sast_report.json
         continue-on-error: true
+
+      - name: 6.1. Testes de regressão da autenticação
+        # Garante que a mitigação da API2 continue válida a cada push.
+        run: pytest -q broken-api/tests/test_owasp_api_top_10_lab.py -k api2
 
       - name: 7. Build da Imagem Docker
         run: docker build -t vulnerable-api:latest ./broken-api

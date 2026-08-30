@@ -68,7 +68,7 @@ export function RelatorioTab({ totalFalhas, mapping }: RelatorioProps) {
           {vulnerabilidadesAtivas.length > 0 ? (
             <div className="space-y-10">
               <p className="text-sm text-slate-600 bg-amber-50 p-3 border-l-4 border-amber-400">
-                Abaixo estão detalhadas as estratégias de remediação para as categorias que <strong>violaram</strong> os critérios de segurança na última inspeção.
+                Abaixo estão detalhadas as estratégias de remediação para as categorias que possuem <strong>achados ativos</strong> nos relatórios da última inspeção.
               </p>
 
               {/* API1: BOLA */}
@@ -143,8 +143,8 @@ export function RelatorioTab({ totalFalhas, mapping }: RelatorioProps) {
           ) : (
             <div className="p-10 bg-green-50 border border-green-200 rounded-lg text-center shadow-inner">
               <ShieldCheck className="w-16 h-16 text-green-500 mx-auto mb-4" />
-              <p className="text-green-800 text-xl font-bold">Conformidade de Segurança Atingida</p>
-              <p className="text-green-600 mt-2">Todas as falhas do mapeamento OWASP foram mitigadas com sucesso no código-fonte.</p>
+              <p className="text-green-800 text-xl font-bold">Nenhum achado automático ativo</p>
+              <p className="text-green-600 mt-2">Nenhum achado ativo do mapeamento OWASP foi encontrado nos relatórios atuais.</p>
             </div>
           )}
         </section>
@@ -156,7 +156,7 @@ export function RelatorioTab({ totalFalhas, mapping }: RelatorioProps) {
             4. Conclusão do Experimento
           </h3>
           <p className="text-slate-600 leading-relaxed text-justify">
-            A implementação da arquitetura DevSecOps provou-se um diferencial crítico na resiliência da aplicação. Através da estratégia de <strong>Shift-Left</strong>, foi possível antecipar vulnerabilidades que tradicionalmente só seriam descobertas em fases de auditoria externa ou incidentes reais. A taxa de conformidade atual ({totalMitigadas}/{totalCategorias} categorias) demonstra que a aplicação sistemática de mitigações, guiada por automação, reduz drasticamente a superfície de exposição e eleva o nível de maturidade do software.
+            A implementação da arquitetura DevSecOps provou-se um diferencial crítico na resiliência da aplicação. Através da estratégia de <strong>Shift-Left</strong>, foi possível antecipar vulnerabilidades que tradicionalmente só seriam descobertas em fases de auditoria externa ou incidentes reais. No ciclo atual, {totalMitigadas}/{totalCategorias} categorias não apresentam achados ativos nos relatórios automatizados.
           </p>
         </section>
 

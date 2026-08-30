@@ -35,7 +35,7 @@ class AuthController:
 
         return {
             "access_token": create_access_token(user["id"]),
-            "token_type": "bearer",
+            "token_type": "bearer",  # nosec B105
         }
 
     def get_user(self, user_id: int):

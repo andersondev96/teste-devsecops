@@ -23,7 +23,7 @@ export function OwaspTab({ categories, mapping }: OwaspProps) {
     <div className="space-y-6 animate-in fade-in duration-500">
       <div className="flex justify-between items-end border-b pb-2">
         <h2 className="text-xl font-semibold">Mapeamento OWASP API Security Top 10 (2023)</h2>
-        <span className="text-sm text-slate-500">Mapeamento dos testes OWASP e logs do pipeline</span>
+        <span className="text-sm text-slate-500">Achados ativos dos relatórios do pipeline</span>
       </div>
 
       <div className="flex flex-col border rounded-md overflow-hidden shadow-sm">
@@ -152,7 +152,7 @@ export function OwaspTab({ categories, mapping }: OwaspProps) {
 
               {isExpanded && !data.detected && (
                 <div className="p-6 bg-green-50 border-t text-center text-green-700 text-sm">
-                  Nenhuma vulnerabilidade correspondente a esta categoria foi detetada nos relatórios atuais.
+                  Nenhum achado ativo correspondente a esta categoria foi detetado nos relatórios atuais.
                 </div>
               )}
             </div>

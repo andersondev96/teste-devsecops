@@ -29,21 +29,21 @@ users_db = {
         "username": "alice",
         "email": "alice@empresa.com",
         "is_admin": False,
-        "password_hash": "scrypt$16384$8$1$eWozkSRLwIdibYiz3l_N_A$ySq1qI6mSodtBlUlJ-YkwlQv5gNrvhrIHA3lEV7dYQiFuYPNh8XY1I3A332b0Dp994AOcIeHmC54DDyqJRcuSg",
+        "password_hash": "scrypt$16384$8$1$eWozkSRLwIdibYiz3l_N_A$ySq1qI6mSodtBlUlJ-YkwlQv5gNrvhrIHA3lEV7dYQiFuYPNh8XY1I3A332b0Dp994AOcIeHmC54DDyqJRcuSg",  # nosec B105
     },
     2: {
         "id": 2,
         "username": "bob",
         "email": "bob@empresa.com",
         "is_admin": False,
-        "password_hash": "scrypt$16384$8$1$xjDluLCH3A0KJKyJCDhogw$g_4HKOZw34UHIffxjcKBMXp4jxlQmbltaJZCo4u1yiT36fxM_HE2ggFRy4jZIM10n8OcCF7wpUMmETcEHlS1BQ",
+        "password_hash": "scrypt$16384$8$1$xjDluLCH3A0KJKyJCDhogw$g_4HKOZw34UHIffxjcKBMXp4jxlQmbltaJZCo4u1yiT36fxM_HE2ggFRy4jZIM10n8OcCF7wpUMmETcEHlS1BQ",  # nosec B105
     },
     99: {
         "id": 99,
         "username": "admin",
         "email": "admin@empresa.com",
         "is_admin": True,
-        "password_hash": "scrypt$16384$8$1$W3lHL4bY5yMGIGz7Nv9i2w$yRj2z--h3oKu2wvAGsCXt869GE6fKk6W516vB76Je_OXzWlxPhcjTYKPhy2rMLgLr_IzF05l_jrPsd470V0C6g",
+        "password_hash": "scrypt$16384$8$1$W3lHL4bY5yMGIGz7Nv9i2w$yRj2z--h3oKu2wvAGsCXt869GE6fKk6W516vB76Je_OXzWlxPhcjTYKPhy2rMLgLr_IzF05l_jrPsd470V0C6g",  # nosec B105
     },
 }
 

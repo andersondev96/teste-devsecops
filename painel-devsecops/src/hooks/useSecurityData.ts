@@ -4,7 +4,7 @@ import scaReport from '../data/sca_report.json';
 import trivyReport from '../data/trivy_report.json';
 import zapReport from '../data/report_json.json';
 import rawHistoryData from '../data/history.json';
-import { OWASP_API_2023, OWASP_LAB_EVIDENCE } from '../constants/owsap';
+import { OWASP_API_2023 } from '../constants/owsap';
 
 // Dizemos ao TypeScript exatamente o que esperar, mesmo que o JSON esteja vazio agora.
 const historyData = rawHistoryData as Array<{
@@ -15,6 +15,24 @@ const historyData = rawHistoryData as Array<{
   trivy: number;
   total: number;
 }>;
+
+const isTestFile = (filename: unknown) =>
+  String(filename || '').replace(/\\/g, '/').includes('/tests/');
+
+const isCurrentZapFinding = (alert: any) => Number(alert?.riskcode) > 0;
+
+const classifyZapFinding = (alert: any): string => {
+  const name = String(alert?.name || '').toLowerCase();
+
+  if (/(authentication|login|token|jwt|session)/.test(name)) return 'API2';
+  if (/(ssrf|server side request forgery|remote file inclusion)/.test(name)) return 'API7';
+  if (/(idor|object level)/.test(name)) return 'API1';
+  if (/(function level|authorization|access control)/.test(name)) return 'API5';
+  if (/(config|disclosure|header|server error|sql injection)/.test(name)) return 'API8';
+
+  // Um alerta DAST genérico não deve ser apresentado como BOLA.
+  return 'API8';
+};
 
 export function useSecurityData() {
   const experimentData = useMemo(() => {
@@ -80,22 +98,48 @@ export function useSecurityData() {
     };
 
     zapReport.site?.[0]?.alerts?.forEach((alert: any) => {
-      const name = alert.name.toLowerCase();
-      if (name.includes('auth') || name.includes('token')) markDetected('API2', 'OWASP ZAP', alert);
-      else if (name.includes('config')) markDetected('API8', 'OWASP ZAP', alert);
-      else markDetected('API1', 'OWASP ZAP', alert);
+      // Alertas informativos, como "Authentication Request Identified", não
+      // comprovam uma vulnerabilidade e não devem ativar uma categoria OWASP.
+      if (isCurrentZapFinding(alert)) {
+        markDetected(classifyZapFinding(alert), 'OWASP ZAP', alert);
+      }
     });
 
     sastReport.results?.forEach((issue: any) => {
-      if (['B105', 'B106'].includes(issue.test_id)) markDetected('API2', 'Bandit', issue);
-      else markDetected('API8', 'Bandit', issue);
+      if (isTestFile(issue.filename)) return;
+
+      const isEnvironmentVariableName =
+        issue.test_id === 'B105' &&
+        String(issue.issue_text || '').includes('JWT_SECRET_KEY') &&
+        String(issue.filename || '').replace(/\\/g, '/').endsWith('/security.py');
+
+      const isKnownNonCredentialLiteral =
+        issue.test_id === 'B105' &&
+        /scrypt\$|bearer/.test(String(issue.issue_text || '').toLowerCase());
+
+      if (isEnvironmentVariableName || isKnownNonCredentialLiteral) return;
+
+      if (['B105', 'B106'].includes(issue.test_id)) {
+        markDetected('API2', 'Bandit', issue);
+      } else {
+        markDetected('API8', 'Bandit', issue);
+      }
     });
 
-    // Os testes de laboratório são a evidência explícita das vulnerabilidades
-    // API1–API10 implementadas intencionalmente na API. Scanners genéricos
-    // como ZAP e Bandit não identificam todas essas categorias sozinhos.
-    Object.entries(OWASP_LAB_EVIDENCE).forEach(([id, evidence]) => {
-      markDetected(id, 'Testes OWASP da API', evidence);
+    // O PyJWT pertence ao caminho de autenticação; seus CVEs devem manter a
+    // API2 ativa até que a dependência seja atualizada.
+    scaReport.vulnerabilities?.forEach((vulnerability: any) => {
+      if (String(vulnerability.package_name || '').toLowerCase() === 'pyjwt') {
+        markDetected('API2', 'Safety', vulnerability);
+      }
+    });
+
+    trivyReport.Results?.forEach((result: any) => {
+      result.Vulnerabilities?.forEach((vulnerability: any) => {
+        if (String(vulnerability.PkgName || '').toLowerCase() === 'pyjwt') {
+          markDetected('API2', 'Trivy', vulnerability);
+        }
+      });
     });
 
     return mapping;

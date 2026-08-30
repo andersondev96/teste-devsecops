@@ -32,9 +32,9 @@ export const OWASP_LAB_EVIDENCE: Record<string, {
     line_number: 38,
   },
   API2: {
-    Title: 'Teste API2 — autenticação quebrada',
-    desc: 'O login aceita uma senha incorreta e devolve um token previsível junto com dados de depuração do usuário.',
-    solution: 'Validar a senha com hash forte, emitir tokens seguros e não devolver credenciais ou dados de depuração.',
+    Title: 'Teste API2 — regressão da autenticação',
+    desc: 'Os testes verificam a rejeição de credenciais inválidas, a emissão de JWT assinado e a rejeição de tokens adulterados.',
+    solution: 'Manter a validação de senha com hash forte, tokens assinados e respostas sem credenciais ou dados de depuração.',
     uri: 'POST /login',
     file: 'broken-api/tests/test_owasp_api_top_10_lab.py',
     line_number: 45,
