@@ -50,6 +50,16 @@ class CurrentUser:
     is_admin: bool
 
 
+def authorize_object_access(current_user: CurrentUser, object_owner_id: int) -> None:
+    """Garante acesso ao objeto somente ao dono ou a um administrador."""
+
+    if current_user.is_admin or current_user.id == object_owner_id:
+        return
+
+    # Não informa se o objeto pertence a outro usuário.
+    raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Forbidden")
+
+
 def _b64encode(value: bytes) -> str:
     return base64.urlsafe_b64encode(value).rstrip(b"=").decode("ascii")
 

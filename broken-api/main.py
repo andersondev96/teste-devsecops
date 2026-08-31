@@ -14,10 +14,10 @@ NÃO utilize esta configuração em produção.
 Nota importante sobre a causa-raiz comum a várias rotas:
 --------------------------------------------------------------
 A dependência `get_current_user`, em `security.py`, agora valida um JWT
-assinado e resolve a identidade no servidor. Ela será aplicada às rotas
-de negócio durante a mitigação da API1. As rotas que ainda recebem
-`current_user_id` ou não usam essa dependência continuam vulneráveis de
-forma intencional até essa próxima etapa.
+assinado e resolve a identidade no servidor. Ela é aplicada às rotas
+de objetos cobertas pela mitigação da API1. As demais vulnerabilidades
+do laboratório continuam presentes de forma intencional até suas etapas
+específicas de mitigação.
 """
 
 from fastapi import FastAPI

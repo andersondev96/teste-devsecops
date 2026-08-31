@@ -7,7 +7,8 @@ OWASP API Security Top 10 (2023). NÃO utilize este código em produção
 ou em qualquer ambiente exposto à internet.
 """
 
-from fastapi import Request
+from fastapi import HTTPException, Request
+from security import CurrentUser, authorize_object_access
 from users_db import checkout_db  # simulação de "banco" em memória
 
 # --------------------------------------------------------------------
@@ -22,7 +23,7 @@ class CheckoutController:
     def __init__(self):
         self.checkout_db = checkout_db
 
-    async def complete_checkout(self, request: Request):
+    async def complete_checkout(self, request: Request, current_user: CurrentUser):
         """
         API6:2023 - Unrestricted Access to Sensitive Business Flows
         --------------------------------------------------
@@ -36,10 +37,9 @@ class CheckoutController:
 
         API1:2023 - Broken Object Level Authorization (BOLA/IDOR)
         --------------------------------------------------
-        Qualquer `order_id` enviado no corpo é aceito e processado sem
-        checar se ele pertence ao usuário que está fazendo a
-        requisição. Um atacante pode iterar `order_id` para finalizar
-        (ou consultar) pedidos de terceiros.
+        O `order_id` é validado contra o usuário autenticado antes do
+        processamento. Pedidos existentes de outro usuário são
+        rejeitados, e novos pedidos recebem o ID do usuário autenticado.
 
         API3:2023 - Broken Object Property Level Authorization
         (Mass Assignment)
@@ -73,16 +73,31 @@ class CheckoutController:
 
         order = self.checkout_db.get(order_id)
 
+        if order:
+            try:
+                owner_id = int(order.get("user_id"))
+            except (AttributeError, TypeError, ValueError):
+                # Registros sem proprietário confiável não podem ser
+                # acessados por uma requisição autenticada comum.
+                raise HTTPException(status_code=403, detail="Forbidden")
+            authorize_object_access(current_user, owner_id)
+        else:
+            owner_id = current_user.id
+
         # Mass Assignment: aplica QUALQUER campo enviado pelo cliente
         # diretamente no registro do pedido, sem validar nomes de
         # campos nem tipos. (API3:2023)
         if order:
+            # Impede que mass assignment altere o dono do objeto depois da
+            # autorização. Os demais campos continuam pendentes de API3.
+            data["user_id"] = owner_id
             order.update(data)
         else:
             # Se o pedido não existe, cria um novo do zero com os dados
             # do cliente — incluindo campos sensíveis como "price",
             # "discount", "is_paid" que deveriam ser calculados no
             # servidor. (API3:2023 + API6:2023)
+            data["user_id"] = owner_id
             self.checkout_db[order_id] = data
 
         # API3:2023 - Excessive Data Exposure

@@ -1,9 +1,10 @@
 """Rotas de autenticação da API."""
 
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Depends, Request
 
 from controllers.AuthController import AuthController
 from models.LoginModel import LoginModel
+from security import CurrentUser, get_current_user
 
 router = APIRouter(prefix="", tags=["Autenticação"])
 
@@ -22,19 +23,21 @@ async def login(login_data: LoginModel):
 
 
 @router.get("/users/{user_id}")
-async def get_user(user_id: int):
+async def get_user(
+    user_id: int,
+    current_user: CurrentUser = Depends(get_current_user),
+):
     """
     API1:2023 - Broken Object Level Authorization (BOLA/IDOR)
     --------------------------------------------------
-    Rota pública, sem autenticação e sem checar se o solicitante pode
-    ver este `user_id` -> permite enumeração de toda a base
-    (/users/1, /users/2, /users/3 ...).
+    A rota exige um JWT válido e permite consultar somente o próprio
+    usuário ou um usuário quando o solicitante é administrador.
 
     API4:2023 - Unrestricted Resource Consumption
     --------------------------------------------------
     Nenhum rate limiting: a rota pode ser varrida em loop.
     """
-    return auth_controller.get_user(user_id)
+    return auth_controller.get_user(user_id, current_user)
 
 
 @router.get("/auth/debug")

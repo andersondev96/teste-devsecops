@@ -5,7 +5,13 @@ import os
 from fastapi import HTTPException, Request
 
 from models.LoginModel import LoginModel
-from security import DUMMY_PASSWORD_HASH, create_access_token, verify_password
+from security import (
+    DUMMY_PASSWORD_HASH,
+    CurrentUser,
+    authorize_object_access,
+    create_access_token,
+    verify_password,
+)
 from users_db import users_db
 
 DEBUG_MODE = os.getenv("DEBUG_MODE", "false").lower() == "true"
@@ -38,16 +44,13 @@ class AuthController:
             "token_type": "bearer",  # nosec B105
         }
 
-    def get_user(self, user_id: int):
+    def get_user(self, user_id: int, current_user: CurrentUser):
         """
         API1:2023 - Broken Object Level Authorization (BOLA/IDOR)
         --------------------------------------------------
-        Não há verificação se o solicitante tem permissão para acessar
-        o registro `user_id`. Qualquer usuário autenticado (ou até não
-        autenticado, pois este método não checa token nenhum) pode
-        buscar dados de QUALQUER outro usuário apenas trocando o ID
-        na URL (ex: /users/1, /users/2, /users/3...), permitindo
-        enumeração completa da base.
+        A autorização por objeto é aplicada antes do retorno: somente
+        o próprio usuário ou um administrador pode acessar o registro
+        indicado por `user_id`.
 
         API3:2023 - Excessive Data Exposure
         --------------------------------------------------
@@ -55,18 +58,17 @@ class AuthController:
         sensíveis (senha, e-mail, dados internos), quando o cliente
         provavelmente só precisa de nome/ID.
 
-        Mitigação (para o trabalho): validar que o `user_id` solicitado
-        corresponde ao usuário autenticado (ou que ele tem role de admin),
-        usar um DTO/schema de saída que exponha só os campos necessários.
+        Ainda é necessário usar um DTO/schema de saída que exponha só os
+        campos necessários.
         """
+        authorize_object_access(current_user, user_id)
+
         user = users_db.get(user_id)
         if not user:
             raise HTTPException(status_code=404, detail="User not found")
 
-        # Nenhuma checagem de autorização (BOLA) e nenhum controle de
-        # taxa de requisições (API4:2023 - Unrestricted Resource
-        # Consumption): este endpoint pode ser chamado em loop para
-        # enumerar todos os IDs sem nenhum rate limiting.
+        # O controle de taxa de requisições (API4:2023 - Unrestricted
+        # Resource Consumption) continua pendente.
         return user
 
     def debug_info(self, request: Request):

@@ -24,7 +24,7 @@ export type OwaspMapping = {
 // A API2 tem controles de login corrigidos, mas ainda possui controles
 // complementares pendentes (rate limiting, revogação e auditoria).
 export const OWASP_LAB_STATUS: Record<string, OwaspStatus> = {
-  API1: 'vulnerable',
+  API1: 'mitigated',
   API2: 'partially_mitigated',
   API3: 'vulnerable',
   API4: 'vulnerable',
@@ -36,10 +36,10 @@ export const OWASP_LAB_STATUS: Record<string, OwaspStatus> = {
   API10: 'vulnerable',
 };
 
-// Evidências do laboratório: os testes abaixo exercitam intencionalmente
-// cada categoria implementada na API vulnerável. Elas complementam os
-// achados automáticos do ZAP/Bandit, que não conseguem identificar todas as
-// categorias OWASP apenas por análise genérica dos endpoints.
+// Evidências do laboratório: os testes documentam o comportamento vulnerável
+// remanescente e as regressões dos controles já mitigados. Elas complementam
+// os achados automáticos do ZAP/Bandit, que não conseguem identificar todas
+// as categorias OWASP apenas por análise genérica dos endpoints.
 export const OWASP_LAB_EVIDENCE: Record<string, {
   Title: string;
   desc: string;
@@ -49,12 +49,12 @@ export const OWASP_LAB_EVIDENCE: Record<string, {
   line_number: number;
 }> = {
   API1: {
-    Title: 'Teste API1 — acesso ao perfil de outro usuário',
-    desc: 'O endpoint aceita um current_user_id informado pelo cliente e permite consultar o perfil de outro usuário.',
-    solution: 'Validar a identidade autenticada no servidor e autorizar o acesso ao objeto antes de retorná-lo.',
-    uri: 'GET /profile/{user_id}?current_user_id=1',
+    Title: 'Regressão API1 — autorização por objeto',
+    desc: 'Os testes confirmam que o JWT define a identidade no servidor e que leitura, alteração de perfil, consulta por ID e checkout de outro usuário são rejeitados.',
+    solution: 'Aplicar autorização por objeto antes de ler ou alterar o recurso, permitindo somente o proprietário ou um administrador.',
+    uri: 'GET/PUT /profile/{user_id}, GET /users/{user_id}, POST /checkout',
     file: 'broken-api/tests/test_owasp_api_top_10_lab.py',
-    line_number: 38,
+    line_number: 53,
   },
   API2: {
     Title: 'Teste API2 — regressão da autenticação',

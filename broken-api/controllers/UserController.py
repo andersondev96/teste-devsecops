@@ -9,6 +9,7 @@ ou em qualquer ambiente exposto à internet.
 
 from fastapi import HTTPException
 
+from security import CurrentUser, authorize_object_access
 from users_db import users_db
 
 
@@ -16,15 +17,14 @@ class UserController:
     def __init__(self):
         self.users_db = users_db
 
-    def get_user_profile(self, user_id: int, current_user_id: int):
+    def get_user_profile(self, user_id: int, current_user: CurrentUser):
         """
         API1:2023 - Broken Object Level Authorization (BOLA/IDOR)
         --------------------------------------------------
-        O parâmetro `current_user_id` é recebido mas NUNCA é usado
-        para validar se o usuário autenticado tem permissão de ver o
-        perfil de `user_id`. Ou seja, qualquer usuário logado (o
-        parâmetro só existe de fachada) pode consultar o perfil de
-        QUALQUER outra pessoa apenas trocando o ID na URL/requisição.
+        A identidade autenticada é recebida de uma dependência que
+        valida o JWT. O acesso ao objeto é permitido apenas ao próprio
+        usuário ou a um administrador; parâmetros da requisição não
+        podem substituir essa identidade.
 
         API3:2023 - Broken Object Property Level Authorization /
         Excessive Data Exposure
@@ -34,28 +34,25 @@ class UserController:
         internos), quando o solicitante provavelmente só deveria ver
         um subconjunto público do perfil (nome, avatar, bio).
 
-        Mitigação (para o trabalho):
-            if user_id != current_user_id and not is_admin(current_user_id):
-                raise HTTPException(status_code=403, detail="Forbidden")
-        e usar um schema de saída (Pydantic) que exponha só campos
+        A autorização por objeto é aplicada antes do retorno. Ainda é
+        necessário usar um schema de saída (Pydantic) que exponha só campos
         públicos, nunca o registro bruto do banco.
         """
+        authorize_object_access(current_user, user_id)
+
         user = self.users_db.get(user_id)
         if not user:
             raise HTTPException(status_code=404, detail="User not found")
 
-        # BOLA: `current_user_id` chega como parâmetro mas é ignorado
-        # por completo — nenhuma comparação com `user_id` é feita.
         return user
 
-    def update_user_profile(self, user_id: int, current_user_id: int, data: dict):
+    def update_user_profile(self, user_id: int, current_user: CurrentUser, data: dict):
         """
         API1:2023 - Broken Object Level Authorization (BOLA/IDOR)
         --------------------------------------------------
-        Assim como na leitura, a escrita também ignora
-        `current_user_id`: qualquer usuário autenticado pode alterar
-        o perfil de QUALQUER outro usuário só informando o `user_id`
-        de destino.
+        A escrita valida a identidade autenticada contra o objeto de
+        destino. Somente o próprio usuário ou um administrador pode
+        alterar o perfil indicado por `user_id`.
 
         API3:2023 - Broken Object Property Level Authorization
         (Mass Assignment)
@@ -66,10 +63,12 @@ class UserController:
         "balance": 999999 } e o servidor aceite cegamente, promovendo
         um usuário comum a administrador ou adulterando saldo.
 
-        Mitigação: validar `user_id == current_user_id` (ou permissão
-        de admin), e usar um schema de entrada com allowlist explícita
+        A autorização por objeto já foi aplicada. Ainda é necessário
+        usar um schema de entrada com allowlist explícita
         de campos editáveis (ex: nome, bio, avatar — nunca role/saldo).
         """
+        authorize_object_access(current_user, user_id)
+
         user = self.users_db.get(user_id)
         if not user:
             raise HTTPException(status_code=404, detail="User not found")
@@ -79,20 +78,18 @@ class UserController:
         user.update(data)
         return user
 
-    def delete_user(self, user_id: int, current_user_id: int):
+    def delete_user(self, user_id: int, current_user: CurrentUser):
         """
         API5:2023 - Broken Function Level Authorization
         --------------------------------------------------
-        Exclusão de conta é uma operação sensível que deveria ser
-        restrita ao próprio usuário ou a um admin. Aqui não há
-        nenhuma checagem de papel (role) nem comparação com
-        `current_user_id` — qualquer chamador autenticado apaga
-        qualquer conta do sistema.
+        Exclusão de conta é uma operação sensível restrita ao próprio
+        usuário ou a um administrador; essa autorização é aplicada
+        antes da remoção do objeto.
 
-        Mitigação: exigir que `current_user_id == user_id` OU que o
-        usuário autenticado tenha role "admin"; registrar a operação
-        em log de auditoria.
+        Ainda é necessário registrar a operação em log de auditoria.
         """
+        authorize_object_access(current_user, user_id)
+
         if user_id in self.users_db:
             del self.users_db[user_id]
             return {"status": "deleted", "id": user_id}

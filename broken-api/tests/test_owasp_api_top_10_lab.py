@@ -20,6 +20,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from controllers.ProductController import ProductController
 from main import app
+from security import create_access_token
 
 
 ProductController.initialize_database()
@@ -45,11 +46,77 @@ class FakeHTTPResponse:
         return self._status_code
 
 
-def test_api1_bola_reads_another_user_profile():
-    response = client.get("/profile/2", params={"current_user_id": 1})
+def auth_headers(user_id):
+    return {"Authorization": f"Bearer {create_access_token(user_id)}"}
+
+
+def test_api1_bola_rejects_another_user_profile():
+    response = client.get(
+        "/profile/2",
+        params={"current_user_id": 2},
+        headers=auth_headers(1),
+    )
+
+    assert response.status_code == 403
+
+
+def test_api1_profile_uses_authenticated_identity_not_query_parameter():
+    response = client.get(
+        "/profile/1",
+        params={"current_user_id": 2},
+        headers=auth_headers(1),
+    )
+
+    assert response.status_code == 200
+    assert response.json()["username"] == "alice"
+
+
+def test_api1_allows_admin_to_access_another_user_profile():
+    response = client.get("/profile/2", headers=auth_headers(99))
 
     assert response.status_code == 200
     assert response.json()["username"] == "bob"
+
+
+def test_api1_bola_rejects_update_of_another_user_profile():
+    response = client.put(
+        "/profile/2",
+        headers=auth_headers(1),
+        json={"email": "attacker@example.com"},
+    )
+
+    assert response.status_code == 403
+
+
+def test_api1_user_id_route_requires_object_authorization():
+    unauthenticated_response = client.get("/users/1")
+    assert unauthenticated_response.status_code == 401
+
+    response = client.get("/users/2", headers=auth_headers(1))
+
+    assert response.status_code == 403
+
+    own_response = client.get("/users/1", headers=auth_headers(1))
+    assert own_response.status_code == 200
+    assert own_response.json()["username"] == "alice"
+
+
+def test_api1_checkout_rejects_order_owned_by_another_user():
+    order_id = "api1-owned-order"
+    owner_response = client.post(
+        "/checkout",
+        headers=auth_headers(1),
+        json={"order_id": order_id, "user_id": 1},
+    )
+    assert owner_response.status_code == 200
+
+    attacker_response = client.post(
+        "/checkout",
+        headers=auth_headers(2),
+        json={"order_id": order_id, "user_id": 2, "is_paid": True},
+    )
+
+    assert attacker_response.status_code == 403
 
 
 def test_api2_rejects_wrong_password():
@@ -108,7 +175,7 @@ def test_api2_rejects_tampered_token():
 def test_api3_mass_assignment_changes_privileged_property():
     response = client.put(
         "/profile/1",
-        params={"current_user_id": 1},
+        headers=auth_headers(1),
         json={"is_admin": True, "password": "changed-by-client"},
     )
 
@@ -134,6 +201,7 @@ def test_api5_non_admin_can_change_product_price():
 def test_api6_checkout_accepts_sensitive_business_flow_abuse():
     response = client.post(
         "/checkout",
+        headers=auth_headers(2),
         json={
             "order_id": "order-001",
             "user_id": 2,
@@ -173,7 +241,11 @@ def test_api8_debug_endpoint_is_disabled_by_default():
 
 
 def test_api9_forgotten_inventory_endpoint_exposes_all_orders():
-    client.post("/checkout", json={"order_id": "inventory-leak", "user_id": 1})
+    client.post(
+        "/checkout",
+        headers=auth_headers(1),
+        json={"order_id": "inventory-leak", "user_id": 1},
+    )
     response = client.get("/checkout/debug")
 
     assert response.status_code == 200

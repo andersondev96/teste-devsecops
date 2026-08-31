@@ -5,9 +5,10 @@ Rotas de Checkout. Uso didático (trabalho sobre OWASP API
 Security Top 10). NÃO utilize em produção.
 """
 
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Depends, Request
 
 from controllers.CheckoutController import CheckoutController
+from security import CurrentUser, get_current_user
 
 router = APIRouter(prefix="", tags=["Checkout"])
 
@@ -15,7 +16,10 @@ checkout_controller = CheckoutController()
 
 
 @router.post("/checkout")
-async def complete_checkout(request: Request):
+async def complete_checkout(
+    request: Request,
+    current_user: CurrentUser = Depends(get_current_user),
+):
     """
     API6:2023 - Unrestricted Access to Sensitive Business Flows
     --------------------------------------------------
@@ -24,7 +28,8 @@ async def complete_checkout(request: Request):
 
     API1:2023 - Broken Object Level Authorization (BOLA/IDOR)
     --------------------------------------------------
-    `order_id` do corpo não é validado contra o usuário da requisição.
+    `order_id` do corpo é validado contra o usuário autenticado antes
+    de qualquer alteração no pedido.
 
     API3:2023 - Broken Object Property Level Authorization
     (Mass Assignment)
@@ -33,7 +38,7 @@ async def complete_checkout(request: Request):
     campos que o cliente nunca deveria poder alterar (preço, status
     de pagamento etc.). Ver CheckoutController.complete_checkout().
     """
-    return await checkout_controller.complete_checkout(request)
+    return await checkout_controller.complete_checkout(request, current_user)
 
 
 @router.get("/checkout/debug")
