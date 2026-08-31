@@ -5,14 +5,17 @@ Rotas de Produtos. Uso didático (trabalho sobre OWASP API
 Security Top 10). NÃO utilize em produção.
 """
 
+from typing import List
+
 from fastapi import APIRouter
 
 from controllers.ProductController import ProductController
+from models.ProductModel import PublicProductModel
 
 router = APIRouter(prefix="", tags=["Produtos"])
 
 
-@router.get("/products")
+@router.get("/products", response_model=List[PublicProductModel])
 async def get_products():
     """
     API4:2023 - Unrestricted Resource Consumption
@@ -22,8 +25,8 @@ async def get_products():
 
     API3:2023 - Excessive Data Exposure
     --------------------------------------------------
-    `SELECT *` devolve colunas internas (cost, internal_notes) junto
-    com os dados públicos do catálogo.
+    A resposta contém somente os campos públicos do catálogo; custos e
+    notas internas não são serializados.
     """
     return ProductController.get_products()
 
@@ -36,6 +39,11 @@ async def search_products(name: str):
     `name` é concatenado diretamente na query SQL, sem parâmetros
     preparados -> permite extrair ou manipular dados do banco via
     payloads como `' OR '1'='1` ou `' UNION SELECT ...`.
+
+    API3:2023 - Excessive Data Exposure
+    --------------------------------------------------
+    Mesmo com a falha de SQL Injection ainda presente, a consulta e a
+    resposta limitam-se às colunas públicas do produto.
 
     API8:2023 - Security Misconfiguration
     --------------------------------------------------

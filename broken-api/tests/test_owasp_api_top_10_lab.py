@@ -99,6 +99,7 @@ def test_api1_user_id_route_requires_object_authorization():
     own_response = client.get("/users/1", headers=auth_headers(1))
     assert own_response.status_code == 200
     assert own_response.json()["username"] == "alice"
+    assert set(own_response.json()) == {"id", "username"}
 
 
 def test_api1_checkout_rejects_order_owned_by_another_user():
@@ -106,14 +107,14 @@ def test_api1_checkout_rejects_order_owned_by_another_user():
     owner_response = client.post(
         "/checkout",
         headers=auth_headers(1),
-        json={"order_id": order_id, "user_id": 1},
+        json={"order_id": order_id, "payment_method": "card"},
     )
     assert owner_response.status_code == 200
 
     attacker_response = client.post(
         "/checkout",
         headers=auth_headers(2),
-        json={"order_id": order_id, "user_id": 2, "is_paid": True},
+        json={"order_id": order_id, "payment_method": "card"},
     )
 
     assert attacker_response.status_code == 403
@@ -172,16 +173,72 @@ def test_api2_rejects_tampered_token():
     assert error.value.status_code == 401
 
 
-def test_api3_mass_assignment_changes_privileged_property():
+def test_api3_rejects_profile_mass_assignment_and_filters_response():
     response = client.put(
         "/profile/1",
         headers=auth_headers(1),
         json={"is_admin": True, "password": "changed-by-client"},
     )
 
+    assert response.status_code == 422
+
+    safe_update = client.put(
+        "/profile/1",
+        headers=auth_headers(1),
+        json={"email": "alice@empresa.com"},
+    )
+    assert safe_update.status_code == 200
+    assert set(safe_update.json()) == {"id", "username"}
+
+    profile_response = client.get("/profile/1", headers=auth_headers(1))
+    assert profile_response.status_code == 200
+    assert set(profile_response.json()) == {"id", "username"}
+
+
+def test_api3_filters_user_collection_response():
+    response = client.get("/users")
+
     assert response.status_code == 200
-    assert response.json()["is_admin"] is True
-    assert response.json()["password"] == "changed-by-client"
+    assert response.json()
+    assert all(set(user) == {"id", "username"} for user in response.json())
+
+
+def test_api3_filters_product_response():
+    response = client.get("/products")
+
+    assert response.status_code == 200
+    assert response.json()
+    assert all(set(product) == {"id", "name", "price"} for product in response.json())
+
+
+def test_api3_rejects_checkout_mass_assignment_and_filters_response():
+    invalid_response = client.post(
+        "/checkout",
+        headers=auth_headers(1),
+        json={
+            "order_id": "api3-invalid-order",
+            "payment_method": "card",
+            "user_id": 99,
+            "price": 0.01,
+            "is_paid": True,
+        },
+    )
+    assert invalid_response.status_code == 422
+
+    valid_response = client.post(
+        "/checkout",
+        headers=auth_headers(1),
+        json={"order_id": "api3-safe-order", "payment_method": "card"},
+    )
+    assert valid_response.status_code == 200
+    assert set(valid_response.json()["order"]) == {"order_id", "payment_method"}
+
+    debug_response = client.get("/checkout/debug")
+    assert debug_response.status_code == 200
+    assert set(debug_response.json()["all_orders"]["api3-safe-order"]) == {
+        "order_id",
+        "payment_method",
+    }
 
 
 def test_api4_products_are_returned_without_pagination_or_limit():
@@ -198,22 +255,17 @@ def test_api5_non_admin_can_change_product_price():
     assert response.json()["new_price"] == -10
 
 
-def test_api6_checkout_accepts_sensitive_business_flow_abuse():
+def test_api6_checkout_still_allows_business_flow_without_rate_limiting():
     response = client.post(
         "/checkout",
         headers=auth_headers(2),
         json={
             "order_id": "order-001",
-            "user_id": 2,
-            "price": 0.01,
-            "discount": 99,
-            "is_paid": True,
+            "payment_method": "card",
         },
     )
 
     assert response.status_code == 200
-    assert response.json()["order"]["price"] == 0.01
-    assert response.json()["order"]["is_paid"] is True
 
 
 def test_api7_ssrf_fetches_user_supplied_internal_url(monkeypatch):
@@ -244,7 +296,7 @@ def test_api9_forgotten_inventory_endpoint_exposes_all_orders():
     client.post(
         "/checkout",
         headers=auth_headers(1),
-        json={"order_id": "inventory-leak", "user_id": 1},
+        json={"order_id": "inventory-leak", "payment_method": "card"},
     )
     response = client.get("/checkout/debug")
 

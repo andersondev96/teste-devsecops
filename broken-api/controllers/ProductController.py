@@ -11,6 +11,8 @@ import sqlite3
 import traceback
 from pathlib import Path
 
+from models.ProductModel import PublicProductModel
+
 DB_PATH = Path(__file__).resolve().parent.parent / "database.db"
 
 
@@ -24,10 +26,9 @@ class ProductController:
         )
         cursor.execute("SELECT COUNT(*) FROM products")
         if cursor.fetchone()[0] == 0:
-            # API3:2023 - Excessive Data Exposure (preparação)
-            # Campos internos (custo real, notas internas de negociação
-            # com fornecedor) sendo guardados na MESMA tabela que será
-            # devolvida sem filtro nenhum ao cliente da API.
+            # API3:2023 - Excessive Data Exposure (dado de apoio)
+            # Campos internos permanecem armazenados separadamente dos
+            # campos públicos retornados pelos serializers da API.
             cursor.executemany(
                 "INSERT INTO products (name, price, cost, internal_notes) VALUES (?, ?, ?, ?)",
                 [
@@ -52,20 +53,24 @@ class ProductController:
         API3:2023 - Broken Object Property Level Authorization /
         Excessive Data Exposure
         --------------------------------------------------
-        `SELECT *` devolve TODAS as colunas, incluindo `cost` e
-        `internal_notes`, que são dados internos de negócio e nunca
-        deveriam ser expostos por uma API pública de catálogo.
+        A consulta seleciona somente as colunas públicas e a resposta é
+        validada por um DTO. `cost` e `internal_notes` permanecem internos.
 
-        Mitigação: usar paginação (LIMIT/OFFSET ou cursor), selecionar
-        explicitamente só as colunas públicas (id, name, price), e
-        aplicar um schema de saída (DTO) que filtre o restante.
+        A paginação e o limite de recursos continuam pendentes de API4.
         """
         conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM products")
+        cursor.execute("SELECT id, name, price FROM products")
         products = cursor.fetchall()
         conn.close()
-        return products
+        return [
+            PublicProductModel(
+                id=product_id,
+                name=name,
+                price=price,
+            ).model_dump()
+            for product_id, name, price in products
+        ]
 
     @staticmethod
     def search_products(name: str):
@@ -81,7 +86,7 @@ class ProductController:
         clássico, por exemplo:
 
             name = "' OR '1'='1"          -> vaza a tabela inteira
-            name = "' UNION SELECT sqlite_version(),1,1,1 --"
+            name = "' UNION SELECT sqlite_version(),1,1 --"
                                             -> extrai metadados do banco
 
         Mitigação: SEMPRE usar queries parametrizadas
@@ -90,7 +95,10 @@ class ProductController:
         """
         conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
-        query = f"SELECT * FROM products WHERE name LIKE '%{name}%'"  # VULNERÁVEL: SQL Injection
+        # A consulta ainda é vulnerável a SQL Injection (API8), mas limita
+        # suas colunas ao contrato público para não expor dados internos
+        # caso a busca seja explorada.
+        query = f"SELECT id, name, price FROM products WHERE name LIKE '%{name}%'"  # VULNERÁVEL: SQL Injection
         try:
             cursor.execute(query)
             products = cursor.fetchall()
@@ -102,7 +110,14 @@ class ProductController:
             # estrutura interna do banco e refinar o ataque.
             return {"error": str(e), "query": query, "trace": traceback.format_exc()}
         conn.close()
-        return products
+        return [
+            PublicProductModel(
+                id=product_id,
+                name=product_name,
+                price=price,
+            ).model_dump()
+            for product_id, product_name, price in products
+        ]
 
     @staticmethod
     def delete_product(product_id: int):

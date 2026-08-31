@@ -5,6 +5,7 @@ import os
 from fastapi import HTTPException, Request
 
 from models.LoginModel import LoginModel
+from models.UserModel import PublicUserModel
 from security import (
     DUMMY_PASSWORD_HASH,
     CurrentUser,
@@ -54,12 +55,12 @@ class AuthController:
 
         API3:2023 - Excessive Data Exposure
         --------------------------------------------------
-        O objeto inteiro do usuário é retornado sem filtrar campos
-        sensíveis (senha, e-mail, dados internos), quando o cliente
-        provavelmente só precisa de nome/ID.
+        A resposta usa um DTO público com somente ID e nome de usuário.
+        Hash de senha, e-mail, papel administrativo e outros campos
+        internos nunca são serializados para o cliente.
 
-        Ainda é necessário usar um DTO/schema de saída que exponha só os
-        campos necessários.
+        A autorização por objeto da API1 continua sendo aplicada antes
+        da serialização.
         """
         authorize_object_access(current_user, user_id)
 
@@ -69,7 +70,10 @@ class AuthController:
 
         # O controle de taxa de requisições (API4:2023 - Unrestricted
         # Resource Consumption) continua pendente.
-        return user
+        return PublicUserModel(
+            id=user["id"],
+            username=user["username"],
+        ).model_dump()
 
     def debug_info(self, request: Request):
         # O endpoint é mantido apenas para demonstrar a configuração de

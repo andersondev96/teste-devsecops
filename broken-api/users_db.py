@@ -7,10 +7,9 @@
 # executada fora do código e os hashes devem ficar em um banco protegido.
 #
 # API3:2023 - Excessive Data Exposure
-# Campos sensíveis (senha, e-mail) ficam misturados no mesmo objeto
-# que é devolvido diretamente pelas rotas da API (ver AuthController,
-# UserController), sem nenhuma separação entre "dados internos" e
-# "dados públicos do perfil".
+# Campos sensíveis (senha, e-mail) permanecem somente no modelo interno.
+# As rotas usam schemas de saída explícitos e nunca devolvem estes objetos
+# diretamente ao cliente.
 #
 # API5:2023 - Broken Function Level Authorization (dado de apoio)
 # O campo "is_admin" deve ser lido somente no servidor e nunca aceito em

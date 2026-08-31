@@ -7,7 +7,12 @@ OWASP API Security Top 10 (2023). NÃO utilize este código em produção
 ou em qualquer ambiente exposto à internet.
 """
 
-from fastapi import HTTPException, Request
+from fastapi import HTTPException
+from models.CheckoutModel import (
+    CheckoutRequestModel,
+    CheckoutResponseModel,
+    PublicOrderModel,
+)
 from security import CurrentUser, authorize_object_access
 from users_db import checkout_db  # simulação de "banco" em memória
 
@@ -23,17 +28,18 @@ class CheckoutController:
     def __init__(self):
         self.checkout_db = checkout_db
 
-    async def complete_checkout(self, request: Request, current_user: CurrentUser):
+    async def complete_checkout(
+        self,
+        checkout_data: CheckoutRequestModel,
+        current_user: CurrentUser,
+    ) -> CheckoutResponseModel:
         """
         API6:2023 - Unrestricted Access to Sensitive Business Flows
         --------------------------------------------------
         O fluxo de checkout (uma ação de negócio sensível, que
-        movimenta dinheiro/estoque) não possui:
-          - autenticação do usuário
-          - CAPTCHA / rate limiting
-          - verificação de que o pedido pertence ao usuário logado
-        Isso permite que um bot finalize checkouts em massa, abuse de
-        cupons de desconto, ou finalize pedidos de outras pessoas.
+        movimenta dinheiro/estoque) ainda não possui CAPTCHA ou rate
+        limiting. A autenticação e a autorização do pedido são aplicadas
+        pelas dependências da API1, mas um bot ainda pode repetir o fluxo.
 
         API1:2023 - Broken Object Level Authorization (BOLA/IDOR)
         --------------------------------------------------
@@ -44,12 +50,10 @@ class CheckoutController:
         API3:2023 - Broken Object Property Level Authorization
         (Mass Assignment)
         --------------------------------------------------
-        Todo o corpo (`data`) é confiado e aplicado diretamente sobre
-        o registro do pedido, incluindo campos que o cliente NUNCA
-        deveria poder alterar (preço, desconto, status de pagamento,
-        flag de admin etc.). Isso é conhecido como "Mass Assignment":
-        o atacante manda { "price": 0.01, "is_paid": true } e o
-        servidor aceita cegamente.
+        O schema de entrada usa uma allowlist explícita (`order_id` e
+        `payment_method`) e rejeita propriedades extras. Preço, desconto,
+        status de pagamento, proprietário e demais campos internos não
+        podem ser enviados nem alterados pelo cliente.
 
         API4:2023 - Unrestricted Resource Consumption
         --------------------------------------------------
@@ -59,17 +63,15 @@ class CheckoutController:
 
         Mitigação (para o trabalho):
           - Exigir autenticação (JWT) e checar que order.user_id ==
-            usuário autenticado antes de qualquer operação (BOLA).
+            usuário autenticado antes de qualquer operação (API1).
           - Usar um schema de entrada (Pydantic) que só aceite campos
-            permitidos (ex: order_id, payment_method) — nunca usar o
-            dict inteiro do request.
+            permitidos — nunca usar o dict inteiro do request.
           - Aplicar rate limiting (ex: slowapi) e CAPTCHA em fluxos de
             negócio sensíveis.
           - Nunca confiar em preço/desconto vindos do cliente; recalcular
             sempre no servidor a partir da fonte confiável (catálogo/BD).
         """
-        data = await request.json()
-        order_id = data.get("order_id")
+        order_id = checkout_data.order_id
 
         order = self.checkout_db.get(order_id)
 
@@ -84,32 +86,43 @@ class CheckoutController:
         else:
             owner_id = current_user.id
 
-        # Mass Assignment: aplica QUALQUER campo enviado pelo cliente
-        # diretamente no registro do pedido, sem validar nomes de
-        # campos nem tipos. (API3:2023)
-        if order:
-            # Impede que mass assignment altere o dono do objeto depois da
-            # autorização. Os demais campos continuam pendentes de API3.
-            data["user_id"] = owner_id
-            order.update(data)
+        # Persiste somente a propriedade permitida pelo schema. O
+        # proprietário é sempre um campo interno definido pelo servidor.
+        if checkout_data.payment_method is not None:
+            safe_data = {"payment_method": checkout_data.payment_method}
         else:
-            # Se o pedido não existe, cria um novo do zero com os dados
-            # do cliente — incluindo campos sensíveis como "price",
-            # "discount", "is_paid" que deveriam ser calculados no
-            # servidor. (API3:2023 + API6:2023)
-            data["user_id"] = owner_id
-            self.checkout_db[order_id] = data
+            safe_data = {}
+
+        if order:
+            order.update(safe_data)
+        else:
+            # O pedido contém apenas o identificador interno do proprietário
+            # e as propriedades permitidas para o fluxo.
+            self.checkout_db[order_id] = {"user_id": owner_id, **safe_data}
 
         # API3:2023 - Excessive Data Exposure
-        # Devolve o registro inteiro do pedido, incluindo qualquer
-        # campo interno (ex: custo real, margem, dados de outro
-        # cliente reaproveitados por engano) em vez de um DTO de saída.
-        return {
-            "status": "success",
-            "order": self.checkout_db.get(order_id),
-        }
+        # O DTO omite o proprietário e todos os campos internos do pedido.
+        order_data = self.checkout_db.get(order_id, {})
+        public_order = PublicOrderModel(
+            order_id=order_id,
+            payment_method=order_data.get("payment_method"),
+        )
+        return CheckoutResponseModel(
+            status="success",
+            order=public_order,
+        )
 
     async def debug_orders(self):
         if DEBUG:
-            return {"all_orders": self.checkout_db}
+            # API9 continua expondo o inventário completo, mas a API3 não
+            # deve vazar propriedades internas de cada pedido.
+            return {
+                "all_orders": {
+                    order_id: PublicOrderModel(
+                        order_id=order_id,
+                        payment_method=order.get("payment_method"),
+                    ).model_dump()
+                    for order_id, order in self.checkout_db.items()
+                }
+            }
         return {"detail": "Not found"}

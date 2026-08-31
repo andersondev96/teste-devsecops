@@ -4,6 +4,7 @@ from fastapi import APIRouter, Depends, Request
 
 from controllers.AuthController import AuthController
 from models.LoginModel import LoginModel
+from models.UserModel import PublicUserModel
 from security import CurrentUser, get_current_user
 
 router = APIRouter(prefix="", tags=["Autenticação"])
@@ -22,7 +23,7 @@ async def login(login_data: LoginModel):
     return auth_controller.login(login_data)
 
 
-@router.get("/users/{user_id}")
+@router.get("/users/{user_id}", response_model=PublicUserModel)
 async def get_user(
     user_id: int,
     current_user: CurrentUser = Depends(get_current_user),

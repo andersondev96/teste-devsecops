@@ -9,6 +9,7 @@ ou em qualquer ambiente exposto à internet.
 
 from fastapi import HTTPException
 
+from models.UserModel import PublicUserModel, UserProfileUpdateModel
 from security import CurrentUser, authorize_object_access
 from users_db import users_db
 
@@ -29,14 +30,11 @@ class UserController:
         API3:2023 - Broken Object Property Level Authorization /
         Excessive Data Exposure
         --------------------------------------------------
-        O objeto inteiro do usuário é devolvido sem filtrar campos
-        sensíveis (senha/hash, e-mail, dados de pagamento, tokens
-        internos), quando o solicitante provavelmente só deveria ver
-        um subconjunto público do perfil (nome, avatar, bio).
+        A resposta usa um DTO público com somente ID e nome de usuário.
+        Campos sensíveis e administrativos não são expostos.
 
-        A autorização por objeto é aplicada antes do retorno. Ainda é
-        necessário usar um schema de saída (Pydantic) que exponha só campos
-        públicos, nunca o registro bruto do banco.
+        A autorização por objeto é aplicada antes do retorno e o registro
+        bruto do banco nunca é devolvido.
         """
         authorize_object_access(current_user, user_id)
 
@@ -44,9 +42,17 @@ class UserController:
         if not user:
             raise HTTPException(status_code=404, detail="User not found")
 
-        return user
+        return PublicUserModel(
+            id=user["id"],
+            username=user["username"],
+        ).model_dump()
 
-    def update_user_profile(self, user_id: int, current_user: CurrentUser, data: dict):
+    def update_user_profile(
+        self,
+        user_id: int,
+        current_user: CurrentUser,
+        data: UserProfileUpdateModel,
+    ):
         """
         API1:2023 - Broken Object Level Authorization (BOLA/IDOR)
         --------------------------------------------------
@@ -57,15 +63,13 @@ class UserController:
         API3:2023 - Broken Object Property Level Authorization
         (Mass Assignment)
         --------------------------------------------------
-        `data` é aplicado inteiro sobre o registro do usuário sem
-        nenhuma lista de campos permitidos. Isso permite que o cliente
-        envie, por exemplo, { "role": "admin", "is_verified": True,
-        "balance": 999999 } e o servidor aceite cegamente, promovendo
-        um usuário comum a administrador ou adulterando saldo.
+        O schema de entrada usa uma allowlist de propriedades editáveis
+        (`username` e `email`) e rejeita campos extras. Propriedades
+        privilegiadas, como `is_admin`, `id` e `password_hash`, nunca são
+        aplicadas ao registro.
 
-        A autorização por objeto já foi aplicada. Ainda é necessário
-        usar um schema de entrada com allowlist explícita
-        de campos editáveis (ex: nome, bio, avatar — nunca role/saldo).
+        A autorização por objeto é aplicada antes da atualização e o
+        retorno continua limitado ao DTO público.
         """
         authorize_object_access(current_user, user_id)
 
@@ -73,10 +77,13 @@ class UserController:
         if not user:
             raise HTTPException(status_code=404, detail="User not found")
 
-        # Mass Assignment: qualquer chave do dict `data` sobrescreve o
-        # registro do usuário, incluindo campos privilegiados.
-        user.update(data)
-        return user
+        # A allowlist é definida no schema; somente campos explicitamente
+        # enviados e permitidos podem ser persistidos.
+        user.update(data.model_dump(exclude_unset=True, exclude_none=True))
+        return PublicUserModel(
+            id=user["id"],
+            username=user["username"],
+        ).model_dump()
 
     def delete_user(self, user_id: int, current_user: CurrentUser):
         """
@@ -100,14 +107,16 @@ class UserController:
         API3:2023 - Excessive Data Exposure
         API9:2023 - Improper Inventory Management
         --------------------------------------------------
-        Rota "utilitária" que devolve a base de usuários inteira, sem
-        paginação, sem autenticação e sem filtrar campos sensíveis —
-        um vazamento completo de PII (dados pessoais) em uma única
-        chamada. Endpoints assim costumam ser criados para debug e
-        esquecidos em produção.
+        A rota ainda lista todos os usuários sem paginação ou autenticação
+        (controles pendentes de API4/API9), mas cada item é serializado como
+        um DTO público e não contém campos sensíveis.
 
-        Mitigação: remover este endpoint de produção, ou, se
-        necessário, restringi-lo a admins, paginar os resultados e
-        devolver apenas campos públicos de cada usuário.
+        A mitigação da API3 consiste em devolver somente campos públicos.
         """
-        return list(self.users_db.values())
+        return [
+            PublicUserModel(
+                id=user["id"],
+                username=user["username"],
+            ).model_dump()
+            for user in self.users_db.values()
+        ]

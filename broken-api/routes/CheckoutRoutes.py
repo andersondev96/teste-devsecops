@@ -5,9 +5,10 @@ Rotas de Checkout. Uso didático (trabalho sobre OWASP API
 Security Top 10). NÃO utilize em produção.
 """
 
-from fastapi import APIRouter, Depends, Request
+from fastapi import APIRouter, Depends
 
 from controllers.CheckoutController import CheckoutController
+from models.CheckoutModel import CheckoutRequestModel, CheckoutResponseModel
 from security import CurrentUser, get_current_user
 
 router = APIRouter(prefix="", tags=["Checkout"])
@@ -15,16 +16,16 @@ router = APIRouter(prefix="", tags=["Checkout"])
 checkout_controller = CheckoutController()
 
 
-@router.post("/checkout")
+@router.post("/checkout", response_model=CheckoutResponseModel)
 async def complete_checkout(
-    request: Request,
+    checkout_data: CheckoutRequestModel,
     current_user: CurrentUser = Depends(get_current_user),
 ):
     """
     API6:2023 - Unrestricted Access to Sensitive Business Flows
     --------------------------------------------------
-    Fluxo de negócio sensível (finalizar compra) sem autenticação,
-    CAPTCHA ou rate limiting -> permite abuso automatizado (bots).
+    Fluxo de negócio sensível (finalizar compra) ainda não possui
+    CAPTCHA ou rate limiting e permite abuso automatizado (bots).
 
     API1:2023 - Broken Object Level Authorization (BOLA/IDOR)
     --------------------------------------------------
@@ -34,11 +35,11 @@ async def complete_checkout(
     API3:2023 - Broken Object Property Level Authorization
     (Mass Assignment)
     --------------------------------------------------
-    O corpo inteiro da requisição é aplicado sobre o pedido, incluindo
-    campos que o cliente nunca deveria poder alterar (preço, status
-    de pagamento etc.). Ver CheckoutController.complete_checkout().
+    O schema de entrada aceita somente propriedades permitidas e a
+    resposta usa um DTO sem campos internos. Ver
+    CheckoutController.complete_checkout().
     """
-    return await checkout_controller.complete_checkout(request, current_user)
+    return await checkout_controller.complete_checkout(checkout_data, current_user)
 
 
 @router.get("/checkout/debug")

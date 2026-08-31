@@ -2,9 +2,9 @@
 Componentes compartilhados de autenticação.
 
 Este módulo concentra a criação/verificação de hashes de senha e de tokens
-JWT. A autorização dos objetos será adicionada às rotas na próxima etapa,
-mas a identidade usada por ela já passa a ser obtida de um token validado,
-e não de parâmetros controlados pelo cliente.
+JWT, além das primitivas compartilhadas de autorização. A identidade usada
+pelas rotas é obtida de um token validado, e não de parâmetros controlados
+pelo cliente.
 """
 
 from __future__ import annotations

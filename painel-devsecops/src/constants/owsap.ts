@@ -26,7 +26,7 @@ export type OwaspMapping = {
 export const OWASP_LAB_STATUS: Record<string, OwaspStatus> = {
   API1: 'mitigated',
   API2: 'partially_mitigated',
-  API3: 'vulnerable',
+  API3: 'mitigated',
   API4: 'vulnerable',
   API5: 'vulnerable',
   API6: 'vulnerable',
@@ -65,12 +65,12 @@ export const OWASP_LAB_EVIDENCE: Record<string, {
     line_number: 45,
   },
   API3: {
-    Title: 'Teste API3 — mass assignment e exposição de propriedades',
-    desc: 'O cliente consegue alterar propriedades privilegiadas e a API devolve campos internos do usuário.',
-    solution: 'Usar schemas de entrada e saída explícitos, filtrando propriedades sensíveis e privilegiadas.',
-    uri: 'PUT /profile/{user_id}',
+    Title: 'Regressão API3 — autorização por propriedade',
+    desc: 'Os testes confirmam que campos extras e privilegiados são rejeitados e que usuários, produtos e pedidos retornam somente propriedades públicas.',
+    solution: 'Usar schemas de entrada com allowlist e DTOs de saída explícitos, rejeitando propriedades não autorizadas e filtrando dados internos.',
+    uri: 'PUT /profile/{user_id}, GET /users, GET /products, POST /checkout',
     file: 'broken-api/tests/test_owasp_api_top_10_lab.py',
-    line_number: 56,
+    line_number: 175,
   },
   API4: {
     Title: 'Teste API4 — consumo irrestrito de recursos',
