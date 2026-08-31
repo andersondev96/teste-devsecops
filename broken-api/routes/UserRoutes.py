@@ -5,9 +5,12 @@ Rotas de Usuários. Uso didático (trabalho sobre OWASP API
 Security Top 10). NÃO utilize em produção.
 """
 
+from typing import List
+
 from fastapi import APIRouter, Depends
 
 from controllers.UserController import UserController
+from models.UserModel import PublicUserModel, UserProfileUpdateModel
 from security import CurrentUser, get_current_user
 
 router = APIRouter(prefix="", tags=["Usuários"])
@@ -15,7 +18,7 @@ router = APIRouter(prefix="", tags=["Usuários"])
 user_controller = UserController()
 
 
-@router.get("/profile/{user_id}")
+@router.get("/profile/{user_id}", response_model=PublicUserModel)
 async def get_user_profile(
     user_id: int,
     current_user: CurrentUser = Depends(get_current_user),
@@ -30,7 +33,7 @@ async def get_user_profile(
 
     API3:2023 - Excessive Data Exposure
     --------------------------------------------------
-    Devolve o objeto de usuário inteiro (senha incluída).
+    Devolve somente o DTO público do usuário.
     """
     return user_controller.get_user_profile(user_id, current_user)
 
@@ -38,7 +41,7 @@ async def get_user_profile(
 @router.put("/profile/{user_id}")
 async def update_user_profile(
     user_id: int,
-    data: dict,
+    data: UserProfileUpdateModel,
     current_user: CurrentUser = Depends(get_current_user),
 ):
     """
@@ -50,10 +53,11 @@ async def update_user_profile(
     API3:2023 - Broken Object Property Level Authorization
     (Mass Assignment)
     --------------------------------------------------
-    `data` (corpo cru da requisição) é aplicado sem allowlist, ex:
+    O schema aceita somente propriedades de perfil permitidas e rejeita
+    campos extras, ex:
         PUT /profile/1
         { "is_admin": true }
-    promove o próprio usuário a administrador.
+    retorna erro de validação e não altera propriedades privilegiadas.
     """
     return user_controller.update_user_profile(user_id, current_user, data)
 
@@ -72,13 +76,14 @@ async def delete_user(
     return user_controller.delete_user(user_id, current_user)
 
 
-@router.get("/users")
+@router.get("/users", response_model=List[PublicUserModel])
 async def list_all_users():
     """
     API3:2023 - Excessive Data Exposure
     API9:2023 - Improper Inventory Management
     --------------------------------------------------
     Endpoint "utilitário" sem autenticação nem paginação que vaza
-    a base de usuários inteira (incluindo senhas em texto puro).
+    a base de usuários inteira. A resposta é limitada a campos públicos;
+    autenticação, paginação e inventário continuam em API4/API9.
     """
     return user_controller.list_all_users()

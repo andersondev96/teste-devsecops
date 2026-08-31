@@ -64,6 +64,10 @@ jobs:
         # Garante que a mitigação da API1 continue válida a cada push.
         run: pytest -q broken-api/tests/test_owasp_api_top_10_lab.py -k api1
 
+      - name: 6.3. Testes de regressão da autorização por propriedade
+        # Garante que a mitigação da API3 continue válida a cada push.
+        run: pytest -q broken-api/tests/test_owasp_api_top_10_lab.py -k api3
+
       - name: 7. Build da Imagem Docker
         run: docker build -t vulnerable-api:latest ./broken-api
 
