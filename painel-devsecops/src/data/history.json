@@ -71,7 +71,7 @@
   },
   {
     "date": "2026-08-30T23:37:17Z",
-    "description": "Descrição do commit associado ao merge não disponível.",
+    "description": "fix(ci): usa descricao real em merges no historico",
     "commit": "d00df7d",
     "sast": 1,
     "sca": 0,
@@ -81,7 +81,7 @@
   },
   {
     "date": "2026-08-31T00:32:25Z",
-    "description": "Descrição do commit associado ao merge não disponível.",
+    "description": "fix(api1): aplica autorizacao por objeto",
     "commit": "fdb21ab",
     "sast": 1,
     "sca": 0,

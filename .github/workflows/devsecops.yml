@@ -19,6 +19,10 @@ jobs:
     steps:
       - name: 1. Checkout do Código
         uses: actions/checkout@v4
+        with:
+          # O histórico completo é necessário para resolver a descrição do
+          # commit-pai quando o SHA da execução é um merge sem corpo.
+          fetch-depth: 0
 
       - name: 2. Configurar Python
         uses: actions/setup-python@v5
@@ -130,25 +134,43 @@ jobs:
           DAST_TOTAL=$(jq '.site[0].alerts | length' report_json.json || echo 0)
           TRIVY_TOTAL=$(jq '[.Results[].Vulnerabilities[]?] | length' trivy_report.json || echo 0)
           TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-          COMMIT_SHA=$(git rev-parse --short HEAD)
+          COMMIT_SHA=$(git rev-parse --short "$GITHUB_SHA")
           COMMIT_SUBJECT=$(git log -1 --pretty=%s "$GITHUB_SHA")
           COMMIT_DESCRIPTION="$COMMIT_SUBJECT"
+          COMMIT_PARENTS=($(git rev-list --parents -n 1 "$GITHUB_SHA"))
 
-          # Em commits de merge, o subject é genérico ("Merge pull request...").
-          # Prioriza a primeira linha útil do corpo, que contém a descrição do
-          # commit/PR. Se o corpo estiver vazio, usa o commit associado ao merge.
-          if printf '%s' "$COMMIT_SUBJECT" | grep -Eiq '^Merge (pull request|branch)'; then
+          # Identifica merges pelo número de pais, e não pelo idioma/formato do
+          # subject. Isso também cobre merges criados fora do GitHub.
+          if [ "${#COMMIT_PARENTS[@]}" -gt 2 ]; then
+            # Prioriza a primeira linha útil do corpo, que normalmente contém
+            # a descrição do commit/PR.
             MERGE_DESCRIPTION=$(git log -1 --pretty=%b "$GITHUB_SHA" | awk 'NF && $0 !~ /^Merge (pull request|branch)/ { print; exit }')
             if [ -n "$MERGE_DESCRIPTION" ]; then
               COMMIT_DESCRIPTION="$MERGE_DESCRIPTION"
-            elif git rev-parse "$GITHUB_SHA^2" >/dev/null 2>&1; then
-              COMMIT_DESCRIPTION=$(git log -1 --no-merges --pretty=%s "$GITHUB_SHA^2")
+            else
+              # O segundo pai normalmente é o commit da branch integrada.
+              # Em merges de sincronização, porém, ele pode ser um commit
+              # automático do GitHub Actions; nesse caso, usa o primeiro pai.
+              MERGE_PARENT="${COMMIT_PARENTS[2]}"
+              PARENT_AUTHOR=$(git show -s --format='%an <%ae>' "$MERGE_PARENT" 2>/dev/null || true)
+              PARENT_SUBJECT=$(git show -s --format=%s "$MERGE_PARENT" 2>/dev/null || true)
+
+              if printf '%s\n%s' "$PARENT_AUTHOR" "$PARENT_SUBJECT" | grep -Eiq 'github-actions\[bot\]|docs: atualiza histórico de vulnerabilidades'; then
+                MERGE_PARENT="${COMMIT_PARENTS[1]}"
+              fi
+
+              if git rev-parse "$MERGE_PARENT" >/dev/null 2>&1; then
+                COMMIT_DESCRIPTION=$(git log -1 --no-merges --pretty=%s "$MERGE_PARENT")
+              fi
             fi
           fi
 
-          # Nunca persiste o subject genérico de um merge no histórico.
-          if printf '%s' "$COMMIT_DESCRIPTION" | grep -Eiq '^Merge (pull request|branch)'; then
-            COMMIT_DESCRIPTION="Descrição do commit associado ao merge não disponível."
+          # Nunca persiste um subject genérico de merge nem um texto vazio.
+          # Se o histórico necessário não estiver disponível, interrompe a
+          # execução antes de gerar um log enganoso para o dashboard.
+          if [ -z "$COMMIT_DESCRIPTION" ] || printf '%s' "$COMMIT_DESCRIPTION" | grep -Eiq '^Merge (pull request|branch)'; then
+            echo "Não foi possível determinar uma descrição real para o commit $COMMIT_SHA." >&2
+            exit 1
           fi
 
           # Cria um objeto JSON com o resumo da execução atual
