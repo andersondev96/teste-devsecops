@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-08-23T14:43:48Z",
-    "description": "Integração da API vulnerável e correções iniciais do pipeline: build Docker sem database.db, histórico na branch correta e Pages somente na main.",
-    "commit": "8ef26cc",
-    "sast": 31,
-    "sca": 1,
-    "dast": 12,
-    "trivy": 13,
-    "total": 57
-  },
-  {
     "date": "2026-08-23T15:13:51Z",
     "description": "Publicação das correções do mapeamento OWASP API1–API10 e do reset idempotente do histórico.",
     "commit": "516058f",
@@ -93,6 +83,16 @@
     "date": "2026-08-31T00:50:27Z",
     "description": "fix(ci): preserva descricoes reais nos logs de merge",
     "commit": "e3e14c1",
+    "sast": 1,
+    "sca": 0,
+    "dast": 11,
+    "trivy": 9,
+    "total": 21
+  },
+  {
+    "date": "2026-08-31T01:30:16Z",
+    "description": "fix(api3): restringe propriedades e respostas da API",
+    "commit": "b998260",
     "sast": 1,
     "sca": 0,
     "dast": 11,

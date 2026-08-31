@@ -3,31 +3,31 @@
   "Trivy": {
     "Version": "0.74.0"
   },
-  "ReportID": "01a0554a-d1cb-7a97-837f-bc05c446b23d",
-  "CreatedAt": "2026-08-31T00:49:21.867695748Z",
-  "ArtifactID": "sha256:4a070838e3d0ad3a9411d6ba77dac6f5a8263a5820274ecd87cbb8dfc58ccfd5",
+  "ReportID": "01a0556f-421e-7340-ab45-853cdb4fab05",
+  "CreatedAt": "2026-08-31T01:29:09.918214287Z",
+  "ArtifactID": "sha256:6e6b1d55f48ece0b0ea6878b56e4a164080df11eb88d50c8e4a177f1a82ce75a",
   "ArtifactName": "vulnerable-api:latest",
   "ArtifactType": "container_image",
   "Metadata": {
-    "Size": 110352896,
+    "Size": 110376960,
     "OS": {
       "Family": "alpine",
       "Name": "3.24.1"
     },
-    "ImageID": "sha256:4b8e8453f4af5917fa41bf1b304c556368eb99415e1af7c420d730835596fea2",
+    "ImageID": "sha256:46575f4628a6bd56279ab824e1bfac77bc7725ef0dacc5f0d4925668c2f5cd05",
     "DiffIDs": [
       "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c",
       "sha256:e841883ead55c7764ef03835ed98a55882e84f57dd6f90ffbc7d31d5fc8974a6",
       "sha256:2a35f153520985da7afa7a4e0ad937ffc12ab85368a318897a7b5bbf238de41c",
       "sha256:1b3b53d060ded641f97028c035939c8f8ae188040ae683c2f5e019b948ed0356",
-      "sha256:db1e446c76212868bea56adeccac557afda3dc4ec5448df4aba47b53e71d6f10",
-      "sha256:0853ed69a07465e941788ca70018a720f6f7e1d84388ec0a6e548575e7aaadd7",
-      "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f",
-      "sha256:68fe9a04afc1c3c630b68c31976164fadc9da2ba3bac9c428a705b9d7971b2de",
-      "sha256:ab6ffb61164b733a72811970b09e531ddf1434ffab0b380a2cb3e5d273ebd702",
-      "sha256:1d91b7f66c276ac75bc5344ff947d818b8b255b59c6f0219f4db954d0b8282a5",
-      "sha256:ee1174cdeaf6db5d3ea95c1aa0e658ace8196327685560d9a58bb38e1d90c5cd",
-      "sha256:d42fbc9ab7d52efb31eaf3e6a4a0fc1e3e384b960ac25e843ae48c0e0346b4fe"
+      "sha256:8e59ed2879a8c8910c251e5948a7e1a066533cde49322d984c3338f81ab7bdd6",
+      "sha256:5404fe06f2ad3e733788df89710da84dbb7869f1c2d914f5542732a10b3ee3b6",
+      "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db",
+      "sha256:56552beb5c3d3cde2865b1ecbe25931a9557afc69478ac4a6efe586fe6564d12",
+      "sha256:4e48a36cffea6d1e8dfe619c8137a96d3596089e5b21fcad782e914ffa0eac0d",
+      "sha256:b75a1421884589815cf09a1eff0ac75f5cecbe9fc7fa3dfba1fc66d7f724e840",
+      "sha256:07ba440db76f8336c2dd5e3952d8f00eb3761b2e0dec5b623cc6bdeba4b53cb0",
+      "sha256:94a444c73e65789e6adbfe5f4c8e3940156dfd975b08a6e2b5ef5a936637ab2a"
     ],
     "RepoTags": [
       "vulnerable-api:latest"
@@ -35,7 +35,7 @@
     "Reference": "vulnerable-api:latest",
     "ImageConfig": {
       "architecture": "amd64",
-      "created": "2026-08-31T00:49:08.563794826Z",
+      "created": "2026-08-31T01:29:01.674976582Z",
       "history": [
         {
           "created": "2026-06-16T00:01:29Z",
@@ -100,53 +100,53 @@
           "empty_layer": true
         },
         {
-          "created": "2026-08-31T00:49:01Z",
+          "created": "2026-08-31T01:28:52Z",
           "created_by": "WORKDIR /app",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-31T00:49:01Z",
+          "created": "2026-08-31T01:28:52Z",
           "created_by": "COPY requirements.txt . # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-31T00:49:08Z",
+          "created": "2026-08-31T01:29:01Z",
           "created_by": "RUN /bin/sh -c apk upgrade --no-cache     \u0026\u0026 python -m pip install --no-cache-dir --upgrade pip     \u0026\u0026 pip install --no-cache-dir -r requirements.txt # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-31T00:49:08Z",
+          "created": "2026-08-31T01:29:01Z",
           "created_by": "COPY main.py run.py security.py users_db.py ./ # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-31T00:49:08Z",
+          "created": "2026-08-31T01:29:01Z",
           "created_by": "COPY controllers ./controllers # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-31T00:49:08Z",
+          "created": "2026-08-31T01:29:01Z",
           "created_by": "COPY models ./models # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-31T00:49:08Z",
+          "created": "2026-08-31T01:29:01Z",
           "created_by": "COPY routes ./routes # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-31T00:49:08Z",
+          "created": "2026-08-31T01:29:01Z",
           "created_by": "COPY tests ./tests # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-08-31T00:49:08Z",
+          "created": "2026-08-31T01:29:01Z",
           "created_by": "EXPOSE map[8000/tcp:{}]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2026-08-31T00:49:08Z",
+          "created": "2026-08-31T01:29:01Z",
           "created_by": "CMD [\"uvicorn\" \"main:app\" \"--host\" \"0.0.0.0\" \"--port\" \"8000\"]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
@@ -160,14 +160,14 @@
           "sha256:e841883ead55c7764ef03835ed98a55882e84f57dd6f90ffbc7d31d5fc8974a6",
           "sha256:2a35f153520985da7afa7a4e0ad937ffc12ab85368a318897a7b5bbf238de41c",
           "sha256:1b3b53d060ded641f97028c035939c8f8ae188040ae683c2f5e019b948ed0356",
-          "sha256:db1e446c76212868bea56adeccac557afda3dc4ec5448df4aba47b53e71d6f10",
-          "sha256:0853ed69a07465e941788ca70018a720f6f7e1d84388ec0a6e548575e7aaadd7",
-          "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f",
-          "sha256:68fe9a04afc1c3c630b68c31976164fadc9da2ba3bac9c428a705b9d7971b2de",
-          "sha256:ab6ffb61164b733a72811970b09e531ddf1434ffab0b380a2cb3e5d273ebd702",
-          "sha256:1d91b7f66c276ac75bc5344ff947d818b8b255b59c6f0219f4db954d0b8282a5",
-          "sha256:ee1174cdeaf6db5d3ea95c1aa0e658ace8196327685560d9a58bb38e1d90c5cd",
-          "sha256:d42fbc9ab7d52efb31eaf3e6a4a0fc1e3e384b960ac25e843ae48c0e0346b4fe"
+          "sha256:8e59ed2879a8c8910c251e5948a7e1a066533cde49322d984c3338f81ab7bdd6",
+          "sha256:5404fe06f2ad3e733788df89710da84dbb7869f1c2d914f5542732a10b3ee3b6",
+          "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db",
+          "sha256:56552beb5c3d3cde2865b1ecbe25931a9557afc69478ac4a6efe586fe6564d12",
+          "sha256:4e48a36cffea6d1e8dfe619c8137a96d3596089e5b21fcad782e914ffa0eac0d",
+          "sha256:b75a1421884589815cf09a1eff0ac75f5cecbe9fc7fa3dfba1fc66d7f724e840",
+          "sha256:07ba440db76f8336c2dd5e3952d8f00eb3761b2e0dec5b623cc6bdeba4b53cb0",
+          "sha256:94a444c73e65789e6adbfe5f4c8e3940156dfd975b08a6e2b5ef5a936637ab2a"
         ]
       },
       "config": {
@@ -212,35 +212,35 @@
       },
       {
         "Size": 1536,
-        "DiffID": "sha256:db1e446c76212868bea56adeccac557afda3dc4ec5448df4aba47b53e71d6f10"
+        "DiffID": "sha256:8e59ed2879a8c8910c251e5948a7e1a066533cde49322d984c3338f81ab7bdd6"
       },
       {
         "Size": 2560,
-        "DiffID": "sha256:0853ed69a07465e941788ca70018a720f6f7e1d84388ec0a6e548575e7aaadd7"
+        "DiffID": "sha256:5404fe06f2ad3e733788df89710da84dbb7869f1c2d914f5542732a10b3ee3b6"
       },
       {
         "Size": 59038208,
-        "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+        "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
       },
       {
-        "Size": 17408,
-        "DiffID": "sha256:68fe9a04afc1c3c630b68c31976164fadc9da2ba3bac9c428a705b9d7971b2de"
+        "Size": 16896,
+        "DiffID": "sha256:56552beb5c3d3cde2865b1ecbe25931a9557afc69478ac4a6efe586fe6564d12"
+      },
+      {
+        "Size": 59904,
+        "DiffID": "sha256:4e48a36cffea6d1e8dfe619c8137a96d3596089e5b21fcad782e914ffa0eac0d"
+      },
+      {
+        "Size": 18432,
+        "DiffID": "sha256:b75a1421884589815cf09a1eff0ac75f5cecbe9fc7fa3dfba1fc66d7f724e840"
+      },
+      {
+        "Size": 36864,
+        "DiffID": "sha256:07ba440db76f8336c2dd5e3952d8f00eb3761b2e0dec5b623cc6bdeba4b53cb0"
       },
       {
         "Size": 58880,
-        "DiffID": "sha256:ab6ffb61164b733a72811970b09e531ddf1434ffab0b380a2cb3e5d273ebd702"
-      },
-      {
-        "Size": 8704,
-        "DiffID": "sha256:1d91b7f66c276ac75bc5344ff947d818b8b255b59c6f0219f4db954d0b8282a5"
-      },
-      {
-        "Size": 35328,
-        "DiffID": "sha256:ee1174cdeaf6db5d3ea95c1aa0e658ace8196327685560d9a58bb38e1d90c5cd"
-      },
-      {
-        "Size": 46592,
-        "DiffID": "sha256:d42fbc9ab7d52efb31eaf3e6a4a0fc1e3e384b960ac25e843ae48c0e0346b4fe"
+        "DiffID": "sha256:94a444c73e65789e6adbfe5f4c8e3940156dfd975b08a6e2b5ef5a936637ab2a"
       }
     ]
   },
@@ -478,7 +478,7 @@
             "zlib@1.3.2-r0"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "Digest": "sha1:74b5c73855cf605e8ef29b9c79a6b5e605864c35",
           "InstalledFiles": [
@@ -887,7 +887,7 @@
             "zlib@1.3.2-r0"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "Digest": "sha1:3ef669f18f8e5eb797a3a07d2c23a4453136353a",
           "InstalledFiles": [
@@ -973,7 +973,7 @@
             "musl@1.2.6-r2"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "Digest": "sha1:1b3b9fc0c136f4936932bcb2ec21499f0ae5dfd3",
           "InstalledFiles": [
@@ -1154,7 +1154,7 @@
             "musl@1.2.6-r2"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "Digest": "sha1:5f9b1e55d821953d2e2b1db322dad70a3b5041ea",
           "InstalledFiles": [
@@ -1472,7 +1472,7 @@
             "musl@1.2.6-r2"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "Digest": "sha1:f7630ceb37c232b6609861aeab6cdb9cd120e6fa",
           "InstalledFiles": [
@@ -2212,7 +2212,7 @@
           },
           "Version": "0.14.4",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "AnalyzedBy": "sbom"
         },
@@ -2227,7 +2227,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pyjwt-2.13.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2243,7 +2243,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pyyaml-6.0.3.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2259,7 +2259,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/annotated_types-0.8.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2275,7 +2275,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/anyio-4.14.2.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2290,7 +2290,7 @@
           },
           "Version": "2026.6.17",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "AnalyzedBy": "sbom"
         },
@@ -2305,7 +2305,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/click-8.5.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2320,7 +2320,7 @@
           },
           "Version": "0.4.2",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "AnalyzedBy": "sbom"
         },
@@ -2334,7 +2334,7 @@
           },
           "Version": "1.9.0",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "AnalyzedBy": "sbom"
         },
@@ -2349,7 +2349,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/fastapi-0.116.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2365,7 +2365,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/h11-0.16.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2381,7 +2381,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/httptools-0.8.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2396,7 +2396,7 @@
           },
           "Version": "3.18",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "AnalyzedBy": "sbom"
         },
@@ -2411,7 +2411,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/idna-3.19.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2426,7 +2426,7 @@
           },
           "Version": "1.1.2",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "AnalyzedBy": "sbom"
         },
@@ -2440,7 +2440,7 @@
           },
           "Version": "26.2",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "AnalyzedBy": "sbom"
         },
@@ -2455,7 +2455,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pip-26.2.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2470,7 +2470,7 @@
           },
           "Version": "4.10.0",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "AnalyzedBy": "sbom"
         },
@@ -2485,7 +2485,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pydantic-2.9.2.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2501,7 +2501,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pydantic_core-2.23.4.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2516,7 +2516,7 @@
           },
           "Version": "2.20.0",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "AnalyzedBy": "sbom"
         },
@@ -2530,7 +2530,7 @@
           },
           "Version": "1.2.0",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "AnalyzedBy": "sbom"
         },
@@ -2545,7 +2545,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/python_dotenv-1.2.3.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2560,7 +2560,7 @@
           },
           "Version": "2.34.2",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "AnalyzedBy": "sbom"
         },
@@ -2574,7 +2574,7 @@
           },
           "Version": "1.2.1",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "AnalyzedBy": "sbom"
         },
@@ -2588,7 +2588,7 @@
           },
           "Version": "14.2.0",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "AnalyzedBy": "sbom"
         },
@@ -2602,7 +2602,7 @@
           },
           "Version": "70.3.0",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "AnalyzedBy": "sbom"
         },
@@ -2617,7 +2617,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/starlette-0.47.3.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2632,7 +2632,7 @@
           },
           "Version": "2.4.1",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "AnalyzedBy": "sbom"
         },
@@ -2646,7 +2646,7 @@
           },
           "Version": "1.2.0",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "AnalyzedBy": "sbom"
         },
@@ -2660,7 +2660,7 @@
           },
           "Version": "0.10.4",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "AnalyzedBy": "sbom"
         },
@@ -2675,7 +2675,7 @@
             "PSF-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/typing_extensions-4.16.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2690,7 +2690,7 @@
           },
           "Version": "2.7.0",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "AnalyzedBy": "sbom"
         },
@@ -2705,7 +2705,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/uvicorn-0.30.6.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2722,7 +2722,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/uvloop-0.22.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2738,7 +2738,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/watchfiles-1.2.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2754,7 +2754,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/websockets-17.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2774,7 +2774,7 @@
           "FixedVersion": "1.2.1",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://github.com/advisories/GHSA-6v7p-g79w-8964",
@@ -2783,7 +2783,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:83bada5ead4e9ddbf589051b248dba3042a7576c7c8551320532ed80a5e20d1b",
+          "Fingerprint": "sha256:68399d5625b24a7c4843575d3b1c2433846148b5bea6360786600351504a23c7",
           "Title": "MessagePack for Python: Out-of-bounds read / crash on Unpacker reuse after a caught error",
           "Description": "### Impact\n\nIf the Unpacker is used repeatedly after an error occurs, the process may crash with a SEGV.\n\nIf the Unpacker is used repeatedly to unpack untrusted input from external sources, it may be vulnerable to a DoS attack.\n\n### Patches\n\nv1.2.1\n\n### Workarounds\n\nUsers should create a new Unpacker instead of reusing the same Unpacker after an error occurs.\n\nApplying the above patch can prevent SEGV, but reusing the Streaming Unpacker after it has encountered an error will not yield correct data. If an error occurs during Streaming Unpacking, the Stream and Streaming Unpacker should be discarded.\n\nTherefore, this is not just a workaround but the correct solution. The above patch only prevents crashes from incorrect usage.",
           "Severity": "HIGH",
@@ -2821,7 +2821,7 @@
           "FixedVersion": "78.1.1",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-47273",
@@ -2830,7 +2830,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:c8dc12364a991cd57ae1aaec70ab38044f6a83872fa66d30aead646fd64acfd5",
+          "Fingerprint": "sha256:f072e5872ed820ea5728634c8fcbc13dbb2f556afb3cbefc389320bff08e319f",
           "Title": "setuptools: Path Traversal Vulnerability in setuptools PackageIndex",
           "Description": "setuptools is a package that allows users to download, build, install, upgrade, and uninstall Python packages. A path traversal vulnerability in `PackageIndex` is present in setuptools prior to version 78.1.1. An attacker would be allowed to write files to arbitrary locations on the filesystem with the permissions of the process running the Python code, which could escalate to remote code execution depending on the context. Version 78.1.1 fixes the issue.",
           "Severity": "HIGH",
@@ -2911,7 +2911,7 @@
           "FixedVersion": "83.0.0",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-59890",
@@ -2920,7 +2920,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:be08320f6539e1952df1027ab2fb80491a98503518210ce73e002c73b58dabc3",
+          "Fingerprint": "sha256:144e11304d0eb562e1f450e7d6d3e55b15528dea6dc2171116639a75cbb874f0",
           "Title": "setuptools: setuptools: MANIFEST.in exclusion bypass in sdist via Unicode normalization collision (NFC/NFD)",
           "Description": "setuptools is a package that allows users to download, build, install, upgrade, and uninstall Python packages. Prior to 83.0.0, FileList applied MANIFEST.in exclude, global-exclude, recursive-exclude, and prune directives by matching compiled glob patterns against on-disk file names without Unicode normalization, so on macOS APFS or HFS+ an NFD file name could bypass an NFC exclusion rule and be packed into a source distribution. This issue is fixed in version 83.0.0.",
           "Severity": "MEDIUM",
@@ -2976,7 +2976,7 @@
           "FixedVersion": "0.49.1",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-62727",
@@ -2985,7 +2985,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:a7dc7123fcff8d8145d073bc9cc2fecc4ff2778ee97a731390bb1f32c012e349",
+          "Fingerprint": "sha256:2fef11400a4707b3054840fee8b3ad7e5ca7b500a00a65ae5730b2df9467e6de",
           "Title": "starlette: Starlette DoS via Range header merging",
           "Description": "Starlette is a lightweight ASGI framework/toolkit. Starting in version 0.39.0 and prior to version 0.49.1 , an unauthenticated attacker can send a crafted HTTP Range header that triggers quadratic-time processing in Starlette's FileResponse Range parsing/merging logic. This enables CPU exhaustion per request, causing denial‑of‑service for endpoints serving files (e.g., StaticFiles or any use of FileResponse). This vulnerability is fixed in 0.49.1.",
           "Severity": "HIGH",
@@ -3034,7 +3034,7 @@
           "FixedVersion": "1.1.0",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-48818",
@@ -3043,7 +3043,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:8543484fd83cb153e0d990d87a1dd1d2ef64c704f8c5cb429b5e2b1a8a8af00c",
+          "Fingerprint": "sha256:d21ee4637a82722da97e04d97b5c82f026608db82c099a95e4a205a8961baa25",
           "Title": "starlette: Starlette: SSRF and NTLM credential theft via UNC paths in StaticFiles on Windows",
           "Description": "Starlette is a lightweight ASGI framework/toolkit. In versions 1.0.1 and earlier, StaticFiles on Windows is vulnerable to SSRF. An UNC path such as \\\\attacker.com\\share can cause os.path.realpath to initiate an outbound SMB connection before the path is rejected, exposing the service account’s NTLMv2 credentials for offline cracking or relay even though the HTTP response is only a 404. The issue affects default follow_symlink=False deployments, including frameworks built on Starlette such as FastAPI; POSIX systems and follow_symlink=True are unaffected. The issue is fixed in 1.1.0.",
           "Severity": "HIGH",
@@ -3098,7 +3098,7 @@
           "FixedVersion": "1.3.1",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-54283",
@@ -3107,7 +3107,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:8ae1fa5033bb3fef6f64e203d934a1ade0ff7f8f669f24bfbd4ed5ab3798e480",
+          "Fingerprint": "sha256:57b36c532977374522fa52475d5a37b2f47745ccd8e6937fce246e1f9fa8b011",
           "Title": "starlette: Starlette: request.form() limits silently ignored for application/x-www-form-urlencoded enable DoS",
           "Description": "Starlette is a lightweight ASGI framework/toolkit. From 0.4.1 until 1.3.1, request.form() accepts max_fields and max_part_size to bound resource consumption while parsing form data. These limits are enforced for multipart/form-data, but silently ignored for application/x-www-form-urlencoded. An unauthenticated attacker can therefore send a urlencoded body with an arbitrarily large number of fields or an arbitrarily large field, even when the application configured limits it believed would apply. This vulnerability is fixed in 1.3.1.",
           "Severity": "HIGH",
@@ -3153,7 +3153,7 @@
           "FixedVersion": "1.0.1",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-48710",
@@ -3162,7 +3162,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:714f0e6514eb05b3d43aacc3c0d59705aadbed07b313d02f87df44fc9703ac18",
+          "Fingerprint": "sha256:36a659703848abc38ab368dbfbcf3e0bd779a7014d5ed72922b412dc2354ee32",
           "Title": "starlette: Starlette: Security restriction bypass via malformed HTTP Host header",
           "Description": "Starlette is a lightweight ASGI framework/toolkit. Prior to version 1.0.1, the HTTP `Host` request header was not validated before being used to reconstruct `request.url`. Because the routing algorithm relies on the raw HTTP path while `request.url` is rebuilt from the `Host` header, a malformed header could make `request.url.path` differ from the path that was actually requested. Middleware and endpoints that apply security restrictions based on `request.url` (rather than the raw `scope` path) could therefore be bypassed. Users should upgrade to a version greater than or equal to version 1.0.1, which validates the `Host` header against the grammar of RFC 9112 §3.2 / RFC 3986 §3.2.2 when constructing `request.url` and falls back to `scope[\"server\"]` for malformed values.",
           "Severity": "MEDIUM",
@@ -3237,7 +3237,7 @@
           "FixedVersion": "1.1.0",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-48817",
@@ -3246,7 +3246,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:16d033128a4c41e5806a779f30096664528a9ea29275fffaf9dffd46044c86cf",
+          "Fingerprint": "sha256:afbfe203b1c671f37ddd0b72d35b554ef4a1b88f996ee31d1ee9fb5a6981e27a",
           "Title": "starlette: Starlette: Information disclosure and unintended method execution via non-standard HTTP methods",
           "Description": "Starlette is a lightweight ASGI framework/toolkit. In versions 1.0.1 and below, when dispatching a request, HTTPEndpoint selects the handler by lowercasing the HTTP method and looking it up as an attribute with getattr, without restricting the lookup to a known set of HTTP verbs. When an HTTPEndpoint subclass is registered through Route(...) without an explicit methods= argument, the route does not constrain the method and every method reaches the endpoint. If a non-standard HTTP method whose lowercased name matches an attribute on the endpoint subclass reaches the endpoint, that attribute is invoked as if it were a request handler. An attacker can use this to reach methods that were never meant to be HTTP handlers, such as internal helpers, without the authorization checks applied by the intended public handler. An application (including Starlette-based frameworks like FastAPI) is affected if it registers an HTTPEndpoint subclass via Route(...) without explicitly setting methods=, and that subclass includes extra methods named like non-standard HTTP verbs that take one request argument and return a response. This issue has been fixed in version 1.1.0.",
           "Severity": "MEDIUM",
@@ -3293,7 +3293,7 @@
           "FixedVersion": "1.3.0",
           "Status": "fixed",
           "Layer": {
-            "DiffID": "sha256:e0cb113d548fca1b33ca7f7bd3477afc233300c4877a85fff1ec8ed141945f5f"
+            "DiffID": "sha256:a17cc404c4f6af234d4530bce71b2dcee3ea9189ca333849e66de0570b61e9db"
           },
           "SeveritySource": "ghsa",
           "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-54282",
@@ -3302,7 +3302,7 @@
             "Name": "GitHub Security Advisory pip",
             "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
           },
-          "Fingerprint": "sha256:7519f943e4e90bd02d8e62fcd6374ffc1c6d693603002b6d83e1ac546f9b6432",
+          "Fingerprint": "sha256:832d210a8271c4217191b5e6348fb69391f40f18c913ace985207f0fc8603d0d",
           "Title": "starlette: Starlette: Information disclosure due to improper HTTP request path validation",
           "Description": "Starlette is a lightweight ASGI framework/toolkit. Prior to 1.3.0, the HTTP request path is not validated before being used to reconstruct request.url. Because request.url is rebuilt by concatenating {scheme}://{host}{path} and re-parsing the result, a path that does not begin with / (for example @google.com) moves the authority boundary during re-parsing, so request.url.hostname and request.url.netloc become attacker-controlled. Code that reads request.url.hostname (rather than the Host header or scope) can therefore be misled into trusting an attacker-supplied host. This vulnerability is fixed in 1.3.0.",
           "Severity": "LOW",

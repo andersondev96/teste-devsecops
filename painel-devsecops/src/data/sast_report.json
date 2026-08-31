@@ -1,6 +1,6 @@
 {
   "errors": [],
-  "generated_at": "2026-08-31T00:48:56Z",
+  "generated_at": "2026-08-31T01:28:47Z",
   "metrics": {
     "_totals": {
       "CONFIDENCE.HIGH": 0,
@@ -11,7 +11,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 1,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 896,
+      "loc": 987,
       "nosec": 2,
       "skipped_tests": 6
     },
@@ -24,7 +24,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 59,
+      "loc": 63,
       "nosec": 0,
       "skipped_tests": 1
     },
@@ -37,7 +37,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 81,
+      "loc": 98,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -63,7 +63,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 1,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 126,
+      "loc": 138,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -76,7 +76,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 92,
+      "loc": 101,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -106,6 +106,19 @@
       "nosec": 0,
       "skipped_tests": 0
     },
+    "broken-api/models/CheckoutModel.py": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 16,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
     "broken-api/models/CheckoutRequest.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
@@ -132,6 +145,19 @@
       "nosec": 0,
       "skipped_tests": 0
     },
+    "broken-api/models/ProductModel.py": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 8,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
     "broken-api/models/User.py": {
       "CONFIDENCE.HIGH": 0,
       "CONFIDENCE.LOW": 0,
@@ -142,6 +168,19 @@
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
       "loc": 6,
+      "nosec": 0,
+      "skipped_tests": 0
+    },
+    "broken-api/models/UserModel.py": {
+      "CONFIDENCE.HIGH": 0,
+      "CONFIDENCE.LOW": 0,
+      "CONFIDENCE.MEDIUM": 0,
+      "CONFIDENCE.UNDEFINED": 0,
+      "SEVERITY.HIGH": 0,
+      "SEVERITY.LOW": 0,
+      "SEVERITY.MEDIUM": 0,
+      "SEVERITY.UNDEFINED": 0,
+      "loc": 13,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -167,7 +206,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 40,
+      "loc": 41,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -180,7 +219,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 41,
+      "loc": 42,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -206,7 +245,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 56,
+      "loc": 62,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -219,7 +258,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 70,
+      "loc": 74,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -278,9 +317,9 @@
   },
   "results": [
     {
-      "code": "92         cursor = conn.cursor()\n93         query = f\"SELECT * FROM products WHERE name LIKE '%{name}%'\"  # VULNER\u00c1VEL: SQL Injection\n94         try:\n",
+      "code": "100         # caso a busca seja explorada.\n101         query = f\"SELECT id, name, price FROM products WHERE name LIKE '%{name}%'\"  # VULNER\u00c1VEL: SQL Injection\n102         try:\n",
       "col_offset": 18,
-      "end_col_offset": 59,
+      "end_col_offset": 73,
       "filename": "broken-api/controllers/ProductController.py",
       "issue_confidence": "LOW",
       "issue_cwe": {
@@ -289,9 +328,9 @@
       },
       "issue_severity": "MEDIUM",
       "issue_text": "Possible SQL injection vector through string-based query construction.",
-      "line_number": 93,
+      "line_number": 101,
       "line_range": [
-        93
+        101
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.9.4/plugins/b608_hardcoded_sql_expressions.html",
       "test_id": "B608",
