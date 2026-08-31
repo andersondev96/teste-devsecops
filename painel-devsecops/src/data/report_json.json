@@ -1,8 +1,8 @@
 {
 	"@programName": "ZAP",
 	"@version": "2.17.0",
-	"@generated": "Sun, 30 Aug 2026 02:22:00",
-	"created": "2026-08-30T02:22:00.894943786Z",
+	"@generated": "Sun, 30 Aug 2026 23:37:14",
+	"created": "2026-08-30T23:37:14.449818387Z",
 	"insights":[
 		{
 			"level": "Low",
@@ -86,11 +86,11 @@
 		},
 		{
 			"level": "Info",
-			"reason": "Exceeded Low",
+			"reason": "Informational",
 			"site": "http://localhost:8000",
 			"key": "insight.response.slow",
 			"description": "Percentage of slow responses",
-			"statistic": "5"
+			"statistic": "3"
 		}
 	],
 	"site":[ 
@@ -111,7 +111,7 @@
 					"desc": "<p>Remote File Include (RFI) is an attack technique used to exploit \"dynamic file include\" mechanisms in web applications. When web applications take user input (URL, parameter value, etc.) and pass them into file include commands, the web application might be tricked into including remote files with malicious code.</p><p></p><p>Almost all web application frameworks support file inclusion. File inclusion is mainly used for packaging common code into separate files that are later referenced by main application modules. When a web application references an include file, the code in this file may be executed implicitly or explicitly by calling specific procedures. If the choice of module to load is based on elements from the HTTP request, the web application might be vulnerable to RFI.</p><p>An attacker can use RFI for:</p><p>    * Running malicious code on the server: any code in the included malicious files will be run by the server. If the file include is not executed using some wrapper, code in include files is executed in the context of the server user. This could lead to a complete system compromise.</p><p>    * Running malicious code on clients: the attacker's malicious code can manipulate the content of the response sent to the client. The attacker can embed malicious code in the response that will be run by the client (for example, JavaScript to steal the client session cookies).</p><p></p><p>PHP is particularly vulnerable to RFI attacks due to the extensive use of \"file includes\" in PHP programming and due to default server configurations that increase susceptibility to an RFI attack.</p>",
 					"instances":[ 
 						{
-							"id": "45",
+							"id": "50",
 							"uri": "http://localhost:8000/integrations/fetch-url?url=http%3A%2F%2Fwww.google.com%2F",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/fetch-url (url)",
 							"method": "GET",
@@ -128,7 +128,7 @@
 					"reference": "<p>https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/07-Input_Validation_Testing/11.2-Testing_for_Remote_File_Inclusion</p><p>https://cwe.mitre.org/data/definitions/98.html</p>",
 					"cweid": "98",
 					"wascid": "5",
-					"sourceid": "73"
+					"sourceid": "75"
 				},
 				{
 					"pluginid": "40018",
@@ -141,7 +141,7 @@
 					"desc": "<p>SQL injection may be possible.</p>",
 					"instances":[ 
 						{
-							"id": "417",
+							"id": "422",
 							"uri": "http://localhost:8000/products/search?name=ZAP%27+AND+%271%27%3D%271%27+--+",
 							"nodeName": "http:\/\/localhost:8000\/products\/search (name)",
 							"method": "GET",
@@ -158,7 +158,7 @@
 					"reference": "<p>https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html</p>",
 					"cweid": "89",
 					"wascid": "19",
-					"sourceid": "449"
+					"sourceid": "454"
 				},
 				{
 					"pluginid": "100000",
@@ -171,7 +171,7 @@
 					"desc": "<p>A response code of 500 was returned by the server.</p><p>This may indicate that the application is failing to handle unexpected input correctly.</p><p>Raised by the 'Alert on HTTP Response Code Error' script</p>",
 					"instances":[ 
 						{
-							"id": "5",
+							"id": "8",
 							"uri": "http://localhost:8000/integrations/address/enrich?zipcode=zipcode&provider_url=provider_url",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/address\/enrich (provider_url,zipcode)",
 							"method": "GET",
@@ -181,7 +181,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "4",
+							"id": "7",
 							"uri": "http://localhost:8000/integrations/fetch-url?url=https://zap.example.com",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/fetch-url (url)",
 							"method": "GET",
@@ -191,7 +191,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "3",
+							"id": "4",
 							"uri": "http://localhost:8000/checkout",
 							"nodeName": "http:\/\/localhost:8000\/checkout",
 							"method": "POST",
@@ -201,7 +201,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1152",
+							"id": "1143",
 							"uri": "http://localhost:8000/checkout/",
 							"nodeName": "http:\/\/localhost:8000\/checkout\/",
 							"method": "POST",
@@ -231,7 +231,7 @@
 					"desc": "<p>This page contains an error/warning message that may disclose sensitive information like the location of the file that produced the unhandled exception. This information can be used to launch further attacks against the web application. The alert could be a false positive if the error message is found inside a documentation page.</p>",
 					"instances":[ 
 						{
-							"id": "102",
+							"id": "114",
 							"uri": "http://localhost:8000/integrations/address/enrich?zipcode=zipcode&provider_url=provider_url",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/address\/enrich (provider_url,zipcode)",
 							"method": "GET",
@@ -241,7 +241,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "100",
+							"id": "106",
 							"uri": "http://localhost:8000/integrations/fetch-url?url=https://zap.example.com",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/fetch-url (url)",
 							"method": "GET",
@@ -251,7 +251,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "95",
+							"id": "105",
 							"uri": "http://localhost:8000/checkout",
 							"nodeName": "http:\/\/localhost:8000\/checkout",
 							"method": "POST",
@@ -281,7 +281,7 @@
 					"desc": "<p>Cross-Origin-Resource-Policy header is an opt-in header designed to counter side-channels attacks like Spectre. Resource should be specifically set as shareable amongst different origins.</p>",
 					"instances":[ 
 						{
-							"id": "122",
+							"id": "128",
 							"uri": "http://localhost:8000/products/10",
 							"nodeName": "http:\/\/localhost:8000\/products\/10",
 							"method": "DELETE",
@@ -291,7 +291,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "106",
+							"id": "112",
 							"uri": "http://localhost:8000/checkout/debug",
 							"nodeName": "http:\/\/localhost:8000\/checkout\/debug",
 							"method": "GET",
@@ -301,9 +301,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "116",
-							"uri": "http://localhost:8000/products",
-							"nodeName": "http:\/\/localhost:8000\/products",
+							"id": "6",
+							"uri": "http://localhost:8000/openapi.json",
+							"nodeName": "http:\/\/localhost:8000\/openapi.json",
 							"method": "GET",
 							"param": "Cross-Origin-Resource-Policy",
 							"attack": "",
@@ -311,7 +311,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "115",
+							"id": "126",
 							"uri": "http://localhost:8000/products/search?name=ZAP",
 							"nodeName": "http:\/\/localhost:8000\/products\/search (name)",
 							"method": "GET",
@@ -321,7 +321,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "124",
+							"id": "130",
 							"uri": "http://localhost:8000/products/10/price?new_price=1.2",
 							"nodeName": "http:\/\/localhost:8000\/products\/10\/price (new_price)",
 							"method": "PUT",
@@ -351,7 +351,7 @@
 					"desc": "<p>The response appeared to contain common error messages returned by platforms such as ASP.NET, and Web-servers such as IIS and Apache. You can configure the list of common debug messages.</p>",
 					"instances":[ 
 						{
-							"id": "105",
+							"id": "116",
 							"uri": "http://localhost:8000/integrations/address/enrich?zipcode=zipcode&provider_url=provider_url",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/address\/enrich (provider_url,zipcode)",
 							"method": "GET",
@@ -361,7 +361,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "101",
+							"id": "113",
 							"uri": "http://localhost:8000/integrations/fetch-url?url=https://zap.example.com",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/fetch-url (url)",
 							"method": "GET",
@@ -371,7 +371,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "97",
+							"id": "111",
 							"uri": "http://localhost:8000/checkout",
 							"nodeName": "http:\/\/localhost:8000\/checkout",
 							"method": "POST",
@@ -401,7 +401,7 @@
 					"desc": "<p>The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body, potentially causing the response body to be interpreted and displayed as a content type other than the declared content type. Current (early 2014) and legacy versions of Firefox will use the declared content type (if one is set), rather than performing MIME-sniffing.</p>",
 					"instances":[ 
 						{
-							"id": "118",
+							"id": "121",
 							"uri": "http://localhost:8000/products/10",
 							"nodeName": "http:\/\/localhost:8000\/products\/10",
 							"method": "DELETE",
@@ -411,7 +411,7 @@
 							"otherinfo": "This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.\nAt \"High\" threshold this scan rule will not alert on client or server error responses."
 						},
 						{
-							"id": "98",
+							"id": "107",
 							"uri": "http://localhost:8000/checkout/debug",
 							"nodeName": "http:\/\/localhost:8000\/checkout\/debug",
 							"method": "GET",
@@ -421,7 +421,7 @@
 							"otherinfo": "This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.\nAt \"High\" threshold this scan rule will not alert on client or server error responses."
 						},
 						{
-							"id": "117",
+							"id": "1",
 							"uri": "http://localhost:8000/openapi.json",
 							"nodeName": "http:\/\/localhost:8000\/openapi.json",
 							"method": "GET",
@@ -431,7 +431,7 @@
 							"otherinfo": "This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.\nAt \"High\" threshold this scan rule will not alert on client or server error responses."
 						},
 						{
-							"id": "109",
+							"id": "123",
 							"uri": "http://localhost:8000/products",
 							"nodeName": "http:\/\/localhost:8000\/products",
 							"method": "GET",
@@ -441,7 +441,7 @@
 							"otherinfo": "This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.\nAt \"High\" threshold this scan rule will not alert on client or server error responses."
 						},
 						{
-							"id": "111",
+							"id": "120",
 							"uri": "http://localhost:8000/products/search?name=ZAP",
 							"nodeName": "http:\/\/localhost:8000\/products\/search (name)",
 							"method": "GET",
@@ -471,7 +471,7 @@
 					"desc": "<p>A response code of 422 was returned by the server.</p><p>This may indicate that the application is failing to handle unexpected input correctly.</p><p>Raised by the 'Alert on HTTP Response Code Error' script</p>",
 					"instances":[ 
 						{
-							"id": "1150",
+							"id": "1147",
 							"uri": "http://localhost:8000/profile/10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10",
 							"method": "DELETE",
@@ -481,7 +481,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "8",
+							"id": "11",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)",
 							"method": "DELETE",
@@ -491,7 +491,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "20",
+							"id": "23",
 							"uri": "http://localhost:8000/profile/10?current_user_id=http%3A%2F%2Fwww.google.com%2F",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)",
 							"method": "DELETE",
@@ -501,7 +501,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1151",
+							"id": "1152",
 							"uri": "http://localhost:8000/profile/10/",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10\/",
 							"method": "DELETE",
@@ -511,7 +511,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "18",
+							"id": "21",
 							"uri": "http://localhost:8000",
 							"nodeName": "http:\/\/localhost:8000",
 							"method": "GET",
@@ -521,7 +521,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1148",
+							"id": "1153",
 							"uri": "http://localhost:8000/",
 							"nodeName": "http:\/\/localhost:8000\/",
 							"method": "GET",
@@ -531,9 +531,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "9",
-							"uri": "http://localhost:8000/77127812518072953",
-							"nodeName": "http:\/\/localhost:8000\/77127812518072953",
+							"id": "12",
+							"uri": "http://localhost:8000/935552112287785493",
+							"nodeName": "http:\/\/localhost:8000\/935552112287785493",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -571,9 +571,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "10",
-							"uri": "http://localhost:8000/auth/2014525796909917531",
-							"nodeName": "http:\/\/localhost:8000\/auth\/2014525796909917531",
+							"id": "13",
+							"uri": "http://localhost:8000/auth/5170849882445278570",
+							"nodeName": "http:\/\/localhost:8000\/auth\/5170849882445278570",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -581,7 +581,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "2",
+							"id": "3",
 							"uri": "http://localhost:8000/auth/debug",
 							"nodeName": "http:\/\/localhost:8000\/auth\/debug",
 							"method": "GET",
@@ -611,7 +611,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1161",
+							"id": "1162",
 							"uri": "http://localhost:8000/checkout/",
 							"nodeName": "http:\/\/localhost:8000\/checkout\/",
 							"method": "GET",
@@ -621,9 +621,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "11",
-							"uri": "http://localhost:8000/checkout/3056177025043740208",
-							"nodeName": "http:\/\/localhost:8000\/checkout\/3056177025043740208",
+							"id": "14",
+							"uri": "http://localhost:8000/checkout/9086926751093366807",
+							"nodeName": "http:\/\/localhost:8000\/checkout\/9086926751093366807",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -631,7 +631,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "34",
+							"id": "37",
 							"uri": "http://localhost:8000/integrations",
 							"nodeName": "http:\/\/localhost:8000\/integrations",
 							"method": "GET",
@@ -651,9 +651,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "12",
-							"uri": "http://localhost:8000/integrations/3608322273176919223",
-							"nodeName": "http:\/\/localhost:8000\/integrations\/3608322273176919223",
+							"id": "15",
+							"uri": "http://localhost:8000/integrations/3945907921020891372",
+							"nodeName": "http:\/\/localhost:8000\/integrations\/3945907921020891372",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -661,7 +661,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "38",
+							"id": "41",
 							"uri": "http://localhost:8000/integrations/address",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/address",
 							"method": "GET",
@@ -681,9 +681,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "13",
-							"uri": "http://localhost:8000/integrations/address/6709266279440873865",
-							"nodeName": "http:\/\/localhost:8000\/integrations\/address\/6709266279440873865",
+							"id": "16",
+							"uri": "http://localhost:8000/integrations/address/2810407257158338326",
+							"nodeName": "http:\/\/localhost:8000\/integrations\/address\/2810407257158338326",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -701,7 +701,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1167",
+							"id": "1168",
 							"uri": "http://localhost:8000/integrations/address/enrich/",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/address\/enrich\/",
 							"method": "GET",
@@ -711,7 +711,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1168",
+							"id": "1170",
 							"uri": "http://localhost:8000/integrations/fetch-url",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/fetch-url",
 							"method": "GET",
@@ -721,7 +721,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1169",
+							"id": "1172",
 							"uri": "http://localhost:8000/integrations/fetch-url/",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/fetch-url\/",
 							"method": "GET",
@@ -731,7 +731,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "49",
+							"id": "52",
 							"uri": "http://localhost:8000/products/10",
 							"nodeName": "http:\/\/localhost:8000\/products\/10",
 							"method": "GET",
@@ -741,7 +741,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1172",
+							"id": "1173",
 							"uri": "http://localhost:8000/products/10/",
 							"nodeName": "http:\/\/localhost:8000\/products\/10\/",
 							"method": "GET",
@@ -751,9 +751,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "15",
-							"uri": "http://localhost:8000/products/10/3217162859835406490",
-							"nodeName": "http:\/\/localhost:8000\/products\/10\/3217162859835406490",
+							"id": "18",
+							"uri": "http://localhost:8000/products/10/1392856526690121520",
+							"nodeName": "http:\/\/localhost:8000\/products\/10\/1392856526690121520",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -761,9 +761,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "14",
-							"uri": "http://localhost:8000/products/9120624842874442533",
-							"nodeName": "http:\/\/localhost:8000\/products\/9120624842874442533",
+							"id": "17",
+							"uri": "http://localhost:8000/products/1618620707348810517",
+							"nodeName": "http:\/\/localhost:8000\/products\/1618620707348810517",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -771,7 +771,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1173",
+							"id": "1171",
 							"uri": "http://localhost:8000/products/search",
 							"nodeName": "http:\/\/localhost:8000\/products\/search",
 							"method": "GET",
@@ -781,7 +781,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1174",
+							"id": "1176",
 							"uri": "http://localhost:8000/products/search/",
 							"nodeName": "http:\/\/localhost:8000\/products\/search\/",
 							"method": "GET",
@@ -791,7 +791,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "52",
+							"id": "62",
 							"uri": "http://localhost:8000/profile",
 							"nodeName": "http:\/\/localhost:8000\/profile",
 							"method": "GET",
@@ -801,7 +801,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1175",
+							"id": "1174",
 							"uri": "http://localhost:8000/profile/",
 							"nodeName": "http:\/\/localhost:8000\/profile\/",
 							"method": "GET",
@@ -811,7 +811,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1176",
+							"id": "1175",
 							"uri": "http://localhost:8000/profile/10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10",
 							"method": "GET",
@@ -821,7 +821,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "6",
+							"id": "9",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)",
 							"method": "GET",
@@ -831,7 +831,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "57",
+							"id": "73",
 							"uri": "http://localhost:8000/profile/10?current_user_id=http%3A%2F%2Fwww.google.com%2F",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)",
 							"method": "GET",
@@ -841,7 +841,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1178",
+							"id": "1177",
 							"uri": "http://localhost:8000/profile/10/",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10\/",
 							"method": "GET",
@@ -851,9 +851,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "16",
-							"uri": "http://localhost:8000/profile/610720117918065678",
-							"nodeName": "http:\/\/localhost:8000\/profile\/610720117918065678",
+							"id": "19",
+							"uri": "http://localhost:8000/profile/3240188744493556752",
+							"nodeName": "http:\/\/localhost:8000\/profile\/3240188744493556752",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -861,7 +861,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1",
+							"id": "2",
 							"uri": "http://localhost:8000/users/10",
 							"nodeName": "http:\/\/localhost:8000\/users\/10",
 							"method": "GET",
@@ -881,9 +881,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "17",
-							"uri": "http://localhost:8000/users/5406065182908727219",
-							"nodeName": "http:\/\/localhost:8000\/users\/5406065182908727219",
+							"id": "20",
+							"uri": "http://localhost:8000/users/6120186962876047986",
+							"nodeName": "http:\/\/localhost:8000\/users\/6120186962876047986",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -891,7 +891,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "858",
+							"id": "857",
 							"uri": "http://localhost:8000/computeMetadata/v1/",
 							"nodeName": "http:\/\/localhost:8000\/computeMetadata\/v1\/",
 							"method": "POST",
@@ -931,7 +931,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1144",
+							"id": "1145",
 							"uri": "http://localhost:8000/login/",
 							"nodeName": "http:\/\/localhost:8000\/login\/ ()({username,password})",
 							"method": "POST",
@@ -941,7 +941,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "915",
+							"id": "901",
 							"uri": "http://localhost:8000/metadata/instance",
 							"nodeName": "http:\/\/localhost:8000\/metadata\/instance",
 							"method": "POST",
@@ -951,7 +951,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "922",
+							"id": "906",
 							"uri": "http://localhost:8000/metadata/v1",
 							"nodeName": "http:\/\/localhost:8000\/metadata\/v1",
 							"method": "POST",
@@ -961,7 +961,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "873",
+							"id": "866",
 							"uri": "http://localhost:8000/opc/v1/instance/",
 							"nodeName": "http:\/\/localhost:8000\/opc\/v1\/instance\/",
 							"method": "POST",
@@ -971,7 +971,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "887",
+							"id": "875",
 							"uri": "http://localhost:8000/opc/v2/instance/",
 							"nodeName": "http:\/\/localhost:8000\/opc\/v2\/instance\/",
 							"method": "POST",
@@ -981,7 +981,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "927",
+							"id": "912",
 							"uri": "http://localhost:8000/openstack/latest/meta_data.json",
 							"nodeName": "http:\/\/localhost:8000\/openstack\/latest\/meta_data.json",
 							"method": "POST",
@@ -1001,7 +1001,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "19",
+							"id": "22",
 							"uri": "http://localhost:8000/products/10/price?new_price=http%3A%2F%2Fwww.google.com%2F",
 							"nodeName": "http:\/\/localhost:8000\/products\/10\/price (new_price)",
 							"method": "PUT",
@@ -1011,7 +1011,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1149",
+							"id": "1150",
 							"uri": "http://localhost:8000/products/10/price/",
 							"nodeName": "http:\/\/localhost:8000\/products\/10\/price\/",
 							"method": "PUT",
@@ -1021,7 +1021,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1153",
+							"id": "1149",
 							"uri": "http://localhost:8000/profile/10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 ()(\"John Doe\")",
 							"method": "PUT",
@@ -1031,7 +1031,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1084",
+							"id": "1081",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"#set($engine=\\\"\\\")\\n#set($proc=$engine.getClass().forName(\\\"java.lang.Runtime\\\").getRuntime().exec(\\\"sleep 15\\\"))\\n#set($null=$proc.waitFor())\\n${null}\")",
 							"method": "PUT",
@@ -1041,7 +1041,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1130",
+							"id": "1123",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"#{%x(sleep 15)}\")",
 							"method": "PUT",
@@ -1051,7 +1051,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1098",
+							"id": "1094",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"#{global.process.mainModule.require('child_process').execSync('sleep 15').toString()}\")",
 							"method": "PUT",
@@ -1061,7 +1061,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "583",
+							"id": "579",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"${@print(chr(122).chr(97).chr(112).chr(95).chr(116).chr(111).chr(107).chr(101).chr(110))}\")",
 							"method": "PUT",
@@ -1071,7 +1071,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "587",
+							"id": "584",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"${@print(chr(122).chr(97).chr(112).chr(95).chr(116).chr(111).chr(107).chr(101).chr(110))}\\\\\")",
 							"method": "PUT",
@@ -1081,7 +1081,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1117",
+							"id": "1113",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"${__import__(\\\"subprocess\\\").check_output(\\\"sleep 15\\\", shell=True)}\")",
 							"method": "PUT",
@@ -1091,7 +1091,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "445",
+							"id": "447",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"'\")",
 							"method": "PUT",
@@ -1101,7 +1101,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "478",
+							"id": "474",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"'(\")",
 							"method": "PUT",
@@ -1111,7 +1111,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "578",
+							"id": "571",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"';print(chr(122).chr(97).chr(112).chr(95).chr(116).chr(111).chr(107).chr(101).chr(110));$var='\")",
 							"method": "PUT",
@@ -1121,7 +1121,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "601",
+							"id": "597",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"+response.write({0}*{1})+\")",
 							"method": "PUT",
@@ -1131,9 +1131,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "196",
+							"id": "195",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"553397164246253704.owasp.org\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"14361373004941333.owasp.org\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -1141,9 +1141,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "214",
+							"id": "211",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"5;URL='https:\/\/553397164246253704.owasp.org'\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"5;URL='https:\/\/14361373004941333.owasp.org'\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -1151,9 +1151,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "227",
+							"id": "228",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"5;URL='https:\/\/553397164246253704.owasp.org\/?John Doe'\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"5;URL='https:\/\/14361373004941333.owasp.org\/?John Doe'\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -1161,7 +1161,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "468",
+							"id": "466",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\";\")",
 							"method": "PUT",
@@ -1171,7 +1171,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "592",
+							"id": "590",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\";print(chr(122).chr(97).chr(112).chr(95).chr(116).chr(111).chr(107).chr(101).chr(110));\")",
 							"method": "PUT",
@@ -1181,7 +1181,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "830",
+							"id": "833",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"<!--\")",
 							"method": "PUT",
@@ -1201,7 +1201,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "268",
+							"id": "270",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"<!--#EXEC cmd=\\\"ls \/\\\"-->\")",
 							"method": "PUT",
@@ -1211,7 +1211,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1376",
+							"id": "1378",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"<\")",
 							"method": "PUT",
@@ -1221,7 +1221,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1080",
+							"id": "1075",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"<#assign ex=\\\"freemarker.template.utility.Execute\\\"?new()> ${ ex(\\\"sleep 15\\\") }\")",
 							"method": "PUT",
@@ -1231,7 +1231,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1095",
+							"id": "1089",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"<%= global.process.mainModule.require('child_process').execSync('sleep 15').toString()%>\")",
 							"method": "PUT",
@@ -1241,7 +1241,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1126",
+							"id": "1121",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"<%=%x(sleep 15)%>\")",
 							"method": "PUT",
@@ -1251,7 +1251,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1382",
+							"id": "1384",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"<xsl:value-of select=\\\"system-property('xsl:vendor')\\\"\/>\")",
 							"method": "PUT",
@@ -1261,7 +1261,17 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "494",
+							"id": "1188",
+							"uri": "http://localhost:8000/profile/10?current_user_id=10",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"FRPpFlAVRLoqKNcCJUMtXipIrvZghbMBrAurEulDulNrGTMCsBYsnFUOVYDXeNhPFfuAGanNefUIBLmyqsWpHQqoXnsnRFPCnyqGwTLnhgvNtpxTytHNmGuCXyuaTdwmpojgVEOSMWQWgRSOmSInCOgOytFVSHNhOudrtyUdLKhxviAtwLlAlJSWIUjmRlmancxiwHmMsuFhEDqwsYyHfcJeZEbrYdGKGSJafVDCuDQdxttdYCmIcBiiGSIJNtkPPUCLuSNVLnDlLXmJYFwxHKlofkfUZqNGOhtDueVptCFHfsnvtsAuANxBtTxDlXgWMQuEXInSGyQLeBZlhwSORvYZKErKkKbDORjdWPlsqfLidXnAnKyILduPUgjunjZXqjTOixaKlhsWKIOSCDbROiPNjQuQftSKBSndFFXlYCEHeFNgthrXNCNONbJMptWFeZcUdSnslWlmxaHIQEjZCvdFTUtOSZKbtKfbcSvIeHdwejNXyEkeOjeYNZWUMih)",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "485",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe AND 1=1 -- \")",
 							"method": "PUT",
@@ -1271,7 +1281,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "497",
+							"id": "489",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe AND 1=2 -- \")",
 							"method": "PUT",
@@ -1281,7 +1291,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "500",
+							"id": "492",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe OR 1=1 -- \")",
 							"method": "PUT",
@@ -1291,7 +1301,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "512",
+							"id": "503",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe UNION ALL select NULL -- \")",
 							"method": "PUT",
@@ -1301,7 +1311,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "7",
+							"id": "10",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe\")",
 							"method": "PUT",
@@ -1311,7 +1321,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "735",
+							"id": "742",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe\u0026cat \/etc\/passwd\u0026\")",
 							"method": "PUT",
@@ -1321,7 +1331,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "764",
+							"id": "778",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe\u0026type %SYSTEMROOT%\\\\win.ini\")",
 							"method": "PUT",
@@ -1331,7 +1341,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "503",
+							"id": "494",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe' AND '1'='1' -- \")",
 							"method": "PUT",
@@ -1341,7 +1351,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "507",
+							"id": "497",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe' AND '1'='2' -- \")",
 							"method": "PUT",
@@ -1351,7 +1361,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "509",
+							"id": "500",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe' OR '1'='1' -- \")",
 							"method": "PUT",
@@ -1361,7 +1371,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "515",
+							"id": "505",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe' UNION ALL select NULL -- \")",
 							"method": "PUT",
@@ -1371,7 +1381,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "453",
+							"id": "457",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe'\")",
 							"method": "PUT",
@@ -1381,7 +1391,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "752",
+							"id": "764",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe'\u0026cat \/etc\/passwd\u0026'\")",
 							"method": "PUT",
@@ -1391,7 +1401,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "778",
+							"id": "790",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe'\u0026type %SYSTEMROOT%\\\\win.ini\u0026'\")",
 							"method": "PUT",
@@ -1401,7 +1411,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "481",
+							"id": "477",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe'(\")",
 							"method": "PUT",
@@ -1411,7 +1421,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "524",
+							"id": "514",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe') UNION ALL select NULL -- \")",
 							"method": "PUT",
@@ -1421,7 +1431,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "756",
+							"id": "768",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe';cat \/etc\/passwd;'\")",
 							"method": "PUT",
@@ -1431,7 +1441,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "797",
+							"id": "803",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe';get-help\")",
 							"method": "PUT",
@@ -1441,7 +1451,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "785",
+							"id": "792",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe'|type %SYSTEMROOT%\\\\win.ini\")",
 							"method": "PUT",
@@ -1451,7 +1461,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "520",
+							"id": "511",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe) UNION ALL select NULL -- \")",
 							"method": "PUT",
@@ -1461,7 +1471,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "472",
+							"id": "469",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe;\")",
 							"method": "PUT",
@@ -1471,7 +1481,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "739",
+							"id": "749",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe;cat \/etc\/passwd;\")",
 							"method": "PUT",
@@ -1481,7 +1491,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "799",
+							"id": "805",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe;get-help #\")",
 							"method": "PUT",
@@ -1491,7 +1501,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "792",
+							"id": "797",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe;get-help\")",
 							"method": "PUT",
@@ -1501,7 +1511,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "518",
+							"id": "508",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe\\\" UNION ALL select NULL -- \")",
 							"method": "PUT",
@@ -1511,7 +1521,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "464",
+							"id": "463",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe\\\"\")",
 							"method": "PUT",
@@ -1521,7 +1531,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "744",
+							"id": "754",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe\\\"\u0026cat \/etc\/passwd\u0026\\\"\")",
 							"method": "PUT",
@@ -1531,7 +1541,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "772",
+							"id": "784",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe\\\"\u0026type %SYSTEMROOT%\\\\win.ini\u0026\\\"\")",
 							"method": "PUT",
@@ -1541,7 +1551,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "746",
+							"id": "760",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe\\\";cat \/etc\/passwd;\\\"\")",
 							"method": "PUT",
@@ -1551,7 +1561,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "795",
+							"id": "800",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe\\\";get-help\")",
 							"method": "PUT",
@@ -1561,7 +1571,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "776",
+							"id": "787",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe\\\"|type %SYSTEMROOT%\\\\win.ini\")",
 							"method": "PUT",
@@ -1571,7 +1581,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "768",
+							"id": "782",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe|type %SYSTEMROOT%\\\\win.ini\")",
 							"method": "PUT",
@@ -1581,9 +1591,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1188",
+							"id": "1263",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"NZIilAfmCxoMBhSntuaQOPhUhUWItcythpOYCbjYpsUfatptHnDIEgRQqUrocfDBrKyZkduZZJDPOmLvKIriuIyNPUaWOtMEMCqtOHwVPWVGQgENqDSyawLDZJZMLPwpkQJgxHufedJrgroLxNlKrDEgwbgGbSyqFbmCSUjVDZpxAEtFpICKKgoupPHvBnbsBclKHuvWJFpbKiFweUFOmhDRxjxlfLaVbsQMgrSaEjuwoYMvEcaXlXlbekmfrrdTZZemkWtZVuXKsfvIAPEXpelNkfcAyxDIHOMHZeBZHVTfZcxwuBtNYEojZsdEQTCyVNurdvWugJVbxTBeVSgtsywwiPehwfqssoCyRMSMnlRdxDLcyvCAvYeeMJGpdudfdOLIhNQVwgTgjbZdrJiRHShYXIZpblhLWoCLOARqopmTaamhgphhMHmOhUENvipfhejDtmtnmfARtWseSHaBudPtGDQKhapwfgbZYUkYTXZMsjQJYrLWmBLBXhCkfGJ)",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"Set-cookie: Tamper=82b901e7-4636-43c5-83f9-fb773e1aeecc\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -1591,19 +1601,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1269",
+							"id": "215",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"Set-cookie: Tamper=0e631501-5f22-4075-9357-55ddca2e86ca\")",
-							"method": "PUT",
-							"param": "",
-							"attack": "",
-							"evidence": "422",
-							"otherinfo": ""
-						},
-						{
-							"id": "219",
-							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"URL='http:\/\/553397164246253704.owasp.org'\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"URL='http:\/\/14361373004941333.owasp.org'\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -1621,7 +1621,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1209",
+							"id": "1211",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"ZAP\")",
 							"method": "PUT",
@@ -1631,7 +1631,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1213",
+							"id": "1212",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"ZAP%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s%n%s\\n\")",
 							"method": "PUT",
@@ -1641,7 +1641,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "458",
+							"id": "461",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"\\\"\")",
 							"method": "PUT",
@@ -1651,7 +1651,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "827",
+							"id": "829",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"\\\"'\")",
 							"method": "PUT",
@@ -1661,9 +1661,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "598",
+							"id": "594",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"\\\"+response.write(334,888*538,248)+\\\"\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"\\\"+response.write(19,766*547,155)+\\\"\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -1671,7 +1671,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1390",
+							"id": "1391",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"\\\"\/><xsl:value-of select=\\\"system-property('xsl:vendor')\\\"\/><!--\")",
 							"method": "PUT",
@@ -1681,7 +1681,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "573",
+							"id": "569",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"\\\";print(chr(122).chr(97).chr(112).chr(95).chr(116).chr(111).chr(107).chr(101).chr(110));$var=\\\"\")",
 							"method": "PUT",
@@ -1691,7 +1691,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "283",
+							"id": "279",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"\\\"><!--#EXEC cmd=\\\"dir \\\\\\\"--><\")",
 							"method": "PUT",
@@ -1701,7 +1701,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "271",
+							"id": "272",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"\\\"><!--#EXEC cmd=\\\"ls \/\\\"--><\")",
 							"method": "PUT",
@@ -1711,7 +1711,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "831",
+							"id": "836",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"]]>\")",
 							"method": "PUT",
@@ -1723,7 +1723,7 @@
 						{
 							"id": "1283",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"any?\\nSet-cookie: Tamper=0e631501-5f22-4075-9357-55ddca2e86ca\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"any?\\nSet-cookie: Tamper=82b901e7-4636-43c5-83f9-fb773e1aeecc\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -1731,9 +1731,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1274",
+							"id": "1273",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"any?\\r\\nSet-cookie: Tamper=0e631501-5f22-4075-9357-55ddca2e86ca\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"any?\\r\\nSet-cookie: Tamper=82b901e7-4636-43c5-83f9-fb773e1aeecc\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -1741,9 +1741,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1289",
+							"id": "1291",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"any?\\r\\nSet-cookie: Tamper=0e631501-5f22-4075-9357-55ddca2e86ca\\r\\n\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"any?\\r\\nSet-cookie: Tamper=82b901e7-4636-43c5-83f9-fb773e1aeecc\\r\\n\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -1753,7 +1753,7 @@
 						{
 							"id": "1278",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"any\\nSet-cookie: Tamper=0e631501-5f22-4075-9357-55ddca2e86ca\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"any\\nSet-cookie: Tamper=82b901e7-4636-43c5-83f9-fb773e1aeecc\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -1761,9 +1761,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1271",
+							"id": "1267",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"any\\r\\nSet-cookie: Tamper=0e631501-5f22-4075-9357-55ddca2e86ca\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"any\\r\\nSet-cookie: Tamper=82b901e7-4636-43c5-83f9-fb773e1aeecc\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -1771,9 +1771,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1286",
+							"id": "1287",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"any\\r\\nSet-cookie: Tamper=0e631501-5f22-4075-9357-55ddca2e86ca\\r\\n\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"any\\r\\nSet-cookie: Tamper=82b901e7-4636-43c5-83f9-fb773e1aeecc\\r\\n\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -1781,7 +1781,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "728",
+							"id": "740",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"cat \/etc\/passwd\")",
 							"method": "PUT",
@@ -1791,7 +1791,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "789",
+							"id": "794",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"get-help\")",
 							"method": "PUT",
@@ -1801,9 +1801,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "233",
+							"id": "234",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"http:\/\/\\\\553397164246253704.owasp.org\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"http:\/\/\\\\14361373004941333.owasp.org\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -1811,7 +1811,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "79",
+							"id": "75",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"http:\/\/www.google.com\")",
 							"method": "PUT",
@@ -1821,7 +1821,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "73",
+							"id": "65",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"http:\/\/www.google.com\/\")",
 							"method": "PUT",
@@ -1831,7 +1831,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "83",
+							"id": "78",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"http:\/\/www.google.com\/search?q=ZAP\")",
 							"method": "PUT",
@@ -1841,7 +1841,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "77",
+							"id": "70",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"http:\/\/www.google.com:80\/\")",
 							"method": "PUT",
@@ -1851,7 +1851,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "87",
+							"id": "81",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"http:\/\/www.google.com:80\/search?q=ZAP\")",
 							"method": "PUT",
@@ -1863,7 +1863,7 @@
 						{
 							"id": "206",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"https:\/\/553397164246253704%2eowasp%2eorg\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"https:\/\/14361373004941333%2eowasp%2eorg\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -1871,9 +1871,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "198",
+							"id": "201",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"https:\/\/553397164246253704.owasp.org\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"https:\/\/14361373004941333.owasp.org\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -1881,9 +1881,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "223",
+							"id": "222",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"https:\/\/553397164246253704.owasp.org\/?John Doe\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"https:\/\/14361373004941333.owasp.org\/?John Doe\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -1891,9 +1891,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "231",
+							"id": "230",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"https:\/\/\\\\553397164246253704.owasp.org\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"https:\/\/\\\\14361373004941333.owasp.org\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -1901,9 +1901,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "604",
+							"id": "600",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"response.write(334,888*538,248)\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"response.write(19,766*547,155)\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -1921,7 +1921,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "761",
+							"id": "773",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"type %SYSTEMROOT%\\\\win.ini\")",
 							"method": "PUT",
@@ -1931,7 +1931,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "133",
+							"id": "94",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"www.google.com\")",
 							"method": "PUT",
@@ -1941,7 +1941,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "90",
+							"id": "85",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"www.google.com\/\")",
 							"method": "PUT",
@@ -1951,7 +1951,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "136",
+							"id": "98",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"www.google.com\/search?q=ZAP\")",
 							"method": "PUT",
@@ -1961,7 +1961,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "110",
+							"id": "88",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"www.google.com:80\/\")",
 							"method": "PUT",
@@ -1971,7 +1971,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "140",
+							"id": "101",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"www.google.com:80\/search?q=ZAP\")",
 							"method": "PUT",
@@ -1981,49 +1981,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "947",
+							"id": "950",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj 9029*2007 zj\")",
-							"method": "PUT",
-							"param": "",
-							"attack": "",
-							"evidence": "422",
-							"otherinfo": ""
-						},
-						{
-							"id": "992",
-							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj#set($x=3374*5351)${x}zj\")",
-							"method": "PUT",
-							"param": "",
-							"attack": "",
-							"evidence": "422",
-							"otherinfo": ""
-						},
-						{
-							"id": "965",
-							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj#{6863*6215}zj\")",
-							"method": "PUT",
-							"param": "",
-							"attack": "",
-							"evidence": "422",
-							"otherinfo": ""
-						},
-						{
-							"id": "958",
-							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj${6953*2913}zj\")",
-							"method": "PUT",
-							"param": "",
-							"attack": "",
-							"evidence": "422",
-							"otherinfo": ""
-						},
-						{
-							"id": "988",
-							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj<%=8232*1734%>zj\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj 5420*2287 zj\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -2033,7 +1993,7 @@
 						{
 							"id": "997",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj<p th:text=\\\"${4777*5161}\\\"><\/p>zj\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj#set($x=5497*1810)${x}zj\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -2041,9 +2001,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "969",
+							"id": "970",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj{#9108*2796}zj\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj#{6707*8553}zj\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -2051,9 +2011,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "954",
+							"id": "962",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj{4905*2883}zj\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj${4704*7453}zj\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -2061,9 +2021,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "974",
+							"id": "994",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj{@2250*3038}zj\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj<%=7908*8516%>zj\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -2073,7 +2033,7 @@
 						{
 							"id": "1001",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj{@math key=\\\"1406\\\" method=\\\"multiply\\\" operand=\\\"9785\\\"\/}zj\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj<p th:text=\\\"${4923*4615}\\\"><\/p>zj\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -2081,9 +2041,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1005",
+							"id": "976",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj{{26350|add:23960}}zj\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj{#6996*1297}zj\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -2091,9 +2051,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "977",
+							"id": "953",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj{{8105*2380}}zj\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj{6483*2718}zj\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -2101,9 +2061,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "984",
+							"id": "982",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj{{=2485*3499}}zj\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj{@4018*5867}zj\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -2111,9 +2071,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1007",
+							"id": "1006",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
-							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj{{print \\\"6159\\\" \\\"2617\\\"}}zj\")",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj{@math key=\\\"3857\\\" method=\\\"multiply\\\" operand=\\\"3556\\\"\/}zj\")",
 							"method": "PUT",
 							"param": "",
 							"attack": "",
@@ -2121,7 +2081,47 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1133",
+							"id": "1010",
+							"uri": "http://localhost:8000/profile/10?current_user_id=10",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj{{22930|add:29300}}zj\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "986",
+							"uri": "http://localhost:8000/profile/10?current_user_id=10",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj{{2765*1235}}zj\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "990",
+							"uri": "http://localhost:8000/profile/10?current_user_id=10",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj{{=8790*2965}}zj\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "1013",
+							"uri": "http://localhost:8000/profile/10?current_user_id=10",
+							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"zj{{print \\\"7786\\\" \\\"5088\\\"}}zj\")",
+							"method": "PUT",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "1127",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"{system(\\\"sleep 15\\\")}\")",
 							"method": "PUT",
@@ -2131,7 +2131,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1088",
+							"id": "1084",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"{{= global.process.mainModule.require('child_process').execSync('sleep 15').toString() }}\")",
 							"method": "PUT",
@@ -2141,7 +2141,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1110",
+							"id": "1107",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"{{\\\"\\\".__class__.__mro__[1].__subclasses__()[157].__repr__.__globals__.get(\\\"__builtins__\\\").get(\\\"__import__\\\")(\\\"subprocess\\\").check_output(\\\"sleep 15\\\")}}\")",
 							"method": "PUT",
@@ -2151,7 +2151,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1120",
+							"id": "1117",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"{{__import__(\\\"subprocess\\\").check_output(\\\"sleep 15\\\", shell=True)}}\")",
 							"method": "PUT",
@@ -2161,7 +2161,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1103",
+							"id": "1101",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"{{range.constructor(\\\"return eval(\\\\\\\"global.process.mainModule.require('child_process').execSync('sleep 15').toString()\\\\\\\")\\\")()}}\")",
 							"method": "PUT",
@@ -2171,7 +2171,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1154",
+							"id": "1151",
 							"uri": "http://localhost:8000/profile/10/",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10\/ ()(\"John Doe\")",
 							"method": "PUT",
@@ -2188,7 +2188,7 @@
 					"reference": "",
 					"cweid": "388",
 					"wascid": "20",
-					"sourceid": "1253"
+					"sourceid": "1249"
 				},
 				{
 					"pluginid": "10111",
@@ -2201,7 +2201,7 @@
 					"desc": "<p>The given request has been identified as an authentication request. The 'Other Info' field contains a set of key=value lines which identify any relevant fields. If the request is in a context which has an Authentication Method set to \"Auto-Detect\" then this rule will change the authentication to match the request identified.</p>",
 					"instances":[ 
 						{
-							"id": "92",
+							"id": "108",
 							"uri": "http://localhost:8000/login",
 							"nodeName": "http:\/\/localhost:8000\/login ()({username,password})",
 							"method": "POST",
@@ -2231,7 +2231,7 @@
 					"desc": "<p>The request appeared to contain sensitive information leaked in the URL. This can violate PCI and most organizational compliance policies. You can configure the list of strings for this check to add or remove values specific to your environment.</p>",
 					"instances":[ 
 						{
-							"id": "127",
+							"id": "133",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)",
 							"method": "DELETE",
@@ -2241,7 +2241,7 @@
 							"otherinfo": "The URL contains potentially sensitive information. The following string was found via the pattern: user\ncurrent_user_id"
 						},
 						{
-							"id": "120",
+							"id": "132",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)",
 							"method": "GET",
@@ -2251,7 +2251,7 @@
 							"otherinfo": "The URL contains potentially sensitive information. The following string was found via the pattern: user\ncurrent_user_id"
 						},
 						{
-							"id": "126",
+							"id": "134",
 							"uri": "http://localhost:8000/profile/10?current_user_id=10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 (current_user_id)(\"John Doe\")",
 							"method": "PUT",
@@ -2281,7 +2281,7 @@
 					"desc": "<p>The response contents are not storable by caching components such as proxy servers. If the response does not contain sensitive, personal or user-specific information, it may benefit from being stored and cached, to improve performance.</p>",
 					"instances":[ 
 						{
-							"id": "119",
+							"id": "125",
 							"uri": "http://localhost:8000/products/10",
 							"nodeName": "http:\/\/localhost:8000\/products\/10",
 							"method": "DELETE",
@@ -2291,7 +2291,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "107",
+							"id": "119",
 							"uri": "http://localhost:8000/integrations/address/enrich?zipcode=zipcode&provider_url=provider_url",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/address\/enrich (provider_url,zipcode)",
 							"method": "GET",
@@ -2301,7 +2301,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "103",
+							"id": "117",
 							"uri": "http://localhost:8000/integrations/fetch-url?url=https://zap.example.com",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/fetch-url (url)",
 							"method": "GET",
@@ -2311,7 +2311,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "99",
+							"id": "115",
 							"uri": "http://localhost:8000/checkout",
 							"nodeName": "http:\/\/localhost:8000\/checkout",
 							"method": "POST",
@@ -2321,7 +2321,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "94",
+							"id": "109",
 							"uri": "http://localhost:8000/login",
 							"nodeName": "http:\/\/localhost:8000\/login ()({username,password})",
 							"method": "POST",
@@ -2351,7 +2351,7 @@
 					"desc": "<p>The response contents are storable by caching components such as proxy servers, and may be retrieved directly from the cache, rather than from the origin server by the caching servers, in response to similar requests from other users. If the response data is sensitive, personal or user-specific, this may result in sensitive information being leaked. In some cases, this may even result in a user gaining complete control of the session of another user, depending on the configuration of the caching components in use in their environment. This is primarily an issue where \"shared\" caching servers such as \"proxy\" caches are configured on the local network. This configuration is typically found in corporate or educational environments, for instance.</p>",
 					"instances":[ 
 						{
-							"id": "96",
+							"id": "104",
 							"uri": "http://localhost:8000/auth/debug",
 							"nodeName": "http:\/\/localhost:8000\/auth\/debug",
 							"method": "GET",
@@ -2361,7 +2361,7 @@
 							"otherinfo": "In the absence of an explicitly specified caching lifetime directive in the response, a liberal lifetime heuristic of 1 year was assumed. This is permitted by rfc7234."
 						},
 						{
-							"id": "104",
+							"id": "110",
 							"uri": "http://localhost:8000/checkout/debug",
 							"nodeName": "http:\/\/localhost:8000\/checkout\/debug",
 							"method": "GET",
@@ -2371,9 +2371,9 @@
 							"otherinfo": "In the absence of an explicitly specified caching lifetime directive in the response, a liberal lifetime heuristic of 1 year was assumed. This is permitted by rfc7234."
 						},
 						{
-							"id": "114",
-							"uri": "http://localhost:8000/products",
-							"nodeName": "http:\/\/localhost:8000\/products",
+							"id": "5",
+							"uri": "http://localhost:8000/openapi.json",
+							"nodeName": "http:\/\/localhost:8000\/openapi.json",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -2381,7 +2381,7 @@
 							"otherinfo": "In the absence of an explicitly specified caching lifetime directive in the response, a liberal lifetime heuristic of 1 year was assumed. This is permitted by rfc7234."
 						},
 						{
-							"id": "112",
+							"id": "122",
 							"uri": "http://localhost:8000/products/search?name=ZAP",
 							"nodeName": "http:\/\/localhost:8000\/products\/search (name)",
 							"method": "GET",
@@ -2391,7 +2391,7 @@
 							"otherinfo": "In the absence of an explicitly specified caching lifetime directive in the response, a liberal lifetime heuristic of 1 year was assumed. This is permitted by rfc7234."
 						},
 						{
-							"id": "93",
+							"id": "103",
 							"uri": "http://localhost:8000/users/10",
 							"nodeName": "http:\/\/localhost:8000\/users\/10",
 							"method": "GET",
