@@ -78,5 +78,15 @@
     "dast": 12,
     "trivy": 9,
     "total": 22
+  },
+  {
+    "date": "2026-08-31T00:32:25Z",
+    "description": "Descrição do commit associado ao merge não disponível.",
+    "commit": "fdb21ab",
+    "sast": 1,
+    "sca": 0,
+    "dast": 11,
+    "trivy": 9,
+    "total": 21
   }
 ]
