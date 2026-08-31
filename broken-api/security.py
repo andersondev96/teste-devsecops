@@ -16,6 +16,7 @@ import os
 import secrets
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
+from typing import Optional
 
 import jwt
 from fastapi import Depends, HTTPException, status
@@ -83,7 +84,7 @@ def hash_password(password: str) -> str:
     )
 
 
-def verify_password(password: str, encoded_hash: str | None) -> bool:
+def verify_password(password: str, encoded_hash: Optional[str]) -> bool:
     """Verifica um hash scrypt sem aceitar o formato legado em texto puro."""
 
     if not encoded_hash:
@@ -193,7 +194,7 @@ def decode_access_token(token: str) -> dict:
 
 
 def get_current_user(
-    credentials: HTTPAuthorizationCredentials | None = Depends(bearer_scheme),
+    credentials: Optional[HTTPAuthorizationCredentials] = Depends(bearer_scheme),
 ) -> CurrentUser:
     """Dependência FastAPI que resolve a identidade a partir do Bearer token."""
 
