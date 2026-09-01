@@ -1,8 +1,8 @@
 {
 	"@programName": "ZAP",
 	"@version": "2.17.0",
-	"@generated": "Mon, 31 Aug 2026 01:30:14",
-	"created": "2026-08-31T01:30:14.805115401Z",
+	"@generated": "Tue, 1 Sept 2026 00:28:42",
+	"created": "2026-09-01T00:28:42.474398661Z",
 	"insights":[
 		{
 			"level": "Low",
@@ -18,7 +18,7 @@
 			"site": "http://localhost:8000",
 			"key": "insight.code.4xx",
 			"description": "Percentage of responses with status code 4xx",
-			"statistic": "62"
+			"statistic": "81"
 		},
 		{
 			"level": "Info",
@@ -26,7 +26,7 @@
 			"site": "http://localhost:8000",
 			"key": "insight.code.2xx",
 			"description": "Percentage of responses with status code 2xx",
-			"statistic": "10"
+			"statistic": "2"
 		},
 		{
 			"level": "Info",
@@ -34,7 +34,7 @@
 			"site": "http://localhost:8000",
 			"key": "insight.code.5xx",
 			"description": "Percentage of responses with status code 5xx",
-			"statistic": "26"
+			"statistic": "16"
 		},
 		{
 			"level": "Info",
@@ -66,7 +66,7 @@
 			"site": "http://localhost:8000",
 			"key": "insight.endpoint.method.GET",
 			"description": "Percentage of endpoints with method GET",
-			"statistic": "68"
+			"statistic": "70"
 		},
 		{
 			"level": "Info",
@@ -74,7 +74,7 @@
 			"site": "http://localhost:8000",
 			"key": "insight.endpoint.method.POST",
 			"description": "Percentage of endpoints with method POST",
-			"statistic": "18"
+			"statistic": "16"
 		},
 		{
 			"level": "Info",
@@ -82,7 +82,7 @@
 			"site": "http://localhost:8000",
 			"key": "insight.endpoint.method.PUT",
 			"description": "Percentage of endpoints with method PUT",
-			"statistic": "8"
+			"statistic": "7"
 		},
 		{
 			"level": "Info",
@@ -90,15 +90,15 @@
 			"site": "http://localhost:8000",
 			"key": "insight.endpoint.total",
 			"description": "Count of total endpoints",
-			"statistic": "61"
+			"statistic": "65"
 		},
 		{
 			"level": "Info",
-			"reason": "Exceeded Low",
+			"reason": "Informational",
 			"site": "http://localhost:8000",
 			"key": "insight.response.slow",
 			"description": "Percentage of slow responses",
-			"statistic": "8"
+			"statistic": "3"
 		}
 	],
 	"site":[ 
@@ -136,37 +136,7 @@
 					"reference": "<p>https://owasp.org/www-project-web-security-testing-guide/v42/4-Web_Application_Security_Testing/07-Input_Validation_Testing/11.2-Testing_for_Remote_File_Inclusion</p><p>https://cwe.mitre.org/data/definitions/98.html</p>",
 					"cweid": "98",
 					"wascid": "5",
-					"sourceid": "63"
-				},
-				{
-					"pluginid": "40018",
-					"alertRef": "40018",
-					"alert": "SQL Injection",
-					"name": "SQL Injection",
-					"riskcode": "3",
-					"confidence": "2",
-					"riskdesc": "High (Medium)",
-					"desc": "<p>SQL injection may be possible.</p>",
-					"instances":[ 
-						{
-							"id": "338",
-							"uri": "http://localhost:8000/products/search?name=ZAP%27+AND+%271%27%3D%271%27+--+",
-							"nodeName": "http:\/\/localhost:8000\/products\/search (name)",
-							"method": "GET",
-							"param": "name",
-							"attack": "ZAP' OR '1'='1' -- ",
-							"evidence": "",
-							"otherinfo": "The page results were successfully manipulated using the boolean conditions [ZAP' AND '1'='1' -- ] and [ZAP' OR '1'='1' -- ]\nThe parameter value being modified was stripped from the HTML output for the purposes of the comparison.\nData was NOT returned for the original parameter.\nThe vulnerability was detected by successfully retrieving more data than originally returned, by manipulating the parameter."
-						}
-					],
-					"count": "1",
-					"systemic": false,
-					"solution": "<p>Do not trust client side input, even if there is client side validation in place.</p><p>In general, type check all data on the server side.</p><p>If the application uses JDBC, use PreparedStatement or CallableStatement, with parameters passed by '?'</p><p>If the application uses ASP, use ADO Command Objects with strong type checking and parameterized queries.</p><p>If database Stored Procedures can be used, use them.</p><p>Do *not* concatenate strings into queries in the stored procedure, or use 'exec', 'exec immediate', or equivalent functionality!</p><p>Do not create dynamic SQL queries using simple string concatenation.</p><p>Escape all data received from the client.</p><p>Apply an 'allow list' of allowed characters, or a 'deny list' of disallowed characters in user input.</p><p>Apply the principle of least privilege by using the least privileged database user possible.</p><p>In particular, avoid using the 'sa' or 'db-owner' database users. This does not eliminate SQL injection, but minimizes its impact.</p><p>Grant the minimum database access that is necessary for the application.</p>",
-					"otherinfo": "<p>The page results were successfully manipulated using the boolean conditions [ZAP' AND '1'='1' -- ] and [ZAP' OR '1'='1' -- ]</p><p>The parameter value being modified was stripped from the HTML output for the purposes of the comparison.</p><p>Data was NOT returned for the original parameter.</p><p>The vulnerability was detected by successfully retrieving more data than originally returned, by manipulating the parameter.</p>",
-					"reference": "<p>https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html</p>",
-					"cweid": "89",
-					"wascid": "19",
-					"sourceid": "376"
+					"sourceid": "67"
 				},
 				{
 					"pluginid": "100000",
@@ -179,7 +149,7 @@
 					"desc": "<p>A response code of 500 was returned by the server.</p><p>This may indicate that the application is failing to handle unexpected input correctly.</p><p>Raised by the 'Alert on HTTP Response Code Error' script</p>",
 					"instances":[ 
 						{
-							"id": "8",
+							"id": "5",
 							"uri": "http://localhost:8000/integrations/address/enrich?zipcode=zipcode&provider_url=provider_url",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/address\/enrich (provider_url,zipcode)",
 							"method": "GET",
@@ -189,7 +159,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "7",
+							"id": "4",
 							"uri": "http://localhost:8000/integrations/fetch-url?url=https://zap.example.com",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/fetch-url (url)",
 							"method": "GET",
@@ -219,7 +189,7 @@
 					"desc": "<p>This page contains an error/warning message that may disclose sensitive information like the location of the file that produced the unhandled exception. This information can be used to launch further attacks against the web application. The alert could be a false positive if the error message is found inside a documentation page.</p>",
 					"instances":[ 
 						{
-							"id": "80",
+							"id": "88",
 							"uri": "http://localhost:8000/integrations/address/enrich?zipcode=zipcode&provider_url=provider_url",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/address\/enrich (provider_url,zipcode)",
 							"method": "GET",
@@ -229,7 +199,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "79",
+							"id": "82",
 							"uri": "http://localhost:8000/integrations/fetch-url?url=https://zap.example.com",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/fetch-url (url)",
 							"method": "GET",
@@ -259,7 +229,7 @@
 					"desc": "<p>Cross-Origin-Resource-Policy header is an opt-in header designed to counter side-channels attacks like Spectre. Resource should be specifically set as shareable amongst different origins.</p>",
 					"instances":[ 
 						{
-							"id": "98",
+							"id": "105",
 							"uri": "http://localhost:8000/products/10",
 							"nodeName": "http:\/\/localhost:8000\/products\/10",
 							"method": "DELETE",
@@ -269,7 +239,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "82",
+							"id": "90",
 							"uri": "http://localhost:8000/checkout/debug",
 							"nodeName": "http:\/\/localhost:8000\/checkout\/debug",
 							"method": "GET",
@@ -279,9 +249,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "2",
-							"uri": "http://localhost:8000/openapi.json",
-							"nodeName": "http:\/\/localhost:8000\/openapi.json",
+							"id": "96",
+							"uri": "http://localhost:8000/products?limit=50&offset=0",
+							"nodeName": "http:\/\/localhost:8000\/products (limit,offset)",
 							"method": "GET",
 							"param": "Cross-Origin-Resource-Policy",
 							"attack": "",
@@ -289,9 +259,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "94",
-							"uri": "http://localhost:8000/products",
-							"nodeName": "http:\/\/localhost:8000\/products",
+							"id": "98",
+							"uri": "http://localhost:8000/products/search?name=ZAP&limit=50&offset=0",
+							"nodeName": "http:\/\/localhost:8000\/products\/search (limit,name,offset)",
 							"method": "GET",
 							"param": "Cross-Origin-Resource-Policy",
 							"attack": "",
@@ -299,10 +269,10 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "93",
-							"uri": "http://localhost:8000/products/search?name=ZAP",
-							"nodeName": "http:\/\/localhost:8000\/products\/search (name)",
-							"method": "GET",
+							"id": "104",
+							"uri": "http://localhost:8000/products/10/price?new_price=1.2",
+							"nodeName": "http:\/\/localhost:8000\/products\/10\/price (new_price)",
+							"method": "PUT",
 							"param": "Cross-Origin-Resource-Policy",
 							"attack": "",
 							"evidence": "",
@@ -329,7 +299,7 @@
 					"desc": "<p>The response appeared to contain common error messages returned by platforms such as ASP.NET, and Web-servers such as IIS and Apache. You can configure the list of common debug messages.</p>",
 					"instances":[ 
 						{
-							"id": "84",
+							"id": "91",
 							"uri": "http://localhost:8000/integrations/address/enrich?zipcode=zipcode&provider_url=provider_url",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/address\/enrich (provider_url,zipcode)",
 							"method": "GET",
@@ -339,7 +309,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "83",
+							"id": "84",
 							"uri": "http://localhost:8000/integrations/fetch-url?url=https://zap.example.com",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/fetch-url (url)",
 							"method": "GET",
@@ -369,7 +339,7 @@
 					"desc": "<p>The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body, potentially causing the response body to be interpreted and displayed as a content type other than the declared content type. Current (early 2014) and legacy versions of Firefox will use the declared content type (if one is set), rather than performing MIME-sniffing.</p>",
 					"instances":[ 
 						{
-							"id": "92",
+							"id": "99",
 							"uri": "http://localhost:8000/products/10",
 							"nodeName": "http:\/\/localhost:8000\/products\/10",
 							"method": "DELETE",
@@ -379,7 +349,7 @@
 							"otherinfo": "This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.\nAt \"High\" threshold this scan rule will not alert on client or server error responses."
 						},
 						{
-							"id": "77",
+							"id": "83",
 							"uri": "http://localhost:8000/checkout/debug",
 							"nodeName": "http:\/\/localhost:8000\/checkout\/debug",
 							"method": "GET",
@@ -389,9 +359,9 @@
 							"otherinfo": "This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.\nAt \"High\" threshold this scan rule will not alert on client or server error responses."
 						},
 						{
-							"id": "0",
-							"uri": "http://localhost:8000/openapi.json",
-							"nodeName": "http:\/\/localhost:8000\/openapi.json",
+							"id": "92",
+							"uri": "http://localhost:8000/products?limit=50&offset=0",
+							"nodeName": "http:\/\/localhost:8000\/products (limit,offset)",
 							"method": "GET",
 							"param": "x-content-type-options",
 							"attack": "",
@@ -399,9 +369,9 @@
 							"otherinfo": "This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.\nAt \"High\" threshold this scan rule will not alert on client or server error responses."
 						},
 						{
-							"id": "87",
-							"uri": "http://localhost:8000/products",
-							"nodeName": "http:\/\/localhost:8000\/products",
+							"id": "95",
+							"uri": "http://localhost:8000/products/search?name=ZAP&limit=50&offset=0",
+							"nodeName": "http:\/\/localhost:8000\/products\/search (limit,name,offset)",
 							"method": "GET",
 							"param": "x-content-type-options",
 							"attack": "",
@@ -409,10 +379,10 @@
 							"otherinfo": "This issue still applies to error type pages (401, 403, 500, etc.) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.\nAt \"High\" threshold this scan rule will not alert on client or server error responses."
 						},
 						{
-							"id": "88",
-							"uri": "http://localhost:8000/products/search?name=ZAP",
-							"nodeName": "http:\/\/localhost:8000\/products\/search (name)",
-							"method": "GET",
+							"id": "100",
+							"uri": "http://localhost:8000/products/10/price?new_price=1.2",
+							"nodeName": "http:\/\/localhost:8000\/products\/10\/price (new_price)",
+							"method": "PUT",
 							"param": "x-content-type-options",
 							"attack": "",
 							"evidence": "",
@@ -439,7 +409,7 @@
 					"desc": "<p>A response code of 401 was returned by the server.</p><p>This may indicate that the application is failing to handle unexpected input correctly.</p><p>Raised by the 'Alert on HTTP Response Code Error' script</p>",
 					"instances":[ 
 						{
-							"id": "11",
+							"id": "8",
 							"uri": "http://localhost:8000/profile/10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10",
 							"method": "DELETE",
@@ -449,7 +419,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "939",
+							"id": "1656",
 							"uri": "http://localhost:8000/profile/10/",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10\/",
 							"method": "DELETE",
@@ -459,7 +429,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "21",
+							"id": "18",
 							"uri": "http://localhost:8000",
 							"nodeName": "http:\/\/localhost:8000",
 							"method": "GET",
@@ -469,7 +439,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "933",
+							"id": "1653",
 							"uri": "http://localhost:8000/",
 							"nodeName": "http:\/\/localhost:8000\/",
 							"method": "GET",
@@ -479,9 +449,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "12",
-							"uri": "http://localhost:8000/7117448011212385606",
-							"nodeName": "http:\/\/localhost:8000\/7117448011212385606",
+							"id": "9",
+							"uri": "http://localhost:8000/8531648137091409391",
+							"nodeName": "http:\/\/localhost:8000\/8531648137091409391",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -489,7 +459,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1085",
+							"id": "1901",
 							"uri": "http://localhost:8000/actuator/health",
 							"nodeName": "http:\/\/localhost:8000\/actuator\/health",
 							"method": "GET",
@@ -499,7 +469,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "23",
+							"id": "20",
 							"uri": "http://localhost:8000/auth",
 							"nodeName": "http:\/\/localhost:8000\/auth",
 							"method": "GET",
@@ -509,7 +479,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "943",
+							"id": "1657",
 							"uri": "http://localhost:8000/auth/",
 							"nodeName": "http:\/\/localhost:8000\/auth\/",
 							"method": "GET",
@@ -519,9 +489,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "13",
-							"uri": "http://localhost:8000/auth/3515473711198463743",
-							"nodeName": "http:\/\/localhost:8000\/auth\/3515473711198463743",
+							"id": "10",
+							"uri": "http://localhost:8000/auth/2051177181249799715",
+							"nodeName": "http:\/\/localhost:8000\/auth\/2051177181249799715",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -529,7 +499,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "5",
+							"id": "2",
 							"uri": "http://localhost:8000/auth/debug",
 							"nodeName": "http:\/\/localhost:8000\/auth\/debug",
 							"method": "GET",
@@ -539,7 +509,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "945",
+							"id": "1660",
 							"uri": "http://localhost:8000/auth/debug/",
 							"nodeName": "http:\/\/localhost:8000\/auth\/debug\/",
 							"method": "GET",
@@ -559,7 +529,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "948",
+							"id": "1664",
 							"uri": "http://localhost:8000/checkout/",
 							"nodeName": "http:\/\/localhost:8000\/checkout\/",
 							"method": "GET",
@@ -569,9 +539,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "14",
-							"uri": "http://localhost:8000/checkout/7142818294766811155",
-							"nodeName": "http:\/\/localhost:8000\/checkout\/7142818294766811155",
+							"id": "11",
+							"uri": "http://localhost:8000/checkout/3182267221924796534",
+							"nodeName": "http:\/\/localhost:8000\/checkout\/3182267221924796534",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -579,7 +549,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "27",
+							"id": "29",
 							"uri": "http://localhost:8000/integrations",
 							"nodeName": "http:\/\/localhost:8000\/integrations",
 							"method": "GET",
@@ -589,7 +559,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "950",
+							"id": "1663",
 							"uri": "http://localhost:8000/integrations/",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/",
 							"method": "GET",
@@ -599,9 +569,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "15",
-							"uri": "http://localhost:8000/integrations/1500431305212120941",
-							"nodeName": "http:\/\/localhost:8000\/integrations\/1500431305212120941",
+							"id": "12",
+							"uri": "http://localhost:8000/integrations/6962275600027205202",
+							"nodeName": "http:\/\/localhost:8000\/integrations\/6962275600027205202",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -609,7 +579,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "33",
+							"id": "34",
 							"uri": "http://localhost:8000/integrations/address",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/address",
 							"method": "GET",
@@ -619,7 +589,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "951",
+							"id": "1666",
 							"uri": "http://localhost:8000/integrations/address/",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/address\/",
 							"method": "GET",
@@ -629,9 +599,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "16",
-							"uri": "http://localhost:8000/integrations/address/368967984942247653",
-							"nodeName": "http:\/\/localhost:8000\/integrations\/address\/368967984942247653",
+							"id": "13",
+							"uri": "http://localhost:8000/integrations/address/8360571795561192494",
+							"nodeName": "http:\/\/localhost:8000\/integrations\/address\/8360571795561192494",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -639,7 +609,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "955",
+							"id": "1667",
 							"uri": "http://localhost:8000/integrations/address/enrich",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/address\/enrich",
 							"method": "GET",
@@ -649,7 +619,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "959",
+							"id": "1668",
 							"uri": "http://localhost:8000/integrations/address/enrich/",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/address\/enrich\/",
 							"method": "GET",
@@ -659,7 +629,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "952",
+							"id": "1670",
 							"uri": "http://localhost:8000/integrations/fetch-url",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/fetch-url",
 							"method": "GET",
@@ -669,7 +639,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "953",
+							"id": "1671",
 							"uri": "http://localhost:8000/integrations/fetch-url/",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/fetch-url\/",
 							"method": "GET",
@@ -679,7 +649,47 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "38",
+							"id": "771",
+							"uri": "http://localhost:8000/products",
+							"nodeName": "http:\/\/localhost:8000\/products",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "46",
+							"uri": "http://localhost:8000/products?limit=http%3A%2F%2Fwww.google.com%2F&offset=0",
+							"nodeName": "http:\/\/localhost:8000\/products (limit,offset)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "502",
+							"uri": "http://localhost:8000/products?limit=52-2&offset=0",
+							"nodeName": "http:\/\/localhost:8000\/products (limit,offset)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "1674",
+							"uri": "http://localhost:8000/products/",
+							"nodeName": "http:\/\/localhost:8000\/products\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "40",
 							"uri": "http://localhost:8000/products/10",
 							"nodeName": "http:\/\/localhost:8000\/products\/10",
 							"method": "GET",
@@ -689,7 +699,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "958",
+							"id": "1677",
 							"uri": "http://localhost:8000/products/10/",
 							"nodeName": "http:\/\/localhost:8000\/products\/10\/",
 							"method": "GET",
@@ -699,9 +709,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "18",
-							"uri": "http://localhost:8000/products/10/871599708931112572",
-							"nodeName": "http:\/\/localhost:8000\/products\/10\/871599708931112572",
+							"id": "15",
+							"uri": "http://localhost:8000/products/10/6669721410383379603",
+							"nodeName": "http:\/\/localhost:8000\/products\/10\/6669721410383379603",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -709,9 +719,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "17",
-							"uri": "http://localhost:8000/products/4368026202124780256",
-							"nodeName": "http:\/\/localhost:8000\/products\/4368026202124780256",
+							"id": "14",
+							"uri": "http://localhost:8000/products/4942844617727404815",
+							"nodeName": "http:\/\/localhost:8000\/products\/4942844617727404815",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -719,19 +729,19 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "960",
+							"id": "1681",
 							"uri": "http://localhost:8000/products/search",
 							"nodeName": "http:\/\/localhost:8000\/products\/search",
 							"method": "GET",
 							"param": "",
 							"attack": "",
-							"evidence": "422",
+							"evidence": "429",
 							"otherinfo": ""
 						},
 						{
-							"id": "961",
-							"uri": "http://localhost:8000/products/search/",
-							"nodeName": "http:\/\/localhost:8000\/products\/search\/",
+							"id": "130",
+							"uri": "http://localhost:8000/products/search?name=ZAP&limit=http%3A%2F%2Fwww.google.com%2F&offset=0",
+							"nodeName": "http:\/\/localhost:8000\/products\/search (limit,name,offset)",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -739,7 +749,27 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "44",
+							"id": "362",
+							"uri": "http://localhost:8000/products/search?name=%3C%21--%23EXEC+cmd%3D%22dir+%5C%22--%3E&limit=50&offset=0",
+							"nodeName": "http:\/\/localhost:8000\/products\/search (limit,name,offset)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "1684",
+							"uri": "http://localhost:8000/products/search/",
+							"nodeName": "http:\/\/localhost:8000\/products\/search\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "45",
 							"uri": "http://localhost:8000/profile",
 							"nodeName": "http:\/\/localhost:8000\/profile",
 							"method": "GET",
@@ -749,7 +779,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "962",
+							"id": "1678",
 							"uri": "http://localhost:8000/profile/",
 							"nodeName": "http:\/\/localhost:8000\/profile\/",
 							"method": "GET",
@@ -759,7 +789,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "9",
+							"id": "6",
 							"uri": "http://localhost:8000/profile/10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10",
 							"method": "GET",
@@ -769,7 +799,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "964",
+							"id": "1683",
 							"uri": "http://localhost:8000/profile/10/",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10\/",
 							"method": "GET",
@@ -779,9 +809,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "19",
-							"uri": "http://localhost:8000/profile/4148024109751514890",
-							"nodeName": "http:\/\/localhost:8000\/profile\/4148024109751514890",
+							"id": "16",
+							"uri": "http://localhost:8000/profile/3139541548131344142",
+							"nodeName": "http:\/\/localhost:8000\/profile\/3139541548131344142",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -789,7 +819,47 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "4",
+							"id": "793",
+							"uri": "http://localhost:8000/users",
+							"nodeName": "http:\/\/localhost:8000\/users",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "60",
+							"uri": "http://localhost:8000/users?limit=http%3A%2F%2Fwww.google.com%2F&offset=0",
+							"nodeName": "http:\/\/localhost:8000\/users (limit,offset)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "422",
+							"otherinfo": ""
+						},
+						{
+							"id": "536",
+							"uri": "http://localhost:8000/users?limit=52-2&offset=0",
+							"nodeName": "http:\/\/localhost:8000\/users (limit,offset)",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "1687",
+							"uri": "http://localhost:8000/users/",
+							"nodeName": "http:\/\/localhost:8000\/users\/",
+							"method": "GET",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "1",
 							"uri": "http://localhost:8000/users/10",
 							"nodeName": "http:\/\/localhost:8000\/users\/10",
 							"method": "GET",
@@ -799,7 +869,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "966",
+							"id": "1690",
 							"uri": "http://localhost:8000/users/10/",
 							"nodeName": "http:\/\/localhost:8000\/users\/10\/",
 							"method": "GET",
@@ -809,9 +879,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "20",
-							"uri": "http://localhost:8000/users/7158031168072331334",
-							"nodeName": "http:\/\/localhost:8000\/users\/7158031168072331334",
+							"id": "17",
+							"uri": "http://localhost:8000/users/8642812659424832322",
+							"nodeName": "http:\/\/localhost:8000\/users\/8642812659424832322",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -819,7 +889,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "6",
+							"id": "3",
 							"uri": "http://localhost:8000/checkout",
 							"nodeName": "http:\/\/localhost:8000\/checkout ()({order_id,payment_method})",
 							"method": "POST",
@@ -829,17 +899,27 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "941",
+							"id": "515",
+							"uri": "http://localhost:8000/checkout",
+							"nodeName": "http:\/\/localhost:8000\/checkout ()({order_id,payment_method})",
+							"method": "POST",
+							"param": "",
+							"attack": "",
+							"evidence": "429",
+							"otherinfo": ""
+						},
+						{
+							"id": "1646",
 							"uri": "http://localhost:8000/checkout/",
 							"nodeName": "http:\/\/localhost:8000\/checkout\/ ()({order_id,payment_method})",
 							"method": "POST",
 							"param": "",
 							"attack": "",
-							"evidence": "401",
+							"evidence": "429",
 							"otherinfo": ""
 						},
 						{
-							"id": "700",
+							"id": "1226",
 							"uri": "http://localhost:8000/computeMetadata/v1/",
 							"nodeName": "http:\/\/localhost:8000\/computeMetadata\/v1\/ ()({order_id,payment_method})",
 							"method": "POST",
@@ -849,7 +929,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "694",
+							"id": "1223",
 							"uri": "http://localhost:8000/latest/meta-data/",
 							"nodeName": "http:\/\/localhost:8000\/latest\/meta-data\/ ()({order_id,payment_method})",
 							"method": "POST",
@@ -859,7 +939,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "3",
+							"id": "0",
 							"uri": "http://localhost:8000/login",
 							"nodeName": "http:\/\/localhost:8000\/login ()({username,password})",
 							"method": "POST",
@@ -869,27 +949,27 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "426",
+							"id": "480",
 							"uri": "http://localhost:8000/login",
 							"nodeName": "http:\/\/localhost:8000\/login ()({username,password})",
 							"method": "POST",
 							"param": "",
 							"attack": "",
-							"evidence": "422",
+							"evidence": "429",
 							"otherinfo": ""
 						},
 						{
-							"id": "932",
+							"id": "1655",
 							"uri": "http://localhost:8000/login/",
 							"nodeName": "http:\/\/localhost:8000\/login\/ ()({username,password})",
 							"method": "POST",
 							"param": "",
 							"attack": "",
-							"evidence": "401",
+							"evidence": "429",
 							"otherinfo": ""
 						},
 						{
-							"id": "739",
+							"id": "1256",
 							"uri": "http://localhost:8000/metadata/instance",
 							"nodeName": "http:\/\/localhost:8000\/metadata\/instance ()({order_id,payment_method})",
 							"method": "POST",
@@ -899,7 +979,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "746",
+							"id": "1261",
 							"uri": "http://localhost:8000/metadata/v1",
 							"nodeName": "http:\/\/localhost:8000\/metadata\/v1 ()({order_id,payment_method})",
 							"method": "POST",
@@ -909,7 +989,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "710",
+							"id": "1235",
 							"uri": "http://localhost:8000/opc/v1/instance/",
 							"nodeName": "http:\/\/localhost:8000\/opc\/v1\/instance\/ ()({order_id,payment_method})",
 							"method": "POST",
@@ -919,7 +999,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "720",
+							"id": "1240",
 							"uri": "http://localhost:8000/opc/v2/instance/",
 							"nodeName": "http:\/\/localhost:8000\/opc\/v2\/instance\/ ()({order_id,payment_method})",
 							"method": "POST",
@@ -929,7 +1009,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "748",
+							"id": "1267",
 							"uri": "http://localhost:8000/openstack/latest/meta_data.json",
 							"nodeName": "http:\/\/localhost:8000\/openstack\/latest\/meta_data.json ()({order_id,payment_method})",
 							"method": "POST",
@@ -939,7 +1019,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "931",
+							"id": "1644",
 							"uri": "http://localhost:8000/products/10/price",
 							"nodeName": "http:\/\/localhost:8000\/products\/10\/price",
 							"method": "PUT",
@@ -949,7 +1029,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "22",
+							"id": "19",
 							"uri": "http://localhost:8000/products/10/price?new_price=http%3A%2F%2Fwww.google.com%2F",
 							"nodeName": "http:\/\/localhost:8000\/products\/10\/price (new_price)",
 							"method": "PUT",
@@ -959,7 +1039,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "937",
+							"id": "1648",
 							"uri": "http://localhost:8000/products/10/price/",
 							"nodeName": "http:\/\/localhost:8000\/products\/10\/price\/",
 							"method": "PUT",
@@ -969,7 +1049,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "10",
+							"id": "7",
 							"uri": "http://localhost:8000/profile/10",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10 ()({\"username\":\"John Doe\",\"email\":zaproxy@example.com})",
 							"method": "PUT",
@@ -979,7 +1059,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "936",
+							"id": "1650",
 							"uri": "http://localhost:8000/profile/10/",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10\/ ()({\"username\":\"John Doe\",\"email\":zaproxy@example.com})",
 							"method": "PUT",
@@ -989,7 +1069,7 @@
 							"otherinfo": ""
 						}
 					],
-					"count": "55",
+					"count": "66",
 					"systemic": false,
 					"solution": "",
 					"otherinfo": "",
@@ -1009,7 +1089,7 @@
 					"desc": "<p>The given request has been identified as an authentication request. The 'Other Info' field contains a set of key=value lines which identify any relevant fields. If the request is in a context which has an Authentication Method set to \"Auto-Detect\" then this rule will change the authentication to match the request identified.</p>",
 					"instances":[ 
 						{
-							"id": "74",
+							"id": "79",
 							"uri": "http://localhost:8000/login",
 							"nodeName": "http:\/\/localhost:8000\/login ()({username,password})",
 							"method": "POST",
@@ -1039,7 +1119,7 @@
 					"desc": "<p>The response contents are not storable by caching components such as proxy servers. If the response does not contain sensitive, personal or user-specific information, it may benefit from being stored and cached, to improve performance.</p>",
 					"instances":[ 
 						{
-							"id": "85",
+							"id": "93",
 							"uri": "http://localhost:8000/integrations/address/enrich?zipcode=zipcode&provider_url=provider_url",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/address\/enrich (provider_url,zipcode)",
 							"method": "GET",
@@ -1059,7 +1139,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "73",
+							"id": "81",
 							"uri": "http://localhost:8000/users/10",
 							"nodeName": "http:\/\/localhost:8000\/users\/10",
 							"method": "GET",
@@ -1069,7 +1149,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "78",
+							"id": "85",
 							"uri": "http://localhost:8000/checkout",
 							"nodeName": "http:\/\/localhost:8000\/checkout ()({order_id,payment_method})",
 							"method": "POST",
@@ -1079,7 +1159,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "76",
+							"id": "80",
 							"uri": "http://localhost:8000/login",
 							"nodeName": "http:\/\/localhost:8000\/login ()({username,password})",
 							"method": "POST",
@@ -1109,7 +1189,7 @@
 					"desc": "<p>The response contents are storable by caching components such as proxy servers, and may be retrieved directly from the cache, rather than from the origin server by the caching servers, in response to similar requests from other users. If the response data is sensitive, personal or user-specific, this may result in sensitive information being leaked. In some cases, this may even result in a user gaining complete control of the session of another user, depending on the configuration of the caching components in use in their environment. This is primarily an issue where \"shared\" caching servers such as \"proxy\" caches are configured on the local network. This configuration is typically found in corporate or educational environments, for instance.</p>",
 					"instances":[ 
 						{
-							"id": "75",
+							"id": "78",
 							"uri": "http://localhost:8000/auth/debug",
 							"nodeName": "http:\/\/localhost:8000\/auth\/debug",
 							"method": "GET",
@@ -1119,7 +1199,7 @@
 							"otherinfo": "In the absence of an explicitly specified caching lifetime directive in the response, a liberal lifetime heuristic of 1 year was assumed. This is permitted by rfc7234."
 						},
 						{
-							"id": "81",
+							"id": "87",
 							"uri": "http://localhost:8000/checkout/debug",
 							"nodeName": "http:\/\/localhost:8000\/checkout\/debug",
 							"method": "GET",
@@ -1129,9 +1209,9 @@
 							"otherinfo": "In the absence of an explicitly specified caching lifetime directive in the response, a liberal lifetime heuristic of 1 year was assumed. This is permitted by rfc7234."
 						},
 						{
-							"id": "1",
-							"uri": "http://localhost:8000/openapi.json",
-							"nodeName": "http:\/\/localhost:8000\/openapi.json",
+							"id": "94",
+							"uri": "http://localhost:8000/products?limit=50&offset=0",
+							"nodeName": "http:\/\/localhost:8000\/products (limit,offset)",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -1139,19 +1219,9 @@
 							"otherinfo": "In the absence of an explicitly specified caching lifetime directive in the response, a liberal lifetime heuristic of 1 year was assumed. This is permitted by rfc7234."
 						},
 						{
-							"id": "89",
-							"uri": "http://localhost:8000/products",
-							"nodeName": "http:\/\/localhost:8000\/products",
-							"method": "GET",
-							"param": "",
-							"attack": "",
-							"evidence": "",
-							"otherinfo": "In the absence of an explicitly specified caching lifetime directive in the response, a liberal lifetime heuristic of 1 year was assumed. This is permitted by rfc7234."
-						},
-						{
-							"id": "91",
-							"uri": "http://localhost:8000/products/search?name=ZAP",
-							"nodeName": "http:\/\/localhost:8000\/products\/search (name)",
+							"id": "97",
+							"uri": "http://localhost:8000/products/search?name=ZAP&limit=50&offset=0",
+							"nodeName": "http:\/\/localhost:8000\/products\/search (limit,name,offset)",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -1159,7 +1229,7 @@
 							"otherinfo": "In the absence of an explicitly specified caching lifetime directive in the response, a liberal lifetime heuristic of 1 year was assumed. This is permitted by rfc7234."
 						}
 					],
-					"count": "5",
+					"count": "4",
 					"systemic": false,
 					"solution": "<p>Validate that the response does not contain sensitive, personal or user-specific information. If it does, consider the use of the following HTTP response headers, to limit, or prevent the content being stored and retrieved from the cache by another user:</p><p>Cache-Control: no-cache, no-store, must-revalidate, private</p><p>Pragma: no-cache</p><p>Expires: 0</p><p>This configuration directs both HTTP 1.0 and HTTP 1.1 compliant caching servers to not store the response, and to not retrieve the response (without validation) from the cache, in response to a similar request.</p>",
 					"otherinfo": "<p>In the absence of an explicitly specified caching lifetime directive in the response, a liberal lifetime heuristic of 1 year was assumed. This is permitted by rfc7234.</p>",

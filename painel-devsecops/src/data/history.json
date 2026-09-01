@@ -1,15 +1,5 @@
 [
   {
-    "date": "2026-08-23T15:13:51Z",
-    "description": "Publicação das correções do mapeamento OWASP API1–API10 e do reset idempotente do histórico.",
-    "commit": "516058f",
-    "sast": 31,
-    "sca": 1,
-    "dast": 12,
-    "trivy": 13,
-    "total": 57
-  },
-  {
     "date": "2026-08-23T15:39:22Z",
     "description": "Sincronização dos relatórios SAST, SCA, DAST e Trivy com o histórico para manter os números do dashboard consistentes.",
     "commit": "87e97e8",
@@ -98,5 +88,15 @@
     "dast": 11,
     "trivy": 9,
     "total": 21
+  },
+  {
+    "date": "2026-09-01T00:28:45Z",
+    "description": "fix(api4): aplica limites contra consumo irrestrito",
+    "commit": "4e36e07",
+    "sast": 1,
+    "sca": 0,
+    "dast": 10,
+    "trivy": 9,
+    "total": 20
   }
 ]
