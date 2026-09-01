@@ -41,14 +41,13 @@ class ProductController:
         conn.close()
 
     @staticmethod
-    def get_products():
+    def get_products(limit: int, offset: int):
         """
         API4:2023 - Unrestricted Resource Consumption
         --------------------------------------------------
-        Nenhuma paginação, LIMIT ou controle de tamanho de resposta.
-        Com uma tabela grande, esta rota pode ser usada para causar
-        esgotamento de memória/CPU/banda (ex: chamando repetidamente
-        uma tabela com milhões de linhas).
+        A rota aplica paginação e recebe somente valores já validados
+        pelos parâmetros limit/offset da camada HTTP. O limite máximo
+        impede que uma única resposta carregue a tabela inteira.
 
         API3:2023 - Broken Object Property Level Authorization /
         Excessive Data Exposure
@@ -56,11 +55,15 @@ class ProductController:
         A consulta seleciona somente as colunas públicas e a resposta é
         validada por um DTO. `cost` e `internal_notes` permanecem internos.
 
-        A paginação e o limite de recursos continuam pendentes de API4.
+        O tamanho da página e o deslocamento máximo são definidos pela
+        rota para manter previsível o consumo de banco, memória e banda.
         """
         conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
-        cursor.execute("SELECT id, name, price FROM products")
+        cursor.execute(
+            "SELECT id, name, price FROM products LIMIT ? OFFSET ?",
+            (limit, offset),
+        )
         products = cursor.fetchall()
         conn.close()
         return [
@@ -73,7 +76,7 @@ class ProductController:
         ]
 
     @staticmethod
-    def search_products(name: str):
+    def search_products(name: str, limit: int, offset: int):
         """
         API8:2023 - Security Misconfiguration / Injection
         (SQL Injection — historicamente API8 no Top 10, mas tratado
@@ -98,9 +101,12 @@ class ProductController:
         # A consulta ainda é vulnerável a SQL Injection (API8), mas limita
         # suas colunas ao contrato público para não expor dados internos
         # caso a busca seja explorada.
-        query = f"SELECT id, name, price FROM products WHERE name LIKE '%{name}%'"  # VULNERÁVEL: SQL Injection
+        query = (
+            f"SELECT id, name, price FROM products "
+            f"WHERE name LIKE '%{name}%' LIMIT ? OFFSET ?"
+        )  # VULNERÁVEL: SQL Injection
         try:
-            cursor.execute(query)
+            cursor.execute(query, (limit, offset))
             products = cursor.fetchall()
         except Exception as e:
             conn.close()

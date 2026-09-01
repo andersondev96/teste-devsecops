@@ -68,8 +68,8 @@ class AuthController:
         if not user:
             raise HTTPException(status_code=404, detail="User not found")
 
-        # O controle de taxa de requisições (API4:2023 - Unrestricted
-        # Resource Consumption) continua pendente.
+        # A rota aplica o rate limiting da API4 antes de chegar ao
+        # controlador; a resposta continua limitada ao DTO público.
         return PublicUserModel(
             id=user["id"],
             username=user["username"],

@@ -241,11 +241,65 @@ def test_api3_rejects_checkout_mass_assignment_and_filters_response():
     }
 
 
-def test_api4_products_are_returned_without_pagination_or_limit():
-    response = client.get("/products")
+def test_api4_products_are_paginated_and_bounded():
+    default_response = client.get("/products")
+    assert default_response.status_code == 200
+    assert len(default_response.json()) <= 100
+
+    page_response = client.get(
+        "/products",
+        params={"limit": 1, "offset": 0},
+    )
+    assert page_response.status_code == 200
+    assert len(page_response.json()) == 1
+
+    invalid_response = client.get("/products", params={"limit": 101})
+    assert invalid_response.status_code == 422
+
+
+def test_api4_user_collection_is_paginated():
+    response = client.get("/users", params={"limit": 1, "offset": 0})
 
     assert response.status_code == 200
-    assert len(response.json()) >= 3
+    assert len(response.json()) <= 1
+
+
+def test_api4_product_search_is_bounded():
+    response = client.get(
+        "/products/search",
+        params={"name": "a", "limit": 1, "offset": 0},
+    )
+
+    assert response.status_code == 200
+    assert len(response.json()) <= 1
+
+
+def test_api4_rejects_oversized_request_body():
+    response = client.post(
+        "/checkout",
+        headers=auth_headers(1),
+        json={
+            "order_id": "api4-large-payload",
+            "padding": "x" * (64 * 1024),
+        },
+    )
+
+    assert response.status_code == 413
+
+
+def test_api4_rate_limiter_is_enforced_on_products_route(monkeypatch):
+    import limits as limits_module
+    from limits import InMemoryRateLimiter
+
+    monkeypatch.setattr(
+        limits_module,
+        "rate_limiter",
+        InMemoryRateLimiter(max_requests=2, window_seconds=60),
+    )
+
+    responses = [client.get("/products") for _ in range(3)]
+
+    assert [response.status_code for response in responses] == [200, 200, 429]
 
 
 def test_api5_non_admin_can_change_product_price():
