@@ -2,6 +2,14 @@
 if __name__ == "__main__":
     import os
     import secrets
+    import sys
+
+    if sys.version_info < (3, 10):
+        raise RuntimeError(
+            "A API requer Python 3.10 ou superior para usar dependências "
+            "com correções de segurança suportadas."
+        )
+
     import uvicorn
 
     # `python run.py` é o executor de desenvolvimento. Quando nenhuma chave

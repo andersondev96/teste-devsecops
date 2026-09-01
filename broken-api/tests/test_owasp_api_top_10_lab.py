@@ -302,6 +302,16 @@ def test_api4_rate_limiter_is_enforced_on_products_route(monkeypatch):
     assert [response.status_code for response in responses] == [200, 200, 429]
 
 
+def test_sast_product_search_uses_parameterized_query():
+    response = client.get(
+        "/products/search",
+        params={"name": "' OR '1'='1", "limit": 100, "offset": 0},
+    )
+
+    assert response.status_code == 200
+    assert response.json() == []
+
+
 def test_api5_non_admin_can_change_product_price():
     response = client.put("/products/1/price", params={"new_price": -10})
 

@@ -78,35 +78,27 @@ class ProductController:
     @staticmethod
     def search_products(name: str, limit: int, offset: int):
         """
-        API8:2023 - Security Misconfiguration / Injection
-        (SQL Injection — historicamente API8 no Top 10, mas tratado
-        como falha de configuração/validação de entrada no OWASP API
-        Security Top 10 2023, já que "Injection" deixou de ser
-        categoria própria e virou consequência de más práticas gerais)
+        Hardening validado pelo SAST: consulta parametrizada
         --------------------------------------------------
-        A busca concatena a entrada do usuário DIRETO na query SQL,
-        sem parâmetros preparados (`?`). Isso permite SQL Injection
-        clássico, por exemplo:
+        O nome recebido do cliente é enviado como um parâmetro do SQLite,
+        e não concatenado na instrução SQL. Isso impede que o valor altere
+        a estrutura da consulta ou seja interpretado como SQL.
 
-            name = "' OR '1'='1"          -> vaza a tabela inteira
-            name = "' UNION SELECT sqlite_version(),1,1 --"
-                                            -> extrai metadados do banco
-
-        Mitigação: SEMPRE usar queries parametrizadas
-        (cursor.execute("... WHERE name LIKE ?", (f"%{name}%",))),
-        nunca montar SQL via f-string/concatenação com dado do usuário.
+        API8:2023 - Security Misconfiguration
+        --------------------------------------------------
+        O tratamento de erro detalhado continua mantido apenas como cenário
+        didático de API8; respostas de produção devem registrar o detalhe
+        no servidor e devolver uma mensagem genérica ao cliente.
         """
         conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
-        # A consulta ainda é vulnerável a SQL Injection (API8), mas limita
-        # suas colunas ao contrato público para não expor dados internos
-        # caso a busca seja explorada.
         query = (
-            f"SELECT id, name, price FROM products "
-            f"WHERE name LIKE '%{name}%' LIMIT ? OFFSET ?"
-        )  # VULNERÁVEL: SQL Injection
+            "SELECT id, name, price FROM products "
+            "WHERE name LIKE ? LIMIT ? OFFSET ?"
+        )
+        search_pattern = f"%{name}%"
         try:
-            cursor.execute(query, (limit, offset))
+            cursor.execute(query, (search_pattern, limit, offset))
             products = cursor.fetchall()
         except Exception as e:
             conn.close()
