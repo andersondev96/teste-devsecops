@@ -22,12 +22,12 @@ export type OwaspMapping = {
 // Estado de referência do laboratório. A ausência de um achado automático
 // não é suficiente para alterar uma categoria para "mitigated".
 // A API2 tem controles de login corrigidos, mas ainda possui controles
-// complementares pendentes (rate limiting, revogação e auditoria).
+// complementares pendentes (revogação e auditoria).
 export const OWASP_LAB_STATUS: Record<string, OwaspStatus> = {
   API1: 'mitigated',
   API2: 'partially_mitigated',
   API3: 'mitigated',
-  API4: 'vulnerable',
+  API4: 'partially_mitigated',
   API5: 'vulnerable',
   API6: 'vulnerable',
   API7: 'vulnerable',
@@ -73,12 +73,12 @@ export const OWASP_LAB_EVIDENCE: Record<string, {
     line_number: 175,
   },
   API4: {
-    Title: 'Teste API4 — consumo irrestrito de recursos',
-    desc: 'A listagem de produtos não possui paginação, limite de itens ou controle de tamanho da resposta.',
-    solution: 'Aplicar paginação, limites de quantidade e rate limiting nos endpoints de leitura.',
-    uri: 'GET /products',
+    Title: 'Regressão API4 — limites de consumo',
+    desc: 'Os testes confirmam paginação com limite máximo, busca limitada, rate limiting e rejeição de corpos acima do tamanho permitido; controles de infraestrutura ainda permanecem pendentes.',
+    solution: 'Aplicar limites server-side de página e payload, rate limiting distribuído e proteção de middleware contra corpos em chunks; complementar com timeouts e circuit breakers.',
+    uri: 'GET /products, GET /products/search, GET /users, POST /checkout, POST /login',
     file: 'broken-api/tests/test_owasp_api_top_10_lab.py',
-    line_number: 68,
+    line_number: 244,
   },
   API5: {
     Title: 'Teste API5 — autorização em nível de função',

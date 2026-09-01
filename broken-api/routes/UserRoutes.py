@@ -7,9 +7,10 @@ Security Top 10). NÃO utilize em produção.
 
 from typing import List
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 
 from controllers.UserController import UserController
+from limits import DEFAULT_PAGE_SIZE, MAX_OFFSET, MAX_PAGE_SIZE, enforce_rate_limit
 from models.UserModel import PublicUserModel, UserProfileUpdateModel
 from security import CurrentUser, get_current_user
 
@@ -76,14 +77,21 @@ async def delete_user(
     return user_controller.delete_user(user_id, current_user)
 
 
-@router.get("/users", response_model=List[PublicUserModel])
-async def list_all_users():
+@router.get(
+    "/users",
+    response_model=List[PublicUserModel],
+    dependencies=[Depends(enforce_rate_limit)],
+)
+async def list_all_users(
+    limit: int = Query(DEFAULT_PAGE_SIZE, ge=1, le=MAX_PAGE_SIZE),
+    offset: int = Query(0, ge=0, le=MAX_OFFSET),
+):
     """
     API3:2023 - Excessive Data Exposure
     API9:2023 - Improper Inventory Management
     --------------------------------------------------
-    Endpoint "utilitário" sem autenticação nem paginação que vaza
-    a base de usuários inteira. A resposta é limitada a campos públicos;
-    autenticação, paginação e inventário continuam em API4/API9.
+    Endpoint "utilitário" que ainda não exige autenticação, mas agora
+    aplica paginação, limite máximo e rate limiting. A resposta é limitada
+    a campos públicos; a autenticação e o inventário continuam em API9.
     """
-    return user_controller.list_all_users()
+    return user_controller.list_all_users(limit=limit, offset=offset)

@@ -3,6 +3,7 @@
 from fastapi import APIRouter, Depends, Request
 
 from controllers.AuthController import AuthController
+from limits import enforce_rate_limit
 from models.LoginModel import LoginModel
 from models.UserModel import PublicUserModel
 from security import CurrentUser, get_current_user
@@ -12,7 +13,7 @@ router = APIRouter(prefix="", tags=["Autenticação"])
 auth_controller = AuthController()
 
 
-@router.post("/login")
+@router.post("/login", dependencies=[Depends(enforce_rate_limit)])
 async def login(login_data: LoginModel):
     """
     API2:2023 - Broken Authentication
@@ -23,7 +24,11 @@ async def login(login_data: LoginModel):
     return auth_controller.login(login_data)
 
 
-@router.get("/users/{user_id}", response_model=PublicUserModel)
+@router.get(
+    "/users/{user_id}",
+    response_model=PublicUserModel,
+    dependencies=[Depends(enforce_rate_limit)],
+)
 async def get_user(
     user_id: int,
     current_user: CurrentUser = Depends(get_current_user),
@@ -36,7 +41,8 @@ async def get_user(
 
     API4:2023 - Unrestricted Resource Consumption
     --------------------------------------------------
-    Nenhum rate limiting: a rota pode ser varrida em loop.
+    A rota aplica rate limiting por origem e caminho antes da consulta
+    ao usuário, reduzindo varreduras repetitivas e consumo desnecessário.
     """
     return auth_controller.get_user(user_id, current_user)
 

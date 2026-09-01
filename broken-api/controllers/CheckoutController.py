@@ -37,9 +37,9 @@ class CheckoutController:
         API6:2023 - Unrestricted Access to Sensitive Business Flows
         --------------------------------------------------
         O fluxo de checkout (uma ação de negócio sensível, que
-        movimenta dinheiro/estoque) ainda não possui CAPTCHA ou rate
-        limiting. A autenticação e a autorização do pedido são aplicadas
-        pelas dependências da API1, mas um bot ainda pode repetir o fluxo.
+        movimenta dinheiro/estoque) possui autenticação, rate limiting
+        por origem/rota e limite global de tamanho de corpo. CAPTCHA e
+        detecção avançada de automação permanecem controles da API6.
 
         API1:2023 - Broken Object Level Authorization (BOLA/IDOR)
         --------------------------------------------------
@@ -57,17 +57,17 @@ class CheckoutController:
 
         API4:2023 - Unrestricted Resource Consumption
         --------------------------------------------------
-        Nenhum limite de tamanho de payload, nenhum rate limiting,
-        nenhum timeout — a rota pode ser chamada em loop infinito ou
-        com corpos gigantes, consumindo CPU/memória do servidor.
+        O middleware rejeita corpos maiores que 64 KiB, inclusive quando
+        chegam em múltiplos chunks, e a rota aplica rate limiting. O
+        timeout de infraestrutura deve ser configurado no servidor/gateway.
 
         Mitigação (para o trabalho):
           - Exigir autenticação (JWT) e checar que order.user_id ==
             usuário autenticado antes de qualquer operação (API1).
           - Usar um schema de entrada (Pydantic) que só aceite campos
             permitidos — nunca usar o dict inteiro do request.
-          - Aplicar rate limiting (ex: slowapi) e CAPTCHA em fluxos de
-            negócio sensíveis.
+          - Aplicar rate limiting e limite de payload em fluxos de negócio
+            sensíveis; CAPTCHA e detecção de automação são controles da API6.
           - Nunca confiar em preço/desconto vindos do cliente; recalcular
             sempre no servidor a partir da fonte confiável (catálogo/BD).
         """

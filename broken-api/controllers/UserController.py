@@ -7,6 +7,8 @@ OWASP API Security Top 10 (2023). NÃO utilize este código em produção
 ou em qualquer ambiente exposto à internet.
 """
 
+from itertools import islice
+
 from fastapi import HTTPException
 
 from models.UserModel import PublicUserModel, UserProfileUpdateModel
@@ -102,21 +104,22 @@ class UserController:
             return {"status": "deleted", "id": user_id}
         raise HTTPException(status_code=404, detail="User not found")
 
-    def list_all_users(self):
+    def list_all_users(self, limit: int, offset: int):
         """
         API3:2023 - Excessive Data Exposure
         API9:2023 - Improper Inventory Management
         --------------------------------------------------
-        A rota ainda lista todos os usuários sem paginação ou autenticação
-        (controles pendentes de API4/API9), mas cada item é serializado como
-        um DTO público e não contém campos sensíveis.
+        A rota continua sem autenticação por ser um controle pendente da
+        API9, mas recebe paginação limitada pela camada HTTP. Cada item é
+        serializado como um DTO público e não contém campos sensíveis.
 
         A mitigação da API3 consiste em devolver somente campos públicos.
         """
+        users = islice(self.users_db.values(), offset, offset + limit)
         return [
             PublicUserModel(
                 id=user["id"],
                 username=user["username"],
             ).model_dump()
-            for user in self.users_db.values()
+            for user in users
         ]

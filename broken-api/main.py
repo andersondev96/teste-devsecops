@@ -13,16 +13,17 @@ NÃO utilize esta configuração em produção.
 
 Nota importante sobre a causa-raiz comum a várias rotas:
 --------------------------------------------------------------
-A dependência `get_current_user`, em `security.py`, agora valida um JWT
-assinado e resolve a identidade no servidor. Ela é aplicada às rotas
-de objetos cobertas pela mitigação da API1. As demais vulnerabilidades
-do laboratório continuam presentes de forma intencional até suas etapas
-específicas de mitigação.
+A dependência `get_current_user`, em `security.py`, valida um JWT assinado
+e resolve a identidade no servidor. Os controles compartilhados de limite,
+em `limits.py`, protegem os endpoints de maior consumo contra requisições
+e respostas sem limite. As demais vulnerabilidades do laboratório continuam
+presentes de forma intencional até suas etapas específicas de mitigação.
 """
 
 from fastapi import FastAPI
 
 from controllers.ProductController import ProductController
+from limits import MAX_REQUEST_BODY_BYTES, RequestBodySizeLimitMiddleware
 from routes.AuthRoutes import router as auth_router
 from routes.CheckoutRoutes import router as checkout_router
 from routes.IntegrationRoutes import router as integration_router
@@ -40,6 +41,11 @@ app = FastAPI(
     # protegidos por autenticação.
     docs_url="/docs",
     redoc_url="/redoc",
+)
+
+app.add_middleware(
+    RequestBodySizeLimitMiddleware,
+    max_body_bytes=MAX_REQUEST_BODY_BYTES,
 )
 
 

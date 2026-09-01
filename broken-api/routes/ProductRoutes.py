@@ -7,32 +7,47 @@ Security Top 10). NÃO utilize em produção.
 
 from typing import List
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, Query
 
 from controllers.ProductController import ProductController
+from limits import DEFAULT_PAGE_SIZE, MAX_OFFSET, MAX_PAGE_SIZE, enforce_rate_limit
 from models.ProductModel import PublicProductModel
 
 router = APIRouter(prefix="", tags=["Produtos"])
 
 
-@router.get("/products", response_model=List[PublicProductModel])
-async def get_products():
+@router.get(
+    "/products",
+    response_model=List[PublicProductModel],
+    dependencies=[Depends(enforce_rate_limit)],
+)
+async def get_products(
+    limit: int = Query(DEFAULT_PAGE_SIZE, ge=1, le=MAX_PAGE_SIZE),
+    offset: int = Query(0, ge=0, le=MAX_OFFSET),
+):
     """
     API4:2023 - Unrestricted Resource Consumption
     --------------------------------------------------
-    Sem paginação/LIMIT: resposta cresce sem controle conforme a
-    tabela cresce, permitindo esgotamento de recursos do servidor.
+    A rota usa paginação com limite padrão e máximo definidos no servidor.
+    O rate limiting também impede chamadas repetitivas sem controle.
 
     API3:2023 - Excessive Data Exposure
     --------------------------------------------------
     A resposta contém somente os campos públicos do catálogo; custos e
     notas internas não são serializados.
     """
-    return ProductController.get_products()
+    return ProductController.get_products(limit=limit, offset=offset)
 
 
-@router.get("/products/search")
-async def search_products(name: str):
+@router.get(
+    "/products/search",
+    dependencies=[Depends(enforce_rate_limit)],
+)
+async def search_products(
+    name: str = Query(..., min_length=1, max_length=100),
+    limit: int = Query(DEFAULT_PAGE_SIZE, ge=1, le=MAX_PAGE_SIZE),
+    offset: int = Query(0, ge=0, le=MAX_OFFSET),
+):
     """
     Injection (SQL Injection)
     --------------------------------------------------
@@ -50,7 +65,7 @@ async def search_products(name: str):
     Em caso de erro, a rota devolve a query executada e o stack trace
     completo na resposta, ajudando o atacante a refinar o ataque.
     """
-    return ProductController.search_products(name)
+    return ProductController.search_products(name, limit=limit, offset=offset)
 
 
 @router.delete("/products/{product_id}")
