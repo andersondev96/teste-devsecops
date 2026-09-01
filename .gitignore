@@ -1,3 +1,11 @@
 venv/
 __pycache__/
 *.db
+
+# Relatórios e arquivos temporários gerados pelo pipeline de segurança
+/sca_requirements.txt
+/sast_report.json
+/sca_report.json
+/trivy_report.json
+/report_json.json
+/current_summary.json

@@ -33,7 +33,12 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r broken-api/requirements-dev.txt
-          pip install bandit safety
+          # Congela as dependências instaladas, incluindo transitivas, para
+          # que a análise SCA não examine somente as linhas diretas do arquivo.
+          python -m pip freeze > sca_requirements.txt
+          # As versões das ferramentas são fixadas para tornar o resultado
+          # reproduzível entre execuções do pipeline.
+          pip install bandit==1.9.4 safety==3.8.1
 
       # ==========================================
       # ETAPAS DE SEGURANÇA (DEVSECOPS)
@@ -47,13 +52,19 @@ jobs:
         continue-on-error: true
 
       - name: 5. SCA - Análise de Dependências (Safety)
-        # Verifica se as bibliotecas de execução e desenvolvimento têm CVEs conhecidas
-        run: safety check -r broken-api/requirements-dev.txt --output json --save-json sca_report.json || true
+        id: sca
+        # Verifica as dependências diretas e transitivas instaladas.
+        run: safety check -r sca_requirements.txt --output json --save-json sca_report.json
+        # Mantém o relatório disponível para o dashboard; a etapa de gate
+        # ao final do job transforma qualquer falha em falha do pipeline.
         continue-on-error: true
 
       - name: 6. SAST - Análise Estática (Bandit)
+        id: sast
         # Lê somente o código da aplicação; testes não são código de produção.
         run: bandit -r broken-api/ --exclude broken-api/tests -f json -o sast_report.json
+        # Mantém o relatório disponível para o dashboard; a etapa de gate
+        # ao final do job transforma qualquer achado em falha do pipeline.
         continue-on-error: true
 
       - name: 6.1. Testes de regressão da autenticação
@@ -270,6 +281,23 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: './painel-devsecops/dist'
+
+      - name: 18.1. Gate de SAST e SCA
+        # Os relatórios já foram gerados e publicados como artifacts/histórico;
+        # agora impede que uma execução com achados seja considerada verde.
+        if: always()
+        env:
+          SCA_OUTCOME: ${{ steps.sca.outcome }}
+          SAST_OUTCOME: ${{ steps.sast.outcome }}
+        run: |
+          if [ "$SCA_OUTCOME" != "success" ]; then
+            echo "SCA encontrou vulnerabilidades ou não conseguiu concluir a análise."
+            exit 1
+          fi
+          if [ "$SAST_OUTCOME" != "success" ]; then
+            echo "SAST encontrou vulnerabilidades ou não conseguiu concluir a análise."
+            exit 1
+          fi
 
   deploy:
     name: Publicar Dashboard

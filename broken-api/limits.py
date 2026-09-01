@@ -125,7 +125,7 @@ class RequestBodySizeLimitMiddleware:
         await send(
             {
                 "type": "http.response.start",
-                "status": status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+                "status": status.HTTP_413_CONTENT_TOO_LARGE,
                 "headers": [
                     (b"content-type", b"application/json"),
                     (b"content-length", str(len(body)).encode("ascii")),

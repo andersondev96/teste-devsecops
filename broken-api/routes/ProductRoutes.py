@@ -49,11 +49,10 @@ async def search_products(
     offset: int = Query(0, ge=0, le=MAX_OFFSET),
 ):
     """
-    Injection (SQL Injection)
+    Hardening contra Injection (SQL Injection)
     --------------------------------------------------
-    `name` é concatenado diretamente na query SQL, sem parâmetros
-    preparados -> permite extrair ou manipular dados do banco via
-    payloads como `' OR '1'='1` ou `' UNION SELECT ...`.
+    `name` é validado pela rota e enviado ao controlador como parâmetro
+    preparado; payloads como `' OR '1'='1` não alteram a consulta SQL.
 
     API3:2023 - Excessive Data Exposure
     --------------------------------------------------
@@ -62,8 +61,8 @@ async def search_products(
 
     API8:2023 - Security Misconfiguration
     --------------------------------------------------
-    Em caso de erro, a rota devolve a query executada e o stack trace
-    completo na resposta, ajudando o atacante a refinar o ataque.
+    O tratamento de erro detalhado ainda é um cenário didático pendente
+    de API8 e não deve ser usado em produção.
     """
     return ProductController.search_products(name, limit=limit, offset=offset)
 
