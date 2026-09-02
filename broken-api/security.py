@@ -60,6 +60,16 @@ def authorize_object_access(current_user: CurrentUser, object_owner_id: int) -> 
     raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Forbidden")
 
 
+def authorize_admin(current_user: CurrentUser) -> None:
+    """Garante que a identidade autenticada possui função administrativa."""
+
+    if not current_user.is_admin:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Administrator role required",
+        )
+
+
 def _b64encode(value: bytes) -> str:
     return base64.urlsafe_b64encode(value).rstrip(b"=").decode("ascii")
 
@@ -229,3 +239,12 @@ def get_current_user(
         # nem do corpo da requisição.
         is_admin=bool(user.get("is_admin", False)),
     )
+
+
+def require_admin(
+    current_user: CurrentUser = Depends(get_current_user),
+) -> CurrentUser:
+    """Dependência para endpoints cuja função é exclusivamente administrativa."""
+
+    authorize_admin(current_user)
+    return current_user

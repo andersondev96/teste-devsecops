@@ -29,8 +29,10 @@ async def complete_checkout(
     """
     API6:2023 - Unrestricted Access to Sensitive Business Flows
     --------------------------------------------------
-    Fluxo de negócio sensível (finalizar compra) ainda não possui CAPTCHA
-    ou detecção de automação; possui rate limiting básico contra repetição.
+    Fluxo de negócio sensível protegido por autenticação, limite por
+    identidade, allowlist de campos, validação de catálogo, cálculo de
+    total no servidor e idempotência do pedido. CAPTCHA e detecção de
+    automação permanecem controles complementares.
 
     API1:2023 - Broken Object Level Authorization (BOLA/IDOR)
     --------------------------------------------------

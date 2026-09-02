@@ -10,8 +10,15 @@ from typing import List
 from fastapi import APIRouter, Depends, Query
 
 from controllers.ProductController import ProductController
-from limits import DEFAULT_PAGE_SIZE, MAX_OFFSET, MAX_PAGE_SIZE, enforce_rate_limit
+from limits import (
+    DEFAULT_PAGE_SIZE,
+    MAX_OFFSET,
+    MAX_PAGE_SIZE,
+    MAX_PRODUCT_PRICE,
+    enforce_rate_limit,
+)
 from models.ProductModel import PublicProductModel
+from security import CurrentUser, require_admin
 
 router = APIRouter(prefix="", tags=["Produtos"])
 
@@ -68,24 +75,31 @@ async def search_products(
 
 
 @router.delete("/products/{product_id}")
-async def delete_product(product_id: int):
+async def delete_product(
+    product_id: int,
+    current_user: CurrentUser = Depends(require_admin),
+):
     """
     API5:2023 - Broken Function Level Authorization
     --------------------------------------------------
-    Operação administrativa (excluir produto) exposta sem checagem
-    de papel/permissão -> qualquer chamador apaga qualquer produto.
+    Operação administrativa protegida por autenticação e pela função
+    de administrador antes de chegar ao controlador.
     """
-    return ProductController.delete_product(product_id)
+    return ProductController.delete_product(product_id, current_user)
 
 
 @router.put("/products/{product_id}/price")
-async def update_price(product_id: int, new_price: float):
+async def update_price(
+    product_id: int,
+    new_price: float = Query(..., gt=0, le=MAX_PRODUCT_PRICE),
+    current_user: CurrentUser = Depends(require_admin),
+):
     """
     API5:2023 - Broken Function Level Authorization
     API6:2023 - Unrestricted Access to Sensitive Business Flows
     --------------------------------------------------
-    Qualquer chamador altera o preço de qualquer produto, sem
-    autenticação, sem validação de faixa (aceita valores negativos)
-    e sem log de auditoria.
+    A operação exige função administrativa e aceita somente preços
+    positivos dentro do limite definido pelo servidor. A alteração é
+    registrada pelo controlador para auditoria operacional.
     """
-    return ProductController.update_price(product_id, new_price)
+    return ProductController.update_price(product_id, new_price, current_user)

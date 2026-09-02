@@ -15,6 +15,11 @@ MAX_REQUEST_BODY_BYTES = 64 * 1024
 RATE_LIMIT_REQUESTS = 60
 RATE_LIMIT_WINDOW_SECONDS = 60.0
 MAX_RATE_LIMIT_KEYS = 10_000
+BUSINESS_FLOW_RATE_LIMIT_REQUESTS = 5
+BUSINESS_FLOW_RATE_LIMIT_WINDOW_SECONDS = 60.0
+MAX_CHECKOUT_QUANTITY = 10
+MAX_CHECKOUT_TOTAL = 100_000.0
+MAX_PRODUCT_PRICE = 1_000_000.0
 
 
 class InMemoryRateLimiter:
@@ -61,12 +66,23 @@ rate_limiter = InMemoryRateLimiter(
     window_seconds=RATE_LIMIT_WINDOW_SECONDS,
 )
 
+business_flow_limiter = InMemoryRateLimiter(
+    max_requests=BUSINESS_FLOW_RATE_LIMIT_REQUESTS,
+    window_seconds=BUSINESS_FLOW_RATE_LIMIT_WINDOW_SECONDS,
+)
+
 
 def enforce_rate_limit(request: Request) -> None:
     """Limita chamadas por origem e rota para endpoints de maior custo."""
 
     client_host = request.client.host if request.client else "unknown"
     rate_limiter.check(f"{client_host}:{request.url.path}")
+
+
+def enforce_business_flow_limit(user_id: int) -> None:
+    """Limita tentativas de fluxo sensível por identidade autenticada."""
+
+    business_flow_limiter.check(f"user:{user_id}")
 
 
 class RequestBodyTooLarge(Exception):

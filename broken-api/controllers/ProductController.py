@@ -7,13 +7,20 @@ OWASP API Security Top 10 (2023). NÃO utilize este código em produção
 ou em qualquer ambiente exposto à internet.
 """
 
+import logging
 import sqlite3
 import traceback
+from math import isfinite
 from pathlib import Path
 
+from fastapi import HTTPException, status
+
+from limits import MAX_PRODUCT_PRICE
 from models.ProductModel import PublicProductModel
+from security import CurrentUser, authorize_admin
 
 DB_PATH = Path(__file__).resolve().parent.parent / "database.db"
+logger = logging.getLogger(__name__)
 
 
 class ProductController:
@@ -118,44 +125,82 @@ class ProductController:
         ]
 
     @staticmethod
-    def delete_product(product_id: int):
+    def get_product_for_checkout(product_id: int):
+        """Retorna somente os dados de catálogo necessários ao checkout."""
+
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        cursor.execute(
+            "SELECT id, name, price FROM products WHERE id = ?",
+            (product_id,),
+        )
+        product = cursor.fetchone()
+        conn.close()
+
+        if product is None:
+            return None
+
+        return {
+            "id": product[0],
+            "name": product[1],
+            "price": float(product[2]),
+        }
+
+    @staticmethod
+    def delete_product(product_id: int, current_user: CurrentUser):
         """
         API5:2023 - Broken Function Level Authorization
         --------------------------------------------------
-        Operação administrativa (exclusão de produto) exposta sem
-        NENHUMA verificação de papel/permissão (role admin vs cliente
-        comum). Qualquer usuário — autenticado ou não — pode apagar
-        qualquer produto do catálogo apenas conhecendo o ID.
-
-        Mitigação: verificar explicitamente se o usuário autenticado
-        possui role "admin" (ou permissão equivalente) antes de
-        executar operações destrutivas; nunca confiar apenas na
-        existência de um token válido.
+        A operação administrativa exige uma identidade autenticada com
+        função de administrador. A verificação é feita na rota e repetida
+        no controlador para evitar que chamadas internas contornem a política.
         """
+        authorize_admin(current_user)
         conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
         cursor.execute("DELETE FROM products WHERE id = ?", (product_id,))
+        deleted = cursor.rowcount
         conn.commit()
         conn.close()
+
+        if deleted == 0:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Product not found")
+
+        logger.info(
+            "product_deleted admin_user_id=%s product_id=%s",
+            current_user.id,
+            product_id,
+        )
         return {"status": "deleted", "id": product_id}
 
     @staticmethod
-    def update_price(product_id: int, new_price: float):
+    def update_price(product_id: int, new_price: float, current_user: CurrentUser):
         """
         API5:2023 - Broken Function Level Authorization
-        API6:2023 - Unrestricted Access to Sensitive Business Flows
         --------------------------------------------------
-        Qualquer chamador pode alterar o preço de qualquer produto,
-        sem autenticação, sem log de auditoria, e sem limite de valor
-        (aceita preço negativo ou zero, permitindo abuso financeiro
-        direto no fluxo de vendas).
-
-        Mitigação: exigir role admin, validar faixa de valores
-        aceitáveis, e registrar (log/auditoria) quem alterou o quê.
+        Alterações de catálogo exigem função administrativa, validam uma
+        faixa de preço positiva e registram a operação sem dados sensíveis.
         """
+        authorize_admin(current_user)
+        if not isfinite(new_price) or not 0 < new_price <= MAX_PRODUCT_PRICE:
+            raise HTTPException(
+                status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+                detail="new_price must be greater than zero and within the allowed limit",
+            )
+
         conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
         cursor.execute("UPDATE products SET price = ? WHERE id = ?", (new_price, product_id))
+        updated = cursor.rowcount
         conn.commit()
         conn.close()
+
+        if updated == 0:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Product not found")
+
+        logger.info(
+            "product_price_updated admin_user_id=%s product_id=%s",
+            current_user.id,
+            product_id,
+        )
         return {"status": "updated", "id": product_id, "new_price": new_price}

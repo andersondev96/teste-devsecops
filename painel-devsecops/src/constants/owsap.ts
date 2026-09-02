@@ -21,15 +21,16 @@ export type OwaspMapping = {
 
 // Estado de referência do laboratório. A ausência de um achado automático
 // não é suficiente para alterar uma categoria para "mitigated".
-// A API2 tem controles de login corrigidos, mas ainda possui controles
-// complementares pendentes (revogação e auditoria).
+// API2, API4 e API6 ainda possuem controles complementares pendentes; a
+// ausência de um achado automático não é suficiente para marcar categorias
+// parcialmente mitigadas como totalmente mitigadas.
 export const OWASP_LAB_STATUS: Record<string, OwaspStatus> = {
   API1: 'mitigated',
   API2: 'partially_mitigated',
   API3: 'mitigated',
   API4: 'partially_mitigated',
-  API5: 'vulnerable',
-  API6: 'vulnerable',
+  API5: 'mitigated',
+  API6: 'partially_mitigated',
   API7: 'vulnerable',
   API8: 'vulnerable',
   API9: 'vulnerable',
@@ -82,19 +83,19 @@ export const OWASP_LAB_EVIDENCE: Record<string, {
   },
   API5: {
     Title: 'Teste API5 — autorização em nível de função',
-    desc: 'Um usuário comum consegue alterar o preço de produtos sem validação de função administrativa.',
-    solution: 'Exigir autenticação e verificar a função/permissão antes de executar operações administrativas.',
-    uri: 'PUT /products/{product_id}/price',
+    desc: 'Os testes confirmam que chamadas anônimas e de usuários comuns são rejeitadas nas funções de catálogo, enquanto o administrador consegue alterar o preço dentro da faixa permitida.',
+    solution: 'Centralizar autorização por função, exigir autenticação em endpoints administrativos, validar entradas e registrar operações para auditoria.',
+    uri: 'DELETE /products/{product_id}, PUT /products/{product_id}/price',
     file: 'broken-api/tests/test_owasp_api_top_10_lab.py',
-    line_number: 75,
+    line_number: 343,
   },
   API6: {
     Title: 'Teste API6 — abuso de fluxo de negócio sensível',
-    desc: 'O checkout aceita valores manipulados, descontos abusivos e pedidos marcados como pagos sem validação.',
-    solution: 'Validar regras de negócio no servidor, recalcular valores e controlar transições de pagamento.',
+    desc: 'Os testes confirmam allowlist de campos, produto e quantidade válidos, total calculado no servidor, idempotência e limite de tentativas por identidade; controles antifraude externos ainda permanecem pendentes.',
+    solution: 'Validar regras de negócio no servidor, recalcular valores, controlar reenvios e complementar com CAPTCHA, antifraude, filas e limites distribuídos.',
     uri: 'POST /checkout',
     file: 'broken-api/tests/test_owasp_api_top_10_lab.py',
-    line_number: 83,
+    line_number: 373,
   },
   API7: {
     Title: 'Teste API7 — SSRF',

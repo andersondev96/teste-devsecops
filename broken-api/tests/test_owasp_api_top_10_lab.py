@@ -107,14 +107,24 @@ def test_api1_checkout_rejects_order_owned_by_another_user():
     owner_response = client.post(
         "/checkout",
         headers=auth_headers(1),
-        json={"order_id": order_id, "payment_method": "card"},
+        json={
+            "order_id": order_id,
+            "product_id": 1,
+            "quantity": 1,
+            "payment_method": "card",
+        },
     )
     assert owner_response.status_code == 200
 
     attacker_response = client.post(
         "/checkout",
         headers=auth_headers(2),
-        json={"order_id": order_id, "payment_method": "card"},
+        json={
+            "order_id": order_id,
+            "product_id": 1,
+            "quantity": 1,
+            "payment_method": "card",
+        },
     )
 
     assert attacker_response.status_code == 403
@@ -217,6 +227,8 @@ def test_api3_rejects_checkout_mass_assignment_and_filters_response():
         headers=auth_headers(1),
         json={
             "order_id": "api3-invalid-order",
+            "product_id": 1,
+            "quantity": 1,
             "payment_method": "card",
             "user_id": 99,
             "price": 0.01,
@@ -228,16 +240,32 @@ def test_api3_rejects_checkout_mass_assignment_and_filters_response():
     valid_response = client.post(
         "/checkout",
         headers=auth_headers(1),
-        json={"order_id": "api3-safe-order", "payment_method": "card"},
+        json={
+            "order_id": "api3-safe-order",
+            "product_id": 1,
+            "quantity": 1,
+            "payment_method": "card",
+        },
     )
     assert valid_response.status_code == 200
-    assert set(valid_response.json()["order"]) == {"order_id", "payment_method"}
+    assert set(valid_response.json()["order"]) == {
+        "order_id",
+        "product_id",
+        "quantity",
+        "payment_method",
+        "total",
+        "status",
+    }
 
     debug_response = client.get("/checkout/debug")
     assert debug_response.status_code == 200
     assert set(debug_response.json()["all_orders"]["api3-safe-order"]) == {
         "order_id",
+        "product_id",
+        "quantity",
         "payment_method",
+        "total",
+        "status",
     }
 
 
@@ -312,24 +340,131 @@ def test_sast_product_search_uses_parameterized_query():
     assert response.json() == []
 
 
-def test_api5_non_admin_can_change_product_price():
-    response = client.put("/products/1/price", params={"new_price": -10})
+def test_api5_admin_only_product_functions():
+    unauthenticated_delete = client.delete("/products/2")
+    assert unauthenticated_delete.status_code == 401
 
-    assert response.status_code == 200
-    assert response.json()["new_price"] == -10
+    non_admin_delete = client.delete("/products/2", headers=auth_headers(1))
+    assert non_admin_delete.status_code == 403
+
+    non_admin_update = client.put(
+        "/products/1/price",
+        headers=auth_headers(1),
+        params={"new_price": 1500},
+    )
+    assert non_admin_update.status_code == 403
+
+    invalid_admin_update = client.put(
+        "/products/1/price",
+        headers=auth_headers(99),
+        params={"new_price": -10},
+    )
+    assert invalid_admin_update.status_code == 422
+
+    admin_update = client.put(
+        "/products/1/price",
+        headers=auth_headers(99),
+        params={"new_price": 1500},
+    )
+    assert admin_update.status_code == 200
+    assert admin_update.json()["new_price"] == 1500
 
 
-def test_api6_checkout_still_allows_business_flow_without_rate_limiting():
-    response = client.post(
+def test_api6_checkout_validates_and_controls_sensitive_business_flow():
+    invalid_response = client.post(
         "/checkout",
         headers=auth_headers(2),
         json={
-            "order_id": "order-001",
+            "order_id": "api6-invalid-order",
+            "product_id": 1,
+            "quantity": 1,
+            "payment_method": "card",
+            "price": 0.01,
+            "discount": 100,
+            "is_paid": True,
+        },
+    )
+    assert invalid_response.status_code == 422
+
+    unknown_product_response = client.post(
+        "/checkout",
+        headers=auth_headers(2),
+        json={
+            "order_id": "api6-unknown-product",
+            "product_id": 999999,
+            "quantity": 1,
             "payment_method": "card",
         },
     )
+    assert unknown_product_response.status_code == 404
+
+    request_data = {
+        "order_id": "api6-safe-order",
+        "product_id": 1,
+        "quantity": 2,
+        "payment_method": "card",
+    }
+    response = client.post(
+        "/checkout",
+        headers=auth_headers(2),
+        json=request_data,
+    )
 
     assert response.status_code == 200
+    order = response.json()["order"]
+    assert order["total"] == 3000.0
+    assert order["status"] == "completed"
+    assert "user_id" not in order
+
+    replay_response = client.post(
+        "/checkout",
+        headers=auth_headers(2),
+        json=request_data,
+    )
+    assert replay_response.status_code == 200
+    assert replay_response.json() == response.json()
+
+    conflicting_replay = client.post(
+        "/checkout",
+        headers=auth_headers(2),
+        json={**request_data, "quantity": 1},
+    )
+    assert conflicting_replay.status_code == 409
+
+
+def test_api6_checkout_limits_attempts_per_authenticated_user(monkeypatch):
+    import limits as limits_module
+    from limits import InMemoryRateLimiter
+
+    monkeypatch.setattr(
+        limits_module,
+        "business_flow_limiter",
+        InMemoryRateLimiter(max_requests=1, window_seconds=60),
+    )
+
+    first_response = client.post(
+        "/checkout",
+        headers=auth_headers(2),
+        json={
+            "order_id": "api6-rate-limit-1",
+            "product_id": 1,
+            "quantity": 1,
+            "payment_method": "pix",
+        },
+    )
+    second_response = client.post(
+        "/checkout",
+        headers=auth_headers(2),
+        json={
+            "order_id": "api6-rate-limit-2",
+            "product_id": 1,
+            "quantity": 1,
+            "payment_method": "pix",
+        },
+    )
+
+    assert first_response.status_code == 200
+    assert second_response.status_code == 429
 
 
 def test_api7_ssrf_fetches_user_supplied_internal_url(monkeypatch):
@@ -360,7 +495,12 @@ def test_api9_forgotten_inventory_endpoint_exposes_all_orders():
     client.post(
         "/checkout",
         headers=auth_headers(1),
-        json={"order_id": "inventory-leak", "payment_method": "card"},
+        json={
+            "order_id": "inventory-leak",
+            "product_id": 1,
+            "quantity": 1,
+            "payment_method": "card",
+        },
     )
     response = client.get("/checkout/debug")
 
