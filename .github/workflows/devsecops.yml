@@ -91,6 +91,16 @@ jobs:
         # Garante que o checkout preserve as regras server-side e seus limites.
         run: pytest -q broken-api/tests/test_owasp_api_top_10_lab.py -k api6
 
+      - name: 6.7. Testes de regressão do inventário da API
+        # Garante que o endpoint legado permaneça removido e o inventário exija
+        # autenticação, autorização administrativa e paginação.
+        run: pytest -q broken-api/tests/test_owasp_api_top_10_lab.py -k api9
+
+      - name: 6.8. Testes de regressão do consumo seguro de APIs externas
+        # Garante que o provedor externo e o contrato de resposta permaneçam
+        # controlados no fluxo de enriquecimento de endereço.
+        run: pytest -q broken-api/tests/test_owasp_api_top_10_lab.py -k api10
+
       - name: 7. Build da Imagem Docker
         run: docker build -t vulnerable-api:latest ./broken-api
 
@@ -126,6 +136,14 @@ jobs:
           docker logs $(docker ps -aq --filter ancestor=vulnerable-api:latest | head -n 1)
           exit 1
 
+      - name: 10.1. Exportar status OWASP do backend
+        # O backend é a fonte de verdade do catálogo, status, evidências e
+        # métricas consumidos pelo dashboard durante o build.
+        run: |
+          curl --fail --silent --show-error \
+            http://localhost:8000/security/owasp \
+            -o owasp_status.json
+
       - name: 11. DAST - OWASP ZAP API Scan
         # Simula ataques reais contra os endpoints rodando
         uses: zaproxy/action-api-scan@v0.10.0
@@ -152,6 +170,7 @@ jobs:
             sast_report.json
             trivy_report.json
             report_json.json
+            owasp_status.json
 
       - name: 13. Gerar Resumo para Histórico
         run: |
@@ -220,7 +239,7 @@ jobs:
           HISTORY_FILE="painel-devsecops/src/data/history.json"
           DATA_DIR="painel-devsecops/src/data"
           RESET_MARKER=".github/reset-dashboard-history"
-          REPORT_FILES=("sast_report.json" "sca_report.json" "report_json.json" "trivy_report.json")
+          REPORT_FILES=("sast_report.json" "sca_report.json" "report_json.json" "trivy_report.json" "owasp_status.json")
 
           # Usa exatamente os relatórios que deram origem ao resumo atual.
           # Se algum relatório não existir, interrompe para não deixar dados antigos
@@ -249,7 +268,7 @@ jobs:
           # Configura o Git para commitar o arquivo de histórico atualizado
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add "$HISTORY_FILE" "$DATA_DIR/sast_report.json" "$DATA_DIR/sca_report.json" "$DATA_DIR/report_json.json" "$DATA_DIR/trivy_report.json"
+          git add "$HISTORY_FILE" "$DATA_DIR/sast_report.json" "$DATA_DIR/sca_report.json" "$DATA_DIR/report_json.json" "$DATA_DIR/trivy_report.json" "$DATA_DIR/owasp_status.json"
           # O marcador pode já ter sido removido em uma execução anterior.
           # Só o inclua se ainda existir no índice do Git.
           if git ls-files --error-unmatch "$RESET_MARKER" >/dev/null 2>&1; then
@@ -275,6 +294,7 @@ jobs:
           cp sast_report.json painel-devsecops/src/data/
           cp trivy_report.json painel-devsecops/src/data/
           cp report_json.json painel-devsecops/src/data/
+          cp owasp_status.json painel-devsecops/src/data/
 
       - name: 16. Configurar Node.js
         uses: actions/setup-node@v4

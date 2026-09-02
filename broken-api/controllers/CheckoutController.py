@@ -8,27 +8,22 @@ ou em qualquer ambiente exposto à internet.
 """
 
 import logging
+from itertools import islice
 
 from fastapi import HTTPException, status
 
 from controllers.ProductController import ProductController
 from limits import MAX_CHECKOUT_TOTAL, enforce_business_flow_limit
 from models.CheckoutModel import (
+    AdminOrderModel,
     CheckoutRequestModel,
     CheckoutResponseModel,
     PublicOrderModel,
 )
-from security import CurrentUser, authorize_object_access
+from security import CurrentUser, authorize_admin, authorize_object_access
 from users_db import checkout_db  # simulação de "banco" em memória
 
 logger = logging.getLogger(__name__)
-
-# --------------------------------------------------------------------
-# API8:2023 - Security Misconfiguration
-# Flag de debug ligada por padrão, sem controle de ambiente
-# (deveria vir de variável de ambiente, nunca hardcoded como True).
-# --------------------------------------------------------------------
-DEBUG = True
 
 
 class CheckoutController:
@@ -164,21 +159,25 @@ class CheckoutController:
         )
         return CheckoutResponseModel(status="success", order=public_order)
 
-    async def debug_orders(self):
-        if DEBUG:
-            # API9 continua expondo o inventário completo, mas a API3 não
-            # deve vazar propriedades internas de cada pedido.
-            return {
-                "all_orders": {
-                    order_id: PublicOrderModel(
-                        order_id=order_id,
-                        product_id=order["product_id"],
-                        quantity=order["quantity"],
-                        payment_method=order.get("payment_method"),
-                        total=order["total"],
-                        status=order["status"],
-                    ).model_dump()
-                    for order_id, order in self.checkout_db.items()
-                }
-            }
-        return {"detail": "Not found"}
+    def list_inventory(
+        self,
+        limit: int,
+        offset: int,
+        current_user: CurrentUser,
+    ) -> list[dict]:
+        """Lista o inventário operacional somente para administradores."""
+
+        authorize_admin(current_user)
+        orders = islice(self.checkout_db.items(), offset, offset + limit)
+        return [
+            AdminOrderModel(
+                order_id=order_id,
+                user_id=order["user_id"],
+                product_id=order["product_id"],
+                quantity=order["quantity"],
+                payment_method=order["payment_method"],
+                total=order["total"],
+                status=order["status"],
+            ).model_dump()
+            for order_id, order in orders
+        ]

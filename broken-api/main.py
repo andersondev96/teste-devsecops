@@ -22,12 +22,15 @@ presentes de forma intencional até suas etapas específicas de mitigação.
 
 from fastapi import FastAPI
 
+from controllers.IntegrationController import validate_integration_config
 from controllers.ProductController import ProductController
+from controllers.SecurityStatusController import validate_owasp_status_config
 from limits import MAX_REQUEST_BODY_BYTES, RequestBodySizeLimitMiddleware
 from routes.AuthRoutes import router as auth_router
 from routes.CheckoutRoutes import router as checkout_router
 from routes.IntegrationRoutes import router as integration_router
 from routes.ProductRoutes import router as product_router
+from routes.SecurityRoutes import router as security_router
 from routes.UserRoutes import router as user_router
 from security import validate_security_config
 
@@ -52,6 +55,8 @@ app.add_middleware(
 @app.on_event("startup")
 def startup():
     validate_security_config()
+    validate_integration_config()
+    validate_owasp_status_config()
     ProductController.initialize_database()
 
 
@@ -59,4 +64,5 @@ app.include_router(auth_router)
 app.include_router(checkout_router)
 app.include_router(integration_router)
 app.include_router(product_router)
+app.include_router(security_router)
 app.include_router(user_router)
