@@ -1,5 +1,25 @@
 [
   {
+    "date": "2026-08-23T14:43:48Z",
+    "description": "Integração da API vulnerável e correções iniciais do pipeline: build Docker sem database.db, histórico na branch correta e Pages somente na main.",
+    "commit": "8ef26cc",
+    "sast": 31,
+    "sca": 1,
+    "dast": 12,
+    "trivy": 13,
+    "total": 57
+  },
+  {
+    "date": "2026-08-23T15:13:51Z",
+    "description": "Publicação das correções do mapeamento OWASP API1–API10 e do reset idempotente do histórico.",
+    "commit": "516058f",
+    "sast": 31,
+    "sca": 1,
+    "dast": 12,
+    "trivy": 13,
+    "total": 57
+  },
+  {
     "date": "2026-08-23T15:39:22Z",
     "description": "Sincronização dos relatórios SAST, SCA, DAST e Trivy com o histórico para manter os números do dashboard consistentes.",
     "commit": "87e97e8",
