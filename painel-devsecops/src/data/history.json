@@ -118,5 +118,15 @@
     "dast": 10,
     "trivy": 9,
     "total": 20
+  },
+  {
+    "date": "2026-09-01T01:21:26Z",
+    "description": "fix(security): corrige achados SAST e SCA do pipeline",
+    "commit": "69098a8",
+    "sast": 0,
+    "sca": 0,
+    "dast": 10,
+    "trivy": 3,
+    "total": 13
   }
 ]

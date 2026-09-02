@@ -2,10 +2,10 @@
     "report_meta": {
         "scan_target": "files",
         "scanned": [
-            "broken-api/requirements-dev.txt"
+            "sca_requirements.txt"
         ],
         "scanned_full_path": [
-            "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements-dev.txt"
+            "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
         ],
         "target_languages": [
             "python"
@@ -17,8 +17,8 @@
         "account": "",
         "local_database_path": null,
         "safety_version": "3.8.1",
-        "timestamp": "2026-09-01 00:27:12",
-        "packages_found": 6,
+        "timestamp": "2026-09-01 01:19:54",
+        "packages_found": 29,
         "vulnerabilities_found": 0,
         "vulnerabilities_ignored": 0,
         "remediations_recommended": 0,
@@ -45,7 +45,7 @@
         "git": {
             "branch": "main",
             "tag": "",
-            "commit": "4e36e07ca5b2b5aa9a65ed25651f539d75ad0a20",
+            "commit": "69098a87d015c29447e8d4c17e05d943677c7e73",
             "dirty": "False",
             "origin": "https://github.com/andersondev96/teste-devsecops"
         },
@@ -56,6 +56,141 @@
         "remediation_mode": "NON_INTERACTIVE"
     },
     "scanned_packages": {
+        "annotated-doc": {
+            "name": "annotated-doc",
+            "version": "0.0.5",
+            "requirements": [
+                {
+                    "raw": "annotated-doc==0.0.5",
+                    "extras": [],
+                    "marker": null,
+                    "name": "annotated-doc",
+                    "specifier": "==0.0.5",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "annotated-types": {
+            "name": "annotated-types",
+            "version": "0.8.0",
+            "requirements": [
+                {
+                    "raw": "annotated-types==0.8.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "annotated-types",
+                    "specifier": "==0.8.0",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "anyio": {
+            "name": "anyio",
+            "version": "4.14.2",
+            "requirements": [
+                {
+                    "raw": "anyio==4.14.2",
+                    "extras": [],
+                    "marker": null,
+                    "name": "anyio",
+                    "specifier": "==4.14.2",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "certifi": {
+            "name": "certifi",
+            "version": "2026.7.22",
+            "requirements": [
+                {
+                    "raw": "certifi==2026.7.22",
+                    "extras": [],
+                    "marker": null,
+                    "name": "certifi",
+                    "specifier": "==2026.7.22",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "click": {
+            "name": "click",
+            "version": "8.5.0",
+            "requirements": [
+                {
+                    "raw": "click==8.5.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "click",
+                    "specifier": "==8.5.0",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "fastapi": {
+            "name": "fastapi",
+            "version": "0.141.1",
+            "requirements": [
+                {
+                    "raw": "fastapi==0.141.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "fastapi",
+                    "specifier": "==0.141.1",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "h11": {
+            "name": "h11",
+            "version": "0.16.0",
+            "requirements": [
+                {
+                    "raw": "h11==0.16.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "h11",
+                    "specifier": "==0.16.0",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "httpcore": {
+            "name": "httpcore",
+            "version": "1.0.9",
+            "requirements": [
+                {
+                    "raw": "httpcore==1.0.9",
+                    "extras": [],
+                    "marker": null,
+                    "name": "httpcore",
+                    "specifier": "==1.0.9",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "httptools": {
+            "name": "httptools",
+            "version": "0.8.0",
+            "requirements": [
+                {
+                    "raw": "httptools==0.8.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "httptools",
+                    "specifier": "==0.8.0",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
         "httpx": {
             "name": "httpx",
             "version": "0.27.2",
@@ -67,54 +202,67 @@
                     "name": "httpx",
                     "specifier": "==0.27.2",
                     "url": null,
-                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements-dev.txt"
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
                 }
             ]
         },
-        "pytest": {
-            "name": "pytest",
-            "version": "9.0.3",
+        "idna": {
+            "name": "idna",
+            "version": "3.19",
             "requirements": [
                 {
-                    "raw": "pytest==9.0.3",
+                    "raw": "idna==3.19",
                     "extras": [],
                     "marker": null,
-                    "name": "pytest",
-                    "specifier": "==9.0.3",
+                    "name": "idna",
+                    "specifier": "==3.19",
                     "url": null,
-                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements-dev.txt"
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
                 }
             ]
         },
-        "fastapi": {
-            "name": "fastapi",
-            "version": "0.116.1",
+        "iniconfig": {
+            "name": "iniconfig",
+            "version": "2.3.0",
             "requirements": [
                 {
-                    "raw": "fastapi==0.116.1",
+                    "raw": "iniconfig==2.3.0",
                     "extras": [],
                     "marker": null,
-                    "name": "fastapi",
-                    "specifier": "==0.116.1",
+                    "name": "iniconfig",
+                    "specifier": "==2.3.0",
                     "url": null,
-                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements-dev.txt"
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
                 }
             ]
         },
-        "uvicorn": {
-            "name": "uvicorn",
-            "version": "0.30.6",
+        "packaging": {
+            "name": "packaging",
+            "version": "26.3",
             "requirements": [
                 {
-                    "raw": "uvicorn[standard]==0.30.6",
-                    "extras": [
-                        "standard"
-                    ],
+                    "raw": "packaging==26.3",
+                    "extras": [],
                     "marker": null,
-                    "name": "uvicorn",
-                    "specifier": "==0.30.6",
+                    "name": "packaging",
+                    "specifier": "==26.3",
                     "url": null,
-                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements-dev.txt"
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "pluggy": {
+            "name": "pluggy",
+            "version": "1.6.0",
+            "requirements": [
+                {
+                    "raw": "pluggy==1.6.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "pluggy",
+                    "specifier": "==1.6.0",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
                 }
             ]
         },
@@ -129,7 +277,37 @@
                     "name": "pydantic",
                     "specifier": "==2.9.2",
                     "url": null,
-                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements-dev.txt"
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "pydantic-core": {
+            "name": "pydantic-core",
+            "version": "2.23.4",
+            "requirements": [
+                {
+                    "raw": "pydantic_core==2.23.4",
+                    "extras": [],
+                    "marker": null,
+                    "name": "pydantic_core",
+                    "specifier": "==2.23.4",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "pygments": {
+            "name": "pygments",
+            "version": "2.21.0",
+            "requirements": [
+                {
+                    "raw": "Pygments==2.21.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "Pygments",
+                    "specifier": "==2.21.0",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
                 }
             ]
         },
@@ -144,7 +322,172 @@
                     "name": "PyJWT",
                     "specifier": "==2.13.0",
                     "url": null,
-                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/broken-api/requirements-dev.txt"
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "pytest": {
+            "name": "pytest",
+            "version": "9.0.3",
+            "requirements": [
+                {
+                    "raw": "pytest==9.0.3",
+                    "extras": [],
+                    "marker": null,
+                    "name": "pytest",
+                    "specifier": "==9.0.3",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "python-dotenv": {
+            "name": "python-dotenv",
+            "version": "1.2.3",
+            "requirements": [
+                {
+                    "raw": "python-dotenv==1.2.3",
+                    "extras": [],
+                    "marker": null,
+                    "name": "python-dotenv",
+                    "specifier": "==1.2.3",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "pyyaml": {
+            "name": "pyyaml",
+            "version": "6.0.3",
+            "requirements": [
+                {
+                    "raw": "PyYAML==6.0.3",
+                    "extras": [],
+                    "marker": null,
+                    "name": "PyYAML",
+                    "specifier": "==6.0.3",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "sniffio": {
+            "name": "sniffio",
+            "version": "1.3.1",
+            "requirements": [
+                {
+                    "raw": "sniffio==1.3.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "sniffio",
+                    "specifier": "==1.3.1",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "starlette": {
+            "name": "starlette",
+            "version": "1.6.0",
+            "requirements": [
+                {
+                    "raw": "starlette==1.6.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "starlette",
+                    "specifier": "==1.6.0",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "typing-inspection": {
+            "name": "typing-inspection",
+            "version": "0.4.4",
+            "requirements": [
+                {
+                    "raw": "typing-inspection==0.4.4",
+                    "extras": [],
+                    "marker": null,
+                    "name": "typing-inspection",
+                    "specifier": "==0.4.4",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "typing-extensions": {
+            "name": "typing-extensions",
+            "version": "4.16.0",
+            "requirements": [
+                {
+                    "raw": "typing_extensions==4.16.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "typing_extensions",
+                    "specifier": "==4.16.0",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "uvicorn": {
+            "name": "uvicorn",
+            "version": "0.30.6",
+            "requirements": [
+                {
+                    "raw": "uvicorn==0.30.6",
+                    "extras": [],
+                    "marker": null,
+                    "name": "uvicorn",
+                    "specifier": "==0.30.6",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "uvloop": {
+            "name": "uvloop",
+            "version": "0.22.1",
+            "requirements": [
+                {
+                    "raw": "uvloop==0.22.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "uvloop",
+                    "specifier": "==0.22.1",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "watchfiles": {
+            "name": "watchfiles",
+            "version": "1.2.0",
+            "requirements": [
+                {
+                    "raw": "watchfiles==1.2.0",
+                    "extras": [],
+                    "marker": null,
+                    "name": "watchfiles",
+                    "specifier": "==1.2.0",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
+                }
+            ]
+        },
+        "websockets": {
+            "name": "websockets",
+            "version": "17.1",
+            "requirements": [
+                {
+                    "raw": "websockets==17.1",
+                    "extras": [],
+                    "marker": null,
+                    "name": "websockets",
+                    "specifier": "==17.1",
+                    "url": null,
+                    "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
                 }
             ]
         }
