@@ -83,6 +83,14 @@ jobs:
         # Garante que a mitigação da API4 continue válida a cada push.
         run: pytest -q broken-api/tests/test_owasp_api_top_10_lab.py -k api4
 
+      - name: 6.5. Testes de regressão da autorização por função
+        # Garante que funções administrativas não sejam expostas a usuários comuns.
+        run: pytest -q broken-api/tests/test_owasp_api_top_10_lab.py -k api5
+
+      - name: 6.6. Testes de regressão dos fluxos de negócio sensíveis
+        # Garante que o checkout preserve as regras server-side e seus limites.
+        run: pytest -q broken-api/tests/test_owasp_api_top_10_lab.py -k api6
+
       - name: 7. Build da Imagem Docker
         run: docker build -t vulnerable-api:latest ./broken-api
 
