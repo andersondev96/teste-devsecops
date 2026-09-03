@@ -17,7 +17,7 @@
         "account": "",
         "local_database_path": null,
         "safety_version": "3.8.1",
-        "timestamp": "2026-09-02 01:23:52",
+        "timestamp": "2026-09-03 00:20:48",
         "packages_found": 29,
         "vulnerabilities_found": 0,
         "vulnerabilities_ignored": 0,
@@ -45,7 +45,7 @@
         "git": {
             "branch": "main",
             "tag": "",
-            "commit": "cdad7cf318a92ddc69b843640eeb5a78cc7e381d",
+            "commit": "0d18bd55bdcf9c201f1f965e71eb9b82d79b26a4",
             "dirty": "False",
             "origin": "https://github.com/andersondev96/teste-devsecops"
         },
@@ -88,14 +88,14 @@
         },
         "anyio": {
             "name": "anyio",
-            "version": "4.14.2",
+            "version": "4.15.0",
             "requirements": [
                 {
-                    "raw": "anyio==4.14.2",
+                    "raw": "anyio==4.15.0",
                     "extras": [],
                     "marker": null,
                     "name": "anyio",
-                    "specifier": "==4.14.2",
+                    "specifier": "==4.15.0",
                     "url": null,
                     "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
                 }
