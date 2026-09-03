@@ -4,7 +4,6 @@ import {
   PieChart, Pie, Cell, Radar, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis
 } from 'recharts';
 import { Filter, FileCode, Package, Server, Activity, CheckCircle } from 'lucide-react';
-import rawHistoryData from '../data/history.json';
 
 type HistoryEntry = {
   date: string;
@@ -19,6 +18,11 @@ type SecurityCategory = 'sast' | 'sca' | 'dast' | 'trivy';
 
 type ExperimentData = {
   total: number;
+  sast: number;
+  sca: number;
+  dast: number;
+  trivy: number;
+  critica: number;
   alta: number;
   media: number;
   baixa: number;
@@ -36,11 +40,11 @@ interface GraficoComparativoDinamicoProps {
 }
 
 interface DashboardTabProps {
-  experimentData?: ExperimentData;
-  chartData?: ChartDataItem[];
+  experimentData: ExperimentData;
+  chartData: ChartDataItem[];
+  historyData: HistoryEntry[];
 }
 
-const historyData = rawHistoryData as HistoryEntry[];
 const MAX_DEPLOYS_COMPARADOS = 5;
 const paletaCores = [
   '#ef4444', '#f59e0b', '#3b82f6', '#10b981', '#8b5cf6',
@@ -54,10 +58,25 @@ const getDeployNumber = (dataKey: any) => {
 };
 
 
-export function DashboardTab(_props: DashboardTabProps) {
-  // Pega os dados do primeiro e do último deploy
-  const initialData = historyData[0] || { sast: 0, sca: 0, dast: 0, trivy: 0, total: 0 };
-  const currentData = historyData[historyData.length - 1] || { sast: 0, sca: 0, dast: 0, trivy: 0, total: 0 };
+export function DashboardTab({ experimentData, chartData, historyData }: DashboardTabProps) {
+  const getChartValue = (category: string, field: 'antes' | 'depois', fallback: number) =>
+    chartData.find((item) => item.categoria === category)?.[field] ?? fallback;
+
+  // O estado atual vem dos relatórios deste build. O histórico continua sendo
+  // usado somente como baseline e linha do tempo, evitando exibir um deploy
+  // anterior quando os achados atuais já mudaram.
+  const initialData = {
+    sast: getChartValue('SAST', 'antes', experimentData.sast),
+    sca: getChartValue('SCA', 'antes', experimentData.sca),
+    dast: getChartValue('DAST', 'antes', experimentData.dast),
+    trivy: getChartValue('Trivy', 'antes', experimentData.trivy),
+  };
+  const currentData = {
+    sast: getChartValue('SAST', 'depois', experimentData.sast),
+    sca: getChartValue('SCA', 'depois', experimentData.sca),
+    dast: getChartValue('DAST', 'depois', experimentData.dast),
+    trivy: getChartValue('Trivy', 'depois', experimentData.trivy),
+  };
 
 
   const radarData = [
@@ -67,13 +86,12 @@ export function DashboardTab(_props: DashboardTabProps) {
     { subject: 'Trivy', Antes: initialData.trivy, Atual: currentData.trivy }
   ];
 
-  const total = currentData.total;
-  // Calcula proporções fixas para garantir que o gráfico nunca quebra, ignorando props mal formatadas
-  const severidadeData = total === 0 ? [] : [
-    { name: 'Crítico', value: Math.round(total * 0.1) || (total > 10 ? 1 : 0), color: '#7f1d1d' },
-    { name: 'Alto', value: Math.round(total * 0.2) || (total > 5 ? 1 : 0), color: '#ef4444' },
-    { name: 'Médio', value: Math.round(total * 0.4) || (total > 2 ? 1 : 0), color: '#f59e0b' },
-    { name: 'Baixo', value: Math.round(total * 0.3) || (total > 0 ? total : 0), color: '#3b82f6' }
+  const severidadeData = experimentData.total === 0 ? [] : [
+    { name: 'Crítico', value: experimentData.critica, color: '#7f1d1d' },
+    // `alta` também é usado pelo Security Gate e inclui os críticos.
+    { name: 'Alto', value: Math.max(0, experimentData.alta - experimentData.critica), color: '#ef4444' },
+    { name: 'Médio', value: experimentData.media, color: '#f59e0b' },
+    { name: 'Baixo', value: experimentData.baixa, color: '#3b82f6' }
   ].filter(item => item.value > 0);
 
   const comparativoEstatico = [
@@ -95,28 +113,28 @@ export function DashboardTab(_props: DashboardTabProps) {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-slate-500">SAST (Código)</p>
-            <h3 className="text-2xl font-bold text-slate-800">{currentData.sast}</h3>
+            <h3 className="text-2xl font-bold text-slate-800">{experimentData.sast}</h3>
           </div>
           <div className="p-3 bg-red-100 rounded-full"><FileCode className="w-6 h-6 text-red-600" /></div>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-slate-500">SCA (Dependências)</p>
-            <h3 className="text-2xl font-bold text-slate-800">{currentData.sca}</h3>
+            <h3 className="text-2xl font-bold text-slate-800">{experimentData.sca}</h3>
           </div>
           <div className="p-3 bg-amber-100 rounded-full"><Package className="w-6 h-6 text-amber-600" /></div>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-slate-500">DAST (API Rodando)</p>
-            <h3 className="text-2xl font-bold text-slate-800">{currentData.dast}</h3>
+            <h3 className="text-2xl font-bold text-slate-800">{experimentData.dast}</h3>
           </div>
           <div className="p-3 bg-blue-100 rounded-full"><Activity className="w-6 h-6 text-blue-600" /></div>
         </div>
         <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-slate-500">Infra (Container)</p>
-            <h3 className="text-2xl font-bold text-slate-800">{currentData.trivy}</h3>
+            <h3 className="text-2xl font-bold text-slate-800">{experimentData.trivy}</h3>
           </div>
           <div className="p-3 bg-emerald-100 rounded-full"><Server className="w-6 h-6 text-emerald-600" /></div>
         </div>

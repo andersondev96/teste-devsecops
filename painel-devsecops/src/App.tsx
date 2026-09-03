@@ -21,7 +21,14 @@ export default function App() {
     localStorage.setItem('devsecops_active_tab', activeTab);
   }, [activeTab]);
 
-  const { experimentData, owaspCategories, owaspMapping, chartData } = useSecurityData();
+  const {
+    experimentData,
+    owaspCategories,
+    owaspMapping,
+    owaspMetrics,
+    chartData,
+    historyData,
+  } = useSecurityData();
 
   const tabs = [
     { id: 'dashboard', label: 'Resumo Executivo', icon: LayoutDashboard },
@@ -51,8 +58,8 @@ export default function App() {
         </div>
 
         <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 min-h-[500px]">
-          {activeTab === 'dashboard' && <DashboardTab experimentData={experimentData} chartData={chartData} />}
-          {activeTab === 'owasp' && <OwaspTab categories={owaspCategories} mapping={owaspMapping} />}
+          {activeTab === 'dashboard' && <DashboardTab experimentData={experimentData} chartData={chartData} historyData={historyData} />}
+          {activeTab === 'owasp' && <OwaspTab categories={owaspCategories} mapping={owaspMapping} metrics={owaspMetrics} />}
           {activeTab === 'pipeline' && <PipelineTab chartData={chartData} totalAlta={experimentData.alta} />}
           {activeTab === 'comparativo' && <ComparativoTab chartData={chartData} />}
           {activeTab === 'historico' && <HistoricoTab />}

@@ -7,6 +7,7 @@ import rawHistoryData from '../data/history.json';
 import owaspStatus from '../data/owasp_status.json';
 import {
   type OwaspMapping,
+  type OwaspStatus,
   type OwaspStatusDocument,
 } from '../constants/owsap';
 
@@ -26,6 +27,21 @@ const historyData = rawHistoryData as Array<{
   trivy: number;
   total: number;
 }>;
+
+const currentReportCounts = {
+  sast: sastReport.results?.length || 0,
+  sca: scaReport?.vulnerabilities?.length || 0,
+  dast: zapReport.site?.[0]?.alerts?.length || 0,
+  trivy: trivyReport.Results?.reduce(
+    (total: number, result: any) => total + (result.Vulnerabilities?.length || 0),
+    0,
+  ) || 0,
+};
+
+const currentReportTotal = Object.values(currentReportCounts).reduce(
+  (total, count) => total + count,
+  0,
+);
 
 const isTestFile = (filename: unknown) =>
   String(filename || '').replace(/\\/g, '/').includes('/tests/');
@@ -47,55 +63,70 @@ const classifyZapFinding = (alert: any): string => {
 
 export function useSecurityData() {
   const experimentData = useMemo(() => {
-    let alta = 0, media = 0, baixa = 0, total = 0;
+    let critica = 0;
+    let alta = 0;
+    let media = 0;
+    let baixa = 0;
+
+    const registerSeverity = (value: unknown) => {
+      const severity = String(value || 'LOW').toUpperCase();
+
+      if (severity === 'CRITICAL') {
+        critica++;
+        // O gate considera CRITICAL junto com HIGH.
+        alta++;
+      } else if (severity === 'HIGH') {
+        alta++;
+      } else if (severity === 'MEDIUM') {
+        media++;
+      } else {
+        baixa++;
+      }
+    };
 
     // SAST
     sastReport.results?.forEach((issue: any) => {
-      total++;
-      if (issue.issue_severity === 'HIGH') alta++;
-      else if (issue.issue_severity === 'MEDIUM') media++;
-      else baixa++;
+      registerSeverity(issue.issue_severity);
     });
 
     // DAST
     zapReport.site?.[0]?.alerts?.forEach((alert: any) => {
-      total++;
-      if (alert.riskcode === '3') alta++;
-      else if (alert.riskcode === '2') media++;
-      else baixa++;
+      const riskCode = String(alert.riskcode ?? '1');
+      registerSeverity(riskCode === '3' ? 'HIGH' : riskCode === '2' ? 'MEDIUM' : 'LOW');
     });
 
     // Trivy
     trivyReport.Results?.forEach((result: any) => {
       result.Vulnerabilities?.forEach((vuln: any) => {
-        total++;
-        if (vuln.Severity === 'CRITICAL' || vuln.Severity === 'HIGH') alta++;
-        else if (vuln.Severity === 'MEDIUM') media++;
-        else baixa++;
+        registerSeverity(vuln.Severity);
       });
     });
 
     // SCA
     if (scaReport?.vulnerabilities) {
       scaReport.vulnerabilities.forEach((vuln: any) => {
-        total++;
-        const severity = (vuln?.severity || 'HIGH').toUpperCase();
-        if (severity === 'CRITICAL' || severity === 'HIGH') alta++;
-        else if (severity === 'MEDIUM') media++;
-        else baixa++;
+        registerSeverity(vuln?.severity || 'HIGH');
       });
     }
 
-    // CÁLCULO REAL DA TAXA DE MITIGAÇÃO BASEADO NO HISTÓRICO
+    // Usa o primeiro deploy como baseline e os relatórios atuais como estado
+    // final, mesmo que o histórico ainda não tenha sido persistido.
     const baseline = historyData.length > 0 ? historyData[0] : null;
-    const current = historyData.length > 0 ? historyData[historyData.length - 1] : null;
 
     let taxaMitigacao = 0;
-    if (baseline && current && baseline.total > 0) {
-      taxaMitigacao = Math.round(((baseline.total - current.total) / baseline.total) * 100);
+    if (baseline && baseline.total > 0) {
+      taxaMitigacao = Math.round(((baseline.total - currentReportTotal) / baseline.total) * 100);
     }
 
-    return { total, alta, media, baixa, taxaMitigacao: Math.max(0, taxaMitigacao) };
+    return {
+      ...currentReportCounts,
+      total: currentReportTotal,
+      critica,
+      alta,
+      media,
+      baixa,
+      taxaMitigacao: Math.max(0, taxaMitigacao),
+    };
   }, []);
 
   const owaspMapping = useMemo(() => {
@@ -162,30 +193,50 @@ export function useSecurityData() {
     return mapping;
   }, []);
 
-  // CÁLCULO REAL DO GRÁFICO COMPARATIVO BASEADO NO HISTÓRICO
+  const owaspMetrics = useMemo(() => {
+    const metrics: Record<OwaspStatus, number> = {
+      vulnerable: 0,
+      partially_mitigated: 0,
+      mitigated: 0,
+      not_assessed: 0,
+    };
+
+    Object.values(owaspMapping).forEach(({ status }) => {
+      metrics[status]++;
+    });
+
+    return {
+      total: Object.keys(owaspMapping).length,
+      mitigated: metrics.mitigated,
+      partially_mitigated: metrics.partially_mitigated,
+      vulnerable: metrics.vulnerable,
+      not_assessed: metrics.not_assessed,
+    };
+  }, [owaspMapping]);
+
+  // O baseline vem do histórico; o estado atual vem dos relatórios deste build.
   const baseline = historyData.length > 0 ? historyData[0] : null;
-  const current = historyData.length > 0 ? historyData[historyData.length - 1] : null;
 
   const chartData = [
     {
       categoria: 'SAST',
       antes: baseline ? baseline.sast : (sastReport.results?.length || 0),
-      depois: current ? current.sast : (sastReport.results?.length || 0)
+      depois: currentReportCounts.sast,
     },
     {
       categoria: 'SCA',
       antes: baseline ? baseline.sca : (scaReport?.vulnerabilities?.length || 0),
-      depois: current ? current.sca : (scaReport?.vulnerabilities?.length || 0)
+      depois: currentReportCounts.sca,
     },
     {
       categoria: 'DAST',
       antes: baseline ? baseline.dast : (zapReport.site?.[0]?.alerts?.length || 0),
-      depois: current ? current.dast : (zapReport.site?.[0]?.alerts?.length || 0)
+      depois: currentReportCounts.dast,
     },
     {
       categoria: 'Trivy',
       antes: baseline ? baseline.trivy : (trivyReport.Results?.reduce((acc: number, curr: any) => acc + (curr.Vulnerabilities?.length || 0), 0) || 0),
-      depois: current ? current.trivy : (trivyReport.Results?.reduce((acc: number, curr: any) => acc + (curr.Vulnerabilities?.length || 0), 0) || 0)
+      depois: currentReportCounts.trivy,
     },
   ];
 
@@ -193,6 +244,7 @@ export function useSecurityData() {
     experimentData,
     owaspCategories,
     owaspMapping,
+    owaspMetrics,
     chartData,
     historyData,
   };
