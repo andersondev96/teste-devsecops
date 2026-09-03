@@ -1,8 +1,6 @@
 """Operações de autenticação da API."""
 
-import os
-
-from fastapi import HTTPException, Request
+from fastapi import HTTPException
 
 from models.LoginModel import LoginModel
 from models.UserModel import PublicUserModel
@@ -14,8 +12,6 @@ from security import (
     verify_password,
 )
 from users_db import users_db
-
-DEBUG_MODE = os.getenv("DEBUG_MODE", "false").lower() == "true"
 
 
 class AuthController:
@@ -74,11 +70,3 @@ class AuthController:
             id=user["id"],
             username=user["username"],
         ).model_dump()
-
-    def debug_info(self, request: Request):
-        # O endpoint é mantido apenas para demonstrar a configuração de
-        # ambiente. Segredos, headers e registros de usuários nunca devem
-        # ser expostos, mesmo quando o modo de debug estiver habilitado.
-        if DEBUG_MODE:
-            return {"debug": True}
-        raise HTTPException(status_code=404)

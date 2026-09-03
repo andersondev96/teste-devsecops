@@ -9,7 +9,7 @@ RUN apk upgrade --no-cache \
     && python -m pip install --no-cache-dir --upgrade pip \
     && pip install --no-cache-dir -r requirements.txt
 
-COPY main.py run.py security.py users_db.py limits.py ./
+COPY main.py run.py security.py users_db.py limits.py config.py security_headers.py ./
 COPY owasp_status.json ./owasp_status.json
 COPY controllers ./controllers
 COPY models ./models

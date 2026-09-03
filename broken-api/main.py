@@ -20,8 +20,13 @@ e respostas sem limite. As demais vulnerabilidades do laboratório continuam
 presentes de forma intencional até suas etapas específicas de mitigação.
 """
 
-from fastapi import FastAPI
+import logging
+import os
 
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+
+from config import docs_are_enabled, is_production_environment
 from controllers.IntegrationController import validate_integration_config
 from controllers.ProductController import ProductController
 from controllers.SecurityStatusController import validate_owasp_status_config
@@ -33,23 +38,44 @@ from routes.ProductRoutes import router as product_router
 from routes.SecurityRoutes import router as security_router
 from routes.UserRoutes import router as user_router
 from security import validate_security_config
+from security_headers import SecurityHeadersMiddleware
+
+
+logger = logging.getLogger(__name__)
+APP_ENV = os.getenv("APP_ENV", "development").strip().lower()
+DOCS_ENABLED = docs_are_enabled(APP_ENV, os.getenv("API_DOCS_ENABLED"))
+IS_PRODUCTION = is_production_environment(APP_ENV)
 
 app = FastAPI(
     title="API Vulnerável (uso didático)",
     # API8:2023 - Security Misconfiguration
-    # docs_url/redoc_url deixados abertos por padrão em qualquer
-    # ambiente (inclusive "produção"), expondo publicamente todo o
-    # contrato da API (rotas, parâmetros, modelos) para reconhecimento
-    # de um atacante. Em produção deveriam ser desabilitados ou
-    # protegidos por autenticação.
-    docs_url="/docs",
-    redoc_url="/redoc",
+    # O contrato fica disponível no laboratório/CI para permitir o DAST,
+    # mas é removido completamente em produção.
+    docs_url="/docs" if DOCS_ENABLED else None,
+    redoc_url="/redoc" if DOCS_ENABLED else None,
+    openapi_url="/openapi.json" if DOCS_ENABLED else None,
 )
 
 app.add_middleware(
     RequestBodySizeLimitMiddleware,
     max_body_bytes=MAX_REQUEST_BODY_BYTES,
 )
+app.add_middleware(SecurityHeadersMiddleware, production=IS_PRODUCTION)
+
+
+@app.exception_handler(Exception)
+async def unhandled_exception_handler(request: Request, exc: Exception):
+    """Registra detalhes somente no servidor e usa resposta pública genérica."""
+
+    logger.exception(
+        "unhandled_application_error method=%s path=%s",
+        request.method,
+        request.url.path,
+    )
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "Internal server error"},
+    )
 
 
 @app.on_event("startup")

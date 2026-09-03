@@ -118,6 +118,7 @@ jobs:
         run: |
           JWT_SECRET_KEY="$(openssl rand -hex 32)"
           docker run -d -p 8000:8000 \
+            -e "APP_ENV=ci" \
             -e "JWT_SECRET_KEY=${JWT_SECRET_KEY}" \
             -e "ACCESS_TOKEN_EXPIRE_MINUTES=15" \
             vulnerable-api:latest

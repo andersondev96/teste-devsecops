@@ -9,7 +9,6 @@ ou em qualquer ambiente exposto à internet.
 
 import logging
 import sqlite3
-import traceback
 from math import isfinite
 from pathlib import Path
 
@@ -93,9 +92,8 @@ class ProductController:
 
         API8:2023 - Security Misconfiguration
         --------------------------------------------------
-        O tratamento de erro detalhado continua mantido apenas como cenário
-        didático de API8; respostas de produção devem registrar o detalhe
-        no servidor e devolver uma mensagem genérica ao cliente.
+        Falhas de banco são registradas somente no servidor e a resposta
+        pública usa uma mensagem genérica, sem query ou stack trace.
         """
         conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
@@ -107,13 +105,16 @@ class ProductController:
         try:
             cursor.execute(query, (search_pattern, limit, offset))
             products = cursor.fetchall()
-        except Exception as e:
+        except sqlite3.Error:
             conn.close()
             # API8:2023 - Security Misconfiguration
-            # Mensagens de erro detalhadas (stack trace, query executada)
-            # devolvidas ao cliente ajudam um atacante a entender a
-            # estrutura interna do banco e refinar o ataque.
-            return {"error": str(e), "query": query, "trace": traceback.format_exc()}
+            # O detalhe técnico fica no log do servidor e nunca é devolvido
+            # ao cliente, evitando exposição da estrutura interna do banco.
+            logger.exception("product_search_failed")
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail="Internal server error",
+            )
         conn.close()
         return [
             PublicProductModel(
