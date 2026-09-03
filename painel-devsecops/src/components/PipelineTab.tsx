@@ -16,16 +16,21 @@ interface PipelineProps {
 export function PipelineTab({ chartData, totalAlta }: PipelineProps) {
   const [expandedStage, setExpandedStage] = useState<number | null>(null);
 
+  const isHighOrCritical = (value: unknown) => {
+    const severity = String(value || '').toUpperCase();
+    return severity === 'HIGH' || severity === 'CRITICAL';
+  };
+
   const allBlockers = [
-    ...(sastReport.results?.filter((f: any) => f.issue_severity === 'HIGH') || []),
-    ...(scaReport.vulnerabilities?.filter((f: any) => (f.severity || '').toUpperCase() === 'HIGH') || []),
-    ...(trivyReport.Results?.flatMap((r: any) => r.Vulnerabilities || []).filter((f: any) => f.Severity === 'HIGH' || f.Severity === 'CRITICAL') || []),
+    ...(sastReport.results?.filter((f: any) => isHighOrCritical(f.issue_severity)) || []),
+    ...(scaReport.vulnerabilities?.filter((f: any) => isHighOrCritical(f.severity)) || []),
+    ...(trivyReport.Results?.flatMap((r: any) => r.Vulnerabilities || []).filter((f: any) => isHighOrCritical(f.Severity)) || []),
     ...(zapReport.site?.[0]?.alerts?.filter((f: any) => f.riskcode === '3') || [])
   ];
 
   const getIssuesCount = (categoryName: string) => {
     const stage = chartData.find(c => c.categoria === categoryName);
-    return stage ? stage.antes : 0;
+    return stage ? stage.depois : 0;
   };
 
   const pipelineStages = [

@@ -5,6 +5,13 @@ import type { OwaspMapping, OwaspStatus } from '../constants/owsap';
 interface OwaspProps {
   categories: { id: string; title: string; desc: string }[];
   mapping: Record<string, OwaspMapping>;
+  metrics: {
+    total: number;
+    mitigated: number;
+    partially_mitigated: number;
+    vulnerable: number;
+    not_assessed: number;
+  };
 }
 
 const statusLabel: Record<OwaspStatus, string> = {
@@ -14,7 +21,7 @@ const statusLabel: Record<OwaspStatus, string> = {
   not_assessed: 'NÃO AVALIADA',
 };
 
-export function OwaspTab({ categories, mapping }: OwaspProps) {
+export function OwaspTab({ categories, mapping, metrics }: OwaspProps) {
   const [expandedRow, setExpandedRow] = useState<string | null>(null);
 
   const toggleRow = (id: string) => {
@@ -32,6 +39,14 @@ export function OwaspTab({ categories, mapping }: OwaspProps) {
       <div className="flex justify-between items-end border-b pb-2">
         <h2 className="text-xl font-semibold">Mapeamento OWASP API Security Top 10 (2023)</h2>
         <span className="text-sm text-slate-500">Evidências do laboratório e achados ativos do pipeline</span>
+      </div>
+
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+        <Metric label="Categorias" value={metrics.total} className="text-slate-700" />
+        <Metric label="Mitigadas" value={metrics.mitigated} className="text-green-700" />
+        <Metric label="Parciais" value={metrics.partially_mitigated} className="text-amber-700" />
+        <Metric label="Vulneráveis" value={metrics.vulnerable} className="text-red-700" />
+        <Metric label="Não avaliadas" value={metrics.not_assessed} className="text-slate-500" />
       </div>
 
       <div className="flex flex-col border rounded-md overflow-hidden shadow-sm">
@@ -175,6 +190,15 @@ export function OwaspTab({ categories, mapping }: OwaspProps) {
           );
         })}
       </div>
+    </div>
+  );
+}
+
+function Metric({ label, value, className }: { label: string; value: number; className: string }) {
+  return (
+    <div className="rounded-md border border-slate-200 bg-slate-50 px-3 py-3 text-center">
+      <p className="text-xs font-medium text-slate-500">{label}</p>
+      <p className={`mt-1 text-xl font-bold ${className}`}>{value}</p>
     </div>
   );
 }
