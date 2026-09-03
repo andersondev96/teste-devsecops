@@ -9,7 +9,6 @@ import { OwaspTab } from './components/OwaspTab';
 import { PipelineTab } from './components/PipelineTab';
 import { RelatorioTab } from './components/RelatorioTab';
 import { useSecurityData } from './hooks/useSecurityData';
-import { OWASP_API_2023 } from './constants/owsap';
 
 export default function App() {
   // 1. Inicializa o estado lendo do localStorage (ou usa 'dashboard' como padrão)
@@ -22,7 +21,7 @@ export default function App() {
     localStorage.setItem('devsecops_active_tab', activeTab);
   }, [activeTab]);
 
-  const { experimentData, owaspMapping, chartData } = useSecurityData();
+  const { experimentData, owaspCategories, owaspMapping, chartData } = useSecurityData();
 
   const tabs = [
     { id: 'dashboard', label: 'Resumo Executivo', icon: LayoutDashboard },
@@ -53,7 +52,7 @@ export default function App() {
 
         <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 min-h-[500px]">
           {activeTab === 'dashboard' && <DashboardTab experimentData={experimentData} chartData={chartData} />}
-          {activeTab === 'owasp' && <OwaspTab categories={OWASP_API_2023} mapping={owaspMapping} />}
+          {activeTab === 'owasp' && <OwaspTab categories={owaspCategories} mapping={owaspMapping} />}
           {activeTab === 'pipeline' && <PipelineTab chartData={chartData} totalAlta={experimentData.alta} />}
           {activeTab === 'comparativo' && <ComparativoTab chartData={chartData} />}
           {activeTab === 'historico' && <HistoricoTab />}

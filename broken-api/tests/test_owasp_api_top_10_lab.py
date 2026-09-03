@@ -206,7 +206,7 @@ def test_api3_rejects_profile_mass_assignment_and_filters_response():
 
 
 def test_api3_filters_user_collection_response():
-    response = client.get("/users")
+    response = client.get("/users", headers=auth_headers(99))
 
     assert response.status_code == 200
     assert response.json()
@@ -258,15 +258,7 @@ def test_api3_rejects_checkout_mass_assignment_and_filters_response():
     }
 
     debug_response = client.get("/checkout/debug")
-    assert debug_response.status_code == 200
-    assert set(debug_response.json()["all_orders"]["api3-safe-order"]) == {
-        "order_id",
-        "product_id",
-        "quantity",
-        "payment_method",
-        "total",
-        "status",
-    }
+    assert debug_response.status_code == 404
 
 
 def test_api4_products_are_paginated_and_bounded():
@@ -286,7 +278,11 @@ def test_api4_products_are_paginated_and_bounded():
 
 
 def test_api4_user_collection_is_paginated():
-    response = client.get("/users", params={"limit": 1, "offset": 0})
+    response = client.get(
+        "/users",
+        params={"limit": 1, "offset": 0},
+        headers=auth_headers(99),
+    )
 
     assert response.status_code == 200
     assert len(response.json()) <= 1
@@ -491,8 +487,31 @@ def test_api8_debug_endpoint_is_disabled_by_default():
     assert response.status_code == 404
 
 
-def test_api9_forgotten_inventory_endpoint_exposes_all_orders():
-    client.post(
+def test_backend_publishes_owasp_status_and_calculated_metrics():
+    response = client.get("/security/owasp")
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["source"] == "backend"
+    assert body["schema_version"] == 1
+    assert len(body["categories"]) == 10
+    assert body["metrics"] == {
+        "total": 10,
+        "mitigated": 5,
+        "partially_mitigated": 3,
+        "vulnerable": 2,
+        "not_assessed": 0,
+    }
+    api9 = next(
+        category
+        for category in body["categories"]
+        if category["id"] == "API9"
+    )
+    assert api9["status"] == "mitigated"
+
+
+def test_api9_legacy_inventory_endpoint_is_removed_and_admin_inventory_is_controlled():
+    create_response = client.post(
         "/checkout",
         headers=auth_headers(1),
         json={
@@ -502,25 +521,72 @@ def test_api9_forgotten_inventory_endpoint_exposes_all_orders():
             "payment_method": "card",
         },
     )
-    response = client.get("/checkout/debug")
+    assert create_response.status_code == 200
 
-    assert response.status_code == 200
-    assert "inventory-leak" in response.json()["all_orders"]
+    legacy_response = client.get("/checkout/debug")
+    assert legacy_response.status_code == 404
+
+    unauthenticated_users_response = client.get("/users")
+    assert unauthenticated_users_response.status_code == 401
+
+    non_admin_users_response = client.get(
+        "/users",
+        headers=auth_headers(1),
+    )
+    assert non_admin_users_response.status_code == 403
+
+    unauthenticated_response = client.get("/admin/inventory/orders")
+    assert unauthenticated_response.status_code == 401
+
+    non_admin_response = client.get(
+        "/admin/inventory/orders",
+        headers=auth_headers(1),
+    )
+    assert non_admin_response.status_code == 403
+
+    admin_response = client.get(
+        "/admin/inventory/orders",
+        headers=auth_headers(99),
+        params={"limit": 100, "offset": 0},
+    )
+    assert admin_response.status_code == 200
+    inventory_item = next(
+        item
+        for item in admin_response.json()
+        if item["order_id"] == "inventory-leak"
+    )
+    assert set(inventory_item) == {
+        "order_id",
+        "user_id",
+        "product_id",
+        "quantity",
+        "payment_method",
+        "total",
+        "status",
+    }
 
 
-def test_api10_unsafe_consumption_trusts_external_api_payload(monkeypatch):
-    malicious_payload = {
-        "street": "<script>alert('xss')</script>",
-        "is_admin": True,
-        "internal_risk_score": "trusted-without-validation",
+def test_api10_accepts_only_strictly_validated_provider_response(monkeypatch):
+    valid_payload = {
+        "street": "Rua Augusta, 100",
+        "city": "São Paulo",
+        "state": "SP",
+        "zipcode": "01001000",
     }
     captured = {}
 
-    def fake_urlopen(url, timeout):
+    def fake_open_provider(url, timeout):
         captured["url"] = url
-        return FakeHTTPResponse(json.dumps(malicious_payload))
+        captured["timeout"] = timeout
+        return FakeHTTPResponse(json.dumps(valid_payload))
 
-    monkeypatch.setattr(urllib.request, "urlopen", fake_urlopen)
+    import controllers.IntegrationController as integration_controller
+
+    monkeypatch.setattr(
+        integration_controller,
+        "_open_trusted_provider",
+        fake_open_provider,
+    )
 
     response = client.get(
         "/integrations/address/enrich",
@@ -531,6 +597,41 @@ def test_api10_unsafe_consumption_trusts_external_api_payload(monkeypatch):
     )
 
     assert response.status_code == 200
-    assert "zip=01001000" in captured["url"]
-    assert response.json()["trusted_external_payload"]["is_admin"] is True
-    assert response.json()["shipping_decision"]["street"].startswith("<script>")
+    assert captured["url"] == (
+        "https://address-provider.example.com/address?zip=01001000"
+    )
+    assert captured["timeout"] == 3
+    assert response.json()["address"] == valid_payload
+    assert response.json()["shipping_decision"] == {
+        "eligible": True,
+        "reason": "validated_provider_response",
+    }
+    assert "trusted_external_payload" not in response.json()
+
+
+def test_api10_rejects_untrusted_external_payload(monkeypatch):
+    malicious_payload = {
+        "street": "Rua Augusta, 100",
+        "city": "São Paulo",
+        "state": "SP",
+        "zipcode": "01001000",
+        "is_admin": True,
+    }
+
+    def fake_open_provider(url, timeout):
+        return FakeHTTPResponse(json.dumps(malicious_payload))
+
+    import controllers.IntegrationController as integration_controller
+
+    monkeypatch.setattr(
+        integration_controller,
+        "_open_trusted_provider",
+        fake_open_provider,
+    )
+
+    response = client.get(
+        "/integrations/address/enrich",
+        params={"zipcode": "01001000"},
+    )
+
+    assert response.status_code == 502

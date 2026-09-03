@@ -1,15 +1,15 @@
 """
-ATENCAO - ROTAS INTENCIONALMENTE VULNERAVEIS
-============================================
-Rotas de integracoes externas usadas no laboratorio OWASP API Top 10
-2023. NAO utilize em producao.
+Rotas de integrações externas usadas no laboratório OWASP API Top 10 2023.
+O endpoint de SSRF (API7) permanece didático; o enriquecimento de endereço
+aplica os controles de consumo seguro da API10.
 """
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Query
 
 from controllers.IntegrationController import IntegrationController
+from models.IntegrationModel import AddressEnrichmentResponseModel
 
-router = APIRouter(prefix="/integrations", tags=["Integracoes inseguras"])
+router = APIRouter(prefix="/integrations", tags=["Integrações externas"])
 
 
 @router.get("/fetch-url")
@@ -23,12 +23,15 @@ async def fetch_url(url: str):
     return IntegrationController.fetch_remote_url(url)
 
 
-@router.get("/address/enrich")
-async def enrich_address(zipcode: str, provider_url: str):
+@router.get("/address/enrich", response_model=AddressEnrichmentResponseModel)
+async def enrich_address(
+    zipcode: str = Query(..., min_length=8, max_length=9, pattern=r"^\d{8}(-\d{1,3})?$"),
+):
     """
     API10:2023 - Unsafe Consumption of APIs
     --------------------------------------------------
-    A API consome um provedor externo informado pelo cliente e confia
-    integralmente no JSON recebido, sem validar contrato ou origem.
+    A API usa um provedor HTTPS fixo em allowlist. O contrato da resposta
+    externa é validado antes de qualquer decisão local e o payload bruto
+    não é devolvido ao cliente.
     """
-    return IntegrationController.enrich_address(zipcode, provider_url)
+    return IntegrationController.enrich_address(zipcode)

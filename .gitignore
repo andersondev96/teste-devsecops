@@ -9,4 +9,5 @@ __pycache__/
 /sca_report.json
 /trivy_report.json
 /report_json.json
+/owasp_status.json
 /current_summary.json

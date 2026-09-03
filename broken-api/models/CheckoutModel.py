@@ -38,3 +38,17 @@ class PublicOrderModel(BaseModel):
 class CheckoutResponseModel(BaseModel):
     status: str
     order: PublicOrderModel
+
+
+class AdminOrderModel(BaseModel):
+    """Representação do inventário disponível somente para administradores."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    order_id: str
+    user_id: int
+    product_id: int
+    quantity: int
+    payment_method: Literal["card", "pix", "boleto"]
+    total: float
+    status: Literal["completed"]

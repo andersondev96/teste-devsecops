@@ -12,7 +12,7 @@ from itertools import islice
 from fastapi import HTTPException
 
 from models.UserModel import PublicUserModel, UserProfileUpdateModel
-from security import CurrentUser, authorize_object_access
+from security import CurrentUser, authorize_admin, authorize_object_access
 from users_db import users_db
 
 
@@ -104,17 +104,23 @@ class UserController:
             return {"status": "deleted", "id": user_id}
         raise HTTPException(status_code=404, detail="User not found")
 
-    def list_all_users(self, limit: int, offset: int):
+    def list_all_users(
+        self,
+        limit: int,
+        offset: int,
+        current_user: CurrentUser,
+    ):
         """
         API3:2023 - Excessive Data Exposure
         API9:2023 - Improper Inventory Management
         --------------------------------------------------
-        A rota continua sem autenticação por ser um controle pendente da
-        API9, mas recebe paginação limitada pela camada HTTP. Cada item é
-        serializado como um DTO público e não contém campos sensíveis.
+        O inventário de usuários exige função administrativa e recebe
+        paginação limitada pela camada HTTP. Cada item é serializado como
+        um DTO público e não contém campos sensíveis.
 
         A mitigação da API3 consiste em devolver somente campos públicos.
         """
+        authorize_admin(current_user)
         users = islice(self.users_db.values(), offset, offset + limit)
         return [
             PublicUserModel(
