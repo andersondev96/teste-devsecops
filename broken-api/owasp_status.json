@@ -104,14 +104,14 @@
       "id": "API8",
       "title": "API8:2023 - Security Misconfiguration",
       "desc": "Configurações inseguras e erros detalhados.",
-      "status": "vulnerable",
+      "status": "mitigated",
       "evidence": {
-        "Title": "Teste API8 — endpoint de debug exposto",
-        "desc": "Um endpoint de depuração público expõe segredos, cabeçalhos e informações internas da aplicação.",
-        "solution": "Remover endpoints de debug em produção e aplicar autenticação, autorização e configuração segura.",
-        "uri": "GET /auth/debug",
+        "Title": "Regressão API8 — configuração segura e erros genéricos",
+        "desc": "Os testes confirmam a remoção da rota de debug, a desativação da documentação em produção, headers de hardening e respostas genéricas sem query ou stack trace.",
+        "solution": "Desabilitar documentação em produção, remover endpoints de debug, registrar detalhes apenas no servidor, devolver erros genéricos e aplicar headers de segurança.",
+        "uri": "/auth/debug, /docs, /redoc, GET /products/search",
         "file": "broken-api/tests/test_owasp_api_top_10_lab.py",
-        "line_number": 484
+        "line_number": 491
       }
     },
     {

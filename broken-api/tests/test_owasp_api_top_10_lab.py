@@ -19,6 +19,7 @@ os.environ.setdefault(
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from controllers.ProductController import ProductController
+from config import docs_are_enabled
 from main import app
 from security import create_access_token
 
@@ -485,6 +486,55 @@ def test_api8_debug_endpoint_is_disabled_by_default():
     response = client.get("/auth/debug", headers={"x-lab-token": "visible"})
 
     assert response.status_code == 404
+    assert "/auth/debug" not in client.get("/openapi.json").json()["paths"]
+
+
+def test_api8_production_disables_documentation_and_adds_security_headers():
+    assert docs_are_enabled("production", "true") is False
+    assert docs_are_enabled("development", "true") is True
+    assert docs_are_enabled("development", "false") is False
+
+    response = client.get("/products")
+
+    assert response.status_code == 200
+    assert response.headers["x-content-type-options"] == "nosniff"
+    assert response.headers["x-frame-options"] == "DENY"
+    assert response.headers["referrer-policy"] == "no-referrer"
+    assert response.headers["cross-origin-resource-policy"] == "same-origin"
+    assert response.headers["cache-control"] == "no-store"
+
+
+def test_api8_product_database_errors_do_not_expose_internal_details(monkeypatch):
+    import controllers.ProductController as product_controller
+
+    class FailingCursor:
+        def execute(self, *_args):
+            raise product_controller.sqlite3.OperationalError(
+                "secret query and database path"
+            )
+
+    class FailingConnection:
+        def cursor(self):
+            return FailingCursor()
+
+        def close(self):
+            return None
+
+    monkeypatch.setattr(
+        product_controller.sqlite3,
+        "connect",
+        lambda _path: FailingConnection(),
+    )
+
+    response = client.get(
+        "/products/search",
+        params={"name": "Laptop"},
+    )
+
+    assert response.status_code == 500
+    assert response.json() == {"detail": "Internal server error"}
+    assert "secret query" not in response.text
+    assert "trace" not in response.text.lower()
 
 
 def test_backend_publishes_owasp_status_and_calculated_metrics():
@@ -497,9 +547,9 @@ def test_backend_publishes_owasp_status_and_calculated_metrics():
     assert len(body["categories"]) == 10
     assert body["metrics"] == {
         "total": 10,
-        "mitigated": 5,
+        "mitigated": 6,
         "partially_mitigated": 3,
-        "vulnerable": 2,
+        "vulnerable": 1,
         "not_assessed": 0,
     }
     api9 = next(
@@ -508,6 +558,12 @@ def test_backend_publishes_owasp_status_and_calculated_metrics():
         if category["id"] == "API9"
     )
     assert api9["status"] == "mitigated"
+    api8 = next(
+        category
+        for category in body["categories"]
+        if category["id"] == "API8"
+    )
+    assert api8["status"] == "mitigated"
 
 
 def test_api9_legacy_inventory_endpoint_is_removed_and_admin_inventory_is_controlled():

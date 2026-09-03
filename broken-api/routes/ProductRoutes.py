@@ -68,8 +68,8 @@ async def search_products(
 
     API8:2023 - Security Misconfiguration
     --------------------------------------------------
-    O tratamento de erro detalhado ainda é um cenário didático pendente
-    de API8 e não deve ser usado em produção.
+    Falhas internas são registradas no servidor e retornam somente uma
+    mensagem genérica ao cliente.
     """
     return ProductController.search_products(name, limit=limit, offset=offset)
 

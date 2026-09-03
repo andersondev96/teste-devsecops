@@ -1,6 +1,6 @@
 """Rotas de autenticação da API."""
 
-from fastapi import APIRouter, Depends, Request
+from fastapi import APIRouter, Depends
 
 from controllers.AuthController import AuthController
 from limits import enforce_rate_limit
@@ -45,14 +45,3 @@ async def get_user(
     ao usuário, reduzindo varreduras repetitivas e consumo desnecessário.
     """
     return auth_controller.get_user(user_id, current_user)
-
-
-@router.get("/auth/debug")
-async def auth_debug(request: Request):
-    """
-    Endpoint legado de debug, desabilitado por padrão.
-    --------------------------------------------------
-    Quando habilitado explicitamente, não devolve headers, segredos ou
-    registros de usuários.
-    """
-    return auth_controller.debug_info(request)
