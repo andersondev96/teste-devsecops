@@ -17,6 +17,11 @@ RUN addgroup -S -g 10001 app \
     && adduser -S -D -H -u 10001 -G app app \
     && chown app:app /app
 
+# A imagem base pode conter uma revisão anterior do libuuid, integrante do
+# util-linux. Atualiza apenas o pacote vulnerável no repositório Alpine, sem
+# instalar os utilitários adicionais nem atualizar o sistema indiscriminadamente.
+RUN apk add --no-cache --upgrade libuuid
+
 COPY requirements.txt .
 # Atualiza as ferramentas usadas somente durante o build. Elas são removidas
 # ao final para que pip/setuptools e seus módulos vendorizados não façam parte
