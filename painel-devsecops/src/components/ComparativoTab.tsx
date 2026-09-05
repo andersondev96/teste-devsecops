@@ -61,7 +61,7 @@ export function ComparativoTab({ chartData }: ComparativoProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
         {/* Gráfico de Barras: Antes vs Depois por Ferramenta */}
         <div className="bg-white p-4 border rounded-lg shadow-sm">
-          <h3 className="text-md font-semibold text-slate-700 mb-6 text-center">Impacto da Mitigação por Vetor (SAST/DAST/SCA)</h3>
+          <h3 className="text-md font-semibold text-slate-700 mb-6 text-center">Impacto da Mitigação por Vetor (SAST/DAST/SCA/Container/IaC)</h3>
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={dadosComparativos} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>

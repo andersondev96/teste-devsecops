@@ -1,0 +1,12 @@
+.git/
+.github/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.vscode/
+*.db
+tests/
+requirements-dev.txt
+VULNERABILITY_MITIGATION.md
