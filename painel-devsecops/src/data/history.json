@@ -188,5 +188,16 @@
     "dast": 3,
     "trivy": 3,
     "total": 6
+  },
+  {
+    "date": "2026-09-05T20:06:52Z",
+    "description": "fix(iac): harden Docker image and pipeline scans",
+    "commit": "5a58164",
+    "sast": 0,
+    "sca": 0,
+    "dast": 3,
+    "trivy": 7,
+    "iac": 0,
+    "total": 10
   }
 ]

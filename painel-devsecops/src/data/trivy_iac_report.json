@@ -1,5 +1,21 @@
 {
   "SchemaVersion": 2,
-  "ArtifactType": "config",
-  "Results": []
+  "Trivy": {
+    "Version": "0.74.0"
+  },
+  "ReportID": "01a0732c-d6c0-79e7-87a5-390fa97ac875",
+  "CreatedAt": "2026-09-05T20:05:13.536651087Z",
+  "ArtifactName": "broken-api",
+  "ArtifactType": "filesystem",
+  "Results": [
+    {
+      "Target": "Dockerfile",
+      "Class": "config",
+      "Type": "dockerfile",
+      "MisconfSummary": {
+        "Successes": 27,
+        "Failures": 0
+      }
+    }
+  ]
 }
