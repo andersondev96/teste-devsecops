@@ -3,32 +3,33 @@
   "Trivy": {
     "Version": "0.74.0"
   },
-  "ReportID": "01a0732d-2f84-715b-9412-8da0468eca4b",
-  "CreatedAt": "2026-09-05T20:05:36.260090734Z",
-  "ArtifactID": "sha256:2b57663066c8c58a4da354f7e1c01aae067f316d4d38a6f3d66c31f948cd42d0",
+  "ReportID": "01a07356-7a11-7276-a128-633805aa0476",
+  "CreatedAt": "2026-09-05T20:50:42.321163011Z",
+  "ArtifactID": "sha256:234f415da95d32d6074052ba8cd54280280406f9685039cab7dc957002b6e685",
   "ArtifactName": "vulnerable-api:latest",
   "ArtifactType": "container_image",
   "Metadata": {
-    "Size": 93062144,
+    "Size": 93185536,
     "OS": {
       "Family": "alpine",
       "Name": "3.24.1"
     },
-    "ImageID": "sha256:2b7253cbecd4eaffb87edb57d85f1cd9c615c001d7d1820ab73162f556236906",
+    "ImageID": "sha256:1a547c28bf9402b871b506f34cddc86b9562e2a599c2af1f2db49f1a46a03234",
     "DiffIDs": [
       "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c",
       "sha256:3ca4be2c6e9ac0223715355253725381000486c2b45bfcb22cf571b6a85a12dd",
       "sha256:e5ccda0fbf6b54d343e024156d876553ba57d3926d7196584b3a1ce4df016366",
       "sha256:4098ad033525263f92a8a9c51865596025d47018e078c0b1f7d9cd5663fc1ffe",
-      "sha256:7759fa8bc223a71887c685d6451899fc73d4e6c5a268ba27d5a98213c1df9f0b",
-      "sha256:ab39771a23cb7d836b12b52264b9f187b8f4b0b417d0b3085f173c63cb5bb1be",
-      "sha256:f479fd867dd80d9eb5e6596f32b54e21006bd5d5967210ba092427b589f9b27b",
-      "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59",
-      "sha256:3cd77c1becebda5878caec7f2ce04931b6d52ed538c04abdeda7ea6e7d9f1912",
-      "sha256:32215c0f553676d7102ad445ac745047280a4db6e68017822be1abd147f23c0c",
-      "sha256:83f293de7428766505fa7dd8fcffb272ebff0140b536ee6afc835847606d96cf",
-      "sha256:10fd827bd78795ed900a55eedc2110c12cde32827305c0a3d0c472312ae174bd",
-      "sha256:804a9d552143fed1ed4431cf424ed786c95aacc1a84d66a0ffed3bd47480b4e2"
+      "sha256:1e0a4d03a94b8b14be2d37561c1c0eb25c9e31dd07df5d43f63bb91e43ea5e14",
+      "sha256:e1c6d4c5072836831c6e8f82a575bfb0b1c24e769ab54e33bd0a80ed5f80adbd",
+      "sha256:22bc76ce7e583f8626f56298a37f366ea39255d8d38420d9f22c74c4eec6684f",
+      "sha256:cdf1291468a6ec7d91b5608c1caebe6a1b022e0bde4d3b41989fbc5f4c4b12b1",
+      "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8",
+      "sha256:89bccca4f4603a89236cef8a228e09c7f6256f9eb9e0854f363618ca78d3c89b",
+      "sha256:43410d8ddf072260646859f85a34fc2be7ec1dee0d3e4e09dd481c0fe7bf3c83",
+      "sha256:81bff35c3d739d4c2a2f996abebcf95ae848c7d2aa8795f71681e661da0d2eb5",
+      "sha256:b26720d25bada80c42398ef09edd22eb106106ecb148c7d480f0adbc53246417",
+      "sha256:60fa0462c39a9ae439270adfd01d7c7edd9e00843933b5e90b4bd3384f1342dc"
     ],
     "RepoTags": [
       "vulnerable-api:latest"
@@ -36,7 +37,7 @@
     "Reference": "vulnerable-api:latest",
     "ImageConfig": {
       "architecture": "amd64",
-      "created": "2026-09-05T20:05:06.063758324Z",
+      "created": "2026-09-05T20:50:07.691256077Z",
       "history": [
         {
           "created": "2026-06-16T00:01:29Z",
@@ -101,76 +102,81 @@
           "empty_layer": true
         },
         {
-          "created": "2026-09-05T20:04:53Z",
+          "created": "2026-09-05T20:49:55Z",
           "created_by": "WORKDIR /app",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T20:04:54Z",
+          "created": "2026-09-05T20:49:55Z",
           "created_by": "ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_DISABLE_PIP_VERSION_CHECK=1 PIP_NO_CACHE_DIR=1",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2026-09-05T20:04:54Z",
+          "created": "2026-09-05T20:49:55Z",
           "created_by": "RUN /bin/sh -c addgroup -S -g 10001 app     \u0026\u0026 adduser -S -D -H -u 10001 -G app app     \u0026\u0026 chown app:app /app # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T20:04:54Z",
+          "created": "2026-09-05T20:49:56Z",
+          "created_by": "RUN /bin/sh -c apk add --no-cache --upgrade libuuid # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-09-05T20:49:56Z",
           "created_by": "COPY requirements.txt . # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T20:05:05Z",
+          "created": "2026-09-05T20:50:07Z",
           "created_by": "RUN /bin/sh -c python -m pip install --no-cache-dir --upgrade pip     \u0026\u0026 python -m pip install --no-cache-dir -r requirements.txt     \u0026\u0026 python -m pip install --no-cache-dir         \"setuptools==83.0.0\"     \u0026\u0026 rm -rf         /usr/local/lib/python3.12/site-packages/pip         /usr/local/lib/python3.12/site-packages/pip-*.dist-info         /usr/local/lib/python3.12/site-packages/setuptools         /usr/local/lib/python3.12/site-packages/setuptools-*.dist-info         /usr/local/bin/pip         /usr/local/bin/pip3         /usr/local/bin/pip3.12 # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T20:05:05Z",
+          "created": "2026-09-05T20:50:07Z",
           "created_by": "COPY main.py run.py security.py users_db.py limits.py config.py security_headers.py ./ # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T20:05:05Z",
+          "created": "2026-09-05T20:50:07Z",
           "created_by": "COPY owasp_status.json ./owasp_status.json # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T20:05:05Z",
+          "created": "2026-09-05T20:50:07Z",
           "created_by": "COPY controllers ./controllers # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T20:05:05Z",
+          "created": "2026-09-05T20:50:07Z",
           "created_by": "COPY models ./models # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T20:05:06Z",
+          "created": "2026-09-05T20:50:07Z",
           "created_by": "COPY routes ./routes # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T20:05:06Z",
+          "created": "2026-09-05T20:50:07Z",
           "created_by": "EXPOSE map[8000/tcp:{}]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2026-09-05T20:05:06Z",
+          "created": "2026-09-05T20:50:07Z",
           "created_by": "HEALTHCHECK \u0026{[\"CMD\" \"python\" \"-c\" \"import urllib.request; response = urllib.request.urlopen('http://127.0.0.1:8000/security/owasp', timeout=2); raise SystemExit(0 if response.status == 200 else 1)\"] \"30s\" \"5s\" \"10s\" \"0s\" '\\x03'}",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2026-09-05T20:05:06Z",
+          "created": "2026-09-05T20:50:07Z",
           "created_by": "USER app",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2026-09-05T20:05:06Z",
+          "created": "2026-09-05T20:50:07Z",
           "created_by": "CMD [\"uvicorn\" \"main:app\" \"--host\" \"0.0.0.0\" \"--port\" \"8000\"]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
@@ -184,15 +190,16 @@
           "sha256:3ca4be2c6e9ac0223715355253725381000486c2b45bfcb22cf571b6a85a12dd",
           "sha256:e5ccda0fbf6b54d343e024156d876553ba57d3926d7196584b3a1ce4df016366",
           "sha256:4098ad033525263f92a8a9c51865596025d47018e078c0b1f7d9cd5663fc1ffe",
-          "sha256:7759fa8bc223a71887c685d6451899fc73d4e6c5a268ba27d5a98213c1df9f0b",
-          "sha256:ab39771a23cb7d836b12b52264b9f187b8f4b0b417d0b3085f173c63cb5bb1be",
-          "sha256:f479fd867dd80d9eb5e6596f32b54e21006bd5d5967210ba092427b589f9b27b",
-          "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59",
-          "sha256:3cd77c1becebda5878caec7f2ce04931b6d52ed538c04abdeda7ea6e7d9f1912",
-          "sha256:32215c0f553676d7102ad445ac745047280a4db6e68017822be1abd147f23c0c",
-          "sha256:83f293de7428766505fa7dd8fcffb272ebff0140b536ee6afc835847606d96cf",
-          "sha256:10fd827bd78795ed900a55eedc2110c12cde32827305c0a3d0c472312ae174bd",
-          "sha256:804a9d552143fed1ed4431cf424ed786c95aacc1a84d66a0ffed3bd47480b4e2"
+          "sha256:1e0a4d03a94b8b14be2d37561c1c0eb25c9e31dd07df5d43f63bb91e43ea5e14",
+          "sha256:e1c6d4c5072836831c6e8f82a575bfb0b1c24e769ab54e33bd0a80ed5f80adbd",
+          "sha256:22bc76ce7e583f8626f56298a37f366ea39255d8d38420d9f22c74c4eec6684f",
+          "sha256:cdf1291468a6ec7d91b5608c1caebe6a1b022e0bde4d3b41989fbc5f4c4b12b1",
+          "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8",
+          "sha256:89bccca4f4603a89236cef8a228e09c7f6256f9eb9e0854f363618ca78d3c89b",
+          "sha256:43410d8ddf072260646859f85a34fc2be7ec1dee0d3e4e09dd481c0fe7bf3c83",
+          "sha256:81bff35c3d739d4c2a2f996abebcf95ae848c7d2aa8795f71681e661da0d2eb5",
+          "sha256:b26720d25bada80c42398ef09edd22eb106106ecb148c7d480f0adbc53246417",
+          "sha256:60fa0462c39a9ae439270adfd01d7c7edd9e00843933b5e90b4bd3384f1342dc"
         ]
       },
       "config": {
@@ -254,39 +261,43 @@
       },
       {
         "Size": 1536,
-        "DiffID": "sha256:7759fa8bc223a71887c685d6451899fc73d4e6c5a268ba27d5a98213c1df9f0b"
+        "DiffID": "sha256:1e0a4d03a94b8b14be2d37561c1c0eb25c9e31dd07df5d43f63bb91e43ea5e14"
       },
       {
         "Size": 10240,
-        "DiffID": "sha256:ab39771a23cb7d836b12b52264b9f187b8f4b0b417d0b3085f173c63cb5bb1be"
+        "DiffID": "sha256:e1c6d4c5072836831c6e8f82a575bfb0b1c24e769ab54e33bd0a80ed5f80adbd"
+      },
+      {
+        "Size": 123392,
+        "DiffID": "sha256:22bc76ce7e583f8626f56298a37f366ea39255d8d38420d9f22c74c4eec6684f"
       },
       {
         "Size": 2560,
-        "DiffID": "sha256:f479fd867dd80d9eb5e6596f32b54e21006bd5d5967210ba092427b589f9b27b"
+        "DiffID": "sha256:cdf1291468a6ec7d91b5608c1caebe6a1b022e0bde4d3b41989fbc5f4c4b12b1"
       },
       {
         "Size": 35444224,
-        "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+        "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
       },
       {
         "Size": 29184,
-        "DiffID": "sha256:3cd77c1becebda5878caec7f2ce04931b6d52ed538c04abdeda7ea6e7d9f1912"
+        "DiffID": "sha256:89bccca4f4603a89236cef8a228e09c7f6256f9eb9e0854f363618ca78d3c89b"
       },
       {
         "Size": 10240,
-        "DiffID": "sha256:32215c0f553676d7102ad445ac745047280a4db6e68017822be1abd147f23c0c"
+        "DiffID": "sha256:43410d8ddf072260646859f85a34fc2be7ec1dee0d3e4e09dd481c0fe7bf3c83"
       },
       {
         "Size": 96768,
-        "DiffID": "sha256:83f293de7428766505fa7dd8fcffb272ebff0140b536ee6afc835847606d96cf"
+        "DiffID": "sha256:81bff35c3d739d4c2a2f996abebcf95ae848c7d2aa8795f71681e661da0d2eb5"
       },
       {
         "Size": 31232,
-        "DiffID": "sha256:10fd827bd78795ed900a55eedc2110c12cde32827305c0a3d0c472312ae174bd"
+        "DiffID": "sha256:b26720d25bada80c42398ef09edd22eb106106ecb148c7d480f0adbc53246417"
       },
       {
         "Size": 44544,
-        "DiffID": "sha256:804a9d552143fed1ed4431cf424ed786c95aacc1a84d66a0ffed3bd47480b4e2"
+        "DiffID": "sha256:60fa0462c39a9ae439270adfd01d7c7edd9e00843933b5e90b4bd3384f1342dc"
       }
     ]
   },
@@ -301,7 +312,7 @@
           "Name": ".python-rundeps",
           "Identifier": {
             "PURL": "pkg:apk/alpine/.python-rundeps@20260901.001029?arch=noarch\u0026distro=3.24.1",
-            "UID": "f1281cc9b2d2c4ca"
+            "UID": "4e26c99fecac1e97"
           },
           "Version": "20260901.001029",
           "Arch": "noarch",
@@ -315,7 +326,7 @@
             "libpanelw@6.6_p20260516-r0",
             "libssl3@3.5.8-r0",
             "libtirpc@1.3.5-r1",
-            "libuuid@2.42.1-r0",
+            "libuuid@2.42.3-r1",
             "musl@1.2.6-r2",
             "readline@8.3.3-r1",
             "sqlite-libs@3.53.4-r0",
@@ -1264,16 +1275,16 @@
           "AnalyzedBy": "apk"
         },
         {
-          "ID": "libuuid@2.42.1-r0",
+          "ID": "libuuid@2.42.3-r1",
           "Name": "libuuid",
           "Identifier": {
-            "PURL": "pkg:apk/alpine/libuuid@2.42.1-r0?arch=x86_64\u0026distro=3.24.1",
-            "UID": "61e289a52fcab6f6"
+            "PURL": "pkg:apk/alpine/libuuid@2.42.3-r1?arch=x86_64\u0026distro=3.24.1",
+            "UID": "c444e9cdd1bdda40"
           },
-          "Version": "2.42.1-r0",
+          "Version": "2.42.3-r1",
           "Arch": "x86_64",
           "SrcName": "util-linux",
-          "SrcVersion": "2.42.1-r0",
+          "SrcVersion": "2.42.3-r1",
           "Licenses": [
             "BSD-3-Clause"
           ],
@@ -1282,9 +1293,9 @@
             "musl@1.2.6-r2"
           ],
           "Layer": {
-            "DiffID": "sha256:e5ccda0fbf6b54d343e024156d876553ba57d3926d7196584b3a1ce4df016366"
+            "DiffID": "sha256:22bc76ce7e583f8626f56298a37f366ea39255d8d38420d9f22c74c4eec6684f"
           },
-          "Digest": "sha1:6acb0e27112dfb784e6f7ccceb0e968fafa09713",
+          "Digest": "sha1:8f041ef637ad75f381cc0c034f2afbbb0303264e",
           "InstalledFiles": [
             "usr/lib/libuuid.so.1",
             "usr/lib/libuuid.so.1.3.0"
@@ -2241,328 +2252,6 @@
           ],
           "AnalyzedBy": "apk"
         }
-      ],
-      "Vulnerabilities": [
-        {
-          "VulnerabilityID": "CVE-2026-53612",
-          "PkgID": "libuuid@2.42.1-r0",
-          "PkgName": "libuuid",
-          "PkgIdentifier": {
-            "PURL": "pkg:apk/alpine/libuuid@2.42.1-r0?arch=x86_64\u0026distro=3.24.1",
-            "UID": "61e289a52fcab6f6"
-          },
-          "InstalledVersion": "2.42.1-r0",
-          "FixedVersion": "2.42.3-r0",
-          "Status": "fixed",
-          "Layer": {
-            "DiffID": "sha256:e5ccda0fbf6b54d343e024156d876553ba57d3926d7196584b3a1ce4df016366"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-53612",
-          "DataSource": {
-            "ID": "alpine",
-            "Name": "Alpine Secdb",
-            "URL": "https://secdb.alpinelinux.org/"
-          },
-          "Fingerprint": "sha256:5fce0fb466acef293417bbdd87d17c274d324514f469d42aaf36619c805f1f21",
-          "Title": "util-linux: util-linux: TOCTOU in the mount program when applying post-mount ownership/mode changes",
-          "Description": "A flaw was found in util-linux. When an /etc/fstab entry uses the user option together with X-mount.owner, X-mount.group, or X-mount.mode, mount(8) changes ownership or permissions on the mount target after mounting without re-verifying the path. A local unprivileged user can exploit this Time-of-Check-Time-of-Use (TOCTOU) window by swapping the target directory, redirecting the ownership/permission change to an arbitrary file and potentially escalating privileges to root.",
-          "Severity": "HIGH",
-          "VendorSeverity": {
-            "redhat": 3,
-            "ubuntu": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
-              "V3Score": 7
-            }
-          },
-          "References": [
-            "https://access.redhat.com/security/cve/CVE-2026-53612",
-            "https://github.com/util-linux/util-linux/security/advisories/GHSA-g8wm-75wr-g2vh",
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-53612",
-            "https://ubuntu.com/security/notices/USN-8702-1",
-            "https://www.cve.org/CVERecord?id=CVE-2026-53612"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-53613",
-          "PkgID": "libuuid@2.42.1-r0",
-          "PkgName": "libuuid",
-          "PkgIdentifier": {
-            "PURL": "pkg:apk/alpine/libuuid@2.42.1-r0?arch=x86_64\u0026distro=3.24.1",
-            "UID": "61e289a52fcab6f6"
-          },
-          "InstalledVersion": "2.42.1-r0",
-          "FixedVersion": "2.42.3-r0",
-          "Status": "fixed",
-          "Layer": {
-            "DiffID": "sha256:e5ccda0fbf6b54d343e024156d876553ba57d3926d7196584b3a1ce4df016366"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-53613",
-          "DataSource": {
-            "ID": "alpine",
-            "Name": "Alpine Secdb",
-            "URL": "https://secdb.alpinelinux.org/"
-          },
-          "Fingerprint": "sha256:6c6979f41654449ae259fa52b492e1125a032acba2d47623373fc0de11565b03",
-          "Title": "util-linux: util-linux: TOCTOU in the mount program via ancestor directory swap on target path",
-          "Description": "When an /etc/fstab entry is configured with the user or users option, mount(8) validates the target path before performing the mount syscall, creating a Time-of-Check-Time-of-Use (TOCTOU) window. A local unprivileged user with write access to an ancestor directory of the mount target can swap that directory to redirect the mount to an arbitrary root-owned location, potentially escalating privileges to root.",
-          "Severity": "HIGH",
-          "VendorSeverity": {
-            "redhat": 3,
-            "ubuntu": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
-              "V3Score": 7
-            }
-          },
-          "References": [
-            "https://access.redhat.com/security/cve/CVE-2026-53613",
-            "https://github.com/util-linux/util-linux/security/advisories/GHSA-8gj5-72r3-428g",
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-53613",
-            "https://ubuntu.com/security/notices/USN-8702-1",
-            "https://www.cve.org/CVERecord?id=CVE-2026-53613"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-53614",
-          "PkgID": "libuuid@2.42.1-r0",
-          "PkgName": "libuuid",
-          "PkgIdentifier": {
-            "PURL": "pkg:apk/alpine/libuuid@2.42.1-r0?arch=x86_64\u0026distro=3.24.1",
-            "UID": "61e289a52fcab6f6"
-          },
-          "InstalledVersion": "2.42.1-r0",
-          "FixedVersion": "2.42.3-r0",
-          "Status": "fixed",
-          "Layer": {
-            "DiffID": "sha256:e5ccda0fbf6b54d343e024156d876553ba57d3926d7196584b3a1ce4df016366"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-53614",
-          "DataSource": {
-            "ID": "alpine",
-            "Name": "Alpine Secdb",
-            "URL": "https://secdb.alpinelinux.org/"
-          },
-          "Fingerprint": "sha256:c690a9451024084c14f7861e56a7de29ec2f51439686e009344f1a05b9b7f0a1",
-          "Title": "util-linux: util-linux: SUID mount(8) allows nosuid/noexec bypass via LIBMOUNT_FORCE_MOUNT2",
-          "Description": "A flaw was found in util-linux. The mount(8) SUID binary does not sanitize the LIBMOUNT_FORCE_MOUNT2 environment variable before use. A local unprivileged user can set this variable to force mount(8) to use the legacy two-step mount(2) code path, which applies security restrictions such as nosuid and noexec after the mount is already active. During this window, an attacker can execute a SUID binary from the mounted filesystem, allowing local privilege escalation to root.",
-          "Severity": "HIGH",
-          "VendorSeverity": {
-            "redhat": 3,
-            "ubuntu": 2
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
-              "V3Score": 7
-            }
-          },
-          "References": [
-            "https://access.redhat.com/security/cve/CVE-2026-53614",
-            "https://github.com/util-linux/util-linux/security/advisories/GHSA-67r7-8m5w-22wx",
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-53614",
-            "https://ubuntu.com/security/notices/USN-8702-1",
-            "https://www.cve.org/CVERecord?id=CVE-2026-53614"
-          ]
-        },
-        {
-          "VulnerabilityID": "CVE-2026-76642",
-          "PkgID": "libuuid@2.42.1-r0",
-          "PkgName": "libuuid",
-          "PkgIdentifier": {
-            "PURL": "pkg:apk/alpine/libuuid@2.42.1-r0?arch=x86_64\u0026distro=3.24.1",
-            "UID": "61e289a52fcab6f6"
-          },
-          "InstalledVersion": "2.42.1-r0",
-          "FixedVersion": "2.42.3-r0",
-          "Status": "fixed",
-          "Layer": {
-            "DiffID": "sha256:e5ccda0fbf6b54d343e024156d876553ba57d3926d7196584b3a1ce4df016366"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-76642",
-          "DataSource": {
-            "ID": "alpine",
-            "Name": "Alpine Secdb",
-            "URL": "https://secdb.alpinelinux.org/"
-          },
-          "Fingerprint": "sha256:4d1e90a8410b9e4b8b6f303f5a402967c8c935d139f8a058cf241b7b09da88e1",
-          "Title": "util-linux: util-linux: failed external mount helper still runs privileged X-mount post-hooks",
-          "Description": "util-linux versions through 2.41.5 and 2.42.2 fail to check mount helper exit status before running post-mount hooks, allowing unprivileged users to execute privileged operations on pre-existing filesystems. Attackers can exploit X-mount.idmap or X-mount.owner hooks to clone filesystems with inherited suid bits or modify target inode permissions after a helper fails, achieving privilege escalation.",
-          "Severity": "HIGH",
-          "CweIDs": [
-            "CWE-390"
-          ],
-          "VendorSeverity": {
-            "redhat": 3
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
-              "V3Score": 7.8
-            }
-          },
-          "References": [
-            "https://access.redhat.com/security/cve/CVE-2026-76642",
-            "https://github.com/util-linux/util-linux",
-            "https://github.com/util-linux/util-linux/blob/v2.42.2/libmount/src/context_mount.c#L476",
-            "https://github.com/util-linux/util-linux/blob/v2.42.2/libmount/src/context_mount.c#L892",
-            "https://github.com/util-linux/util-linux/commit/1d14676ea70003e9f5b2a6a76af0cadb1190411a",
-            "https://github.com/util-linux/util-linux/commit/a15c00a9e545aa8b9cf6ec0f888ff6c7b3eaeedc",
-            "https://github.com/util-linux/util-linux/commit/f57cea130839c0af8dc0525274267ae4cfd66bbf",
-            "https://github.com/util-linux/util-linux/security/advisories/GHSA-m25x-3hj9-m26f",
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-76642",
-            "https://www.cve.org/CVERecord?id=CVE-2026-76642",
-            "https://www.vulncheck.com/advisories/util-linux-libmount-privilege-escalation-via-failed-mount-helper"
-          ],
-          "PublishedDate": "2026-09-03T13:06:08.44Z",
-          "LastModifiedDate": "2026-09-03T15:17:33.49Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2026-78408",
-          "PkgID": "libuuid@2.42.1-r0",
-          "PkgName": "libuuid",
-          "PkgIdentifier": {
-            "PURL": "pkg:apk/alpine/libuuid@2.42.1-r0?arch=x86_64\u0026distro=3.24.1",
-            "UID": "61e289a52fcab6f6"
-          },
-          "InstalledVersion": "2.42.1-r0",
-          "FixedVersion": "2.42.3-r0",
-          "Status": "fixed",
-          "Layer": {
-            "DiffID": "sha256:e5ccda0fbf6b54d343e024156d876553ba57d3926d7196584b3a1ce4df016366"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78408",
-          "DataSource": {
-            "ID": "alpine",
-            "Name": "Alpine Secdb",
-            "URL": "https://secdb.alpinelinux.org/"
-          },
-          "Fingerprint": "sha256:d3be1c69da281376bda325cecaf6b4bb4394a8d6a297b562f792905313dbefe6",
-          "Title": "util-linux: util-linux: nsenter --join-cgroup leaks root cgroup migration authority",
-          "Description": "The nsenter --join-cgroup option opens the target cgroup.procs file as root and leaves that file descriptor open across later namespace and credential changes and across execve(). Because the kernel checks later cgroup migrations using the credentials from the original open, a program run in an attacker-controlled target can inherit root's ability to move host processes between cgroups. After a privileged operator uses --join-cgroup against that target, an unprivileged user can migrate and terminate unrelated root processes.",
-          "Severity": "HIGH",
-          "CweIDs": [
-            "CWE-775"
-          ],
-          "VendorSeverity": {
-            "redhat": 3
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:R/S:C/C:N/I:H/A:H",
-              "V3Score": 7.9
-            }
-          },
-          "References": [
-            "http://www.openwall.com/lists/oss-security/2026/09/05/2",
-            "https://access.redhat.com/errata/RHSA-2026:63162",
-            "https://access.redhat.com/security/cve/CVE-2026-78408",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2522497",
-            "https://github.com/util-linux/util-linux/security/advisories/GHSA-55fx-f4gg-cfhj",
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-78408",
-            "https://www.cve.org/CVERecord?id=CVE-2026-78408"
-          ],
-          "PublishedDate": "2026-09-02T16:17:23.687Z",
-          "LastModifiedDate": "2026-09-05T14:17:23.727Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2026-78409",
-          "PkgID": "libuuid@2.42.1-r0",
-          "PkgName": "libuuid",
-          "PkgIdentifier": {
-            "PURL": "pkg:apk/alpine/libuuid@2.42.1-r0?arch=x86_64\u0026distro=3.24.1",
-            "UID": "61e289a52fcab6f6"
-          },
-          "InstalledVersion": "2.42.1-r0",
-          "FixedVersion": "2.42.3-r0",
-          "Status": "fixed",
-          "Layer": {
-            "DiffID": "sha256:e5ccda0fbf6b54d343e024156d876553ba57d3926d7196584b3a1ce4df016366"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78409",
-          "DataSource": {
-            "ID": "alpine",
-            "Name": "Alpine Secdb",
-            "URL": "https://secdb.alpinelinux.org/"
-          },
-          "Fingerprint": "sha256:780391202cf6f17435ded13bccf0b1b7d632b2d387b265a2813760759a8f2a14",
-          "Title": "util-linux: util-linux: X-mount.subdir detached-tree resolution can escape via intermediate symlinks",
-          "Description": "The X-mount.subdir option uses a detached-tree fast path on Linux 6.15 and later and passes the configured subdirectory to open_tree() with AT_SYMLINK_NOFOLLOW. That flag does not stop intermediate symlink traversal or keep resolution inside the newly mounted filesystem. A local unprivileged user with an fstab-authorized X-mount.subdir entry can attach a host path at the intended mountpoint.",
-          "Severity": "HIGH",
-          "CweIDs": [
-            "CWE-59"
-          ],
-          "VendorSeverity": {
-            "redhat": 3
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
-              "V3Score": 7
-            }
-          },
-          "References": [
-            "https://access.redhat.com/errata/RHSA-2026:63162",
-            "https://access.redhat.com/security/cve/CVE-2026-78409",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2522607",
-            "https://github.com/util-linux/util-linux/security/advisories/GHSA-8f2p-47x3-43mv",
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-78409",
-            "https://www.cve.org/CVERecord?id=CVE-2026-78409"
-          ],
-          "PublishedDate": "2026-09-02T16:17:23.833Z",
-          "LastModifiedDate": "2026-09-03T18:12:56.407Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2026-78410",
-          "PkgID": "libuuid@2.42.1-r0",
-          "PkgName": "libuuid",
-          "PkgIdentifier": {
-            "PURL": "pkg:apk/alpine/libuuid@2.42.1-r0?arch=x86_64\u0026distro=3.24.1",
-            "UID": "61e289a52fcab6f6"
-          },
-          "InstalledVersion": "2.42.1-r0",
-          "FixedVersion": "2.42.3-r0",
-          "Status": "fixed",
-          "Layer": {
-            "DiffID": "sha256:e5ccda0fbf6b54d343e024156d876553ba57d3926d7196584b3a1ce4df016366"
-          },
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-78410",
-          "DataSource": {
-            "ID": "alpine",
-            "Name": "Alpine Secdb",
-            "URL": "https://secdb.alpinelinux.org/"
-          },
-          "Fingerprint": "sha256:f27b31d8d7fb7410ee75f9702fb23daf91c1144b025e5567cf95ae4ecc64c28c",
-          "Title": "util-linux: util-linux: restricted bind mounts do not pin the source, allowing X-mount.owner/group/mode redirection",
-          "Description": "A flaw was found in util-linux. Restricted bind mounts take the source path from fstab but do not pin that source before the privileged mount. A local unprivileged user who can replace the authorized source or a writable ancestor can redirect SUID mount(8) to bind another host directory. If the fstab entry also sets X-mount.owner, X-mount.group, or X-mount.mode, root then changes ownership or mode on that redirected inode.",
-          "Severity": "HIGH",
-          "CweIDs": [
-            "CWE-367"
-          ],
-          "VendorSeverity": {
-            "redhat": 3
-          },
-          "CVSS": {
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
-              "V3Score": 7.8
-            }
-          },
-          "References": [
-            "https://access.redhat.com/errata/RHSA-2026:63162",
-            "https://access.redhat.com/security/cve/CVE-2026-78410",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2522684",
-            "https://github.com/util-linux/util-linux/security/advisories/GHSA-rh77-686x-2f2m",
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-78410",
-            "https://www.cve.org/CVERecord?id=CVE-2026-78410"
-          ],
-          "PublishedDate": "2026-09-02T16:17:23.983Z",
-          "LastModifiedDate": "2026-09-04T19:17:27.567Z"
-        }
       ]
     },
     {
@@ -2581,7 +2270,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pyjwt-2.13.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2597,7 +2286,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pyyaml-6.0.3.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2613,7 +2302,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/annotated_doc-0.0.5.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2629,7 +2318,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/annotated_types-0.8.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2645,7 +2334,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/anyio-4.15.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2661,7 +2350,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/click-8.5.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2677,7 +2366,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/fastapi-0.141.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2693,7 +2382,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/h11-0.16.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2709,7 +2398,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/httptools-0.8.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2725,7 +2414,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/idna-3.19.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2741,7 +2430,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pydantic-2.9.2.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2757,7 +2446,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pydantic_core-2.23.4.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2773,7 +2462,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/python_dotenv-1.2.3.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2789,7 +2478,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/starlette-1.6.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2805,7 +2494,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/typing_inspection-0.4.4.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2821,7 +2510,7 @@
             "PSF-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/typing_extensions-4.16.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2837,7 +2526,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/uvicorn-0.30.6.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2854,7 +2543,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/uvloop-0.22.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2870,7 +2559,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/watchfiles-1.2.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2886,7 +2575,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:f92ca9e13179c5c01920d443762f46425e35c0bb8e8a749d20b637d3967d6d59"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/websockets-17.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
