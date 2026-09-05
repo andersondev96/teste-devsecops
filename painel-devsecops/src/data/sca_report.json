@@ -17,7 +17,7 @@
         "account": "",
         "local_database_path": null,
         "safety_version": "3.8.1",
-        "timestamp": "2026-09-05 20:49:42",
+        "timestamp": "2026-09-05 21:06:34",
         "packages_found": 29,
         "vulnerabilities_found": 0,
         "vulnerabilities_ignored": 0,
@@ -45,7 +45,7 @@
         "git": {
             "branch": "main",
             "tag": "",
-            "commit": "1ecd8c320222ad23fa77de916db10e70286ba1c9",
+            "commit": "1a36a07cf3ffc643d289121e296a8fed08434be6",
             "dirty": "False",
             "origin": "https://github.com/andersondev96/teste-devsecops"
         },
