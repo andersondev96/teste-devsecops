@@ -1,24 +1,30 @@
-"""
-Rotas de integrações externas usadas no laboratório OWASP API Top 10 2023.
-O endpoint de SSRF (API7) permanece didático; o enriquecimento de endereço
-aplica os controles de consumo seguro da API10.
-"""
+"""Rotas de integrações externas usadas no laboratório OWASP API Top 10 2023."""
 
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Depends, Query
 
 from controllers.IntegrationController import IntegrationController
-from models.IntegrationModel import AddressEnrichmentResponseModel
+from limits import enforce_rate_limit
+from models.IntegrationModel import (
+    AddressEnrichmentResponseModel,
+    RemoteFetchResponseModel,
+)
 
 router = APIRouter(prefix="/integrations", tags=["Integrações externas"])
 
 
-@router.get("/fetch-url")
-async def fetch_url(url: str):
+@router.get(
+    "/fetch-url",
+    response_model=RemoteFetchResponseModel,
+    dependencies=[Depends(enforce_rate_limit)],
+)
+async def fetch_url(
+    url: str = Query(..., min_length=1, max_length=2048),
+):
     """
     API7:2023 - Server Side Request Forgery (SSRF)
     --------------------------------------------------
-    O servidor busca qualquer URL enviada pelo cliente, inclusive hosts
-    internos e metadata services de nuvem.
+    A rota aceita somente HTTPS para hosts exatos da allowlist configurada,
+    rejeita redes privadas e fixa o IP público validado antes da conexão.
     """
     return IntegrationController.fetch_remote_url(url)
 
