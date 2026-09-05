@@ -178,5 +178,15 @@
     "dast": 7,
     "trivy": 3,
     "total": 10
+  },
+  {
+    "date": "2026-09-05T00:49:06Z",
+    "description": "fix(api7): mitigate server-side request forgery",
+    "commit": "e4dd407",
+    "sast": 0,
+    "sca": 0,
+    "dast": 3,
+    "trivy": 3,
+    "total": 6
   }
 ]
