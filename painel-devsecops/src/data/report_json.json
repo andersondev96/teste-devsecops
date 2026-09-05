@@ -1,8 +1,8 @@
 {
 	"@programName": "ZAP",
 	"@version": "2.17.0",
-	"@generated": "Sat, 5 Sept 2026 21:08:47",
-	"created": "2026-09-05T21:08:47.066015358Z",
+	"@generated": "Sat, 5 Sept 2026 21:56:52",
+	"created": "2026-09-05T21:56:52.441970398Z",
 	"insights":[
 		{
 			"level": "Low",
@@ -105,7 +105,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1991",
+							"id": "1992",
 							"uri": "http://localhost:8000/products/10/",
 							"nodeName": "http:\/\/localhost:8000\/products\/10\/",
 							"method": "DELETE",
@@ -125,7 +125,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1990",
+							"id": "1984",
 							"uri": "http://localhost:8000/profile/10/",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10\/",
 							"method": "DELETE",
@@ -135,7 +135,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "35",
+							"id": "22",
 							"uri": "http://localhost:8000",
 							"nodeName": "http:\/\/localhost:8000",
 							"method": "GET",
@@ -145,7 +145,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1986",
+							"id": "1980",
 							"uri": "http://localhost:8000/",
 							"nodeName": "http:\/\/localhost:8000\/",
 							"method": "GET",
@@ -155,9 +155,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "25",
-							"uri": "http://localhost:8000/1108640141371581865",
-							"nodeName": "http:\/\/localhost:8000\/1108640141371581865",
+							"id": "12",
+							"uri": "http://localhost:8000/4117472073991790097",
+							"nodeName": "http:\/\/localhost:8000\/4117472073991790097",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -175,7 +175,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "37",
+							"id": "25",
 							"uri": "http://localhost:8000/admin",
 							"nodeName": "http:\/\/localhost:8000\/admin",
 							"method": "GET",
@@ -185,7 +185,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1992",
+							"id": "1990",
 							"uri": "http://localhost:8000/admin/",
 							"nodeName": "http:\/\/localhost:8000\/admin\/",
 							"method": "GET",
@@ -195,9 +195,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "26",
-							"uri": "http://localhost:8000/admin/2968724763987189261",
-							"nodeName": "http:\/\/localhost:8000\/admin\/2968724763987189261",
+							"id": "13",
+							"uri": "http://localhost:8000/admin/1566653680847101260",
+							"nodeName": "http:\/\/localhost:8000\/admin\/1566653680847101260",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -205,7 +205,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "40",
+							"id": "28",
 							"uri": "http://localhost:8000/admin/inventory",
 							"nodeName": "http:\/\/localhost:8000\/admin\/inventory",
 							"method": "GET",
@@ -225,9 +225,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "27",
-							"uri": "http://localhost:8000/admin/inventory/4641259498115531046",
-							"nodeName": "http:\/\/localhost:8000\/admin\/inventory\/4641259498115531046",
+							"id": "14",
+							"uri": "http://localhost:8000/admin/inventory/1845149106696782148",
+							"nodeName": "http:\/\/localhost:8000\/admin\/inventory\/1845149106696782148",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -235,7 +235,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1997",
+							"id": "1996",
 							"uri": "http://localhost:8000/admin/inventory/orders",
 							"nodeName": "http:\/\/localhost:8000\/admin\/inventory\/orders",
 							"method": "GET",
@@ -255,7 +255,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "603",
+							"id": "594",
 							"uri": "http://localhost:8000/admin/inventory/orders?limit=50&offset=0",
 							"nodeName": "http:\/\/localhost:8000\/admin\/inventory\/orders (limit,offset)",
 							"method": "GET",
@@ -275,7 +275,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "44",
+							"id": "39",
 							"uri": "http://localhost:8000/integrations",
 							"nodeName": "http:\/\/localhost:8000\/integrations",
 							"method": "GET",
@@ -285,7 +285,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1995",
+							"id": "1997",
 							"uri": "http://localhost:8000/integrations/",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/",
 							"method": "GET",
@@ -295,9 +295,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "28",
-							"uri": "http://localhost:8000/integrations/4877086366690182673",
-							"nodeName": "http:\/\/localhost:8000\/integrations\/4877086366690182673",
+							"id": "15",
+							"uri": "http://localhost:8000/integrations/2011452405700067208",
+							"nodeName": "http:\/\/localhost:8000\/integrations\/2011452405700067208",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -305,7 +305,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "49",
+							"id": "50",
 							"uri": "http://localhost:8000/integrations/address",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/address",
 							"method": "GET",
@@ -325,9 +325,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "29",
-							"uri": "http://localhost:8000/integrations/address/7964777144552209035",
-							"nodeName": "http:\/\/localhost:8000\/integrations\/address\/7964777144552209035",
+							"id": "16",
+							"uri": "http://localhost:8000/integrations/address/4005431288350274907",
+							"nodeName": "http:\/\/localhost:8000\/integrations\/address\/4005431288350274907",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -355,7 +355,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "2001",
+							"id": "2002",
 							"uri": "http://localhost:8000/integrations/address/enrich/",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/address\/enrich\/",
 							"method": "GET",
@@ -365,7 +365,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "2004",
+							"id": "2003",
 							"uri": "http://localhost:8000/integrations/fetch-url",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/fetch-url",
 							"method": "GET",
@@ -385,7 +385,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1122",
+							"id": "1135",
 							"uri": "http://localhost:8000/integrations/fetch-url?url=https%3A%2F%2Fzap.example.com%27%3Bcat+%2Fetc%2Fpasswd%3B%27",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/fetch-url (url)",
 							"method": "GET",
@@ -395,7 +395,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "2006",
+							"id": "2004",
 							"uri": "http://localhost:8000/integrations/fetch-url/",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/fetch-url\/",
 							"method": "GET",
@@ -405,7 +405,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "929",
+							"id": "918",
 							"uri": "http://localhost:8000/products",
 							"nodeName": "http:\/\/localhost:8000\/products",
 							"method": "GET",
@@ -415,7 +415,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "73",
+							"id": "79",
 							"uri": "http://localhost:8000/products?limit=http%3A%2F%2Fwww.google.com%2F&offset=0",
 							"nodeName": "http:\/\/localhost:8000\/products (limit,offset)",
 							"method": "GET",
@@ -425,7 +425,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "553",
+							"id": "602",
 							"uri": "http://localhost:8000/products?limit=52-2&offset=0",
 							"nodeName": "http:\/\/localhost:8000\/products (limit,offset)",
 							"method": "GET",
@@ -435,7 +435,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "2010",
+							"id": "2007",
 							"uri": "http://localhost:8000/products/",
 							"nodeName": "http:\/\/localhost:8000\/products\/",
 							"method": "GET",
@@ -445,7 +445,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "62",
+							"id": "68",
 							"uri": "http://localhost:8000/products/10",
 							"nodeName": "http:\/\/localhost:8000\/products\/10",
 							"method": "GET",
@@ -455,7 +455,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "2011",
+							"id": "2010",
 							"uri": "http://localhost:8000/products/10/",
 							"nodeName": "http:\/\/localhost:8000\/products\/10\/",
 							"method": "GET",
@@ -465,9 +465,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "31",
-							"uri": "http://localhost:8000/products/10/7290068233851305928",
-							"nodeName": "http:\/\/localhost:8000\/products\/10\/7290068233851305928",
+							"id": "18",
+							"uri": "http://localhost:8000/products/10/7370167597450555613",
+							"nodeName": "http:\/\/localhost:8000\/products\/10\/7370167597450555613",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -475,9 +475,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "30",
-							"uri": "http://localhost:8000/products/367757598796845813",
-							"nodeName": "http:\/\/localhost:8000\/products\/367757598796845813",
+							"id": "17",
+							"uri": "http://localhost:8000/products/6285278623889453323",
+							"nodeName": "http:\/\/localhost:8000\/products\/6285278623889453323",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -485,7 +485,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "2015",
+							"id": "2011",
 							"uri": "http://localhost:8000/products/search",
 							"nodeName": "http:\/\/localhost:8000\/products\/search",
 							"method": "GET",
@@ -495,7 +495,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "125",
+							"id": "136",
 							"uri": "http://localhost:8000/products/search?name=ZAP&limit=http%3A%2F%2Fwww.google.com%2F&offset=0",
 							"nodeName": "http:\/\/localhost:8000\/products\/search (limit,name,offset)",
 							"method": "GET",
@@ -505,7 +505,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "421",
+							"id": "424",
 							"uri": "http://localhost:8000/products/search?name=%3C%21--%23EXEC+cmd%3D%22dir+%5C%22--%3E&limit=50&offset=0",
 							"nodeName": "http:\/\/localhost:8000\/products\/search (limit,name,offset)",
 							"method": "GET",
@@ -515,7 +515,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "2020",
+							"id": "2012",
 							"uri": "http://localhost:8000/products/search/",
 							"nodeName": "http:\/\/localhost:8000\/products\/search\/",
 							"method": "GET",
@@ -525,7 +525,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "69",
+							"id": "72",
 							"uri": "http://localhost:8000/profile",
 							"nodeName": "http:\/\/localhost:8000\/profile",
 							"method": "GET",
@@ -535,7 +535,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "2013",
+							"id": "2015",
 							"uri": "http://localhost:8000/profile/",
 							"nodeName": "http:\/\/localhost:8000\/profile\/",
 							"method": "GET",
@@ -555,7 +555,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "2018",
+							"id": "2017",
 							"uri": "http://localhost:8000/profile/10/",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10\/",
 							"method": "GET",
@@ -565,9 +565,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "32",
-							"uri": "http://localhost:8000/profile/2231135392723462004",
-							"nodeName": "http:\/\/localhost:8000\/profile\/2231135392723462004",
+							"id": "19",
+							"uri": "http://localhost:8000/profile/6863989904355373534",
+							"nodeName": "http:\/\/localhost:8000\/profile\/6863989904355373534",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -575,7 +575,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "111",
+							"id": "122",
 							"uri": "http://localhost:8000/security",
 							"nodeName": "http:\/\/localhost:8000\/security",
 							"method": "GET",
@@ -585,7 +585,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "2016",
+							"id": "2019",
 							"uri": "http://localhost:8000/security/",
 							"nodeName": "http:\/\/localhost:8000\/security\/",
 							"method": "GET",
@@ -595,9 +595,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "33",
-							"uri": "http://localhost:8000/security/5466664204909284009",
-							"nodeName": "http:\/\/localhost:8000\/security\/5466664204909284009",
+							"id": "20",
+							"uri": "http://localhost:8000/security/4570814505800117175",
+							"nodeName": "http:\/\/localhost:8000\/security\/4570814505800117175",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -605,7 +605,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "115",
+							"id": "128",
 							"uri": "http://localhost:8000/users",
 							"nodeName": "http:\/\/localhost:8000\/users",
 							"method": "GET",
@@ -635,7 +635,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "809",
+							"id": "760",
 							"uri": "http://localhost:8000/users?limit=52-2&offset=0",
 							"nodeName": "http:\/\/localhost:8000\/users (limit,offset)",
 							"method": "GET",
@@ -645,7 +645,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "2025",
+							"id": "2022",
 							"uri": "http://localhost:8000/users/",
 							"nodeName": "http:\/\/localhost:8000\/users\/",
 							"method": "GET",
@@ -665,7 +665,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "2024",
+							"id": "2026",
 							"uri": "http://localhost:8000/users/10/",
 							"nodeName": "http:\/\/localhost:8000\/users\/10\/",
 							"method": "GET",
@@ -675,9 +675,9 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "34",
-							"uri": "http://localhost:8000/users/8388325787822984265",
-							"nodeName": "http:\/\/localhost:8000\/users\/8388325787822984265",
+							"id": "21",
+							"uri": "http://localhost:8000/users/2650584328400516975",
+							"nodeName": "http:\/\/localhost:8000\/users\/2650584328400516975",
 							"method": "GET",
 							"param": "",
 							"attack": "",
@@ -695,7 +695,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "330",
+							"id": "325",
 							"uri": "http://localhost:8000/checkout",
 							"nodeName": "http:\/\/localhost:8000\/checkout ()({order_id,product_id,quantity,payment_method})",
 							"method": "POST",
@@ -705,7 +705,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1983",
+							"id": "1988",
 							"uri": "http://localhost:8000/checkout/",
 							"nodeName": "http:\/\/localhost:8000\/checkout\/ ()({order_id,product_id,quantity,payment_method})",
 							"method": "POST",
@@ -745,7 +745,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "552",
+							"id": "558",
 							"uri": "http://localhost:8000/login",
 							"nodeName": "http:\/\/localhost:8000\/login ()({username,password})",
 							"method": "POST",
@@ -755,7 +755,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1987",
+							"id": "1991",
 							"uri": "http://localhost:8000/login/",
 							"nodeName": "http:\/\/localhost:8000\/login\/ ()({username,password})",
 							"method": "POST",
@@ -765,7 +765,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1517",
+							"id": "1516",
 							"uri": "http://localhost:8000/metadata/instance",
 							"nodeName": "http:\/\/localhost:8000\/metadata\/instance ()({order_id,product_id,quantity,payment_method})",
 							"method": "POST",
@@ -775,7 +775,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1521",
+							"id": "1529",
 							"uri": "http://localhost:8000/metadata/v1",
 							"nodeName": "http:\/\/localhost:8000\/metadata\/v1 ()({order_id,product_id,quantity,payment_method})",
 							"method": "POST",
@@ -785,7 +785,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1486",
+							"id": "1484",
 							"uri": "http://localhost:8000/opc/v1/instance/",
 							"nodeName": "http:\/\/localhost:8000\/opc\/v1\/instance\/ ()({order_id,product_id,quantity,payment_method})",
 							"method": "POST",
@@ -795,7 +795,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1496",
+							"id": "1492",
 							"uri": "http://localhost:8000/opc/v2/instance/",
 							"nodeName": "http:\/\/localhost:8000\/opc\/v2\/instance\/ ()({order_id,product_id,quantity,payment_method})",
 							"method": "POST",
@@ -805,7 +805,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1523",
+							"id": "1535",
 							"uri": "http://localhost:8000/openstack/latest/meta_data.json",
 							"nodeName": "http:\/\/localhost:8000\/openstack\/latest\/meta_data.json ()({order_id,product_id,quantity,payment_method})",
 							"method": "POST",
@@ -815,7 +815,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1981",
+							"id": "1977",
 							"uri": "http://localhost:8000/products/10/price",
 							"nodeName": "http:\/\/localhost:8000\/products\/10\/price",
 							"method": "PUT",
@@ -835,7 +835,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1989",
+							"id": "1985",
 							"uri": "http://localhost:8000/products/10/price/",
 							"nodeName": "http:\/\/localhost:8000\/products\/10\/price\/",
 							"method": "PUT",
@@ -855,7 +855,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "1978",
+							"id": "1979",
 							"uri": "http://localhost:8000/profile/10/",
 							"nodeName": "http:\/\/localhost:8000\/profile\/10\/ ()({\"username\":\"John Doe\",\"email\":zaproxy@example.com})",
 							"method": "PUT",
@@ -885,7 +885,7 @@
 					"desc": "<p>The given request has been identified as an authentication request. The 'Other Info' field contains a set of key=value lines which identify any relevant fields. If the request is in a context which has an Authentication Method set to \"Auto-Detect\" then this rule will change the authentication to match the request identified.</p>",
 					"instances":[ 
 						{
-							"id": "14",
+							"id": "32",
 							"uri": "http://localhost:8000/login",
 							"nodeName": "http:\/\/localhost:8000\/login ()({username,password})",
 							"method": "POST",
@@ -915,7 +915,7 @@
 					"desc": "<p>The response contents are not storable by caching components such as proxy servers. If the response does not contain sensitive, personal or user-specific information, it may benefit from being stored and cached, to improve performance.</p>",
 					"instances":[ 
 						{
-							"id": "17",
+							"id": "37",
 							"uri": "http://localhost:8000/admin/inventory/orders?limit=50&offset=0",
 							"nodeName": "http:\/\/localhost:8000\/admin\/inventory\/orders (limit,offset)",
 							"method": "GET",
@@ -925,7 +925,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "16",
+							"id": "41",
 							"uri": "http://localhost:8000/integrations/fetch-url?url=https://zap.example.com",
 							"nodeName": "http:\/\/localhost:8000\/integrations\/fetch-url (url)",
 							"method": "GET",
@@ -935,7 +935,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "13",
+							"id": "35",
 							"uri": "http://localhost:8000/users/10",
 							"nodeName": "http:\/\/localhost:8000\/users\/10",
 							"method": "GET",
@@ -945,7 +945,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "12",
+							"id": "33",
 							"uri": "http://localhost:8000/checkout",
 							"nodeName": "http:\/\/localhost:8000\/checkout ()({order_id,product_id,quantity,payment_method})",
 							"method": "POST",
@@ -955,7 +955,7 @@
 							"otherinfo": ""
 						},
 						{
-							"id": "15",
+							"id": "34",
 							"uri": "http://localhost:8000/login",
 							"nodeName": "http:\/\/localhost:8000\/login ()({username,password})",
 							"method": "POST",

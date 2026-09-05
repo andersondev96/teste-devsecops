@@ -3,9 +3,9 @@
   "Trivy": {
     "Version": "0.74.0"
   },
-  "ReportID": "01a07365-dacb-744d-966b-ddee98b0dfdf",
-  "CreatedAt": "2026-09-05T21:07:30.1232832Z",
-  "ArtifactID": "sha256:693fd93293a0e7a4a52c7f645cef6e4777ff6ecf89c6ad5f9f052538053ea7a8",
+  "ReportID": "01a07392-02be-7435-b34f-050f2bd8b82d",
+  "CreatedAt": "2026-09-05T21:55:43.934276951Z",
+  "ArtifactID": "sha256:1f4046b413c05a4d18763c0dbce9ea1026190170f900c973830b31e94fce55f4",
   "ArtifactName": "vulnerable-api:latest",
   "ArtifactType": "container_image",
   "Metadata": {
@@ -14,22 +14,22 @@
       "Family": "alpine",
       "Name": "3.24.1"
     },
-    "ImageID": "sha256:9b56b25142e936e4a80758367e2be5aad126f5e8c73df36cbc97117da612b021",
+    "ImageID": "sha256:4659aa78e177dd79c65465bc0a1f68d92798ed8ae01e6000cb37d4e1b4951dec",
     "DiffIDs": [
       "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c",
       "sha256:3ca4be2c6e9ac0223715355253725381000486c2b45bfcb22cf571b6a85a12dd",
       "sha256:e5ccda0fbf6b54d343e024156d876553ba57d3926d7196584b3a1ce4df016366",
       "sha256:4098ad033525263f92a8a9c51865596025d47018e078c0b1f7d9cd5663fc1ffe",
-      "sha256:90b8fd9a84d9be728f811dbd00f41ed81bf8c16119305732102afa46791e317b",
-      "sha256:d6650c65c243992c2d2c5981ed4177b707f2bd89c228a325a44b17e1dfce1c0f",
-      "sha256:222efd36bd769fb56ce7e42cae082ff7a82fd0e40e87a55336216bee8c722d04",
-      "sha256:bbebf81f00f05dab41fb95aa9b08cc4ee492e02ed72b2a59803e6ec9e5656402",
-      "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f",
-      "sha256:1b673f6279fb72ced683296dcb37fe9fc2bcedfc292b1d5c0bad8bb8ee8a299f",
-      "sha256:8652700ee4075b12be35cae0a1a9bd67e0df417614012181b9793d9172bafaab",
-      "sha256:0bb7d4dedf386e69e14d59d14259a3a5968538f8eef46892d271bebf1b664d2f",
-      "sha256:86ae2c30bb885bdde7f88df222efcfe9314f3e89ac55ed6cd6a2d2a4f9ffcfec",
-      "sha256:cb6937e8488509bb41653ebee0c31796160618bb8fb876fd6af267952b2172bc"
+      "sha256:3b8a4bae487ad81ec4cf6deea5ffda00f87daeae84dd650d1327d6793ab84627",
+      "sha256:c9c938a4c7a8745f750a6c59a6e57a324ee291a7f6d9238ad613c1e8edbffae2",
+      "sha256:4135a77d91992c54b532207b1793afc74205c2e7bf026faeb7ad87739dbaf4fc",
+      "sha256:35c4af33e0b057ea1fc2f626002beb341940b422edc9536db8b18f4d334b5db2",
+      "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed",
+      "sha256:b32219e27974647d023224c51943f38d6548936600065ab068fc47afe97d3960",
+      "sha256:5f528a8ccb34c4c0292e17511ea992e80d3985324220fc193b5060789e19a8dd",
+      "sha256:a2283c6d7c1ff4c9d97be791efadacad3db9df0bf658630037bb0a147a6aa35b",
+      "sha256:a676386729ec1e60990e05544c72b0455195d4432992518dccd49c0261206d8e",
+      "sha256:cc10e22a6bf2a7c33c0be751c1da8ab7883da195181389d3697eb78596ceadd4"
     ],
     "RepoTags": [
       "vulnerable-api:latest"
@@ -37,7 +37,7 @@
     "Reference": "vulnerable-api:latest",
     "ImageConfig": {
       "architecture": "amd64",
-      "created": "2026-09-05T21:06:56.813666833Z",
+      "created": "2026-09-05T21:55:18.492437959Z",
       "history": [
         {
           "created": "2026-06-16T00:01:29Z",
@@ -102,81 +102,81 @@
           "empty_layer": true
         },
         {
-          "created": "2026-09-05T21:06:46Z",
+          "created": "2026-09-05T21:55:08Z",
           "created_by": "WORKDIR /app",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T21:06:46Z",
+          "created": "2026-09-05T21:55:09Z",
           "created_by": "ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_DISABLE_PIP_VERSION_CHECK=1 PIP_NO_CACHE_DIR=1",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2026-09-05T21:06:46Z",
+          "created": "2026-09-05T21:55:09Z",
           "created_by": "RUN /bin/sh -c addgroup -S -g 10001 app     \u0026\u0026 adduser -S -D -H -u 10001 -G app app     \u0026\u0026 chown app:app /app # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T21:06:47Z",
+          "created": "2026-09-05T21:55:09Z",
           "created_by": "RUN /bin/sh -c apk add --no-cache --upgrade libuuid # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T21:06:47Z",
+          "created": "2026-09-05T21:55:09Z",
           "created_by": "COPY requirements.txt . # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T21:06:56Z",
+          "created": "2026-09-05T21:55:18Z",
           "created_by": "RUN /bin/sh -c python -m pip install --no-cache-dir --upgrade pip     \u0026\u0026 python -m pip install --no-cache-dir -r requirements.txt     \u0026\u0026 python -m pip install --no-cache-dir         \"setuptools==83.0.0\"     \u0026\u0026 rm -rf         /usr/local/lib/python3.12/site-packages/pip         /usr/local/lib/python3.12/site-packages/pip-*.dist-info         /usr/local/lib/python3.12/site-packages/setuptools         /usr/local/lib/python3.12/site-packages/setuptools-*.dist-info         /usr/local/bin/pip         /usr/local/bin/pip3         /usr/local/bin/pip3.12 # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T21:06:56Z",
+          "created": "2026-09-05T21:55:18Z",
           "created_by": "COPY main.py run.py security.py users_db.py limits.py config.py security_headers.py ./ # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T21:06:56Z",
+          "created": "2026-09-05T21:55:18Z",
           "created_by": "COPY owasp_status.json ./owasp_status.json # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T21:06:56Z",
+          "created": "2026-09-05T21:55:18Z",
           "created_by": "COPY controllers ./controllers # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T21:06:56Z",
+          "created": "2026-09-05T21:55:18Z",
           "created_by": "COPY models ./models # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T21:06:56Z",
+          "created": "2026-09-05T21:55:18Z",
           "created_by": "COPY routes ./routes # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T21:06:56Z",
+          "created": "2026-09-05T21:55:18Z",
           "created_by": "EXPOSE map[8000/tcp:{}]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2026-09-05T21:06:56Z",
+          "created": "2026-09-05T21:55:18Z",
           "created_by": "HEALTHCHECK \u0026{[\"CMD\" \"python\" \"-c\" \"import urllib.request; response = urllib.request.urlopen('http://127.0.0.1:8000/security/owasp', timeout=2); raise SystemExit(0 if response.status == 200 else 1)\"] \"30s\" \"5s\" \"10s\" \"0s\" '\\x03'}",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2026-09-05T21:06:56Z",
+          "created": "2026-09-05T21:55:18Z",
           "created_by": "USER app",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2026-09-05T21:06:56Z",
+          "created": "2026-09-05T21:55:18Z",
           "created_by": "CMD [\"uvicorn\" \"main:app\" \"--host\" \"0.0.0.0\" \"--port\" \"8000\"]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
@@ -190,16 +190,16 @@
           "sha256:3ca4be2c6e9ac0223715355253725381000486c2b45bfcb22cf571b6a85a12dd",
           "sha256:e5ccda0fbf6b54d343e024156d876553ba57d3926d7196584b3a1ce4df016366",
           "sha256:4098ad033525263f92a8a9c51865596025d47018e078c0b1f7d9cd5663fc1ffe",
-          "sha256:90b8fd9a84d9be728f811dbd00f41ed81bf8c16119305732102afa46791e317b",
-          "sha256:d6650c65c243992c2d2c5981ed4177b707f2bd89c228a325a44b17e1dfce1c0f",
-          "sha256:222efd36bd769fb56ce7e42cae082ff7a82fd0e40e87a55336216bee8c722d04",
-          "sha256:bbebf81f00f05dab41fb95aa9b08cc4ee492e02ed72b2a59803e6ec9e5656402",
-          "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f",
-          "sha256:1b673f6279fb72ced683296dcb37fe9fc2bcedfc292b1d5c0bad8bb8ee8a299f",
-          "sha256:8652700ee4075b12be35cae0a1a9bd67e0df417614012181b9793d9172bafaab",
-          "sha256:0bb7d4dedf386e69e14d59d14259a3a5968538f8eef46892d271bebf1b664d2f",
-          "sha256:86ae2c30bb885bdde7f88df222efcfe9314f3e89ac55ed6cd6a2d2a4f9ffcfec",
-          "sha256:cb6937e8488509bb41653ebee0c31796160618bb8fb876fd6af267952b2172bc"
+          "sha256:3b8a4bae487ad81ec4cf6deea5ffda00f87daeae84dd650d1327d6793ab84627",
+          "sha256:c9c938a4c7a8745f750a6c59a6e57a324ee291a7f6d9238ad613c1e8edbffae2",
+          "sha256:4135a77d91992c54b532207b1793afc74205c2e7bf026faeb7ad87739dbaf4fc",
+          "sha256:35c4af33e0b057ea1fc2f626002beb341940b422edc9536db8b18f4d334b5db2",
+          "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed",
+          "sha256:b32219e27974647d023224c51943f38d6548936600065ab068fc47afe97d3960",
+          "sha256:5f528a8ccb34c4c0292e17511ea992e80d3985324220fc193b5060789e19a8dd",
+          "sha256:a2283c6d7c1ff4c9d97be791efadacad3db9df0bf658630037bb0a147a6aa35b",
+          "sha256:a676386729ec1e60990e05544c72b0455195d4432992518dccd49c0261206d8e",
+          "sha256:cc10e22a6bf2a7c33c0be751c1da8ab7883da195181389d3697eb78596ceadd4"
         ]
       },
       "config": {
@@ -261,43 +261,43 @@
       },
       {
         "Size": 1536,
-        "DiffID": "sha256:90b8fd9a84d9be728f811dbd00f41ed81bf8c16119305732102afa46791e317b"
+        "DiffID": "sha256:3b8a4bae487ad81ec4cf6deea5ffda00f87daeae84dd650d1327d6793ab84627"
       },
       {
         "Size": 10240,
-        "DiffID": "sha256:d6650c65c243992c2d2c5981ed4177b707f2bd89c228a325a44b17e1dfce1c0f"
+        "DiffID": "sha256:c9c938a4c7a8745f750a6c59a6e57a324ee291a7f6d9238ad613c1e8edbffae2"
       },
       {
         "Size": 123392,
-        "DiffID": "sha256:222efd36bd769fb56ce7e42cae082ff7a82fd0e40e87a55336216bee8c722d04"
+        "DiffID": "sha256:4135a77d91992c54b532207b1793afc74205c2e7bf026faeb7ad87739dbaf4fc"
       },
       {
         "Size": 2560,
-        "DiffID": "sha256:bbebf81f00f05dab41fb95aa9b08cc4ee492e02ed72b2a59803e6ec9e5656402"
+        "DiffID": "sha256:35c4af33e0b057ea1fc2f626002beb341940b422edc9536db8b18f4d334b5db2"
       },
       {
         "Size": 35444224,
-        "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+        "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
       },
       {
         "Size": 29184,
-        "DiffID": "sha256:1b673f6279fb72ced683296dcb37fe9fc2bcedfc292b1d5c0bad8bb8ee8a299f"
+        "DiffID": "sha256:b32219e27974647d023224c51943f38d6548936600065ab068fc47afe97d3960"
       },
       {
         "Size": 10240,
-        "DiffID": "sha256:8652700ee4075b12be35cae0a1a9bd67e0df417614012181b9793d9172bafaab"
+        "DiffID": "sha256:5f528a8ccb34c4c0292e17511ea992e80d3985324220fc193b5060789e19a8dd"
       },
       {
         "Size": 96768,
-        "DiffID": "sha256:0bb7d4dedf386e69e14d59d14259a3a5968538f8eef46892d271bebf1b664d2f"
+        "DiffID": "sha256:a2283c6d7c1ff4c9d97be791efadacad3db9df0bf658630037bb0a147a6aa35b"
       },
       {
         "Size": 31232,
-        "DiffID": "sha256:86ae2c30bb885bdde7f88df222efcfe9314f3e89ac55ed6cd6a2d2a4f9ffcfec"
+        "DiffID": "sha256:a676386729ec1e60990e05544c72b0455195d4432992518dccd49c0261206d8e"
       },
       {
         "Size": 44544,
-        "DiffID": "sha256:cb6937e8488509bb41653ebee0c31796160618bb8fb876fd6af267952b2172bc"
+        "DiffID": "sha256:cc10e22a6bf2a7c33c0be751c1da8ab7883da195181389d3697eb78596ceadd4"
       }
     ]
   },
@@ -1293,7 +1293,7 @@
             "musl@1.2.6-r2"
           ],
           "Layer": {
-            "DiffID": "sha256:222efd36bd769fb56ce7e42cae082ff7a82fd0e40e87a55336216bee8c722d04"
+            "DiffID": "sha256:4135a77d91992c54b532207b1793afc74205c2e7bf026faeb7ad87739dbaf4fc"
           },
           "Digest": "sha1:8f041ef637ad75f381cc0c034f2afbbb0303264e",
           "InstalledFiles": [
@@ -2270,7 +2270,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pyjwt-2.13.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2286,7 +2286,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pyyaml-6.0.3.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2302,7 +2302,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/annotated_doc-0.0.5.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2318,7 +2318,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/annotated_types-0.8.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2334,7 +2334,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/anyio-4.15.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2350,7 +2350,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/click-8.5.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2366,7 +2366,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/fastapi-0.141.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2382,7 +2382,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/h11-0.16.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2398,7 +2398,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/httptools-0.8.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2414,7 +2414,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/idna-3.19.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2430,7 +2430,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pydantic-2.9.2.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2446,7 +2446,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pydantic_core-2.23.4.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2462,7 +2462,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/python_dotenv-1.2.3.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2478,7 +2478,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/starlette-1.6.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2494,7 +2494,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/typing_inspection-0.4.4.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2510,7 +2510,7 @@
             "PSF-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/typing_extensions-4.16.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2526,7 +2526,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/uvicorn-0.30.6.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2543,7 +2543,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/uvloop-0.22.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2559,7 +2559,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/watchfiles-1.2.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2575,7 +2575,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:b5f7a2d357689516ca38f7e17b0d18fae99d8d5172b2f8c54149c31ce6f9b14f"
+            "DiffID": "sha256:e52e9a255c92b082c9ee554ef1f1ed008c57c1923180bf0c33963d03b54a79ed"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/websockets-17.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"

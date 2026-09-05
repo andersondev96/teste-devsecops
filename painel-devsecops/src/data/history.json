@@ -221,5 +221,17 @@
     "trivy": 0,
     "iac": 0,
     "total": 3
+  },
+  {
+    "date": "2026-09-05T21:56:54Z",
+    "description": "Vulnerability mitigation",
+    "commit": "b8ccaf6",
+    "sast": 0,
+    "sca": 0,
+    "dast": 3,
+    "trivy": 0,
+    "iac": 0,
+    "gate_status": "approved",
+    "total": 3
   }
 ]
