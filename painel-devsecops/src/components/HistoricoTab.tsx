@@ -2,6 +2,7 @@ import {
   Clock, Activity, CheckCircle, AlertTriangle
 } from 'lucide-react';
 import historyData from '../data/history.json';
+import { getSecurityGateStatus } from '../utils/securityGate';
 
 export function HistoricoTab() {
   // Invertemos o array para mostrar a execução mais recente no topo
@@ -19,6 +20,9 @@ export function HistoricoTab() {
 
       <p className="text-slate-600 text-sm">
         Registo contínuo das análises de segurança. Este log garante a rastreabilidade das vulnerabilidades ao longo do ciclo de vida do desenvolvimento.
+      </p>
+      <p className="text-slate-500 text-xs">
+        O status do gate usa o resultado persistido pelo workflow: SAST/SCA e os gates HIGH/CRITICAL de Trivy/IaC. Alertas DAST permanecem nas métricas e não alteram este rótulo.
       </p>
 
       {historicoOrdenado.length === 0 ? (
@@ -52,7 +56,7 @@ export function HistoricoTab() {
                     hour: '2-digit', minute: '2-digit', second: '2-digit'
                   });
 
-                  const isVulneravel = log.total > 0;
+                  const isGateBloqueado = getSecurityGateStatus(log) === 'blocked';
 
                   return (
                     <tr key={idx} className="hover:bg-slate-50 transition-colors">
@@ -83,14 +87,14 @@ export function HistoricoTab() {
                       </td>
 
                       <td className="px-6 py-4 text-center border-l border-slate-100">
-                        <span className={`inline-flex items-center justify-center px-2.5 py-1 rounded-full font-bold text-xs ${isVulneravel ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}>
+                        <span className={`inline-flex items-center justify-center px-2.5 py-1 rounded-full font-bold text-xs ${isGateBloqueado ? 'bg-red-100 text-red-700' : 'bg-green-100 text-green-700'}`}>
                           {log.total}
                         </span>
                       </td>
 
                       <td className="px-6 py-4">
                         <div className="flex items-center justify-center">
-                          {isVulneravel ? (
+                          {isGateBloqueado ? (
                             <span className="flex items-center text-red-600 text-xs font-semibold bg-red-50 px-2 py-1 rounded border border-red-100">
                               <AlertTriangle className="w-3.5 h-3.5 mr-1" /> BLOQUEADO
                             </span>

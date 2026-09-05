@@ -60,7 +60,7 @@ export default function App() {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 min-h-[500px]">
           {activeTab === 'dashboard' && <DashboardTab experimentData={experimentData} chartData={chartData} historyData={historyData} />}
           {activeTab === 'owasp' && <OwaspTab categories={owaspCategories} mapping={owaspMapping} metrics={owaspMetrics} />}
-          {activeTab === 'pipeline' && <PipelineTab chartData={chartData} totalAlta={experimentData.alta} />}
+          {activeTab === 'pipeline' && <PipelineTab chartData={chartData} />}
           {activeTab === 'comparativo' && <ComparativoTab chartData={chartData} />}
           {activeTab === 'historico' && <HistoricoTab />}
           {activeTab === 'relatorio' && (
