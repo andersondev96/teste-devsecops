@@ -8,6 +8,7 @@ __pycache__/
 /sast_report.json
 /sca_report.json
 /trivy_report.json
+/trivy_iac_report.json
 /report_json.json
 /owasp_status.json
 /current_summary.json

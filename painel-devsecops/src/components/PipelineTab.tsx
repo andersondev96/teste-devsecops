@@ -6,6 +6,7 @@ import {
 import sastReport from '../data/sast_report.json';
 import scaReport from '../data/sca_report.json';
 import trivyReport from '../data/trivy_report.json';
+import trivyIacReport from '../data/trivy_iac_report.json';
 import zapReport from '../data/report_json.json';
 
 interface PipelineProps {
@@ -25,6 +26,7 @@ export function PipelineTab({ chartData, totalAlta }: PipelineProps) {
     ...(sastReport.results?.filter((f: any) => isHighOrCritical(f.issue_severity)) || []),
     ...(scaReport.vulnerabilities?.filter((f: any) => isHighOrCritical(f.severity)) || []),
     ...(trivyReport.Results?.flatMap((r: any) => r.Vulnerabilities || []).filter((f: any) => isHighOrCritical(f.Severity)) || []),
+    ...(trivyIacReport.Results?.flatMap((r: any) => r.Misconfigurations || []).filter((f: any) => isHighOrCritical(f.Severity)) || []),
     ...(zapReport.site?.[0]?.alerts?.filter((f: any) => f.riskcode === '3') || [])
   ];
 
@@ -39,8 +41,9 @@ export function PipelineTab({ chartData, totalAlta }: PipelineProps) {
     { id: 3, name: 'SCA (Composition)', tool: 'Safety', icon: ShieldAlert, issues: getIssuesCount('SCA'), status: getIssuesCount('SCA') > 0 ? 'fail' : 'pass', desc: 'Vulnerabilidades em bibliotecas externas.', findings: scaReport.vulnerabilities || [] },
     { id: 4, name: 'Build & Container', tool: 'Docker', icon: Box, issues: 0, status: 'pass', desc: 'Geração da imagem do container.', findings: [] },
     { id: 5, name: 'Image Scanning', tool: 'Trivy', icon: FileCode2, issues: getIssuesCount('Trivy'), status: getIssuesCount('Trivy') > 0 ? 'fail' : 'pass', desc: 'Escaneamento da imagem Docker.', findings: trivyReport.Results?.flatMap((r: any) => r.Vulnerabilities || []) || [] },
-    { id: 6, name: 'DAST (Dynamic Analysis)', tool: 'ZAP', icon: PlaySquare, issues: getIssuesCount('DAST'), status: getIssuesCount('DAST') > 0 ? 'fail' : 'pass', desc: 'Testes de intrusão ativos na API.', findings: zapReport.site?.[0]?.alerts || [] },
-    { id: 7, name: 'Security Gate', tool: 'Policy Check', icon: ShieldCheck, issues: totalAlta, status: totalAlta > 0 ? 'blocked' : 'pass', desc: 'Bloqueio de deploys inseguros.', findings: allBlockers }
+    { id: 6, name: 'IaC (Dockerfile)', tool: 'Trivy Config', icon: FileCode2, issues: getIssuesCount('IaC'), status: getIssuesCount('IaC') > 0 ? 'fail' : 'pass', desc: 'Validação de configurações inseguras da infraestrutura como código.', findings: trivyIacReport.Results?.flatMap((r: any) => r.Misconfigurations || []).filter((f: any) => f.Status === 'FAIL') || [] },
+    { id: 7, name: 'DAST (Dynamic Analysis)', tool: 'ZAP', icon: PlaySquare, issues: getIssuesCount('DAST'), status: getIssuesCount('DAST') > 0 ? 'fail' : 'pass', desc: 'Testes de intrusão ativos na API.', findings: zapReport.site?.[0]?.alerts || [] },
+    { id: 8, name: 'Security Gate', tool: 'Policy Check', icon: ShieldCheck, issues: totalAlta, status: totalAlta > 0 ? 'blocked' : 'pass', desc: 'Bloqueio de deploys inseguros.', findings: allBlockers }
   ];
 
   const getStatusStyles = (status: string) => {
@@ -106,14 +109,14 @@ export function PipelineTab({ chartData, totalAlta }: PipelineProps) {
                       </h4>
                       <div className="grid gap-3">
                         {stage.findings.map((f: any, idx: number) => {
-                          const titulo = f.Title || f.name || f.test_name || (f.vulnerability_id ? `ID: ${f.vulnerability_id}` : null) || f.VulnerabilityID || "Falha Detectada";
-                          const desc = f.advisory || f.issue_text || f.Description || f.desc || f.description || "Sem detalhes adicionais.";
+                          const titulo = f.Title || f.name || f.test_name || (f.vulnerability_id ? `ID: ${f.vulnerability_id}` : null) || f.VulnerabilityID || f.ID || "Falha Detectada";
+                          const desc = f.advisory || f.issue_text || f.Message || f.Description || f.desc || f.description || f.Resolution || "Sem detalhes adicionais.";
                           const severidadeTexto = f.issue_severity || f.severity || f.Severity || (f.riskdesc ? f.riskdesc.split(' ')[0] : 'MEDIUM');
                           const severidadeCor = (severidadeTexto.toUpperCase().includes('HIGH') || severidadeTexto.toUpperCase().includes('CRITICAL'));
 
                           // Lógica de Link Externo (Baseado em cada ferramenta)
                           // 1. Tenta pegar a URL direta se existir
-                          let linkRef = f.more_info || f.PrimaryURL;
+                          let linkRef = f.more_info || f.PrimaryURL || f.References?.[0];
 
                           // 2. Se for ZAP, extrai o primeiro link real de dentro do texto/HTML
                           if (!linkRef && f.reference) {

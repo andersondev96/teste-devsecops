@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import sastReport from '../data/sast_report.json';
 import scaReport from '../data/sca_report.json';
 import trivyReport from '../data/trivy_report.json';
+import trivyIacReport from '../data/trivy_iac_report.json';
 import zapReport from '../data/report_json.json';
 import rawHistoryData from '../data/history.json';
 import owaspStatus from '../data/owasp_status.json';
@@ -25,6 +26,7 @@ const historyData = rawHistoryData as Array<{
   sca: number;
   dast: number;
   trivy: number;
+  iac?: number;
   total: number;
 }>;
 
@@ -34,6 +36,12 @@ const currentReportCounts = {
   dast: zapReport.site?.[0]?.alerts?.length || 0,
   trivy: trivyReport.Results?.reduce(
     (total: number, result: any) => total + (result.Vulnerabilities?.length || 0),
+    0,
+  ) || 0,
+  iac: trivyIacReport.Results?.reduce(
+    (total: number, result: any) => total + (
+      result.Misconfigurations?.filter((finding: any) => finding.Status === 'FAIL').length || 0
+    ),
     0,
   ) || 0,
 };
@@ -100,6 +108,12 @@ export function useSecurityData() {
       result.Vulnerabilities?.forEach((vuln: any) => {
         registerSeverity(vuln.Severity);
       });
+    });
+
+    // IaC/Docker
+    trivyIacReport.Results?.forEach((result: any) => {
+      result.Misconfigurations?.filter((finding: any) => finding.Status === 'FAIL')
+        .forEach((finding: any) => registerSeverity(finding.Severity));
     });
 
     // SCA
@@ -237,6 +251,11 @@ export function useSecurityData() {
       categoria: 'Trivy',
       antes: baseline ? baseline.trivy : (trivyReport.Results?.reduce((acc: number, curr: any) => acc + (curr.Vulnerabilities?.length || 0), 0) || 0),
       depois: currentReportCounts.trivy,
+    },
+    {
+      categoria: 'IaC',
+      antes: baseline ? (baseline.iac ?? 0) : currentReportCounts.iac,
+      depois: currentReportCounts.iac,
     },
   ];
 

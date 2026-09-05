@@ -105,23 +105,90 @@ jobs:
         # controlados no fluxo de enriquecimento de endereço.
         run: pytest -q broken-api/tests/test_owasp_api_top_10_lab.py -k api10
 
+      - name: 6.10. Testes de contrato do Dockerfile
+        # Evita regressões simples no usuário, no contexto de build e nas
+        # dependências mínimas da imagem.
+        run: pytest -q broken-api/tests/test_iac_hardening.py
+
       - name: 7. Build da Imagem Docker
         run: docker build -t vulnerable-api:latest ./broken-api
 
+      - name: 7.1. IaC - Scan de configuração do Docker
+        id: iac-report
+        # Analisa o Dockerfile e preserva todas as misconfigurações no relatório.
+        # O gate específico abaixo trata somente HIGH/CRITICAL.
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'config'
+          scan-ref: 'broken-api'
+          format: 'json'
+          output: 'trivy_iac_report.json'
+          severity: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
+          exit-code: '0'
+        continue-on-error: true
+
+      - name: 7.2. Gate de configuração IaC
+        id: iac
+        # Bloqueia a publicação quando o Dockerfile contém uma misconfiguração
+        # grave, sem ocultar achados de menor severidade do dashboard.
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'config'
+          scan-ref: 'broken-api'
+          format: 'table'
+          severity: 'HIGH,CRITICAL'
+          exit-code: '1'
+        continue-on-error: true
+
       - name: 8. Container Scan (Trivy)
-        # Escaneia a imagem Docker gerada em busca de falhas no SO base
+        id: trivy-report
+        # Escaneia a imagem Docker e preserva todas as vulnerabilidades no
+        # relatório; o gate específico abaixo trata HIGH/CRITICAL.
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: 'vulnerable-api:latest'
           format: 'json'
           output: 'trivy_report.json'
+          severity: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
+          exit-code: '0'
+          ignore-unfixed: true
         continue-on-error: true
+
+      - name: 8.1. Gate de vulnerabilidades da imagem
+        id: trivy
+        # Impede a publicação de imagens com vulnerabilidades graves, sem
+        # remover achados MEDIUM/LOW do relatório consumido pelo dashboard.
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'vulnerable-api:latest'
+          format: 'table'
+          severity: 'HIGH,CRITICAL'
+          exit-code: '1'
+          ignore-unfixed: true
+        continue-on-error: true
+
+      - name: 8.2. Validar execução endurecida do container
+        # Confirma que a imagem não volta a executar como root e que os
+        # privilégios Linux desnecessários não são concedidos pelo pipeline.
+        run: |
+          test "$(docker inspect --format '{{.Config.User}}' vulnerable-api:latest)" = "app"
+          docker run --rm \
+            --cap-drop=ALL \
+            --security-opt=no-new-privileges:true \
+            --entrypoint sh \
+            vulnerable-api:latest \
+            -c 'test "$(id -u)" -ne 0'
 
       - name: 9. Subir a API para o teste DAST
         # Roda o container em background no GitHub Actions
         run: |
           JWT_SECRET_KEY="$(openssl rand -hex 32)"
           docker run -d -p 8000:8000 \
+            --cap-drop=ALL \
+            --security-opt=no-new-privileges:true \
+            --pids-limit=100 \
+            --memory=256m \
+            --cpus=1 \
             -e "APP_ENV=ci" \
             -e "JWT_SECRET_KEY=${JWT_SECRET_KEY}" \
             -e "ACCESS_TOKEN_EXPIRE_MINUTES=15" \
@@ -174,6 +241,7 @@ jobs:
             sca_report.json
             sast_report.json
             trivy_report.json
+            trivy_iac_report.json
             report_json.json
             owasp_status.json
 
@@ -184,6 +252,7 @@ jobs:
           SCA_TOTAL=$(jq '.vulnerabilities | length' sca_report.json || echo 0)
           DAST_TOTAL=$(jq '.site[0].alerts | length' report_json.json || echo 0)
           TRIVY_TOTAL=$(jq '[.Results[].Vulnerabilities[]?] | length' trivy_report.json || echo 0)
+          IAC_TOTAL=$(jq '[.Results[]?.Misconfigurations[]? | select(.Status == "FAIL")] | length' trivy_iac_report.json || echo 0)
           TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           COMMIT_SHA=$(git rev-parse --short "$GITHUB_SHA")
           COMMIT_SUBJECT=$(git log -1 --pretty=%s "$GITHUB_SHA")
@@ -233,7 +302,8 @@ jobs:
             --argjson sca "$SCA_TOTAL" \
             --argjson dast "$DAST_TOTAL" \
             --argjson trivy "$TRIVY_TOTAL" \
-            '{date: $date, description: $description, commit: $commit, sast: $sast, sca: $sca, dast: $dast, trivy: $trivy, total: ($sast + $sca + $dast + $trivy)}' \
+            --argjson iac "$IAC_TOTAL" \
+            '{date: $date, description: $description, commit: $commit, sast: $sast, sca: $sca, dast: $dast, trivy: $trivy, iac: $iac, total: ($sast + $sca + $dast + $trivy + $iac)}' \
             > current_summary.json
 
       - name: 14. Persistir Histórico no Repositório
@@ -244,7 +314,7 @@ jobs:
           HISTORY_FILE="painel-devsecops/src/data/history.json"
           DATA_DIR="painel-devsecops/src/data"
           RESET_MARKER=".github/reset-dashboard-history"
-          REPORT_FILES=("sast_report.json" "sca_report.json" "report_json.json" "trivy_report.json" "owasp_status.json")
+          REPORT_FILES=("sast_report.json" "sca_report.json" "report_json.json" "trivy_report.json" "trivy_iac_report.json" "owasp_status.json")
 
           # Usa exatamente os relatórios que deram origem ao resumo atual.
           # Se algum relatório não existir, interrompe para não deixar dados antigos
@@ -273,7 +343,7 @@ jobs:
           # Configura o Git para commitar o arquivo de histórico atualizado
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add "$HISTORY_FILE" "$DATA_DIR/sast_report.json" "$DATA_DIR/sca_report.json" "$DATA_DIR/report_json.json" "$DATA_DIR/trivy_report.json" "$DATA_DIR/owasp_status.json"
+          git add "$HISTORY_FILE" "$DATA_DIR/sast_report.json" "$DATA_DIR/sca_report.json" "$DATA_DIR/report_json.json" "$DATA_DIR/trivy_report.json" "$DATA_DIR/trivy_iac_report.json" "$DATA_DIR/owasp_status.json"
           # O marcador pode já ter sido removido em uma execução anterior.
           # Só o inclua se ainda existir no índice do Git.
           if git ls-files --error-unmatch "$RESET_MARKER" >/dev/null 2>&1; then
@@ -298,6 +368,7 @@ jobs:
           cp sca_report.json painel-devsecops/src/data/
           cp sast_report.json painel-devsecops/src/data/
           cp trivy_report.json painel-devsecops/src/data/
+          cp trivy_iac_report.json painel-devsecops/src/data/
           cp report_json.json painel-devsecops/src/data/
           cp owasp_status.json painel-devsecops/src/data/
 
@@ -331,6 +402,23 @@ jobs:
           fi
           if [ "$SAST_OUTCOME" != "success" ]; then
             echo "SAST encontrou vulnerabilidades ou não conseguiu concluir a análise."
+            exit 1
+          fi
+
+      - name: 18.2. Gate de imagem e IaC
+        # Mantém os relatórios disponíveis, mas impede a publicação quando o
+        # scan da imagem ou o scan de configuração encontra HIGH/CRITICAL.
+        if: always()
+        env:
+          TRIVY_OUTCOME: ${{ steps.trivy.outcome }}
+          IAC_OUTCOME: ${{ steps.iac.outcome }}
+        run: |
+          if [ "$TRIVY_OUTCOME" != "success" ]; then
+            echo "Trivy encontrou vulnerabilidades HIGH/CRITICAL na imagem ou não conseguiu concluir a análise."
+            exit 1
+          fi
+          if [ "$IAC_OUTCOME" != "success" ]; then
+            echo "Trivy encontrou misconfigurações HIGH/CRITICAL no Dockerfile ou não conseguiu concluir a análise."
             exit 1
           fi
 
