@@ -32,3 +32,14 @@ class AddressEnrichmentResponseModel(BaseModel):
     zipcode: str
     address: AddressProviderResponseModel
     shipping_decision: ShippingDecisionModel
+
+
+class RemoteFetchResponseModel(BaseModel):
+    """Resposta limitada da integração externa allowlisted da API7."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    requested_url: str = Field(min_length=1, max_length=2048)
+    status_code: int = Field(ge=100, le=599)
+    content_type: str = Field(max_length=100)
+    body_preview: str = Field(max_length=2048)

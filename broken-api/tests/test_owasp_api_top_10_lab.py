@@ -4,7 +4,6 @@ import sys
 from io import BytesIO
 from pathlib import Path
 
-import urllib.request
 import jwt
 import pytest
 from fastapi.testclient import TestClient
@@ -464,22 +463,113 @@ def test_api6_checkout_limits_attempts_per_authenticated_user(monkeypatch):
     assert second_response.status_code == 429
 
 
-def test_api7_ssrf_fetches_user_supplied_internal_url(monkeypatch):
+def test_api7_rejects_private_non_https_and_non_allowlisted_destinations(monkeypatch):
+    import controllers.IntegrationController as integration_controller
+
+    def fail_if_called(*_args, **_kwargs):
+        raise AssertionError("o destino bloqueado não pode abrir uma conexão")
+
+    monkeypatch.setattr(
+        integration_controller,
+        "_open_safe_remote_url",
+        fail_if_called,
+    )
+
+    metadata_response = client.get(
+        "/integrations/fetch-url",
+        params={
+            "url": "http://169.254.169.254/latest/meta-data/iam/security-credentials/"
+        },
+    )
+    assert metadata_response.status_code == 422
+
+    untrusted_host_response = client.get(
+        "/integrations/fetch-url",
+        params={"url": "https://evil.example/resource"},
+    )
+    assert untrusted_host_response.status_code == 422
+
+    monkeypatch.setenv("API7_ALLOWED_HOSTS", "api.example.com")
+    monkeypatch.setattr(
+        integration_controller.socket,
+        "getaddrinfo",
+        lambda *_args, **_kwargs: [
+            (2, 1, 6, "", ("10.0.0.10", 443)),
+        ],
+    )
+    private_resolution_response = client.get(
+        "/integrations/fetch-url",
+        params={"url": "https://api.example.com/resource"},
+    )
+    assert private_resolution_response.status_code == 422
+
+
+def test_api7_allows_only_validated_public_destination_and_limits_response(monkeypatch):
+    import controllers.IntegrationController as integration_controller
+
+    monkeypatch.setenv("API7_ALLOWED_HOSTS", "api.example.com")
     captured = {}
 
-    def fake_urlopen(url, timeout):
-        captured["url"] = url
+    def fake_resolve(hostname, port):
+        captured["hostname"] = hostname
+        captured["port"] = port
+        return "93.184.216.34"
+
+    def fake_open(target, timeout):
+        captured["target"] = target
         captured["timeout"] = timeout
-        return FakeHTTPResponse("cloud credentials would be here")
+        return FakeHTTPResponse("safe public response")
 
-    monkeypatch.setattr(urllib.request, "urlopen", fake_urlopen)
+    monkeypatch.setattr(
+        integration_controller,
+        "_resolve_public_ip",
+        fake_resolve,
+    )
+    monkeypatch.setattr(
+        integration_controller,
+        "_open_safe_remote_url",
+        fake_open,
+    )
 
-    metadata_url = "http://169.254.169.254/latest/meta-data/iam/security-credentials/"
-    response = client.get("/integrations/fetch-url", params={"url": metadata_url})
+    response = client.get(
+        "/integrations/fetch-url",
+        params={"url": "https://api.example.com/resource?key=value"},
+    )
 
     assert response.status_code == 200
-    assert captured["url"] == metadata_url
-    assert "cloud credentials" in response.json()["body_preview"]
+    assert response.json() == {
+        "requested_url": "https://api.example.com/resource?key=value",
+        "status_code": 200,
+        "content_type": "application/json",
+        "body_preview": "safe public response",
+    }
+    assert captured["hostname"] == "api.example.com"
+    assert captured["port"] == 443
+    assert captured["target"].resolved_ip == "93.184.216.34"
+    assert captured["timeout"] == 3
+
+
+def test_api7_does_not_follow_redirects(monkeypatch):
+    import controllers.IntegrationController as integration_controller
+
+    monkeypatch.setenv("API7_ALLOWED_HOSTS", "api.example.com")
+    monkeypatch.setattr(
+        integration_controller,
+        "_resolve_public_ip",
+        lambda _hostname, _port: "93.184.216.34",
+    )
+    monkeypatch.setattr(
+        integration_controller,
+        "_open_safe_remote_url",
+        lambda _target, **_kwargs: FakeHTTPResponse("redirect", status_code=302),
+    )
+
+    response = client.get(
+        "/integrations/fetch-url",
+        params={"url": "https://api.example.com/redirect"},
+    )
+
+    assert response.status_code == 502
 
 
 def test_api8_debug_endpoint_is_disabled_by_default():
@@ -547,9 +637,9 @@ def test_backend_publishes_owasp_status_and_calculated_metrics():
     assert len(body["categories"]) == 10
     assert body["metrics"] == {
         "total": 10,
-        "mitigated": 6,
+        "mitigated": 7,
         "partially_mitigated": 3,
-        "vulnerable": 1,
+        "vulnerable": 0,
         "not_assessed": 0,
     }
     api9 = next(
@@ -564,6 +654,12 @@ def test_backend_publishes_owasp_status_and_calculated_metrics():
         if category["id"] == "API8"
     )
     assert api8["status"] == "mitigated"
+    api7 = next(
+        category
+        for category in body["categories"]
+        if category["id"] == "API7"
+    )
+    assert api7["status"] == "mitigated"
 
 
 def test_api9_legacy_inventory_endpoint_is_removed_and_admin_inventory_is_controlled():

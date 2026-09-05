@@ -91,12 +91,16 @@ jobs:
         # Garante que o checkout preserve as regras server-side e seus limites.
         run: pytest -q broken-api/tests/test_owasp_api_top_10_lab.py -k api6
 
-      - name: 6.7. Testes de regressão do inventário da API
+      - name: 6.7. Testes de regressão contra SSRF
+        # Garante que destinos internos e não autorizados não sejam acessados.
+        run: pytest -q broken-api/tests/test_owasp_api_top_10_lab.py -k api7
+
+      - name: 6.8. Testes de regressão do inventário da API
         # Garante que o endpoint legado permaneça removido e o inventário exija
         # autenticação, autorização administrativa e paginação.
         run: pytest -q broken-api/tests/test_owasp_api_top_10_lab.py -k api9
 
-      - name: 6.8. Testes de regressão do consumo seguro de APIs externas
+      - name: 6.9. Testes de regressão do consumo seguro de APIs externas
         # Garante que o provedor externo e o contrato de resposta permaneçam
         # controlados no fluxo de enriquecimento de endereço.
         run: pytest -q broken-api/tests/test_owasp_api_top_10_lab.py -k api10

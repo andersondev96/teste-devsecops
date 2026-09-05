@@ -90,11 +90,11 @@
       "id": "API7",
       "title": "API7:2023 - Server Side Request Forgery (SSRF)",
       "desc": "Requisições do servidor para destinos não validados.",
-      "status": "vulnerable",
+      "status": "mitigated",
       "evidence": {
-        "Title": "Teste API7 — SSRF",
-        "desc": "O servidor acessa uma URL fornecida diretamente pelo cliente, inclusive um endereço de metadados da nuvem.",
-        "solution": "Aplicar allowlist de destinos, bloquear redes internas e validar o esquema e o destino da URL.",
+        "Title": "Regressão API7 — destino externo validado contra SSRF",
+        "desc": "Os testes confirmam o bloqueio de metadata service, HTTP, hosts não autorizados e resoluções privadas, além do uso do IP público validado e da rejeição de redirects.",
+        "solution": "Aceitar somente HTTPS em hosts exatos da allowlist, rejeitar redes não globais, fixar o IP validado, não seguir redirects e limitar timeout e resposta.",
         "uri": "GET /integrations/fetch-url?url=...",
         "file": "broken-api/tests/test_owasp_api_top_10_lab.py",
         "line_number": 466
