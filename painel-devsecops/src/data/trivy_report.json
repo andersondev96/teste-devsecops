@@ -3,32 +3,33 @@
   "Trivy": {
     "Version": "0.74.0"
   },
-  "ReportID": "01a06f09-6d9c-769e-9a21-39f69ae43080",
-  "CreatedAt": "2026-09-05T00:48:03.996435145Z",
-  "ArtifactID": "sha256:18f6680cc4e3315a00f72b119d9b06583e15355e0a9f3e03c1e9be1bfe60d5c9",
+  "ReportID": "01a07356-7a11-7276-a128-633805aa0476",
+  "CreatedAt": "2026-09-05T20:50:42.321163011Z",
+  "ArtifactID": "sha256:234f415da95d32d6074052ba8cd54280280406f9685039cab7dc957002b6e685",
   "ArtifactName": "vulnerable-api:latest",
   "ArtifactType": "container_image",
   "Metadata": {
-    "Size": 109381120,
+    "Size": 93185536,
     "OS": {
       "Family": "alpine",
       "Name": "3.24.1"
     },
-    "ImageID": "sha256:6f7d8ad8bfd115caaf6e064f39d70ce5f940c844407ade0057dbf0c823994a22",
+    "ImageID": "sha256:1a547c28bf9402b871b506f34cddc86b9562e2a599c2af1f2db49f1a46a03234",
     "DiffIDs": [
       "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c",
       "sha256:3ca4be2c6e9ac0223715355253725381000486c2b45bfcb22cf571b6a85a12dd",
       "sha256:e5ccda0fbf6b54d343e024156d876553ba57d3926d7196584b3a1ce4df016366",
       "sha256:4098ad033525263f92a8a9c51865596025d47018e078c0b1f7d9cd5663fc1ffe",
-      "sha256:5fe78f0c1b31276651c83db6e0023f9895702b49e06c4c46a1b358b8f712c064",
-      "sha256:62ee5ddbce8e5b84c2a6b267ad7c2f259bee93c4b51460a884d0213d4efe8c19",
-      "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99",
-      "sha256:776990d6d68643dcd7caf153061c266117386a07cd7ca361da975ab718f580c3",
-      "sha256:0a69fd6cd511c958b58dfc0fc2058e66ef32aaf965b082b8fc34e985af102b38",
-      "sha256:c754f60a17b44a9184387bfbb6fba3ac5f3c9d281eb286aa5f81eb4b088ad7a3",
-      "sha256:64efb94cc8db016889b8f44004016a0fd406f42ec3f7b4a9941b7f106ad2d8a1",
-      "sha256:ab4e14882d31e28d0a5cd3ad38bdb98edff6743a60068d011c746a65cc154f4b",
-      "sha256:3bc30e9481c2872ad3f9c658c79498f5e86fbb7e2648800b4bc25cdfbe0e38f2"
+      "sha256:1e0a4d03a94b8b14be2d37561c1c0eb25c9e31dd07df5d43f63bb91e43ea5e14",
+      "sha256:e1c6d4c5072836831c6e8f82a575bfb0b1c24e769ab54e33bd0a80ed5f80adbd",
+      "sha256:22bc76ce7e583f8626f56298a37f366ea39255d8d38420d9f22c74c4eec6684f",
+      "sha256:cdf1291468a6ec7d91b5608c1caebe6a1b022e0bde4d3b41989fbc5f4c4b12b1",
+      "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8",
+      "sha256:89bccca4f4603a89236cef8a228e09c7f6256f9eb9e0854f363618ca78d3c89b",
+      "sha256:43410d8ddf072260646859f85a34fc2be7ec1dee0d3e4e09dd481c0fe7bf3c83",
+      "sha256:81bff35c3d739d4c2a2f996abebcf95ae848c7d2aa8795f71681e661da0d2eb5",
+      "sha256:b26720d25bada80c42398ef09edd22eb106106ecb148c7d480f0adbc53246417",
+      "sha256:60fa0462c39a9ae439270adfd01d7c7edd9e00843933b5e90b4bd3384f1342dc"
     ],
     "RepoTags": [
       "vulnerable-api:latest"
@@ -36,7 +37,7 @@
     "Reference": "vulnerable-api:latest",
     "ImageConfig": {
       "architecture": "amd64",
-      "created": "2026-09-05T00:47:48.4873613Z",
+      "created": "2026-09-05T20:50:07.691256077Z",
       "history": [
         {
           "created": "2026-06-16T00:01:29Z",
@@ -101,58 +102,81 @@
           "empty_layer": true
         },
         {
-          "created": "2026-09-05T00:47:40Z",
+          "created": "2026-09-05T20:49:55Z",
           "created_by": "WORKDIR /app",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T00:47:40Z",
+          "created": "2026-09-05T20:49:55Z",
+          "created_by": "ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_DISABLE_PIP_VERSION_CHECK=1 PIP_NO_CACHE_DIR=1",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-09-05T20:49:55Z",
+          "created_by": "RUN /bin/sh -c addgroup -S -g 10001 app     \u0026\u0026 adduser -S -D -H -u 10001 -G app app     \u0026\u0026 chown app:app /app # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-09-05T20:49:56Z",
+          "created_by": "RUN /bin/sh -c apk add --no-cache --upgrade libuuid # buildkit",
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "created": "2026-09-05T20:49:56Z",
           "created_by": "COPY requirements.txt . # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T00:47:48Z",
-          "created_by": "RUN /bin/sh -c apk upgrade --no-cache     \u0026\u0026 python -m pip install --no-cache-dir --upgrade pip     \u0026\u0026 pip install --no-cache-dir -r requirements.txt # buildkit",
+          "created": "2026-09-05T20:50:07Z",
+          "created_by": "RUN /bin/sh -c python -m pip install --no-cache-dir --upgrade pip     \u0026\u0026 python -m pip install --no-cache-dir -r requirements.txt     \u0026\u0026 python -m pip install --no-cache-dir         \"setuptools==83.0.0\"     \u0026\u0026 rm -rf         /usr/local/lib/python3.12/site-packages/pip         /usr/local/lib/python3.12/site-packages/pip-*.dist-info         /usr/local/lib/python3.12/site-packages/setuptools         /usr/local/lib/python3.12/site-packages/setuptools-*.dist-info         /usr/local/bin/pip         /usr/local/bin/pip3         /usr/local/bin/pip3.12 # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T00:47:48Z",
+          "created": "2026-09-05T20:50:07Z",
           "created_by": "COPY main.py run.py security.py users_db.py limits.py config.py security_headers.py ./ # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T00:47:48Z",
+          "created": "2026-09-05T20:50:07Z",
           "created_by": "COPY owasp_status.json ./owasp_status.json # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T00:47:48Z",
+          "created": "2026-09-05T20:50:07Z",
           "created_by": "COPY controllers ./controllers # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T00:47:48Z",
+          "created": "2026-09-05T20:50:07Z",
           "created_by": "COPY models ./models # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T00:47:48Z",
+          "created": "2026-09-05T20:50:07Z",
           "created_by": "COPY routes ./routes # buildkit",
           "comment": "buildkit.dockerfile.v0"
         },
         {
-          "created": "2026-09-05T00:47:48Z",
-          "created_by": "COPY tests ./tests # buildkit",
-          "comment": "buildkit.dockerfile.v0"
-        },
-        {
-          "created": "2026-09-05T00:47:48Z",
+          "created": "2026-09-05T20:50:07Z",
           "created_by": "EXPOSE map[8000/tcp:{}]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
         },
         {
-          "created": "2026-09-05T00:47:48Z",
+          "created": "2026-09-05T20:50:07Z",
+          "created_by": "HEALTHCHECK \u0026{[\"CMD\" \"python\" \"-c\" \"import urllib.request; response = urllib.request.urlopen('http://127.0.0.1:8000/security/owasp', timeout=2); raise SystemExit(0 if response.status == 200 else 1)\"] \"30s\" \"5s\" \"10s\" \"0s\" '\\x03'}",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-09-05T20:50:07Z",
+          "created_by": "USER app",
+          "comment": "buildkit.dockerfile.v0",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-09-05T20:50:07Z",
           "created_by": "CMD [\"uvicorn\" \"main:app\" \"--host\" \"0.0.0.0\" \"--port\" \"8000\"]",
           "comment": "buildkit.dockerfile.v0",
           "empty_layer": true
@@ -166,15 +190,16 @@
           "sha256:3ca4be2c6e9ac0223715355253725381000486c2b45bfcb22cf571b6a85a12dd",
           "sha256:e5ccda0fbf6b54d343e024156d876553ba57d3926d7196584b3a1ce4df016366",
           "sha256:4098ad033525263f92a8a9c51865596025d47018e078c0b1f7d9cd5663fc1ffe",
-          "sha256:5fe78f0c1b31276651c83db6e0023f9895702b49e06c4c46a1b358b8f712c064",
-          "sha256:62ee5ddbce8e5b84c2a6b267ad7c2f259bee93c4b51460a884d0213d4efe8c19",
-          "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99",
-          "sha256:776990d6d68643dcd7caf153061c266117386a07cd7ca361da975ab718f580c3",
-          "sha256:0a69fd6cd511c958b58dfc0fc2058e66ef32aaf965b082b8fc34e985af102b38",
-          "sha256:c754f60a17b44a9184387bfbb6fba3ac5f3c9d281eb286aa5f81eb4b088ad7a3",
-          "sha256:64efb94cc8db016889b8f44004016a0fd406f42ec3f7b4a9941b7f106ad2d8a1",
-          "sha256:ab4e14882d31e28d0a5cd3ad38bdb98edff6743a60068d011c746a65cc154f4b",
-          "sha256:3bc30e9481c2872ad3f9c658c79498f5e86fbb7e2648800b4bc25cdfbe0e38f2"
+          "sha256:1e0a4d03a94b8b14be2d37561c1c0eb25c9e31dd07df5d43f63bb91e43ea5e14",
+          "sha256:e1c6d4c5072836831c6e8f82a575bfb0b1c24e769ab54e33bd0a80ed5f80adbd",
+          "sha256:22bc76ce7e583f8626f56298a37f366ea39255d8d38420d9f22c74c4eec6684f",
+          "sha256:cdf1291468a6ec7d91b5608c1caebe6a1b022e0bde4d3b41989fbc5f4c4b12b1",
+          "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8",
+          "sha256:89bccca4f4603a89236cef8a228e09c7f6256f9eb9e0854f363618ca78d3c89b",
+          "sha256:43410d8ddf072260646859f85a34fc2be7ec1dee0d3e4e09dd481c0fe7bf3c83",
+          "sha256:81bff35c3d739d4c2a2f996abebcf95ae848c7d2aa8795f71681e661da0d2eb5",
+          "sha256:b26720d25bada80c42398ef09edd22eb106106ecb148c7d480f0adbc53246417",
+          "sha256:60fa0462c39a9ae439270adfd01d7c7edd9e00843933b5e90b4bd3384f1342dc"
         ]
       },
       "config": {
@@ -186,13 +211,30 @@
           "--port",
           "8000"
         ],
+        "Healthcheck": {
+          "Test": [
+            "CMD",
+            "python",
+            "-c",
+            "import urllib.request; response = urllib.request.urlopen('http://127.0.0.1:8000/security/owasp', timeout=2); raise SystemExit(0 if response.status == 200 else 1)"
+          ],
+          "Interval": 30000000000,
+          "Timeout": 5000000000,
+          "StartPeriod": 10000000000,
+          "Retries": 3
+        },
         "Env": [
           "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
           "LANG=C.UTF-8",
           "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
           "PYTHON_VERSION=3.12.14",
-          "PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a"
+          "PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a",
+          "PYTHONDONTWRITEBYTECODE=1",
+          "PYTHONUNBUFFERED=1",
+          "PIP_DISABLE_PIP_VERSION_CHECK=1",
+          "PIP_NO_CACHE_DIR=1"
         ],
+        "User": "app",
         "WorkingDir": "/app",
         "ExposedPorts": {
           "8000/tcp": {}
@@ -219,39 +261,43 @@
       },
       {
         "Size": 1536,
-        "DiffID": "sha256:5fe78f0c1b31276651c83db6e0023f9895702b49e06c4c46a1b358b8f712c064"
-      },
-      {
-        "Size": 2560,
-        "DiffID": "sha256:62ee5ddbce8e5b84c2a6b267ad7c2f259bee93c4b51460a884d0213d4efe8c19"
-      },
-      {
-        "Size": 51655168,
-        "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-      },
-      {
-        "Size": 28672,
-        "DiffID": "sha256:776990d6d68643dcd7caf153061c266117386a07cd7ca361da975ab718f580c3"
+        "DiffID": "sha256:1e0a4d03a94b8b14be2d37561c1c0eb25c9e31dd07df5d43f63bb91e43ea5e14"
       },
       {
         "Size": 10240,
-        "DiffID": "sha256:0a69fd6cd511c958b58dfc0fc2058e66ef32aaf965b082b8fc34e985af102b38"
+        "DiffID": "sha256:e1c6d4c5072836831c6e8f82a575bfb0b1c24e769ab54e33bd0a80ed5f80adbd"
+      },
+      {
+        "Size": 123392,
+        "DiffID": "sha256:22bc76ce7e583f8626f56298a37f366ea39255d8d38420d9f22c74c4eec6684f"
+      },
+      {
+        "Size": 2560,
+        "DiffID": "sha256:cdf1291468a6ec7d91b5608c1caebe6a1b022e0bde4d3b41989fbc5f4c4b12b1"
+      },
+      {
+        "Size": 35444224,
+        "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
+      },
+      {
+        "Size": 29184,
+        "DiffID": "sha256:89bccca4f4603a89236cef8a228e09c7f6256f9eb9e0854f363618ca78d3c89b"
+      },
+      {
+        "Size": 10240,
+        "DiffID": "sha256:43410d8ddf072260646859f85a34fc2be7ec1dee0d3e4e09dd481c0fe7bf3c83"
       },
       {
         "Size": 96768,
-        "DiffID": "sha256:c754f60a17b44a9184387bfbb6fba3ac5f3c9d281eb286aa5f81eb4b088ad7a3"
+        "DiffID": "sha256:81bff35c3d739d4c2a2f996abebcf95ae848c7d2aa8795f71681e661da0d2eb5"
       },
       {
         "Size": 31232,
-        "DiffID": "sha256:64efb94cc8db016889b8f44004016a0fd406f42ec3f7b4a9941b7f106ad2d8a1"
+        "DiffID": "sha256:b26720d25bada80c42398ef09edd22eb106106ecb148c7d480f0adbc53246417"
       },
       {
         "Size": 44544,
-        "DiffID": "sha256:ab4e14882d31e28d0a5cd3ad38bdb98edff6743a60068d011c746a65cc154f4b"
-      },
-      {
-        "Size": 118784,
-        "DiffID": "sha256:3bc30e9481c2872ad3f9c658c79498f5e86fbb7e2648800b4bc25cdfbe0e38f2"
+        "DiffID": "sha256:60fa0462c39a9ae439270adfd01d7c7edd9e00843933b5e90b4bd3384f1342dc"
       }
     ]
   },
@@ -266,7 +312,7 @@
           "Name": ".python-rundeps",
           "Identifier": {
             "PURL": "pkg:apk/alpine/.python-rundeps@20260901.001029?arch=noarch\u0026distro=3.24.1",
-            "UID": "f1281cc9b2d2c4ca"
+            "UID": "4e26c99fecac1e97"
           },
           "Version": "20260901.001029",
           "Arch": "noarch",
@@ -280,7 +326,7 @@
             "libpanelw@6.6_p20260516-r0",
             "libssl3@3.5.8-r0",
             "libtirpc@1.3.5-r1",
-            "libuuid@2.42.1-r0",
+            "libuuid@2.42.3-r1",
             "musl@1.2.6-r2",
             "readline@8.3.3-r1",
             "sqlite-libs@3.53.4-r0",
@@ -467,31 +513,31 @@
           "AnalyzedBy": "apk"
         },
         {
-          "ID": "apk-tools@3.0.8-r0",
+          "ID": "apk-tools@3.0.6-r0",
           "Name": "apk-tools",
           "Identifier": {
-            "PURL": "pkg:apk/alpine/apk-tools@3.0.8-r0?arch=x86_64\u0026distro=3.24.1",
-            "UID": "5c76cd931e2a8e18"
+            "PURL": "pkg:apk/alpine/apk-tools@3.0.6-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "cb2633c883b17a04"
           },
-          "Version": "3.0.8-r0",
+          "Version": "3.0.6-r0",
           "Arch": "x86_64",
           "SrcName": "apk-tools",
-          "SrcVersion": "3.0.8-r0",
+          "SrcVersion": "3.0.6-r0",
           "Licenses": [
             "GPL-2.0-only"
           ],
           "Maintainer": "Natanael Copa \u003cncopa@alpinelinux.org\u003e",
           "DependsOn": [
             "ca-certificates-bundle@20260611-r0",
-            "libapk@3.0.8-r0",
+            "libapk@3.0.6-r0",
             "libcrypto3@3.5.8-r0",
             "musl@1.2.6-r2",
             "zlib@1.3.2-r0"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
           },
-          "Digest": "sha1:786130a8f2d3ac69fc316118757b7e8151b8b8c3",
+          "Digest": "sha1:043333589798a1f52e09ae63f026c6c8fa676d34",
           "InstalledFiles": [
             "sbin/apk"
           ],
@@ -877,16 +923,16 @@
           "AnalyzedBy": "apk"
         },
         {
-          "ID": "libapk@3.0.8-r0",
+          "ID": "libapk@3.0.6-r0",
           "Name": "libapk",
           "Identifier": {
-            "PURL": "pkg:apk/alpine/libapk@3.0.8-r0?arch=x86_64\u0026distro=3.24.1",
-            "UID": "3bc45fb01b4ba719"
+            "PURL": "pkg:apk/alpine/libapk@3.0.6-r0?arch=x86_64\u0026distro=3.24.1",
+            "UID": "a35b8b9b3219513a"
           },
-          "Version": "3.0.8-r0",
+          "Version": "3.0.6-r0",
           "Arch": "x86_64",
           "SrcName": "apk-tools",
-          "SrcVersion": "3.0.8-r0",
+          "SrcVersion": "3.0.6-r0",
           "Licenses": [
             "GPL-2.0-only"
           ],
@@ -898,9 +944,9 @@
             "zlib@1.3.2-r0"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:34884abbe92863fce933ed7c39c0e045631af0ed86d5cc0dfbdf9fdca426ce3c"
           },
-          "Digest": "sha1:b93ce9573c1d0db3eea7ce32841ad0857abc4a54",
+          "Digest": "sha1:523a8f58104589f74f743d501c81bf6517155378",
           "InstalledFiles": [
             "usr/lib/libapk.so.3.0.0"
           ],
@@ -1229,16 +1275,16 @@
           "AnalyzedBy": "apk"
         },
         {
-          "ID": "libuuid@2.42.1-r0",
+          "ID": "libuuid@2.42.3-r1",
           "Name": "libuuid",
           "Identifier": {
-            "PURL": "pkg:apk/alpine/libuuid@2.42.1-r0?arch=x86_64\u0026distro=3.24.1",
-            "UID": "61e289a52fcab6f6"
+            "PURL": "pkg:apk/alpine/libuuid@2.42.3-r1?arch=x86_64\u0026distro=3.24.1",
+            "UID": "c444e9cdd1bdda40"
           },
-          "Version": "2.42.1-r0",
+          "Version": "2.42.3-r1",
           "Arch": "x86_64",
           "SrcName": "util-linux",
-          "SrcVersion": "2.42.1-r0",
+          "SrcVersion": "2.42.3-r1",
           "Licenses": [
             "BSD-3-Clause"
           ],
@@ -1247,9 +1293,9 @@
             "musl@1.2.6-r2"
           ],
           "Layer": {
-            "DiffID": "sha256:e5ccda0fbf6b54d343e024156d876553ba57d3926d7196584b3a1ce4df016366"
+            "DiffID": "sha256:22bc76ce7e583f8626f56298a37f366ea39255d8d38420d9f22c74c4eec6684f"
           },
-          "Digest": "sha1:6acb0e27112dfb784e6f7ccceb0e968fafa09713",
+          "Digest": "sha1:8f041ef637ad75f381cc0c034f2afbbb0303264e",
           "InstalledFiles": [
             "usr/lib/libuuid.so.1",
             "usr/lib/libuuid.so.1.3.0"
@@ -2214,20 +2260,6 @@
       "Type": "python-pkg",
       "Packages": [
         {
-          "ID": "CacheControl@0.14.4",
-          "Name": "CacheControl",
-          "Identifier": {
-            "PURL": "pkg:pypi/cachecontrol@0.14.4",
-            "UID": "918db5f3147f4498",
-            "BOMRef": "pkg:pypi/CacheControl@0.14.4"
-          },
-          "Version": "0.14.4",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "AnalyzedBy": "sbom"
-        },
-        {
           "Name": "PyJWT",
           "Identifier": {
             "PURL": "pkg:pypi/pyjwt@2.13.0",
@@ -2238,7 +2270,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pyjwt-2.13.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2254,7 +2286,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pyyaml-6.0.3.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2270,7 +2302,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/annotated_doc-0.0.5.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2286,7 +2318,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/annotated_types-0.8.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2294,32 +2326,18 @@
         {
           "Name": "anyio",
           "Identifier": {
-            "PURL": "pkg:pypi/anyio@4.15.0",
-            "UID": "d701d9012f068e75"
+            "PURL": "pkg:pypi/anyio@4.15.1",
+            "UID": "f568878f56f7e387"
           },
-          "Version": "4.15.0",
+          "Version": "4.15.1",
           "Licenses": [
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
-          "FilePath": "usr/local/lib/python3.12/site-packages/anyio-4.15.0.dist-info/METADATA",
+          "FilePath": "usr/local/lib/python3.12/site-packages/anyio-4.15.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
-        },
-        {
-          "ID": "certifi@2026.6.17",
-          "Name": "certifi",
-          "Identifier": {
-            "PURL": "pkg:pypi/certifi@2026.6.17",
-            "UID": "4be2e2d698b876a3",
-            "BOMRef": "pkg:pypi/certifi@2026.6.17"
-          },
-          "Version": "2026.6.17",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "AnalyzedBy": "sbom"
         },
         {
           "Name": "click",
@@ -2332,38 +2350,10 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/click-8.5.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
-        },
-        {
-          "ID": "distlib@0.4.2",
-          "Name": "distlib",
-          "Identifier": {
-            "PURL": "pkg:pypi/distlib@0.4.2",
-            "UID": "eaa5d2119fe45ab3",
-            "BOMRef": "pkg:pypi/distlib@0.4.2"
-          },
-          "Version": "0.4.2",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "AnalyzedBy": "sbom"
-        },
-        {
-          "ID": "distro@1.9.0",
-          "Name": "distro",
-          "Identifier": {
-            "PURL": "pkg:pypi/distro@1.9.0",
-            "UID": "b90ac562dcd78c67",
-            "BOMRef": "pkg:pypi/distro@1.9.0"
-          },
-          "Version": "1.9.0",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "AnalyzedBy": "sbom"
         },
         {
           "Name": "fastapi",
@@ -2376,7 +2366,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/fastapi-0.141.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2392,7 +2382,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/h11-0.16.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2408,24 +2398,10 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/httptools-0.8.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
-        },
-        {
-          "ID": "idna@3.18",
-          "Name": "idna",
-          "Identifier": {
-            "PURL": "pkg:pypi/idna@3.18",
-            "UID": "c584d1beb1ab5d75",
-            "BOMRef": "pkg:pypi/idna@3.18"
-          },
-          "Version": "3.18",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "AnalyzedBy": "sbom"
         },
         {
           "Name": "idna",
@@ -2438,68 +2414,10 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/idna-3.19.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
-        },
-        {
-          "ID": "msgpack@1.1.2",
-          "Name": "msgpack",
-          "Identifier": {
-            "PURL": "pkg:pypi/msgpack@1.1.2",
-            "UID": "9d7d565367050f92",
-            "BOMRef": "pkg:pypi/msgpack@1.1.2"
-          },
-          "Version": "1.1.2",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "AnalyzedBy": "sbom"
-        },
-        {
-          "ID": "packaging@26.2",
-          "Name": "packaging",
-          "Identifier": {
-            "PURL": "pkg:pypi/packaging@26.2",
-            "UID": "831135d2638194e3",
-            "BOMRef": "pkg:pypi/packaging@26.2"
-          },
-          "Version": "26.2",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "AnalyzedBy": "sbom"
-        },
-        {
-          "Name": "pip",
-          "Identifier": {
-            "PURL": "pkg:pypi/pip@26.2.1",
-            "UID": "6ecafc08becca283"
-          },
-          "Version": "26.2.1",
-          "Licenses": [
-            "MIT"
-          ],
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "FilePath": "usr/local/lib/python3.12/site-packages/pip-26.2.1.dist-info/METADATA",
-          "AnalyzedBy": "python-pkg"
-        },
-        {
-          "ID": "platformdirs@4.10.0",
-          "Name": "platformdirs",
-          "Identifier": {
-            "PURL": "pkg:pypi/platformdirs@4.10.0",
-            "UID": "bceb43cd8faea0db",
-            "BOMRef": "pkg:pypi/platformdirs@4.10.0"
-          },
-          "Version": "4.10.0",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "AnalyzedBy": "sbom"
         },
         {
           "Name": "pydantic",
@@ -2512,7 +2430,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pydantic-2.9.2.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2528,38 +2446,10 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/pydantic_core-2.23.4.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
-        },
-        {
-          "ID": "pygments@2.20.0",
-          "Name": "pygments",
-          "Identifier": {
-            "PURL": "pkg:pypi/pygments@2.20.0",
-            "UID": "1cc1d55af1817d9",
-            "BOMRef": "pkg:pypi/pygments@2.20.0"
-          },
-          "Version": "2.20.0",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "AnalyzedBy": "sbom"
-        },
-        {
-          "ID": "pyproject-hooks@1.2.0",
-          "Name": "pyproject-hooks",
-          "Identifier": {
-            "PURL": "pkg:pypi/pyproject-hooks@1.2.0",
-            "UID": "e523f408361e0fcc",
-            "BOMRef": "pkg:pypi/pyproject-hooks@1.2.0"
-          },
-          "Version": "1.2.0",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "AnalyzedBy": "sbom"
         },
         {
           "Name": "python-dotenv",
@@ -2572,66 +2462,10 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/python_dotenv-1.2.3.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
-        },
-        {
-          "ID": "requests@2.34.2",
-          "Name": "requests",
-          "Identifier": {
-            "PURL": "pkg:pypi/requests@2.34.2",
-            "UID": "7d2a8fbdb98d5bb8",
-            "BOMRef": "pkg:pypi/requests@2.34.2"
-          },
-          "Version": "2.34.2",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "AnalyzedBy": "sbom"
-        },
-        {
-          "ID": "resolvelib@1.2.1",
-          "Name": "resolvelib",
-          "Identifier": {
-            "PURL": "pkg:pypi/resolvelib@1.2.1",
-            "UID": "47e96669d04f0ad5",
-            "BOMRef": "pkg:pypi/resolvelib@1.2.1"
-          },
-          "Version": "1.2.1",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "AnalyzedBy": "sbom"
-        },
-        {
-          "ID": "rich@14.2.0",
-          "Name": "rich",
-          "Identifier": {
-            "PURL": "pkg:pypi/rich@14.2.0",
-            "UID": "72917d9a472273b5",
-            "BOMRef": "pkg:pypi/rich@14.2.0"
-          },
-          "Version": "14.2.0",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "AnalyzedBy": "sbom"
-        },
-        {
-          "ID": "setuptools@70.3.0",
-          "Name": "setuptools",
-          "Identifier": {
-            "PURL": "pkg:pypi/setuptools@70.3.0",
-            "UID": "4bc74a0ad6dbc16b",
-            "BOMRef": "pkg:pypi/setuptools@70.3.0"
-          },
-          "Version": "70.3.0",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "AnalyzedBy": "sbom"
         },
         {
           "Name": "starlette",
@@ -2644,52 +2478,10 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/starlette-1.6.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
-        },
-        {
-          "ID": "tomli@2.4.1",
-          "Name": "tomli",
-          "Identifier": {
-            "PURL": "pkg:pypi/tomli@2.4.1",
-            "UID": "2cb2a60390da1ea0",
-            "BOMRef": "pkg:pypi/tomli@2.4.1"
-          },
-          "Version": "2.4.1",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "AnalyzedBy": "sbom"
-        },
-        {
-          "ID": "tomli-w@1.2.0",
-          "Name": "tomli-w",
-          "Identifier": {
-            "PURL": "pkg:pypi/tomli-w@1.2.0",
-            "UID": "313a1c5a485a20fb",
-            "BOMRef": "pkg:pypi/tomli-w@1.2.0"
-          },
-          "Version": "1.2.0",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "AnalyzedBy": "sbom"
-        },
-        {
-          "ID": "truststore@0.10.4",
-          "Name": "truststore",
-          "Identifier": {
-            "PURL": "pkg:pypi/truststore@0.10.4",
-            "UID": "46df0f1b1d8069cd",
-            "BOMRef": "pkg:pypi/truststore@0.10.4"
-          },
-          "Version": "0.10.4",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "AnalyzedBy": "sbom"
         },
         {
           "Name": "typing-inspection",
@@ -2702,7 +2494,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/typing_inspection-0.4.4.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2718,24 +2510,10 @@
             "PSF-2.0"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/typing_extensions-4.16.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
-        },
-        {
-          "ID": "urllib3@2.7.0",
-          "Name": "urllib3",
-          "Identifier": {
-            "PURL": "pkg:pypi/urllib3@2.7.0",
-            "UID": "7471a9a22bc9de38",
-            "BOMRef": "pkg:pypi/urllib3@2.7.0"
-          },
-          "Version": "2.7.0",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "AnalyzedBy": "sbom"
         },
         {
           "Name": "uvicorn",
@@ -2748,7 +2526,7 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/uvicorn-0.30.6.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2765,7 +2543,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/uvloop-0.22.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2781,7 +2559,7 @@
             "MIT"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/watchfiles-1.2.0.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
@@ -2797,212 +2575,10 @@
             "BSD-3-Clause"
           ],
           "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
+            "DiffID": "sha256:33f2107821c06e628dd1e596233274613eede5afd348f089c1914693047870d8"
           },
           "FilePath": "usr/local/lib/python3.12/site-packages/websockets-17.1.dist-info/METADATA",
           "AnalyzedBy": "python-pkg"
-        }
-      ],
-      "Vulnerabilities": [
-        {
-          "VulnerabilityID": "GHSA-6v7p-g79w-8964",
-          "PkgID": "msgpack@1.1.2",
-          "PkgName": "msgpack",
-          "PkgIdentifier": {
-            "PURL": "pkg:pypi/msgpack@1.1.2",
-            "UID": "9d7d565367050f92",
-            "BOMRef": "pkg:pypi/msgpack@1.1.2"
-          },
-          "InstalledVersion": "1.1.2",
-          "FixedVersion": "1.2.1",
-          "Status": "fixed",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "SeveritySource": "ghsa",
-          "PrimaryURL": "https://github.com/advisories/GHSA-6v7p-g79w-8964",
-          "DataSource": {
-            "ID": "ghsa",
-            "Name": "GitHub Security Advisory pip",
-            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
-          },
-          "Fingerprint": "sha256:07ef0f9dc3ba6c7e6693ab42612b6a436a46f4c53ad67ea0d26b1c7e7c605d2b",
-          "Title": "MessagePack for Python: Out-of-bounds read / crash on Unpacker reuse after a caught error",
-          "Description": "### Impact\n\nIf the Unpacker is used repeatedly after an error occurs, the process may crash with a SEGV.\n\nIf the Unpacker is used repeatedly to unpack untrusted input from external sources, it may be vulnerable to a DoS attack.\n\n### Patches\n\nv1.2.1\n\n### Workarounds\n\nUsers should create a new Unpacker instead of reusing the same Unpacker after an error occurs.\n\nApplying the above patch can prevent SEGV, but reusing the Streaming Unpacker after it has encountered an error will not yield correct data. If an error occurs during Streaming Unpacking, the Stream and Streaming Unpacker should be discarded.\n\nTherefore, this is not just a workaround but the correct solution. The above patch only prevents crashes from incorrect usage.",
-          "Severity": "HIGH",
-          "VendorSeverity": {
-            "ghsa": 3
-          },
-          "CVSS": {
-            "ghsa": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
-              "V3Score": 7.5
-            }
-          },
-          "References": [
-            "https://github.com/msgpack/msgpack-python",
-            "https://github.com/msgpack/msgpack-python/commit/2c56ddb5d0025ed481d962c0f5d62d19dec7476d",
-            "https://github.com/msgpack/msgpack-python/releases/tag/v1.2.1",
-            "https://github.com/msgpack/msgpack-python/security/advisories/GHSA-6v7p-g79w-8964"
-          ],
-          "PublishedDate": "2026-06-19T21:42:55Z",
-          "LastModifiedDate": "2026-06-19T21:42:55Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2025-47273",
-          "VendorIDs": [
-            "GHSA-5rjg-fvgr-3xxf"
-          ],
-          "PkgID": "setuptools@70.3.0",
-          "PkgName": "setuptools",
-          "PkgIdentifier": {
-            "PURL": "pkg:pypi/setuptools@70.3.0",
-            "UID": "4bc74a0ad6dbc16b",
-            "BOMRef": "pkg:pypi/setuptools@70.3.0"
-          },
-          "InstalledVersion": "70.3.0",
-          "FixedVersion": "78.1.1",
-          "Status": "fixed",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "SeveritySource": "ghsa",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2025-47273",
-          "DataSource": {
-            "ID": "ghsa",
-            "Name": "GitHub Security Advisory pip",
-            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
-          },
-          "Fingerprint": "sha256:fcc1283b05d1c1f3a3fea727e1e4ec7e1bce5970ffdfbd08e7e5f159e00fdbe2",
-          "Title": "setuptools: Path Traversal Vulnerability in setuptools PackageIndex",
-          "Description": "setuptools is a package that allows users to download, build, install, upgrade, and uninstall Python packages. A path traversal vulnerability in `PackageIndex` is present in setuptools prior to version 78.1.1. An attacker would be allowed to write files to arbitrary locations on the filesystem with the permissions of the process running the Python code, which could escalate to remote code execution depending on the context. Version 78.1.1 fixes the issue.",
-          "Severity": "HIGH",
-          "CweIDs": [
-            "CWE-22"
-          ],
-          "VendorSeverity": {
-            "alma": 2,
-            "amazon": 3,
-            "azure": 3,
-            "bitnami": 3,
-            "ghsa": 3,
-            "nvd": 3,
-            "oracle-oval": 2,
-            "photon": 3,
-            "redhat": 2,
-            "rocky": 2,
-            "ubuntu": 2
-          },
-          "CVSS": {
-            "bitnami": {
-              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:H/VA:N/SC:N/SI:N/SA:N/E:P",
-              "V40Score": 7.7
-            },
-            "ghsa": {
-              "V40Vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:H/VA:N/SC:N/SI:N/SA:N/E:P",
-              "V40Score": 7.7
-            },
-            "nvd": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
-              "V3Score": 8.8
-            },
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:H/A:L",
-              "V3Score": 7.1
-            }
-          },
-          "References": [
-            "https://access.redhat.com/errata/RHSA-2025:10407",
-            "https://access.redhat.com/errata/RHSA-2025:13578",
-            "https://access.redhat.com/security/cve/CVE-2025-47273",
-            "https://bugzilla.redhat.com/2366982",
-            "https://bugzilla.redhat.com/show_bug.cgi?id=2366982",
-            "https://creativecommons.org/licenses/by/4.0/",
-            "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2025-47273",
-            "https://errata.almalinux.org/9/ALSA-2025-13578.html",
-            "https://errata.rockylinux.org/RLSA-2025:10407",
-            "https://github.com/pypa/advisory-database/tree/main/vulns/setuptools/PYSEC-2025-49.yaml",
-            "https://github.com/pypa/setuptools",
-            "https://github.com/pypa/setuptools/blob/6ead555c5fb29bc57fe6105b1bffc163f56fd558/setuptools/package_index.py#L810C1-L825C88",
-            "https://github.com/pypa/setuptools/commit/250a6d17978f9f6ac3ac887091f2d32886fbbb0b",
-            "https://github.com/pypa/setuptools/issues/4946",
-            "https://github.com/pypa/setuptools/security/advisories/GHSA-5rjg-fvgr-3xxf",
-            "https://linux.oracle.com/cve/CVE-2025-47273.html",
-            "https://linux.oracle.com/errata/ELSA-2025-9940.html",
-            "https://lists.debian.org/debian-lts-announce/2025/05/msg00035.html",
-            "https://nvd.nist.gov/vuln/detail/CVE-2025-47273",
-            "https://ubuntu.com/security/notices/USN-7544-1",
-            "https://ubuntu.com/security/notices/USN-8010-1",
-            "https://www.cve.org/CVERecord?id=CVE-2025-47273"
-          ],
-          "PublishedDate": "2025-05-17T16:15:19.11Z",
-          "LastModifiedDate": "2026-06-17T09:27:38.827Z"
-        },
-        {
-          "VulnerabilityID": "CVE-2026-59890",
-          "VendorIDs": [
-            "GHSA-h35f-9h28-mq5c"
-          ],
-          "PkgID": "setuptools@70.3.0",
-          "PkgName": "setuptools",
-          "PkgIdentifier": {
-            "PURL": "pkg:pypi/setuptools@70.3.0",
-            "UID": "4bc74a0ad6dbc16b",
-            "BOMRef": "pkg:pypi/setuptools@70.3.0"
-          },
-          "InstalledVersion": "70.3.0",
-          "FixedVersion": "83.0.0",
-          "Status": "fixed",
-          "Layer": {
-            "DiffID": "sha256:ae251eebda9cd4cd9b0e32fc8901205c1c21a88d94d69b7bd4c6d7d351d1df99"
-          },
-          "SeveritySource": "ghsa",
-          "PrimaryURL": "https://avd.aquasec.com/nvd/cve-2026-59890",
-          "DataSource": {
-            "ID": "ghsa",
-            "Name": "GitHub Security Advisory pip",
-            "URL": "https://github.com/advisories?query=type%3Areviewed+ecosystem%3Apip"
-          },
-          "Fingerprint": "sha256:7d2675f4fd1a31781bceed7a7a21e8719a0d44c996297ec601c9558cd5923a5d",
-          "Title": "setuptools: setuptools: MANIFEST.in exclusion bypass in sdist via Unicode normalization collision (NFC/NFD)",
-          "Description": "setuptools is a package that allows users to download, build, install, upgrade, and uninstall Python packages. Prior to 83.0.0, FileList applied MANIFEST.in exclude, global-exclude, recursive-exclude, and prune directives by matching compiled glob patterns against on-disk file names without Unicode normalization, so on macOS APFS or HFS+ an NFD file name could bypass an NFC exclusion rule and be packed into a source distribution. This issue is fixed in version 83.0.0.",
-          "Severity": "MEDIUM",
-          "CweIDs": [
-            "CWE-176",
-            "CWE-697"
-          ],
-          "VendorSeverity": {
-            "azure": 2,
-            "bitnami": 2,
-            "ghsa": 2,
-            "redhat": 2
-          },
-          "CVSS": {
-            "bitnami": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:L/A:N",
-              "V3Score": 6.1
-            },
-            "ghsa": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:L/A:N",
-              "V3Score": 6.1
-            },
-            "redhat": {
-              "V3Vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:L/A:N",
-              "V3Score": 6.1
-            }
-          },
-          "References": [
-            "https://access.redhat.com/security/cve/CVE-2026-59890",
-            "https://github.com/pypa/advisory-database/tree/main/vulns/setuptools/PYSEC-2026-3447.yaml",
-            "https://github.com/pypa/setuptools",
-            "https://github.com/pypa/setuptools/commit/dd9f436a36486b4cb8a4c70a2321548b0be09b8f",
-            "https://github.com/pypa/setuptools/releases/tag/v83.0.0",
-            "https://github.com/pypa/setuptools/security/advisories/GHSA-h35f-9h28-mq5c",
-            "https://nvd.nist.gov/vuln/detail/CVE-2026-59890",
-            "https://www.cve.org/CVERecord?id=CVE-2026-59890"
-          ],
-          "PublishedDate": "2026-07-08T17:17:27.02Z",
-          "LastModifiedDate": "2026-07-13T17:04:58.427Z"
         }
       ]
     }
