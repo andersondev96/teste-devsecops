@@ -253,6 +253,12 @@ jobs:
           DAST_TOTAL=$(jq '.site[0].alerts | length' report_json.json || echo 0)
           TRIVY_TOTAL=$(jq '[.Results[].Vulnerabilities[]?] | length' trivy_report.json || echo 0)
           IAC_TOTAL=$(jq '[.Results[]?.Misconfigurations[]? | select(.Status == "FAIL")] | length' trivy_iac_report.json || echo 0)
+          TRIVY_GATE_TOTAL=$(jq '[.Results[].Vulnerabilities[]? | select(.Severity == "HIGH" or .Severity == "CRITICAL")] | length' trivy_report.json || echo 0)
+          IAC_GATE_TOTAL=$(jq '[.Results[]?.Misconfigurations[]? | select(.Status == "FAIL") | select(.Severity == "HIGH" or .Severity == "CRITICAL")] | length' trivy_iac_report.json || echo 0)
+          GATE_STATUS="approved"
+          if [ "$SAST_TOTAL" -gt 0 ] || [ "$SCA_TOTAL" -gt 0 ] || [ "$TRIVY_GATE_TOTAL" -gt 0 ] || [ "$IAC_GATE_TOTAL" -gt 0 ]; then
+            GATE_STATUS="blocked"
+          fi
           TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
           COMMIT_SHA=$(git rev-parse --short "$GITHUB_SHA")
           COMMIT_SUBJECT=$(git log -1 --pretty=%s "$GITHUB_SHA")
@@ -303,7 +309,8 @@ jobs:
             --argjson dast "$DAST_TOTAL" \
             --argjson trivy "$TRIVY_TOTAL" \
             --argjson iac "$IAC_TOTAL" \
-            '{date: $date, description: $description, commit: $commit, sast: $sast, sca: $sca, dast: $dast, trivy: $trivy, iac: $iac, total: ($sast + $sca + $dast + $trivy + $iac)}' \
+            --arg gate_status "$GATE_STATUS" \
+            '{date: $date, description: $description, commit: $commit, sast: $sast, sca: $sca, dast: $dast, trivy: $trivy, iac: $iac, gate_status: $gate_status, total: ($sast + $sca + $dast + $trivy + $iac)}' \
             > current_summary.json
 
       - name: 14. Persistir Histórico no Repositório

@@ -11,29 +11,33 @@ import zapReport from '../data/report_json.json';
 
 interface PipelineProps {
   chartData: { categoria: string; antes: number; depois: number }[];
-  totalAlta: number;
 }
 
-export function PipelineTab({ chartData, totalAlta }: PipelineProps) {
+export function PipelineTab({ chartData }: PipelineProps) {
   const [expandedStage, setExpandedStage] = useState<number | null>(null);
+
+  const getIssuesCount = (categoryName: string) => {
+    const stage = chartData.find(c => c.categoria === categoryName);
+    return stage ? stage.depois : 0;
+  };
 
   const isHighOrCritical = (value: unknown) => {
     const severity = String(value || '').toUpperCase();
     return severity === 'HIGH' || severity === 'CRITICAL';
   };
 
-  const allBlockers = [
-    ...(sastReport.results?.filter((f: any) => isHighOrCritical(f.issue_severity)) || []),
-    ...(scaReport.vulnerabilities?.filter((f: any) => isHighOrCritical(f.severity)) || []),
-    ...(trivyReport.Results?.flatMap((r: any) => r.Vulnerabilities || []).filter((f: any) => isHighOrCritical(f.Severity)) || []),
-    ...(trivyIacReport.Results?.flatMap((r: any) => r.Misconfigurations || []).filter((f: any) => isHighOrCritical(f.Severity)) || []),
-    ...(zapReport.site?.[0]?.alerts?.filter((f: any) => f.riskcode === '3') || [])
+  const trivyGateFindings = trivyReport.Results?.flatMap((r: any) => r.Vulnerabilities || [])
+    .filter((f: any) => isHighOrCritical(f.Severity)) || [];
+  const iacGateFindings = trivyIacReport.Results?.flatMap((r: any) => r.Misconfigurations || [])
+    .filter((f: any) => f.Status === 'FAIL' && isHighOrCritical(f.Severity)) || [];
+  const gateFindings = [
+    ...(sastReport.results || []),
+    ...(scaReport.vulnerabilities || []),
+    ...trivyGateFindings,
+    ...iacGateFindings,
   ];
-
-  const getIssuesCount = (categoryName: string) => {
-    const stage = chartData.find(c => c.categoria === categoryName);
-    return stage ? stage.depois : 0;
-  };
+  const gateFindingCount = getIssuesCount('SAST') + getIssuesCount('SCA')
+    + trivyGateFindings.length + iacGateFindings.length;
 
   const pipelineStages = [
     { id: 1, name: 'Commit & Secrets', tool: 'GitLeaks', icon: GitCommit, issues: 0, status: 'pass', desc: 'Análise de segredos expostos.', findings: [] },
@@ -43,7 +47,7 @@ export function PipelineTab({ chartData, totalAlta }: PipelineProps) {
     { id: 5, name: 'Image Scanning', tool: 'Trivy', icon: FileCode2, issues: getIssuesCount('Trivy'), status: getIssuesCount('Trivy') > 0 ? 'fail' : 'pass', desc: 'Escaneamento da imagem Docker.', findings: trivyReport.Results?.flatMap((r: any) => r.Vulnerabilities || []) || [] },
     { id: 6, name: 'IaC (Dockerfile)', tool: 'Trivy Config', icon: FileCode2, issues: getIssuesCount('IaC'), status: getIssuesCount('IaC') > 0 ? 'fail' : 'pass', desc: 'Validação de configurações inseguras da infraestrutura como código.', findings: trivyIacReport.Results?.flatMap((r: any) => r.Misconfigurations || []).filter((f: any) => f.Status === 'FAIL') || [] },
     { id: 7, name: 'DAST (Dynamic Analysis)', tool: 'ZAP', icon: PlaySquare, issues: getIssuesCount('DAST'), status: getIssuesCount('DAST') > 0 ? 'fail' : 'pass', desc: 'Testes de intrusão ativos na API.', findings: zapReport.site?.[0]?.alerts || [] },
-    { id: 8, name: 'Security Gate', tool: 'Policy Check', icon: ShieldCheck, issues: totalAlta, status: totalAlta > 0 ? 'blocked' : 'pass', desc: 'Bloqueio de deploys inseguros.', findings: allBlockers }
+    { id: 8, name: 'Security Gate', tool: 'Policy Check', icon: ShieldCheck, issues: gateFindingCount, status: gateFindingCount > 0 ? 'blocked' : 'pass', desc: 'Gate final: SAST/SCA bloqueiam achados; Trivy/IaC bloqueiam HIGH/CRITICAL. DAST é informativo.', findings: gateFindings }
   ];
 
   const getStatusStyles = (status: string) => {
