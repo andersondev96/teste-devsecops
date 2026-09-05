@@ -4,13 +4,21 @@ if __name__ == "__main__":
     import secrets
     import sys
 
-    if sys.version_info < (3, 10):
+    if sys.version_info < (3, 10) or sys.version_info >= (3, 14):
         raise RuntimeError(
-            "A API requer Python 3.10 ou superior para usar dependências "
-            "com correções de segurança suportadas."
+            "A API requer Python >= 3.10 e < 3.14. Use o ambiente virtual "
+            "do projeto com Python 3.11/3.12; o Python 3.14 não é compatível "
+            "com as versões fixadas de pydantic-core."
         )
 
-    import uvicorn
+    try:
+        import uvicorn
+    except ModuleNotFoundError as exc:
+        raise RuntimeError(
+            "As dependências da API não estão instaladas neste interpretador. "
+            "Ative .venv e execute: python -m pip install -r "
+            "requirements-dev.txt"
+        ) from exc
 
     # `python run.py` é o executor de desenvolvimento. Quando nenhuma chave
     # foi configurada localmente, cria uma chave efêmera apenas para essa

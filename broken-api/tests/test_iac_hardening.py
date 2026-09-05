@@ -16,7 +16,8 @@ def test_dockerfile_uses_a_non_root_minimal_runtime_contract():
     assert "requirements-dev.txt" not in dockerfile
     assert "apk upgrade" not in dockerfile
     assert '"setuptools==83.0.0"' in dockerfile
-    assert '"msgpack==1.2.1"' in dockerfile
+    assert "site-packages/pip" in dockerfile
+    assert "site-packages/setuptools" in dockerfile
 
 
 def test_dockerignore_excludes_local_and_development_artifacts():

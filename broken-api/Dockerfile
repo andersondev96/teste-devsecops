@@ -18,13 +18,21 @@ RUN addgroup -S -g 10001 app \
     && chown app:app /app
 
 COPY requirements.txt .
-# Corrige pacotes trazidos pela imagem base/árvore de instalação que são
-# reportados pelo Trivy quando permanecem em versões antigas.
+# Atualiza as ferramentas usadas somente durante o build. Elas são removidas
+# ao final para que pip/setuptools e seus módulos vendorizados não façam parte
+# do runtime da API.
 RUN python -m pip install --no-cache-dir --upgrade pip \
     && python -m pip install --no-cache-dir -r requirements.txt \
     && python -m pip install --no-cache-dir \
         "setuptools==83.0.0" \
-        "msgpack==1.2.1"
+    && rm -rf \
+        /usr/local/lib/python3.12/site-packages/pip \
+        /usr/local/lib/python3.12/site-packages/pip-*.dist-info \
+        /usr/local/lib/python3.12/site-packages/setuptools \
+        /usr/local/lib/python3.12/site-packages/setuptools-*.dist-info \
+        /usr/local/bin/pip \
+        /usr/local/bin/pip3 \
+        /usr/local/bin/pip3.12
 
 # O código é copiado como root e fica somente para leitura pelo usuário de
 # runtime; somente o diretório /app precisa aceitar o SQLite do laboratório.
