@@ -11,11 +11,10 @@ type HistoryEntry = {
   sca: number;
   dast: number;
   trivy: number;
-  iac?: number;
   total: number;
 };
 
-type SecurityCategory = 'sast' | 'sca' | 'dast' | 'trivy' | 'iac';
+type SecurityCategory = 'sast' | 'sca' | 'dast' | 'trivy';
 
 type ExperimentData = {
   total: number;
@@ -23,7 +22,6 @@ type ExperimentData = {
   sca: number;
   dast: number;
   trivy: number;
-  iac: number;
   critica: number;
   alta: number;
   media: number;
@@ -72,14 +70,12 @@ export function DashboardTab({ experimentData, chartData, historyData }: Dashboa
     sca: getChartValue('SCA', 'antes', experimentData.sca),
     dast: getChartValue('DAST', 'antes', experimentData.dast),
     trivy: getChartValue('Trivy', 'antes', experimentData.trivy),
-    iac: getChartValue('IaC', 'antes', experimentData.iac),
   };
   const currentData = {
     sast: getChartValue('SAST', 'depois', experimentData.sast),
     sca: getChartValue('SCA', 'depois', experimentData.sca),
     dast: getChartValue('DAST', 'depois', experimentData.dast),
     trivy: getChartValue('Trivy', 'depois', experimentData.trivy),
-    iac: getChartValue('IaC', 'depois', experimentData.iac),
   };
 
 
@@ -87,8 +83,7 @@ export function DashboardTab({ experimentData, chartData, historyData }: Dashboa
     { subject: 'SAST', Antes: initialData.sast, Atual: currentData.sast },
     { subject: 'SCA', Antes: initialData.sca, Atual: currentData.sca },
     { subject: 'DAST', Antes: initialData.dast, Atual: currentData.dast },
-    { subject: 'Trivy', Antes: initialData.trivy, Atual: currentData.trivy },
-    { subject: 'IaC', Antes: initialData.iac, Atual: currentData.iac }
+    { subject: 'Trivy', Antes: initialData.trivy, Atual: currentData.trivy }
   ];
 
   const severidadeData = experimentData.total === 0 ? [] : [
@@ -104,7 +99,6 @@ export function DashboardTab({ experimentData, chartData, historyData }: Dashboa
     { name: 'SCA', Inicial: initialData.sca, Atual: currentData.sca },
     { name: 'DAST', Inicial: initialData.dast, Atual: currentData.dast },
     { name: 'Container/Trivy', Inicial: initialData.trivy, Atual: currentData.trivy },
-    { name: 'IaC/Dockerfile', Inicial: initialData.iac, Atual: currentData.iac },
   ];
 
   const evolucaoData = historyData.map((d, index) => ({
@@ -115,7 +109,7 @@ export function DashboardTab({ experimentData, chartData, historyData }: Dashboa
   return (
     <div className="space-y-6 animate-in fade-in duration-500 pb-10">
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 flex items-center justify-between">
           <div>
             <p className="text-sm font-medium text-slate-500">SAST (Código)</p>
@@ -143,13 +137,6 @@ export function DashboardTab({ experimentData, chartData, historyData }: Dashboa
             <h3 className="text-2xl font-bold text-slate-800">{experimentData.trivy}</h3>
           </div>
           <div className="p-3 bg-emerald-100 rounded-full"><Server className="w-6 h-6 text-emerald-600" /></div>
-        </div>
-        <div className="bg-white p-6 rounded-lg shadow-sm border border-slate-200 flex items-center justify-between">
-          <div>
-            <p className="text-sm font-medium text-slate-500">IaC (Dockerfile)</p>
-            <h3 className="text-2xl font-bold text-slate-800">{experimentData.iac}</h3>
-          </div>
-          <div className="p-3 bg-purple-100 rounded-full"><FileCode className="w-6 h-6 text-purple-600" /></div>
         </div>
       </div>
 
@@ -281,9 +268,9 @@ export function GraficoComparativoDinamico({ historyData }: GraficoComparativoDi
   };
 
   const dadosGrafico = useMemo(() => {
-    const categorias: SecurityCategory[] = ['sast', 'sca', 'dast', 'trivy', 'iac'];
+    const categorias: SecurityCategory[] = ['sast', 'sca', 'dast', 'trivy'];
     const nomesFiltro: Record<SecurityCategory, string> = {
-      sast: 'SAST', sca: 'SCA', dast: 'DAST', trivy: 'Container/Trivy', iac: 'IaC/Dockerfile'
+      sast: 'SAST', sca: 'SCA', dast: 'DAST', trivy: 'Container/Trivy'
     };
 
     return categorias.map((categoria) => {
