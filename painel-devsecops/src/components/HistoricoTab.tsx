@@ -22,7 +22,7 @@ export function HistoricoTab() {
         Registo contínuo das análises de segurança. Este log garante a rastreabilidade das vulnerabilidades ao longo do ciclo de vida do desenvolvimento.
       </p>
       <p className="text-slate-500 text-xs">
-        O status do gate usa o resultado persistido pelo workflow: SAST/SCA e os gates HIGH/CRITICAL de Trivy/IaC. Alertas DAST permanecem nas métricas e não alteram este rótulo.
+        O status do gate usa o resultado persistido pelo workflow: SAST/SCA e o gate HIGH/CRITICAL de Trivy. Alertas DAST permanecem nas métricas e não alteram este rótulo.
       </p>
 
       {historicoOrdenado.length === 0 ? (
@@ -43,7 +43,7 @@ export function HistoricoTab() {
                   <th className="px-6 py-4 min-w-[320px]">Descrição do commit/deploy</th>
                   <th className="px-6 py-4 text-center" title="Static Application Security Testing">SAST (Código)</th>
                   <th className="px-6 py-4 text-center" title="Software Composition Analysis">SCA (Dependências)</th>
-                  <th className="px-6 py-4 text-center" title="Container Scan">IaC (Infra/Docker)</th>
+                  <th className="px-6 py-4 text-center" title="Container Scan">Trivy (Imagem)</th>
                   <th className="px-6 py-4 text-center" title="Dynamic Application Security Testing">DAST (API Ativa)</th>
                   <th className="px-6 py-4 text-center border-l border-slate-200">Total Detectado</th>
                   <th className="px-6 py-4 text-center">Status do Gate</th>
