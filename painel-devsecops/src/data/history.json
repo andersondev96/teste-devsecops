@@ -281,5 +281,18 @@
     "iac": 0,
     "gate_status": "approved",
     "total": 3
+  },
+  {
+    "date": "2026-09-19T21:02:46Z",
+    "description": "Registrar todas as mitigações OWASP no histórico",
+    "category": "OWASP",
+    "commit": "34b0160",
+    "sast": 0,
+    "sca": 0,
+    "dast": 3,
+    "trivy": 0,
+    "iac": 0,
+    "gate_status": "approved",
+    "total": 3
   }
 ]
