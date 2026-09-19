@@ -17,7 +17,7 @@
         "account": "",
         "local_database_path": null,
         "safety_version": "3.8.1",
-        "timestamp": "2026-09-05 22:02:42",
+        "timestamp": "2026-09-18 00:57:28",
         "packages_found": 29,
         "vulnerabilities_found": 0,
         "vulnerabilities_ignored": 0,
@@ -45,7 +45,7 @@
         "git": {
             "branch": "main",
             "tag": "",
-            "commit": "b21b5f6c7abdb4c763920b71b2850ed309b74a85",
+            "commit": "6b2f1f5edb623cae7859f193b2bae3cde707bd81",
             "dirty": "False",
             "origin": "https://github.com/andersondev96/teste-devsecops"
         },
@@ -208,14 +208,14 @@
         },
         "idna": {
             "name": "idna",
-            "version": "3.19",
+            "version": "3.20",
             "requirements": [
                 {
-                    "raw": "idna==3.19",
+                    "raw": "idna==3.20",
                     "extras": [],
                     "marker": null,
                     "name": "idna",
-                    "specifier": "==3.19",
+                    "specifier": "==3.20",
                     "url": null,
                     "found": "/home/runner/work/teste-devsecops/teste-devsecops/sca_requirements.txt"
                 }
