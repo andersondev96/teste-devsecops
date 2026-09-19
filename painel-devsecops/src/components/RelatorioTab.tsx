@@ -1,5 +1,6 @@
 import { BookOpen, AlertTriangle, CheckCircle, Target, FileText, ShieldCheck, Microscope, Zap } from 'lucide-react';
 import type { OwaspMapping } from '../constants/owsap';
+import historyData from '../data/history.json';
 
 interface RelatorioProps {
   totalFalhas: number;
@@ -158,11 +159,48 @@ export function RelatorioTab({ totalFalhas, mapping }: RelatorioProps) {
           )}
         </section>
 
-        {/* 4. CONCLUSÃO ACADÊMICA */}
+        {/* 4. HISTÓRICO DE EXECUÇÕES */}
+        <section>
+          <h3 className="text-xl font-bold text-slate-900 flex items-center mb-4 border-b pb-2">
+            <FileText className="w-6 h-6 mr-2 text-academico-primary" />
+            4. Histórico de Execuções e Evidências
+          </h3>
+          <p className="text-sm text-slate-600 leading-relaxed mb-4">
+            Relação completa das execuções registradas no pipeline, preservando a descrição funcional associada a cada commit e os totais observados.
+          </p>
+          <div className="overflow-x-auto rounded-lg border">
+            <table className="w-full text-sm text-left">
+              <thead className="bg-slate-50 text-slate-600 font-medium border-b">
+                <tr>
+                  <th className="px-4 py-3 whitespace-nowrap">Execução</th>
+                  <th className="px-4 py-3 whitespace-nowrap">Data</th>
+                  <th className="px-4 py-3 whitespace-nowrap">Escopo</th>
+                  <th className="px-4 py-3 min-w-[360px]">Descrição do commit/deploy</th>
+                  <th className="px-4 py-3 whitespace-nowrap">Commit</th>
+                  <th className="px-4 py-3 text-center whitespace-nowrap">Total</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {historyData.map((run: any, index: number) => (
+                  <tr key={`${run.commit}-${index}`} className="hover:bg-slate-50">
+                    <td className="px-4 py-3 whitespace-nowrap">Deploy #{index + 1}</td>
+                    <td className="px-4 py-3 whitespace-nowrap">{new Date(run.date).toLocaleString('pt-BR')}</td>
+                    <td className="px-4 py-3 text-xs font-semibold text-academico-primary whitespace-nowrap">{run.category || 'CI/Histórico'}</td>
+                    <td className="px-4 py-3 text-slate-700">{run.description}</td>
+                    <td className="px-4 py-3 font-mono text-xs text-slate-500 whitespace-nowrap">{run.commit}</td>
+                    <td className="px-4 py-3 text-center font-bold">{run.total}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        {/* 5. CONCLUSÃO ACADÊMICA */}
         <section>
           <h3 className="text-xl font-bold text-slate-900 flex items-center mb-4 border-b pb-2">
             <Target className="w-6 h-6 mr-2 text-academico-primary" />
-            4. Conclusão do Experimento
+            5. Conclusão do Experimento
           </h3>
           <p className="text-slate-600 leading-relaxed text-justify">
             A implementação da arquitetura DevSecOps provou-se um diferencial crítico na resiliência da aplicação. Através da estratégia de <strong>Shift-Left</strong>, foi possível antecipar vulnerabilidades que tradicionalmente só seriam descobertas em fases de auditoria externa ou incidentes reais. No ciclo atual, {totalMitigadas}/{totalCategorias} categorias possuem mitigação completa registrada; {vulnerabilidadesAtivas.length} permanecem vulneráveis e {mitigacoesParciais.length} estão parcialmente mitigadas{categoriasNaoAvaliadas.length > 0 ? `, enquanto ${categoriasNaoAvaliadas.length} não foram avaliadas` : ''}.

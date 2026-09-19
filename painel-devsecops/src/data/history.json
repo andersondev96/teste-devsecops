@@ -2,6 +2,7 @@
   {
     "date": "2026-08-23T14:43:48Z",
     "description": "Integração da API vulnerável e correções iniciais do pipeline: build Docker sem database.db, histórico na branch correta e Pages somente na main.",
+    "category": "Pipeline/Infra",
     "commit": "8ef26cc",
     "sast": 31,
     "sca": 1,
@@ -12,6 +13,7 @@
   {
     "date": "2026-08-23T15:13:51Z",
     "description": "Publicação das correções do mapeamento OWASP API1–API10 e do reset idempotente do histórico.",
+    "category": "OWASP API1–API10",
     "commit": "516058f",
     "sast": 31,
     "sca": 1,
@@ -22,6 +24,7 @@
   {
     "date": "2026-08-23T15:39:22Z",
     "description": "Sincronização dos relatórios SAST, SCA, DAST e Trivy com o histórico para manter os números do dashboard consistentes.",
+    "category": "SAST/SCA/DAST/Trivy",
     "commit": "87e97e8",
     "sast": 31,
     "sca": 1,
@@ -32,6 +35,7 @@
   {
     "date": "2026-08-29T23:32:29Z",
     "description": "feat: add commit description and SHA to history records and update summary JSON structure",
+    "category": "CI/Histórico",
     "commit": "2021825",
     "sast": 31,
     "sca": 1,
@@ -42,6 +46,7 @@
   {
     "date": "2026-08-30T01:23:44Z",
     "description": "fix(api2): mitiga autenticacao quebrada no login",
+    "category": "API2",
     "commit": "a204833",
     "sast": 38,
     "sca": 7,
@@ -52,6 +57,7 @@
   {
     "date": "2026-08-30T01:59:32Z",
     "description": "fix(security): sincroniza painel com achados ativos",
+    "category": "Painel",
     "commit": "c1633fd",
     "sast": 1,
     "sca": 0,
@@ -62,6 +68,7 @@
   {
     "date": "2026-08-30T02:22:03Z",
     "description": "fix(painel): evita falso positivo de mitigacao OWASP",
+    "category": "Painel/OWASP",
     "commit": "287b2a1",
     "sast": 1,
     "sca": 0,
@@ -72,6 +79,7 @@
   {
     "date": "2026-08-30T23:37:17Z",
     "description": "fix(ci): usa descricao real em merges no historico",
+    "category": "CI/Histórico",
     "commit": "d00df7d",
     "sast": 1,
     "sca": 0,
@@ -82,6 +90,7 @@
   {
     "date": "2026-08-31T00:32:25Z",
     "description": "fix(api1): aplica autorizacao por objeto",
+    "category": "API1",
     "commit": "fdb21ab",
     "sast": 1,
     "sca": 0,
@@ -92,6 +101,7 @@
   {
     "date": "2026-08-31T00:50:27Z",
     "description": "fix(ci): preserva descricoes reais nos logs de merge",
+    "category": "CI/Histórico",
     "commit": "e3e14c1",
     "sast": 1,
     "sca": 0,
@@ -102,6 +112,7 @@
   {
     "date": "2026-08-31T01:30:16Z",
     "description": "fix(api3): restringe propriedades e respostas da API",
+    "category": "API3",
     "commit": "b998260",
     "sast": 1,
     "sca": 0,
@@ -112,6 +123,7 @@
   {
     "date": "2026-09-01T00:28:45Z",
     "description": "fix(api4): aplica limites contra consumo irrestrito",
+    "category": "API4",
     "commit": "4e36e07",
     "sast": 1,
     "sca": 0,
@@ -122,6 +134,7 @@
   {
     "date": "2026-09-01T01:21:26Z",
     "description": "fix(security): corrige achados SAST e SCA do pipeline",
+    "category": "SAST/SCA",
     "commit": "69098a8",
     "sast": 0,
     "sca": 0,
@@ -131,7 +144,8 @@
   },
   {
     "date": "2026-09-02T00:46:01Z",
-    "description": "Vulnerability mitigation",
+    "description": "fix(history): preserva todos os deploys no painel; fix(local): configura Python 3.11 para a API",
+    "category": "CI/Histórico",
     "commit": "265ab45",
     "sast": 0,
     "sca": 0,
@@ -141,7 +155,8 @@
   },
   {
     "date": "2026-09-02T01:25:40Z",
-    "description": "Vulnerability mitigation",
+    "description": "fix(security): mitiga vulnerabilidades API5 e API6",
+    "category": "API5/API6",
     "commit": "cdad7cf",
     "sast": 0,
     "sca": 0,
@@ -151,7 +166,8 @@
   },
   {
     "date": "2026-09-03T00:22:32Z",
-    "description": "Vulnerability mitigation",
+    "description": "feat: centraliza status OWASP no backend (API9: inventário controlado; API10: consumo externo validado)",
+    "category": "API9/API10",
     "commit": "0d18bd5",
     "sast": 0,
     "sca": 0,
@@ -161,7 +177,8 @@
   },
   {
     "date": "2026-09-03T00:56:56Z",
-    "description": "Vulnerability mitigation",
+    "description": "fix(painel): sincroniza métricas atuais de segurança",
+    "category": "Painel",
     "commit": "5007d11",
     "sast": 0,
     "sca": 0,
@@ -171,7 +188,8 @@
   },
   {
     "date": "2026-09-03T01:42:21Z",
-    "description": "Vulnerability mitigation",
+    "description": "fix(api8): endurece configuracao e tratamento de erros",
+    "category": "API8",
     "commit": "decfa85",
     "sast": 0,
     "sca": 0,
@@ -182,6 +200,7 @@
   {
     "date": "2026-09-05T00:49:06Z",
     "description": "fix(api7): mitigate server-side request forgery",
+    "category": "API7",
     "commit": "e4dd407",
     "sast": 0,
     "sca": 0,
@@ -192,6 +211,7 @@
   {
     "date": "2026-09-05T20:06:52Z",
     "description": "fix(iac): harden Docker image and pipeline scans",
+    "category": "Infra/IaC",
     "commit": "5a58164",
     "sast": 0,
     "sca": 0,
@@ -203,6 +223,7 @@
   {
     "date": "2026-09-05T20:51:57Z",
     "description": "fix(iac): atualizar libuuid para corrigir falhas do Trivy",
+    "category": "Infra/IaC",
     "commit": "1ecd8c3",
     "sast": 0,
     "sca": 0,
@@ -214,6 +235,7 @@
   {
     "date": "2026-09-05T21:08:50Z",
     "description": "docs: atualiza histórico de vulnerabilidades [skip ci]",
+    "category": "CI/Histórico",
     "commit": "1a36a07",
     "sast": 0,
     "sca": 0,
@@ -224,7 +246,8 @@
   },
   {
     "date": "2026-09-05T21:56:54Z",
-    "description": "Vulnerability mitigation",
+    "description": "fix(panel): alinhar status aos gates do pipeline",
+    "category": "Painel/Gate",
     "commit": "b8ccaf6",
     "sast": 0,
     "sca": 0,
@@ -237,6 +260,7 @@
   {
     "date": "2026-09-05T22:04:49Z",
     "description": "docs: atualiza histórico de vulnerabilidades [skip ci]",
+    "category": "CI/Histórico",
     "commit": "b21b5f6",
     "sast": 0,
     "sca": 0,

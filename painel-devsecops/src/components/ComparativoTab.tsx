@@ -9,6 +9,22 @@ interface ComparativoProps {
   chartData: { categoria: string; antes: number; depois: number }[];
 }
 
+const TimelineTooltip = ({ active, payload, label }: any) => {
+  if (!active || !payload?.length) return null;
+
+  const registro = payload[0].payload;
+
+  return (
+    <div className="bg-white border border-slate-200 rounded-lg shadow-lg p-3 max-w-sm">
+      <p className="font-semibold text-slate-800">{label}</p>
+      <p className="text-xs font-semibold text-academico-primary mt-1">Escopo: {registro.categoria}</p>
+      <p className="text-sm text-slate-600 mt-1">{registro.descricao}</p>
+      <p className="text-xs text-slate-400 font-mono mt-1">Commit {registro.commit}</p>
+      <p className="text-sm font-bold text-slate-800 mt-2">Total detectado: {registro.falhas}</p>
+    </div>
+  );
+};
+
 export function ComparativoTab({ chartData }: ComparativoProps) {
   // Agora os dados comparativos usam 100% da verdade extraída do history.json
   const dadosComparativos = chartData;
@@ -20,7 +36,10 @@ export function ComparativoTab({ chartData }: ComparativoProps) {
   // Linha do tempo real usando cada execução do histórico
   const timelineData = historyData.map((run: any, index: number) => ({
     sprint: `Deploy ${index + 1} (${new Date(run.date).toLocaleDateString('pt-BR')})`,
-    falhas: run.total
+    falhas: run.total,
+    descricao: run.description,
+    categoria: run.category,
+    commit: run.commit,
   }));
 
   return (
@@ -86,7 +105,7 @@ export function ComparativoTab({ chartData }: ComparativoProps) {
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
                 <XAxis dataKey="sprint" axisLine={false} tickLine={false} fontSize={12} />
                 <YAxis axisLine={false} tickLine={false} fontSize={12} />
-                <Tooltip />
+                <Tooltip content={<TimelineTooltip />} />
                 <Line type="monotone" dataKey="falhas" name="Total Detectado" stroke="#1e293b" strokeWidth={3} dot={{ r: 6, fill: '#1e293b' }} activeDot={{ r: 8, fill: '#3b82f6' }} />
               </LineChart>
             </ResponsiveContainer>
