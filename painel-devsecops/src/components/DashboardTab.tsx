@@ -7,6 +7,9 @@ import { Filter, FileCode, Package, Server, Activity, CheckCircle } from 'lucide
 
 type HistoryEntry = {
   date: string;
+  description: string;
+  category: string;
+  commit: string;
   sast: number;
   sca: number;
   dast: number;
@@ -57,6 +60,22 @@ const getDeployNumber = (dataKey: any) => {
   return match ? parseInt(match[1], 10) : 0;
 };
 
+const HistoricoTooltip = ({ active, payload, label }: any) => {
+  if (!active || !payload?.length) return null;
+
+  const registro = payload[0].payload;
+
+  return (
+    <div className="bg-white border border-slate-200 rounded-lg shadow-lg p-3 max-w-sm">
+      <p className="font-semibold text-slate-800">{label}</p>
+      <p className="text-xs font-semibold text-academico-primary mt-1">Escopo: {registro.category}</p>
+      <p className="text-sm text-slate-600 mt-1">{registro.description}</p>
+      <p className="text-xs text-slate-400 font-mono mt-1">Commit {registro.commit}</p>
+      <p className="text-sm font-bold text-slate-800 mt-2">Total detectado: {registro.Total}</p>
+    </div>
+  );
+};
+
 
 export function DashboardTab({ experimentData, chartData, historyData }: DashboardTabProps) {
   const getChartValue = (category: string, field: 'antes' | 'depois', fallback: number) =>
@@ -103,7 +122,9 @@ export function DashboardTab({ experimentData, chartData, historyData }: Dashboa
 
   const evolucaoData = historyData.map((d, index) => ({
     name: `Deploy ${index + 1}`,
-    Total: d.total
+    Total: d.total,
+    description: d.description,
+    commit: d.commit,
   }));
 
   return (
@@ -168,7 +189,7 @@ export function DashboardTab({ experimentData, chartData, historyData }: Dashboa
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
                 <XAxis dataKey="name" tick={{ fill: '#475569' }} axisLine={false} tickLine={false} />
                 <YAxis tick={{ fill: '#475569' }} axisLine={false} tickLine={false} />
-                <Tooltip contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }} />
+                <Tooltip content={<HistoricoTooltip />} />
                 <Line type="monotone" dataKey="Total" stroke="#1e293b" strokeWidth={3} dot={{ r: 4, fill: '#1e293b' }} activeDot={{ r: 6 }} />
               </LineChart>
             </ResponsiveContainer>
@@ -248,9 +269,12 @@ export function GraficoComparativoDinamico({ historyData }: GraficoComparativoDi
     () => deploysSelecionadosOrdenados.map((idx, i) => ({
       idx,
       label: `Deploy #${idx + 1}`,
+      description: historyData[idx].description,
+      category: historyData[idx].category,
+      commit: historyData[idx].commit,
       color: paletaCores[i % paletaCores.length]
     })),
-    [deploysSelecionadosOrdenados]
+    [deploysSelecionadosOrdenados, historyData]
   );
 
   const toggleSelecao = (index: number) => {
@@ -296,6 +320,8 @@ export function GraficoComparativoDinamico({ historyData }: GraficoComparativoDi
               <button
                 key={index}
                 onClick={() => toggleSelecao(index)}
+                title={`${historyData[index].category}: ${historyData[index].description} (Commit ${historyData[index].commit})`}
+                aria-label={`${historyData[index].category}: ${historyData[index].description} (Commit ${historyData[index].commit})`}
                 disabled={!selecionados.includes(index) && selecionados.length >= MAX_DEPLOYS_COMPARADOS}
                 className={`px-3 py-1 text-xs font-semibold rounded-full border transition-all duration-200 ${selecionados.includes(index)
                   ? 'bg-slate-800 text-white border-slate-800 shadow-sm'
@@ -326,8 +352,8 @@ export function GraficoComparativoDinamico({ historyData }: GraficoComparativoDi
               itemSorter={(item) => getDeployNumber(item.value)}
               content={() => (
                 <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 pt-5 text-sm">
-                  {seriesDeploys.map(({ label, color }) => (
-                    <span key={label} className="inline-flex items-center gap-2 text-slate-700">
+                  {seriesDeploys.map(({ label, category, description, color }) => (
+                    <span key={label} title={`${category}: ${description}`} className="inline-flex items-center gap-2 text-slate-700">
                       <span className="h-3 w-3 rounded-full" style={{ backgroundColor: color }} />
                       {label}
                     </span>

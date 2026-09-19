@@ -21,6 +21,9 @@ const owaspCategories = backendOwaspStatus.categories.map(({ id, title, desc }) 
 // Dizemos ao TypeScript exatamente o que esperar, mesmo que o JSON esteja vazio agora.
 const historyData = rawHistoryData as Array<{
   date: string;
+  description: string;
+  category: string;
+  commit: string;
   sast: number;
   sca: number;
   dast: number;
